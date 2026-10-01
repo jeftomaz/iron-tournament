@@ -2,6 +2,7 @@
 
 - `doing` Definir regras canônicas e decisões de arquitetura.
 - `todo` Inicializar o projeto Unity e o núcleo testável.
+- `todo` Configurar proteção da `main` e CI com GameCI para todo Pull Request.
 - `todo` Entregar batalha vertical Guerreiro x Goblin.
 - `todo` Adicionar Mago, itens, reversão e demais inimigos.
 - `todo` Implementar campanha, progresso e save local.

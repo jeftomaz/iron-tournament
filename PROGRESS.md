@@ -2,7 +2,12 @@
 
 ## 2026-10-01
 
-- Preparada a base do repositório com instruções, assets e código Java de referência; arquivos locais e gerados permanecem ignorados.
+- Definidas responsabilidades da equipe, fluxo por Pull Request e Jeferson como integrador da `main`.
+- Aprovado GameCI para a futura pipeline; segredos ficam restritos ao GitHub Actions e indisponíveis para PRs de forks.
+- Definida revisão de UI por evidência visual no PR, teste manual, PlayMode e build de CI quando disponível.
+- Registrado o procedimento de abertura e inspeção local da UI; agentes abrem o Unity Editor e Play Mode quando o ambiente permitir.
+- Movido o protótipo Java para diretório externo e adicionado `ironturn/` ao `.gitignore`; ele não faz parte deste repositório.
+- Preparada a base do repositório com instruções e assets; arquivos locais e gerados permanecem ignorados.
 - Confirmadas sequência fixa, atributos-base fixos e aleatoriedade restrita a dano, crítico, penetração e drops.
 - Definido histórico de reversão isolado por encontro, sem apagar HP, itens ou melhorias da campanha.
 - Analisados o protótipo Java e os assets disponíveis; nenhum código do jogo foi alterado.

@@ -7,6 +7,9 @@
 out/
 *.class
 
+# Referência externa local
+/ironturn/
+
 # Unity
 [Ll]ibrary/
 [Tt]emp/
