@@ -1,0 +1,36 @@
+{
+  "group_id": "24382f49-5c5f-47b2-b422-9820229ca411",
+  "states": [
+    {
+      "character": {
+        "id": "6b0e5d9b-9984-444f-b243-8ec53397dff0",
+        "name": "Idle",
+        "prompt": "Dark fantasy male mage, full body, rugged and imposing appearance. Adult man with medium-length messy dark brown hair, thick beard and stern facial expression. Wearing layered dark charcoal and black robes, a long torn and asymmetrical cloak, leather belts, dark trousers and heavy worn leather boots. Broad shoulders, slightly muscular build, practical battle-worn clothing with leather and metal details, small pendant hanging from the chest. Medieval dark fantasy aesthetic, muted brown, gray and black color palette. No fire, no flames, no magic effects, no glowing hands. 16-bit pixel art RPG character, clear readable silhouette, detailed sprite, neutral standing pose.",
+        "size": {
+          "width": 44,
+          "height": 44
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-09-22T22:34:42.745846+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-09-22T22:37:40.009224"
+}

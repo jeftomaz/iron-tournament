@@ -1,0 +1,36 @@
+{
+  "group_id": "669fb055-0e56-4434-9ded-3fc6aee981ee",
+  "states": [
+    {
+      "character": {
+        "id": "d0b753e8-da7c-468a-9e23-6429156f694f",
+        "name": "Idle",
+        "prompt": "Dark fantasy male warrior, full body, strong and athletic build. Adult man with short dark brown hair, light stubble and a serious, focused expression. Wearing worn light-colored plate armor with beige and off-white tones, reinforced with dark leather straps and weathered metal details. Medium-sized round shield on one arm and a long straight sword in the other hand. Layered armor over dark trousers, leather boots and protective knee and shoulder pieces. Battle-worn medieval fantasy aesthetic, practical equipment, muted brown, gray, beige and steel color palette. No magic effects, no fire, no glowing elements. 16-bit pixel art RPG character, clear readable silhouette, detailed sprite, neutral combat-ready pose.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-09-22T22:38:49.156974+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-09-22T22:42:30.867935"
+}

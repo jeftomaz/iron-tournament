@@ -1,0 +1,36 @@
+{
+  "group_id": "2a89fef4-daba-4c97-b378-acf965f32497",
+  "states": [
+    {
+      "character": {
+        "id": "abc08ea5-7c0b-4290-b951-ccf33a19784d",
+        "name": "Idle",
+        "prompt": "> Dark fantasy hostile knight, full body, experienced medieval fighter with a strong and disciplined build. Human male wearing practical medium-weight armor, more complete and well-maintained than the skeleton warrior\u2019s equipment, but still visibly worn from battle. The armor should combine dark steel plates, chainmail, leather straps and thick fabric, covering the chest, shoulders, forearms, thighs and knees without appearing excessively heavy or bulky. > > His helmet should be simple and battle-worn, either open-faced or partially covering the face, allowing a stern and intimidating expression to remain visible. Dark cloth and leather can be seen beneath the armor, with a short torn tabard or cape fragment showing signs of dirt, cuts and old blood stains. > > Armed with a solid medieval longsword and a medium-sized shield. The sword should look functional and well-used, with scratches and minor damage but clearly superior to the crude weapons carried by weaker enemies. The shield may have faded heraldic markings, scratches and dents from previous battles. > > The overall appearance should communicate a trained and dangerous soldier rather than a noble or elite champion. He is clearly stronger, better equipped and more disciplined than the goblin and skeleton, but still relatively grounded compared to the supernatural enemies that appear later. > > Dark medieval fantasy aesthetic, muted steel gray, dark brown, black and faded red or blue accents. No magic effects, no glowing elements, no supernatural aura. 16-bit pixel art RPG character, clear readable silhouette, detailed sprite, neutral combat-ready pose.",
+        "size": {
+          "width": 56,
+          "height": 56
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-09-22T23:03:17.993464+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-09-22T23:06:15.686634"
+}

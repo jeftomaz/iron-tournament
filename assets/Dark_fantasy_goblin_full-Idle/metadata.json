@@ -1,0 +1,36 @@
+{
+  "group_id": "d344f6a8-62c9-4fa1-927c-df5582730435",
+  "states": [
+    {
+      "character": {
+        "id": "64fcdcf8-16a1-461e-8c38-87334bbfea5d",
+        "name": "Idle",
+        "prompt": "> Dark fantasy goblin, full body, small and wiry build with slightly hunched posture. Green skin with uneven tones, visible dirt, scars and rough texture. Completely bald head, large pointed ears, pronounced cheekbones, small deep-set yellowish eyes and a wide mouth with crooked, uneven teeth and a few small protruding fangs. Long slightly hooked nose and an expressive, suspicious or aggressive face.   >    > Wearing very simple, worn clothing made from rough brown and gray fabric, heavily torn, patched and dirty. Only one or two pieces of mismatched armor, such as a rusty metal shoulder guard and a crude leather forearm protector, clearly scavenged rather than professionally made. Rope or old leather belt around the waist, small pouches attached to it, bare lower legs or worn boots with damaged straps.   >    > The equipment should look improvised and poorly maintained, with scratches, rust and irregular shapes. Slightly oversized hands and feet, thin limbs, long fingers and sharp dirty nails. Overall appearance should feel cunning, feral and opportunistic, following the classic fantasy goblin archetype while maintaining a grounded dark medieval aesthetic. Muted green, brown, gray and rusty metal color palette. No magic effects. 16-bit pixel art RPG character, clear readable silhouette, detailed sprite, neutral standing pose.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-09-22T22:51:50.607643+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-09-22T22:55:08.973662"
+}

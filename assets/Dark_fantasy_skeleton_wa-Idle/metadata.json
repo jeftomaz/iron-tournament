@@ -1,0 +1,36 @@
+{
+  "group_id": "7fc1555a-1862-441a-a925-3fdd2e76335b",
+  "states": [
+    {
+      "character": {
+        "id": "0ad395e8-6e79-40db-a053-104e0472f3aa",
+        "name": "Idle",
+        "prompt": "> Dark fantasy skeleton warrior, full body, undead medieval fighter with a thin, exposed skeletal frame. The body is almost entirely bone, with cracked, chipped and dirty bones showing age and decay. Hollow eye sockets, broken or missing teeth, slightly damaged skull and an unsettling but simple undead appearance. No flesh remaining. > > Wearing almost no clothing, since most fabric has decomposed over time. Only a few torn scraps of dark brown or gray cloth remain around the waist, shoulders or legs, hanging loosely from the bones. The armor is very limited and incomplete: one rusty metal shoulder guard, a damaged chest plate fragment or a single forearm guard, all heavily corroded and clearly scavenged or left from when the warrior was alive. Large portions of the ribcage, arms and legs remain completely exposed. > > Armed with a worn medieval sword with a chipped blade and rusty metal surface. Optionally carries a small damaged shield, but the equipment should remain simple and inferior to that of stronger enemies. The overall design should communicate that this is a basic undead soldier: more dangerous and disciplined than a goblin, but still clearly weaker and less equipped than a living knight. > > Dirty bones, rust, scratches, broken armor edges and small remnants of leather straps should reinforce the abandoned battlefield aesthetic. Dark medieval fantasy style, muted bone white, gray, brown and rusty metal color palette. No magic effects, no glowing eyes, no supernatural aura. 16-bit pixel art RPG character, clear readable silhouette, detailed sprite, neutral combat-ready pose.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-09-22T23:01:37.863251+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-09-22T23:04:21.502491"
+}

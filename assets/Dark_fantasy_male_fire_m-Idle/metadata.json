@@ -1,0 +1,36 @@
+{
+  "group_id": "2eac1f80-3a82-4447-846c-62557079bb80",
+  "states": [
+    {
+      "character": {
+        "id": "d8a33001-5632-4b8b-b44b-6dc16e01ff73",
+        "name": "Idle",
+        "prompt": "Dark fantasy male fire mage, full body, rugged and imposing appearance. Adult man with medium-length messy dark brown hair, thick beard and a stern facial expression. Wearing layered dark charcoal and black robes, leather belts, dark trousers and heavy worn leather boots. His most distinctive feature is a long torn cloak that is partially made of living flames, with fire flowing from the fabric edges and forming a dramatic fiery silhouette behind him. Additional flames surround his shoulders and forearms, with one hand channeling concentrated fire magic. Small glowing pendant on the chest, illuminated by the orange light of the flames. Medieval dark fantasy aesthetic, muted black, brown and gray clothing contrasted by vivid orange and yellow fire. 16-bit pixel art RPG character, clear readable silhouette, detailed sprite, dynamic combat-ready pose, strong emphasis on the flaming cloak and fire magic.",
+        "size": {
+          "width": 52,
+          "height": 52
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-09-22T22:40:50.319089+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-09-22T22:43:27.486125"
+}
