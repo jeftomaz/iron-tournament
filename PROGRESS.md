@@ -2,6 +2,7 @@
 
 ## 2026-10-02
 
+- Removida a cache de `Library` da CI: a ação ficou bloqueada no runner antes do Unity; ela é apenas uma otimização e não participa da validação.
 - Restaurado o formato serializado canônico do `TagManager.asset`, rejeitado pelo parser do Unity durante a primeira execução da CI no runner macOS.
 - Iniciada a etapa de Jeferson para contratos de `Content`, validação e adaptação para o núcleo; regras de combate e apresentação permanecem fora deste escopo.
 - Detalhada a divisão por membro e fase: Jeferson responde por arquitetura/infra/integração, João Lucas pelo núcleo e testes EditMode, e João Pedro pela apresentação e testes PlayMode.
