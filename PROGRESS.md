@@ -2,7 +2,8 @@
 
 ## 2026-10-02
 
-- Iniciada a etapa de Jeferson para contratos de `Content`, validação e adaptação para o núcleo; regras de combate e apresentação permanecem fora deste escopo.
+- Concluídos os contratos `Content -> Core`: definições Unity, configurações imutáveis sem `UnityEngine`, adaptador e validação de referências, IDs, faixas, duplicidades e texto de exibição.
+- Adicionados testes EditMode para mapeamento válido e rejeição de variação inválida; compilação estática aprovada, mas a execução Unity segue pendente porque o cliente de licença não abriu o canal do Hub nesta sessão.
 - Detalhada a divisão por membro e fase: Jeferson responde por arquitetura/infra/integração, João Lucas pelo núcleo e testes EditMode, e João Pedro pela apresentação e testes PlayMode.
 - Confirmada a reversão de turno para o checkpoint anterior à última ação do Mago: ataque A e resposta B são desfeitos, o controle volta ao Mago e a carga é consumida sem retroceder a aleatoriedade.
 - Mantida a variação de ±15% em HP, ATK e DEF dos inimigos por encontro; a reversão preserva os valores efetivos já sorteados.
