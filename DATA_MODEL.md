@@ -4,6 +4,8 @@ Não há banco de dados no escopo inicial. Este arquivo registra dados de jogo e
 
 ## Definições estáticas
 
+Definições são `ScriptableObject` em `Content`; o núcleo recebe valores de runtime sem referências a `UnityEngine`.
+
 | Tipo | Responsabilidade |
 |---|---|
 | `CombatantDefinition` | Identidade, atributos-base, sprite e capacidades |
@@ -18,7 +20,7 @@ Não há banco de dados no escopo inicial. Este arquivo registra dados de jogo e
 |---|---|
 | `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais |
 | `BattleState` | Participantes, fase, turno, flags e histórico do encontro |
-| `BattleSnapshot` | Cópia íntegra restaurável do estado da batalha |
+| `BattleSnapshot` | Cópia íntegra restaurável do estado do encontro, exceto a sequência aleatória |
 | `ProgressData` | Campanhas concluídas, desbloqueios e snapshots finais |
 
 ## Integridade
@@ -27,6 +29,7 @@ Não há banco de dados no escopo inicial. Este arquivo registra dados de jogo e
 - HP e atributos carregados são limitados a faixas válidas.
 - Save local será versionado, validado e gravado de forma atômica.
 - O histórico de reversão começa e termina dentro de cada encontro.
+- Reverter restaura participantes, HP, atributos efetivos, efeitos, recursos, turno, flags e histórico do encontro; a sequência aleatória não retrocede.
 - HP atual, itens e melhorias do jogador continuam entre encontros; ações reversíveis anteriores não.
 - Apenas o snapshot final da campanha pode ser persistido para outros modos.
 - A progressão da campanha não usa sorteio para escolher ou ordenar inimigos.

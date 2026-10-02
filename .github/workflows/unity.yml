@@ -1,0 +1,55 @@
+name: Unity CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  test:
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-editmode-${{ runner.os }}-${{ hashFiles('Packages/manifest.json') }}
+          restore-keys: Library-editmode-${{ runner.os }}-
+      - id: tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          testMode: editmode
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: editmode-results
+          path: ${{ steps.tests.outputs.artifactsPath }}
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-webgl-${{ runner.os }}-${{ hashFiles('Packages/manifest.json') }}
+          restore-keys: Library-webgl-${{ runner.os }}-
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: WebGL
+          buildName: IronTournament
+      - uses: actions/upload-artifact@v4
+        with:
+          name: webgl
+          path: build/WebGL

@@ -7,7 +7,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 ## Referência
 
 - `../ironturn/`: especificação funcional externa em Java; opcional para consulta e não versionada neste repositório. Suas regras serão revisadas, não portadas literalmente.
-- `assets/`: sprites direcionais estáticos para personagens.
+- `Assets/`: sprites direcionais estáticos para personagens e conteúdo do Unity.
 
 ## Stack
 
@@ -15,6 +15,21 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - C#
 - Projeto 2D pixel-perfect
 - GameCI aprovado exclusivamente para a pipeline do GitHub Actions
+- Build Web para execução no navegador
+
+## Plataformas e telas
+
+- Foco inicial: navegador mobile em `9:16`, com área de referência `360 × 640`.
+- Desktop: navegador em `16:9`, com área de referência `1280 × 720`.
+- Cada orientação terá composição própria; a interface não deve apenas esticar a outra.
+- A primeira publicação Web é cliente estático: multiplayer, autenticação e backend não fazem parte deste escopo.
+
+## Estrutura inicial
+
+- `Core`: regras e estado de runtime sem referência ao Unity.
+- `Content`: definições em `ScriptableObject` e referências de assets.
+- `Presentation`: cenas, UI e adaptação dos dados de conteúdo ao núcleo.
+- `Tests/EditMode`: testes do núcleo sem carregar cenas.
 
 ## Premissas confirmadas
 
@@ -27,11 +42,12 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - O núcleo deve ser testável sem carregar cenas.
 - O protótipo Java é referência de design, não fonte de verdade para comportamentos defeituosos.
 
-## Propostas aguardando confirmação
+## Decisões confirmadas
 
-- Reversão restaura o estado completo, exceto a sequência aleatória.
+- Reversão restaura integralmente o estado do encontro, exceto a sequência aleatória.
 - Arquitetura idiomática para Unity, sem preservar os padrões GoF apenas por equivalência acadêmica.
 - Primeiro marco: Guerreiro contra Goblin, com fluxo completo e testes.
+- A entrega navegável usa o build Web do Unity; a hospedagem será definida antes da publicação.
 
 ## Restrições
 

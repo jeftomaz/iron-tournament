@@ -7,18 +7,27 @@
 | `ActionMenu` | Mostrar ações disponíveis e enviar a escolha | Decidir disponibilidade de ações |
 | `BattleEventPlayer` | Apresentar eventos em sequência | Criar resultados de combate |
 
+## Referências de tela
+
+| Plataforma | Aspect ratio | Área de referência | Prioridade |
+|---|:---:|:---:|---|
+| Navegador mobile | `9:16` | `360 × 640` | Inicial |
+| Navegador desktop | `16:9` | `1280 × 720` | Posterior |
+
 ## Regras vinculantes
 
 - A UI consome estado somente para exibição.
+- `Presentation` pode referenciar `Core` e `Content`; o núcleo não referencia `UnityEngine` nem componentes de interface.
 - Toda escolha passa pela validação do núcleo.
 - Entrada fica bloqueada enquanto eventos do turno estão sendo apresentados.
+- Cada orientação usa composição própria; preservar a proporção com barras, nunca deformar a interface.
 - Sprites usam filtro point e escala inteira sempre que possível.
 - Textos fornecidos pelo jogador terão limite e tratamento de caracteres de controle/rich text.
 
 ## Validação visual
 
 - PR de interface inclui captura ou vídeo curto do fluxo alterado.
-- Revisão manual usa a resolução de referência definida no projeto e verifica legibilidade, navegação e estados extremos.
+- Revisão manual usa ambas as resoluções de referência e verifica legibilidade, navegação e estados extremos.
 - Testes PlayMode cobrem transições e interações; a aprovação visual continua humana.
 - Quando disponível, a pipeline publica uma build como artefato do PR para validação da integração.
 

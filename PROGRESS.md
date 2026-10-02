@@ -2,6 +2,12 @@
 
 ## 2026-10-01
 
+- Definidas telas de referência: mobile `360 × 640` (`9:16`) como foco e desktop `1280 × 720` (`16:9`), com composição responsiva por orientação.
+- Definida a entrega Web pelo navegador, sem multiplayer, autenticação ou backend no escopo atual; a CI agora gera artefato WebGL.
+- Confirmadas as regras canônicas: o IronTurn é apenas referência, atributos-base permanecem fixos e a reversão restaura todo o encontro, exceto a sequência aleatória.
+- Inicializado o projeto Unity 2D pixel-perfect com as assemblies `Core`, `Content`, `Presentation` e testes EditMode; o núcleo não referencia a engine.
+- Adicionada pipeline GameCI de testes EditMode e build Linux; PRs de forks não recebem segredos. Falta cadastrar `UNITY_LICENSE` e configurar a proteção da `main` no GitHub.
+- A validação local pelo editor permanece pendente: o ambiente atual não inicializou o serviço de licenças do Unity.
 - Definidas responsabilidades da equipe, fluxo por Pull Request e Jeferson como integrador da `main`.
 - Aprovado GameCI para a futura pipeline; segredos ficam restritos ao GitHub Actions e indisponíveis para PRs de forks.
 - Definida revisão de UI por evidência visual no PR, teste manual, PlayMode e build de CI quando disponível.
