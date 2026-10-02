@@ -1,5 +1,11 @@
 # Progresso
 
+## 2026-10-02
+
+- Criados via ImageGen os fundos dos demais inimigos e dos heróis, inspirados em Castlevania: Lords of Shadow; mantido o Goblin aprovado. O Mago normal e com fogo compartilham cenário.
+- Conferidos visualmente os fundos; arquivos, dimensões e prompts registrados em `assets/backgrounds/metadata.json`.
+- Pendentes: aprovação visual dos novos cenários e integração no Unity.
+
 ## 2026-10-01
 
 - Definidas responsabilidades da equipe, fluxo por Pull Request e Jeferson como integrador da `main`.

@@ -7,7 +7,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 ## Referência
 
 - `../ironturn/`: especificação funcional externa em Java; opcional para consulta e não versionada neste repositório. Suas regras serão revisadas, não portadas literalmente.
-- `assets/`: sprites direcionais estáticos para personagens.
+- `assets/`: sprites direcionais estáticos para personagens e fundos de batalha em `backgrounds/`; o `metadata.json` dessa pasta associa cenários aos personagens e registra prompts.
 
 ## Stack
 
