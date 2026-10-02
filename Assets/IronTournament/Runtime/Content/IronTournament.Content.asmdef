@@ -1,7 +1,9 @@
 {
   "name": "IronTournament.Content",
   "rootNamespace": "IronTournament.Content",
-  "references": [],
+  "references": [
+    "IronTournament.Core"
+  ],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": false,
