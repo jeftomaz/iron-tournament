@@ -20,6 +20,8 @@
 - `Presentation` pode referenciar `Core` e `Content`; o núcleo não referencia `UnityEngine` nem componentes de interface.
 - Toda escolha passa pela validação do núcleo.
 - Entrada fica bloqueada enquanto eventos do turno estão sendo apresentados.
+- Ao concluir `Reverter Turno`, a apresentação descarta eventos visuais pendentes da rodada desfeita, redesenha o snapshot restaurado e reabre imediatamente o `ActionMenu` do Mago.
+- `Reverter Batalha` segue o mesmo fluxo visual, usando o estado de entrada do encontro.
 - Cada orientação usa composição própria; preservar a proporção com barras, nunca deformar a interface.
 - Sprites usam filtro point e escala inteira sempre que possível.
 - Textos fornecidos pelo jogador terão limite e tratamento de caracteres de controle/rich text.

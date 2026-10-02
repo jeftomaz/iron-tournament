@@ -36,8 +36,8 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 - Combates frontais e sequenciais, inicialmente `1 x 1`.
 - A campanha segue a ordem fixa: Goblin, Esqueleto, Cavaleiro, Lobisomem, Vampiro, Necromante e Rei Demônio.
-- Atributos-base dos inimigos são fixos para preservar a curva de dificuldade.
-- Variação de dano, crítico, penetração e drops permanecem probabilísticos.
+- Cada inimigo tem atributos-base canônicos; ao criar o encontro, HP, ATK e DEF efetivos variam independentemente em ±15% e permanecem fixos até seu encerramento.
+- Variação de dano, crítico, penetração e drops também permanecem probabilísticos.
 - Regras de combate independentes da interface e das animações.
 - Configurações em `ScriptableObject`; estado da partida em objetos de runtime.
 - O núcleo deve ser testável sem carregar cenas.
@@ -45,7 +45,9 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 ## Decisões confirmadas
 
-- Reversão restaura integralmente o estado do encontro, exceto a sequência aleatória.
+- O Mago mantém `Reverter Turno` e `Reverter Batalha`, com uma carga compartilhada por encontro e sem gastar turno.
+- `Reverter Turno` retorna ao início da vez anterior do Mago e devolve imediatamente o controle a ele; toda a rodada desfeita é restaurada.
+- `Reverter Batalha` retorna ao estado de entrada do encontro. Ambas as reversões restauram o estado integral, mas não a sequência aleatória, e ficam indisponíveis após a morte.
 - Arquitetura idiomática para Unity, sem preservar os padrões GoF apenas por equivalência acadêmica.
 - Primeiro marco: Guerreiro contra Goblin, com fluxo completo e testes.
 - A entrega navegável usa o build Web do Unity; a hospedagem será definida antes da publicação.
@@ -58,9 +60,18 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 ## Colaboração
 
-- Jeferson Tomaz: arquitetura, infraestrutura, CI, integração e revisão da `main`.
-- João Lucas: núcleo de combate e testes unitários independentes de cenas.
-- João Pedro: cenas, interface, animações e integração dos assets.
+| Membro | Entregas próprias | Limite de responsabilidade |
+|---|---|---|
+| Jeferson Tomaz | Arquitetura entre assemblies, tipos de `Content`, adaptação `Content -> Core`, bootstrap, persistência Web, CI, build WebGL e integração da `main` | Não implementa regra de combate na integração nem comportamento visual nos adaptadores |
+| João Lucas | Estado e regras puras do `Core`, fluxo de turnos, aleatoriedade injetável, Guerreiro, Mago, reversão, inimigos, itens, drops, campanha, modo inimigo e testes EditMode | Não referencia `UnityEngine`, cenas, animações ou componentes de UI |
+| João Pedro | Cenas, prefabs, assets configurados, layouts mobile/desktop, HUD, menus, apresentação dos eventos, animações, áudio e testes PlayMode da interface | Não calcula resultados nem altera diretamente o estado de batalha |
+
+### Contrato de integração
+
+- João Lucas expõe estado somente leitura, ações válidas e eventos resultantes; João Pedro envia apenas a escolha do jogador e apresenta a resposta.
+- Jeferson define e revisa as fronteiras públicas entre `Core`, `Content` e `Presentation`; mudanças nessas fronteiras exigem PR isolado antes das implementações dependentes.
+- João Pedro instancia os `ScriptableObject`; Jeferson mantém seus tipos e validação; João Lucas define quais valores o núcleo requer.
+- Testes EditMode das regras pertencem a João Lucas; testes PlayMode e evidência visual pertencem a João Pedro; Jeferson mantém a execução de ambos na CI.
 - Cada mudança usa branch própria e Pull Request; ninguém envia diretamente para a `main`.
 - A suíte completa roda localmente antes de cada commit; todo PR interno roda CI com testes essenciais, validações e build.
 - O estado visual é acompanhado localmente pelo Unity Editor, em Play Mode, nas janelas Game, Scene e Inspector.

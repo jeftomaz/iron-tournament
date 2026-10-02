@@ -1,12 +1,19 @@
 # Progresso
 
+## 2026-10-02
+
+- Iniciada a etapa de Jeferson para contratos de `Content`, validação e adaptação para o núcleo; regras de combate e apresentação permanecem fora deste escopo.
+- Detalhada a divisão por membro e fase: Jeferson responde por arquitetura/infra/integração, João Lucas pelo núcleo e testes EditMode, e João Pedro pela apresentação e testes PlayMode.
+- Confirmada a reversão de turno para o checkpoint anterior à última ação do Mago: ataque A e resposta B são desfeitos, o controle volta ao Mago e a carga é consumida sem retroceder a aleatoriedade.
+- Mantida a variação de ±15% em HP, ATK e DEF dos inimigos por encontro; a reversão preserva os valores efetivos já sorteados.
+
 ## 2026-10-01
 
 - Definidas telas de referência: mobile `360 × 640` (`9:16`) como foco e desktop `1280 × 720` (`16:9`), com composição responsiva por orientação.
 - Definida a entrega Web pelo navegador, sem multiplayer, autenticação ou backend no escopo atual; a CI agora gera artefato WebGL.
 - A CI foi adaptada para runner próprio macOS ARM64: testes executam o Unity local e o GameCI gera WebGL sem `UNITY_LICENSE`; PRs de forks continuam bloqueados. Pendente: registrar o runner no GitHub e proteger a `main`.
 - Corrigida a estrutura YAML de `TagManager.asset`; a automação local de testes continua pendente porque a sessão do agente não acessa o serviço de licença do Unity Hub.
-- Confirmadas as regras canônicas: o IronTurn é apenas referência, atributos-base permanecem fixos e a reversão restaura todo o encontro, exceto a sequência aleatória.
+- Confirmadas as regras canônicas: o IronTurn é referência revisável e a reversão restaura todo o encontro, exceto a sequência aleatória.
 - Inicializado o projeto Unity 2D pixel-perfect com as assemblies `Core`, `Content`, `Presentation` e testes EditMode; o núcleo não referencia a engine.
 - Adicionada pipeline de testes EditMode e build Web; a configuração de licença depende do runner macOS local.
 - A validação local pelo editor permanece pendente: o ambiente atual não inicializou o serviço de licenças do Unity.
@@ -16,8 +23,7 @@
 - Registrado o procedimento de abertura e inspeção local da UI; agentes abrem o Unity Editor e Play Mode quando o ambiente permitir.
 - Movido o protótipo Java para diretório externo e adicionado `ironturn/` ao `.gitignore`; ele não faz parte deste repositório.
 - Preparada a base do repositório com instruções e assets; arquivos locais e gerados permanecem ignorados.
-- Confirmadas sequência fixa, atributos-base fixos e aleatoriedade restrita a dano, crítico, penetração e drops.
+- Confirmadas sequência fixa e aleatoriedade em atributos efetivos dos inimigos, dano, crítico, penetração e drops.
 - Definido histórico de reversão isolado por encontro, sem apagar HP, itens ou melhorias da campanha.
 - Analisados o protótipo Java e os assets disponíveis; nenhum código do jogo foi alterado.
 - Definidas premissas iniciais para Unity e propostas correções para estado, reversão, aleatoriedade, eventos e progresso.
-- Pendentes: confirmar escopo da reversão, tratamento dos padrões GoF e primeiro marco jogável.
