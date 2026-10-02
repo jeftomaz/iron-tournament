@@ -7,12 +7,12 @@ on:
 
 permissions:
   contents: read
-  checks: write
 
 jobs:
   test:
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork == false
-    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -20,22 +20,24 @@ jobs:
           path: Library
           key: Library-editmode-${{ runner.os }}-${{ hashFiles('Packages/manifest.json') }}
           restore-keys: Library-editmode-${{ runner.os }}-
-      - id: tests
-        uses: game-ci/unity-test-runner@v4
+      - name: Run EditMode tests
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          testMode: editmode
+          UNITY_EXECUTABLE: /Applications/Unity/Hub/Editor/6000.5.7f1/Unity.app/Contents/MacOS/Unity
+        run: |
+          mkdir -p artifacts
+          "$UNITY_EXECUTABLE" -batchmode -quit -projectPath "$GITHUB_WORKSPACE" -runTests -testPlatform EditMode -testResults "$GITHUB_WORKSPACE/artifacts/editmode-results.xml"
       - if: always()
         uses: actions/upload-artifact@v4
         with:
           name: editmode-results
-          path: ${{ steps.tests.outputs.artifactsPath }}
+          path: artifacts/editmode-results.xml
+          retention-days: 7
 
   build:
     needs: test
-    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -44,12 +46,13 @@ jobs:
           key: Library-webgl-${{ runner.os }}-${{ hashFiles('Packages/manifest.json') }}
           restore-keys: Library-webgl-${{ runner.os }}-
       - uses: game-ci/unity-builder@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: WebGL
           buildName: IronTournament
+          skipActivation: true
+          runAsHostUser: true
       - uses: actions/upload-artifact@v4
         with:
           name: webgl
           path: build/WebGL
+          retention-days: 7

@@ -16,6 +16,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Projeto 2D pixel-perfect
 - GameCI aprovado exclusivamente para a pipeline do GitHub Actions
 - Build Web para execução no navegador
+- CI em runner próprio macOS ARM64, com Unity Hub autenticado; não usa `UNITY_LICENSE` no GitHub.
 
 ## Plataformas e telas
 
@@ -61,12 +62,18 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - João Lucas: núcleo de combate e testes unitários independentes de cenas.
 - João Pedro: cenas, interface, animações e integração dos assets.
 - Cada mudança usa branch própria e Pull Request; ninguém envia diretamente para a `main`.
-- A suíte completa roda localmente antes de cada commit; todo PR roda CI com testes essenciais, validações e build.
+- A suíte completa roda localmente antes de cada commit; todo PR interno roda CI com testes essenciais, validações e build.
 - O estado visual é acompanhado localmente pelo Unity Editor, em Play Mode, nas janelas Game, Scene e Inspector.
+
+## Runner de CI
+
+- Registrar no repositório um runner GitHub Actions `self-hosted`, `macOS`, `ARM64`, executado pelo usuário que ativou o Unity Hub.
+- Instalar Unity `6000.5.7f1` no caminho padrão do Hub: `/Applications/Unity/Hub/Editor/6000.5.7f1/Unity.app/Contents/MacOS/Unity`.
+- Manter o Mac ligado e o usuário da sessão do Hub autenticado durante as execuções; não instalar o runner como serviço do sistema. Testes usam o executável local e o build WebGL usa GameCI com `skipActivation`.
 
 ## Segurança do repositório público
 
 - Segredos ficam somente em GitHub Actions Secrets; nunca em arquivos, logs, exemplos ou histórico Git.
-- Credenciais da Unity usadas pelo GameCI devem ter o menor escopo possível.
-- PRs de forks não recebem segredos nem executam etapas que dependam deles.
+- A ativação do Unity fica apenas no perfil local do runner; nenhuma credencial da Unity é cadastrada no GitHub.
+- O runner atende somente este repositório e código de colaboradores confiáveis; PRs de forks não executam CI nele.
 - Antes do merge, revisar o diff e a saída da CI para detectar chaves, tokens ou dados pessoais.
