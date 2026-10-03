@@ -2,8 +2,9 @@
 
 ## 2026-10-02
 
-- Docker Desktop iniciado, containers externos parados e `.ulf` provisionada exclusivamente no secret `UNITY_LICENSE`.
-- Restaurado o GameCI no build WebGL; ele recebe a licença Personal somente pelo secret `UNITY_LICENSE`, sem arquivo versionado.
+- Provisionados `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD` como secrets do GitHub; o GameCI recebe os três valores mascarados.
+- Docker Desktop iniciado e containers externos parados.
+- Restaurado o GameCI no build WebGL em contêiner.
 - Removida a cache de `Library` da CI: a ação ficou bloqueada no runner antes do Unity; ela é apenas uma otimização e não participa da validação.
 - Restaurado o formato serializado canônico do `TagManager.asset`, rejeitado pelo parser do Unity durante a primeira execução da CI no runner macOS.
 - Iniciada a etapa de Jeferson para contratos de `Content`, validação e adaptação para o núcleo; regras de combate e apresentação permanecem fora deste escopo.

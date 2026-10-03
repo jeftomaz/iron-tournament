@@ -16,7 +16,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Projeto 2D pixel-perfect
 - GameCI executa o build WebGL em contêiner na pipeline do GitHub Actions
 - Build Web para execução no navegador
-- CI em runner próprio macOS ARM64: testes usam o Unity Hub local e o build WebGL usa GameCI em contêiner com `UNITY_LICENSE` como secret.
+- CI em runner próprio macOS ARM64: testes usam o Unity Hub local e o build WebGL usa GameCI em contêiner com `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD` como secrets.
 
 ## Plataformas e telas
 
@@ -85,6 +85,6 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 ## Segurança do repositório público
 
 - Segredos ficam somente em GitHub Actions Secrets; nunca em arquivos, logs, exemplos ou histórico Git.
-- O conteúdo da licença Personal fica exclusivamente no secret `UNITY_LICENSE`; nunca em arquivo versionado, log ou artefato.
+- A licença Personal e as credenciais da conta Unity ficam exclusivamente nos secrets `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD`; nunca em arquivo versionado, log ou artefato.
 - O runner atende somente este repositório e código de colaboradores confiáveis; PRs de forks não executam CI nele.
 - Antes do merge, revisar o diff e a saída da CI para detectar chaves, tokens ou dados pessoais.
