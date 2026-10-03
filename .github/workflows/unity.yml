@@ -31,7 +31,7 @@ jobs:
   build:
     needs: test
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: [self-hosted, macOS, ARM64]
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -43,7 +43,6 @@ jobs:
         with:
           targetPlatform: WebGL
           buildName: IronTournament
-          runAsHostUser: true
       - uses: actions/upload-artifact@v4
         with:
           name: webgl

@@ -16,7 +16,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Projeto 2D pixel-perfect
 - GameCI executa o build WebGL em contêiner na pipeline do GitHub Actions
 - Build Web para execução no navegador
-- CI em runner próprio macOS ARM64: testes usam o Unity Hub local e o build WebGL usa GameCI em contêiner com `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD` como secrets.
+- CI: testes usam o runner próprio macOS ARM64 com Unity Hub local; o build WebGL usa GameCI em contêiner no runner hospedado Ubuntu, com `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD` como secrets.
 
 ## Plataformas e telas
 
@@ -78,9 +78,9 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 ## Runner de CI
 
-- Registrar no repositório um runner GitHub Actions `self-hosted`, `macOS`, `ARM64`, executado pelo usuário que ativou o Unity Hub.
+- Registrar no repositório um runner GitHub Actions `self-hosted`, `macOS`, `ARM64`, executado pelo usuário que ativou o Unity Hub, para os testes EditMode.
 - Instalar Unity `6000.5.7f1` no caminho padrão do Hub: `/Applications/Unity/Hub/Editor/6000.5.7f1/Unity.app/Contents/MacOS/Unity`.
-- Manter o Mac ligado e o usuário da sessão do Hub autenticado durante as execuções; não instalar o runner como serviço do sistema. Testes usam o executável local; o build WebGL requer Docker e executa no GameCI.
+- Manter o Mac ligado e o usuário da sessão do Hub autenticado durante os testes; não instalar o runner como serviço do sistema. O build WebGL executa no contêiner GameCI hospedado pelo GitHub.
 
 ## Segurança do repositório público
 
