@@ -36,10 +36,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: WebGL
           buildName: IronTournament
-          skipActivation: true
           runAsHostUser: true
       - uses: actions/upload-artifact@v4
         with:
