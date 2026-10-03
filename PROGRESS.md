@@ -2,6 +2,7 @@
 
 ## 2026-10-03
 
+- Ampliado para 60 minutos o timeout do build WebGL: a primeira importação limpa no contêiner ultrapassou os 30 minutos, sem erro de licença ou de compilação.
 - Validados testes EditMode e build WebGL em contêineres GameCI hospedados; a proteção da `main` é a pendência de infraestrutura imediata.
 
 ## 2026-10-02
