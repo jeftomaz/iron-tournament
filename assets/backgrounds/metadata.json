@@ -1,0 +1,65 @@
+{
+  "export_version": "1.0",
+  "generator": "built-in image_gen",
+  "size": {
+    "width": 1672,
+    "height": 941
+  },
+  "format": "PNG RGB, 8 bits per channel, opaque",
+  "reference": {
+    "title": "Castlevania: Lords of Shadow",
+    "url": "https://www.konami.com/mg/archive/other/castlevania/jp/official/screenshots/index.html"
+  },
+  "shared_prompt": "Use case: stylized-concept\nAsset type: static opaque PNG battle background for Iron Tournament, a Unity 2D turn-based medieval dark-fantasy RPG.\nArt direction: inspired by the atmosphere and environmental grandeur of Castlevania: Lords of Shadow: ancient gothic stonework, monumental ruined architecture, wild nature and dramatic light. Create an original environment adapted to authentic 16-bit RPG pixel art.\nStyle: visible crisp square pixel clusters, limited coherent color ramps, restrained dithering, hard pixel edges and clear silhouettes; compatible with 44–60px pixel-art characters. NO painterly strokes, smooth gradients, blur, realistic photograph, 3D render or high-resolution painted concept-art look.\nComposition: single full-bleed wide 16:9 landscape, target 1672x941. Fixed shallow elevated frontal battle camera with a visible horizontal ground plane. The lower half is a broad flat unobstructed fighting area for two separately composited sprites facing each other. Keep both future standing positions equally usable. Environmental focal points stay behind the arena in the upper half; larger objects stay at the margins. Readable mid-value floor contrasting with the dark background. Visually quiet lower edge for a future overlay, but do not draw interface panels or bars.\nConstraints: scenery only. No characters, people, enemies, creatures, body silhouettes, statues shaped like people, legible text, lettering, runes, logos, watermark, health bars, menus or UI. No visible circles marking character positions. No border, collage, panels or inset. Complete opaque image.",
+  "backgrounds": [
+    {
+      "character": "Goblin",
+      "file": "goblin-forest.png",
+      "prompt": "Use case: stylized-concept\nAsset type: static battle background PNG for Iron Tournament, a Unity 2D turn-based RPG.\nPrimary request: create the Goblin encounter environment, a dark medieval forest clearing. Single finished wide landscape background, 16:9 composition, preferably 1536x864.\nScene/backdrop: dense old woodland, gnarled trunks, moss-covered roots and a few rocks around the margins, layered dark foliage behind a broad clearing of compact earth. Subtle cool light coming through the canopy. Grounded setting suitable for a low-tier goblin encounter.\nStyle/medium: authentic 16-bit RPG pixel art, discrete visible square pixels, crisp pixel clusters, restrained dithering and limited color ramps; match small 48x48 dark-fantasy character sprites. No painterly strokes, no smooth digital illustration or photorealistic textures.\nComposition/framing: fixed battle-screen camera with a shallow elevated frontal view, enough visible horizontal ground plane for two standing combatants facing each other. Keep the central middle/lower arena open and unobstructed, with low-contrast dirt under the future sprites. Most foliage detail stays in the upper half and edges. Full artwork edge to edge, no panels or borders. Lower edge remains visually quiet for a future HUD overlay, but do not draw a HUD or separate UI strip.\nLighting/mood: ominous woodland but readable, mid-value ground contrasting against dark canopy. Muted olive green, earthy brown, gray stone and cool teal shadows; understated lighting.\nConstraints: background only; no goblin, warrior, people, creatures or character silhouettes. No text, icons, health bars, interface, logo, watermark, weapons, buildings, flames or magical effects. Opaque image, no transparency."
+    },
+    {
+      "character": "Esqueleto",
+      "file": "skeleton-graveyard.png",
+      "prompt_suffix": "Scene: an abandoned graveyard within the ruins of a gothic abbey. Weathered gravestones and broken wrought-iron fence flank a wide worn stone-and-earth arena; ivy-covered pointed arches rise behind it, distant ruined chapel and layered cold mist. Grave markers remain at the edges and rear, never obstructing the fighting area. Palette: slate blue, desaturated gray, moss green; faint moonlight, melancholy and decay."
+    },
+    {
+      "character": "Cavaleiro",
+      "file": "knight-fortress.png",
+      "prompt_suffix": "Scene: the outer courtyard of a weather-beaten medieval gothic fortress. Monumental closed pointed-arch gate in the upper background, crenellated walls, buttresses and distant jagged mountain silhouettes. Empty worn stone paving forms the broad battle arena. A few faded dark-red banners high on the walls; restrained warm torchlight at the margins contrasts with overcast cold steel-blue daylight. Mood disciplined, hostile, imposing; grounded architecture."
+    },
+    {
+      "character": "Lobisomem",
+      "file": "werewolf-ravine.png",
+      "prompt_suffix": "Scene: a moonlit wild mountain forest clearing at the mouth of a rocky ravine. Twisted pines, dense dark roots and jagged cliffs frame a broad flat patch of earth and rock. A ruined gothic monastery appears small and distant above the rear cliffs, with cold mist deep in the background. Moonlight filters through cloud above the treeline. Palette: charcoal, deep blue-green, muted brown and silver. Mood feral, cold, tense; central floor remains readable and clear."
+    },
+    {
+      "character": "Vampiro",
+      "file": "vampire-castle.png",
+      "prompt_suffix": "Scene: a vast neglected gothic castle audience hall at night. Tall pointed windows, ribbed vaults, weathered columns, narrow faded crimson drapery and distant raised stone dais confined to the rear. Empty broad worn stone floor in the foreground, subtle sparse tile pattern. Cold moonlight streams through upper windows, with small candle clusters tucked at the side walls. Palette: charcoal, slate blue and restrained burgundy. Mood aristocratic decay and predatory gothic menace, grand but readable."
+    },
+    {
+      "character": "Necromante",
+      "file": "necromancer-crypt.png",
+      "prompt_suffix": "Scene: a monumental underground crypt beneath a ruined gothic cathedral. Receding pointed stone arches, carved tombs and sealed sarcophagi against the side walls, ancient cracked masonry, distant rear altar. Floor is a broad empty level slabbed stone arena. Sparse candles at the margins and faint unnatural violet-teal ambient light in the far rear recesses, none crossing the foreground. Palette: blackened gray, cold teal and subdued violet. Mood solemn, forbidden, ancient; no skeleton figures or visible corpses."
+    },
+    {
+      "character": "Rei Demônio",
+      "file": "demon-king-citadel.png",
+      "prompt_suffix": "Scene: the open throne approach of a colossal ruined infernal gothic citadel above a volcanic abyss. Jagged black buttresses and monumental ruined arches frame a distant immense vacant throne integrated into the rear architecture. The foreground is a broad unbroken flat black-basalt arena, lit enough to read. Lava channels and small flames are confined to extreme side edges beyond the fighting floor; red clouds and distant peaks through the broken rear arches. Palette: charcoal, ember orange and deep crimson, restrained fire highlights. Mood final-boss scale, doom and dark majesty."
+    },
+    {
+      "character": "Guerreiro",
+      "file": "warrior-courtyard.png",
+      "prompt_suffix": "Scene: a ruined mountain monastery courtyard at dawn, suitable as the warrior hero's battle backdrop. Weathered gothic arches and a broken parapet frame distant rugged peaks and a cloud-filled valley. Wide flat stone training courtyard, moss and scattered small stones only at the edges. Faded ivory cloth hangs high on a side arch. Muted warm sunrise touches old stone against cool blue-gray shadows. Palette: weathered beige, stone gray, muted moss and pale gold. Mood resilient, austere and heroic within the same dark world."
+    },
+    {
+      "character": "Mago",
+      "variants": [
+        "normal",
+        "fire"
+      ],
+      "file": "mage-observatory.png",
+      "prompt_suffix": "Scene: an abandoned gothic arcane observatory inside a mountaintop tower, appropriate to both the ordinary mage and its fire-powered visual variant. Tall arched windows show a distant mountain night sky. Curved ribbed stone vaults, a small old brass astronomical instrument and shelves of closed worn books confined to the rear and side walls. Broad empty flat flagstone battle floor without symbols. Cool indigo moonlight with discreet amber lamps at the margins. Palette: charcoal, muted indigo, antique brass and warm amber; atmosphere contemplative, mysterious and imposing. No active magical effects or floating objects."
+    }
+  ]
+}

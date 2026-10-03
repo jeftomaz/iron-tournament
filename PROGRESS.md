@@ -1,7 +1,12 @@
 # Progresso
 
+## 2026-10-03
+
+- Validados testes EditMode e build WebGL em contêineres GameCI hospedados; a proteção da `main` é a pendência de infraestrutura imediata.
+
 ## 2026-10-02
 
+- Criados cenários estáticos de batalha para heróis e inimigos; arquivos e prompts estão em `assets/backgrounds/metadata.json` e aguardam integração no Unity.
 - Migrados os testes EditMode para o GameCI em contêiner hospedado: a licença local do Unity não disponibilizava entitlement para execução headless; testes e build agora usam os mesmos secrets e não dependem do runner macOS. A cobertura usa o padrão do GameCI porque a versão atual da CLI não aceita sua desativação.
 - Provisionados `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD` como secrets do GitHub; o GameCI recebe os três valores mascarados.
 - Validado o build WebGL pelo GameCI; como a ação no macOS usa o editor local, o job foi movido para `ubuntu-latest` para executar de fato no contêiner.
