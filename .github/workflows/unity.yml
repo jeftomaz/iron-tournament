@@ -23,7 +23,6 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           testMode: EditMode
-          coverageEnabled: false
           githubToken: ''
       - if: always()
         uses: actions/upload-artifact@v4
