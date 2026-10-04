@@ -91,7 +91,7 @@ namespace IronTournament.Core.Tests
                 AbilityId.BasicAttack,
                 AbilityId.RevertTurn);
             var opponent = TestContent.Enemy(CombatantId.Goblin, 200, 15, 3);
-            var battle = TestContent.StartBattle(hero, opponent, new ScriptedRandomSource());
+            var battle = TestContent.StartBattle(hero, opponent, new ScriptedRandomSource(15));
             battle.Submit(AbilityId.BasicAttack);
 
             Assert.That(battle.AvailableActions, Is.EqualTo(new[] { AbilityId.BasicAttack, AbilityId.RevertTurn }));
