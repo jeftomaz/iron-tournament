@@ -210,7 +210,14 @@ namespace IronTournament.Core
             Phase = CampaignPhase.Completed;
             if (Mode == CampaignMode.Campaign)
             {
-                FinalSnapshot = new HeroSnapshot(Hero.Id, Hero.Configuration.DisplayName, Hero.Stats);
+                var stats = Hero.Stats;
+                FinalSnapshot = new HeroSnapshot(
+                    Hero.Id,
+                    Hero.Configuration.DisplayName,
+                    new CombatantStats(
+                        Math.Min(stats.MaximumHealth, HeroSnapshot.MaximumStatValue),
+                        Math.Min(stats.Attack, HeroSnapshot.MaximumStatValue),
+                        Math.Min(stats.Defense, HeroSnapshot.MaximumStatValue)));
             }
         }
 
