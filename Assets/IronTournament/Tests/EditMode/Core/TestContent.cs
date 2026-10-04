@@ -1,0 +1,55 @@
+using System.Collections.Generic;
+
+namespace IronTournament.Core.Tests
+{
+    internal static class TestContent
+    {
+        public static CombatantConfiguration Warrior()
+        {
+            return Hero(CombatantId.Warrior, new CombatantStats(120, 30, 23), AbilityId.BasicAttack, AbilityId.Guard);
+        }
+
+        public static CombatantConfiguration Goblin()
+        {
+            return Enemy(CombatantId.Goblin, 45, 15, 3);
+        }
+
+        public static CombatantConfiguration Hero(CombatantId id, CombatantStats stats, params AbilityId[] abilities)
+        {
+            return Combatant(id, CombatantSide.Player, stats, abilities);
+        }
+
+        public static CombatantConfiguration Enemy(CombatantId id, int health, int attack, int defense)
+        {
+            return Combatant(id, CombatantSide.Enemy, new CombatantStats(health, attack, defense), AbilityId.BasicAttack);
+        }
+
+        public static Battle StartBattle(
+            CombatantConfiguration hero,
+            CombatantConfiguration opponent,
+            IRandomSource random)
+        {
+            var state = new BattleState(
+                new CombatantState(hero, hero.BaseStats),
+                new CombatantState(opponent, opponent.BaseStats));
+            return new Battle(state, random);
+        }
+
+        private static CombatantConfiguration Combatant(
+            CombatantId id,
+            CombatantSide side,
+            CombatantStats stats,
+            AbilityId[] abilities)
+        {
+            var configurations = new List<AbilityConfiguration>();
+            foreach (var ability in abilities)
+            {
+                var consumesTurn = ability != AbilityId.RevertTurn && ability != AbilityId.RevertBattle;
+                var target = ability == AbilityId.BasicAttack ? AbilityTarget.Opponent : AbilityTarget.Self;
+                configurations.Add(new AbilityConfiguration(ability, ability.ToString(), target, consumesTurn));
+            }
+
+            return new CombatantConfiguration(id, side, id.ToString(), stats, configurations);
+        }
+    }
+}

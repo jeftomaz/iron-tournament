@@ -14,7 +14,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 ## Fase 1 — Vertical Guerreiro x Goblin
 
-- `todo` `JL` Implementar ataque físico, defesa temporária, reflexão, crítico de 7%, penetração de 10%, resposta do Goblin, vitória e derrota; cobrir regras e extremos em EditMode.
+- `done` `JL` Implementar ataque físico, defesa temporária, reflexão, crítico de 7%, penetração de 10%, resposta do Goblin, vitória e derrota; cobrir regras e extremos em EditMode.
 - `todo` `JP` Implementar `BattleView`, `BattleHud`, `ActionMenu` e `BattleEventPlayer`, com bloqueio de entrada, estados extremos e fluxo completo do encontro.
 - `todo` `JT` Compor configurações Guerreiro/Goblin, ligar cena ao núcleo e validar o fluxo na CI e no build WebGL.
 
