@@ -2,6 +2,7 @@
 
 ## 2026-10-04
 
+- Cobertos em EditMode a restauração de HP, atributos, defesa temporária, fase e rodada, a carga consumida após restaurar e a proibição de reverter após derrota ou vitória; consumíveis e efeitos de itens ganham cobertura quando os itens entram (Fase 3).
 - Implementados o Mago (110 HP, 30 ATK, 5 DEF; ataque igual ao ATK, sem rolagem) e a reversão: antes de cada ação que gasta turno o `Battle` guarda o início do turno, e ao começar o encontro guarda a entrada; uma carga por encontro, compartilhada, exige ao menos um turno jogado e é consumida após restaurar. `IBattle.State` mantém a mesma instância ao restaurar.
 - Implementado Guerreiro x Goblin no `Core` (`Battle`): o ataque rola 10% de penetração (ignora DEF) e depois 7% de crítico (×2); Defender dobra a DEF até o fim da rodada e reflete `max(1, DEF/3)`; o Goblin responde com `ATK − DEF` (mínimo 0); o golpe que vence encerra o encontro antes da resposta.
 - Valores canônicos retirados do protótipo Java no histórico (`5016de1^:ironturn/`): Guerreiro equipado 120 HP, 30 ATK, 23 DEF; Goblin 45 HP, 15 ATK, 3 DEF.
