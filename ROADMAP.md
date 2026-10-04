@@ -29,7 +29,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 - `todo` `JL` Implementar a sequência fixa dos sete inimigos, variação de ±15% nos atributos por encontro, variação de dano, fúria de Vampiro/Necromante/Rei Demônio e transição entre encontros.
 - `todo` `JL` Implementar drops ponderados, escolha entre dois tipos distintos, melhorias permanentes e itens exclusivos: Pergaminho, Manto de Chamas e Chifre da Irmandade.
-- `doing` `JP` Configurar assets dos sete inimigos: Goblin, Esqueleto, Lobisomem, Vampiro e Necromante preparados; demais inimigos e telas de transição, fúria, saque e itens pendentes.
+- `doing` `JP` Configurar assets dos sete inimigos: Goblin, Esqueleto, Lobisomem, Vampiro, Necromante e Rei Demônio preparados; Cavaleiro e telas de transição, fúria, saque e itens pendentes.
 - `todo` `JT` Criar e validar os assets `ScriptableObject` canônicos, garantindo Mago equipado com 30 ATK e faixas válidas para a variação dos inimigos.
 
 ## Fase 4 — Progresso e modo inimigo

@@ -1,0 +1,36 @@
+{
+  "group_id": "c1096098-dbf1-44f3-b209-7c783e48d980",
+  "states": [
+    {
+      "character": {
+        "id": "f7961aca-8bd6-46d1-83d2-ccd38566045a",
+        "name": "Idle",
+        "prompt": "Ancient Demon King, ultimate final boss of a gothic dark fantasy game. Animalistic, apocalyptic and terrifying, inspired by Castlevania: Lords of Shadow 1. Original fusion of biblical beasts, Assyrian winged creatures and the Greek Chimera.  Full-body pixel art sprite, facing south toward the viewer. Match the reference characters' perspective, pixel density, dark outlines and shading. Much larger and broader than ordinary enemies.  Massive quadrupedal body, towering shoulders, muscular bulk, charcoal flesh and patches of black reptilian scales. Low predatory stance, thick forelegs spread apart, enormous paws with long ivory claws.  Three clearly separated heads. The central head is larger, higher and unmistakably demonic: an elongated ivory skull fused with black flesh, no human or recognizable animal face, deep angular eye sockets glowing pale gold, a narrow vertical third eye, and a split lower jaw with interlocking jagged teeth. Swept-back black horns form an imposing natural crown. Its expression conveys ancient intelligence and absolute malice.  Two smaller secondary heads sit lower on either side: a savage dark lion with exposed fangs, and a skeletal horned goat. Both angle outward, framing the dominant central head.  Organic bone plates cover the shoulders and spine. Folded ragged wings rise behind the body without hiding the heads. A thick serpent tail curves beside the beast. Sparse crimson fissures glow beneath the chest plates. A broken semicircle of bone spikes behind the central crown suggests a corrupted sacred halo.  Prioritize the unique central skull, horn crown and colossal claws. Large readable shapes, crisp pixels, strong contrast, restrained detail. Entire creature visible, centered, transparent background.  Avoid humanoid posture, central lion head, human face, weapons, clothing, manufactured armor, merged heads, tangled limbs, excessive effects, scenery, text, cropping, blur and anti-aliasing.",
+        "size": {
+          "width": 64,
+          "height": 64
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-10-04T18:05:34.530987+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-10-04T18:57:05.546205"
+}

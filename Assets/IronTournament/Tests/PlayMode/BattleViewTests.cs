@@ -38,7 +38,7 @@ namespace IronTournament.Presentation.Tests
         [UnityTest]
         public IEnumerator ConfiguredEnemiesUseSharedSceneAndCombatPerspective()
         {
-            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf, CombatantId.Vampire, CombatantId.Necromancer })
+            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf, CombatantId.Vampire, CombatantId.Necromancer, CombatantId.DemonKing })
             {
                 if (id != CombatantId.Skeleton)
                 {
@@ -57,10 +57,11 @@ namespace IronTournament.Presentation.Tests
                     CombatantId.Skeleton => "skeleton-graveyard",
                     CombatantId.Werewolf => "werewolf-ravine",
                     CombatantId.Vampire => "vampire-castle",
-                    _ => "necromancer-crypt"
+                    CombatantId.Necromancer => "necromancer-crypt",
+                    _ => "demon-king-citadel"
                 };
                 Assert.That(canvas.GetComponentsInChildren<Image>().Any(image => image.sprite != null && image.sprite.name == scenario), Is.True);
-                Assert.Throws<ArgumentOutOfRangeException>(() => view.SelectEncounter(CombatantId.DemonKing));
+                Assert.Throws<ArgumentOutOfRangeException>(() => view.SelectEncounter(CombatantId.None));
                 Assert.That(view.SelectedEncounter.Opponent.Id, Is.EqualTo(id));
                 StartPresentation();
                 yield return null;
@@ -84,7 +85,7 @@ namespace IronTournament.Presentation.Tests
         [UnityTest]
         public IEnumerator ConfiguredEnemiesUseExistingPresenterAndEffects()
         {
-            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf, CombatantId.Vampire, CombatantId.Necromancer })
+            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf, CombatantId.Vampire, CombatantId.Necromancer, CombatantId.DemonKing })
             {
                 if (id != CombatantId.Skeleton)
                 {
@@ -104,7 +105,8 @@ namespace IronTournament.Presentation.Tests
                     CombatantId.Skeleton => (Health: 62, Attack: 20, Defense: 5),
                     CombatantId.Werewolf => (Health: 95, Attack: 30, Defense: 10),
                     CombatantId.Vampire => (Health: 110, Attack: 34, Defense: 12),
-                    _ => (Health: 125, Attack: 38, Defense: 14)
+                    CombatantId.Necromancer => (Health: 125, Attack: 38, Defense: 14),
+                    _ => (Health: 145, Attack: 44, Defense: 16)
                 };
                 int maximumHealth = expected.Health;
                 Assert.That(enemy.BaseStats.Attack, Is.EqualTo(expected.Attack));
