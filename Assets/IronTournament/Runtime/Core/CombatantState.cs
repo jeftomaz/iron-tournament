@@ -21,13 +21,19 @@ namespace IronTournament.Core
             CurrentHealth = stats.MaximumHealth;
         }
 
+        private CombatantState(CombatantState source)
+        {
+            Configuration = source.Configuration;
+            CopyFrom(source);
+        }
+
         public CombatantConfiguration Configuration { get; }
 
         public CombatantId Id => Configuration.Id;
 
         public CombatantSide Side => Configuration.Side;
 
-        public CombatantStats Stats { get; }
+        public CombatantStats Stats { get; private set; }
 
         public int CurrentHealth { get; private set; }
 
@@ -64,6 +70,23 @@ namespace IronTournament.Core
         internal void LowerGuard()
         {
             GuardBonus = 0;
+        }
+
+        internal CombatantState Clone()
+        {
+            return new CombatantState(this);
+        }
+
+        internal void CopyFrom(CombatantState source)
+        {
+            if (source.Configuration != Configuration)
+            {
+                throw new ArgumentException("A snapshot must belong to the same combatant.", nameof(source));
+            }
+
+            Stats = source.Stats;
+            CurrentHealth = source.CurrentHealth;
+            GuardBonus = source.GuardBonus;
         }
     }
 }

@@ -35,12 +35,22 @@ namespace IronTournament.Core
                 return new AttackOutcome(Mitigate(attacker.Stats.Attack, target), false, false);
             }
 
+            if (IsArcane(attacker.Id))
+            {
+                return new AttackOutcome(attacker.Stats.Attack, false, false);
+            }
+
             return Physical(attacker, target, random);
         }
 
         public static bool Roll(IRandomSource random, int chancePercent)
         {
             return random.Next(0, 100) < chancePercent;
+        }
+
+        private static bool IsArcane(CombatantId id)
+        {
+            return id == CombatantId.Mage;
         }
 
         private static AttackOutcome Physical(CombatantState attacker, CombatantState target, IRandomSource random)

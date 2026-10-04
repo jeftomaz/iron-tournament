@@ -9,6 +9,8 @@ namespace IronTournament.Core
         public const int ReflectionDivisor = 3;
 
         private readonly IRandomSource random;
+        private readonly BattleState encounterStart;
+        private BattleState turnStart;
 
         public Battle(BattleState state, IRandomSource random)
         {
@@ -29,6 +31,7 @@ namespace IronTournament.Core
 
             State = state;
             this.random = random;
+            encounterStart = state.Clone();
         }
 
         public BattleState State { get; }
@@ -48,7 +51,16 @@ namespace IronTournament.Core
             }
 
             var events = new List<BattleEvent>();
-            PlayRound(action, events);
+            if (action == AbilityId.RevertTurn || action == AbilityId.RevertBattle)
+            {
+                Revert(action, events);
+            }
+            else
+            {
+                turnStart = State.Clone();
+                PlayRound(action, events);
+            }
+
             return ActionResult.Accepted(events);
         }
 
@@ -70,16 +82,27 @@ namespace IronTournament.Core
             return new ReadOnlyCollection<AbilityId>(actions);
         }
 
-        private static bool IsAvailable(AbilityId ability)
+        private bool IsAvailable(AbilityId ability)
         {
             switch (ability)
             {
                 case AbilityId.BasicAttack:
                 case AbilityId.Guard:
                     return true;
+                case AbilityId.RevertTurn:
+                case AbilityId.RevertBattle:
+                    return State.RevertCharges > 0 && turnStart != null;
                 default:
                     return false;
             }
+        }
+
+        private void Revert(AbilityId action, List<BattleEvent> events)
+        {
+            events.Add(new AbilityUsedEvent(State.Hero.Id, action));
+            State.RestoreFrom(action == AbilityId.RevertTurn ? turnStart : encounterStart);
+            State.ConsumeRevertCharge();
+            turnStart = null;
         }
 
         private void PlayRound(AbilityId action, List<BattleEvent> events)
