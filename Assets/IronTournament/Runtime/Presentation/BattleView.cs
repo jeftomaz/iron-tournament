@@ -242,6 +242,8 @@ namespace IronTournament.Presentation
             if (image.sprite == null) return;
             // Round in screen pixels even when a small Game View must scale the composition down.
             float pixelScale = Mathf.Max(1, Mathf.Floor(referenceScale * scale));
+            float availableHeight = arena.rect.height * (1 - groundPosition) - 8;
+            pixelScale = Mathf.Min(pixelScale, Mathf.Max(1, Mathf.Floor(availableHeight * scale / image.sprite.rect.height)));
             var rect = image.rectTransform;
             rect.anchorMin = rect.anchorMax = Vector2.zero;
             rect.pivot = new Vector2(0.5f, 0);

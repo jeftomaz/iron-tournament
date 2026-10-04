@@ -1,5 +1,11 @@
 # Progresso
 
+## 2026-10-04 — Apresentação Guerreiro x Lobisomem
+
+- Criada `feature/warrior-vs-werewolf` a partir do commit Esqueleto `3902c8e`; preparação parcial do Cavaleiro retirada por orientação do usuário. Sem novos commits remotos; Lobisomem configurado na cena compartilhada, conforme `DATA_MODEL.md` e `UI_CONTRACTS.md`.
+- Validação local: EditMode 34/34 e PlayMode 21/21; testes compartilhados cobrem seleção, perspectiva, ausência de corte do sprite e ataque com núcleo real. Introdução/combate conferidos em `360x640` e `1280x720`, capturas em `Logs/Werewolf-*.png` (não versionadas).
+- Pendentes bootstrap, variação dos atributos, transição automática da campanha e validação WebGL; Goblin continua como padrão da cena. O asset Warrior permanece no lado do herói; não configurado como inimigo nem alterada a regra do power-up.
+
 ## 2026-10-04 — Apresentação Guerreiro x Esqueleto
 
 - Criada `feature/warrior-vs-skeleton` a partir da entrega Goblin `92d81e0`, incorporando a `main` aprovada `4e2b9d3`; revisados os commits de Mago/reversão e a campanha remota ainda não integrada. Esqueleto preparado como variante da cena existente, conforme `DATA_MODEL.md` e `UI_CONTRACTS.md`.

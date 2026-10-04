@@ -18,11 +18,12 @@
 ## Regras vinculantes
 
 - Cena-base: `Assets/Scenes/Battle.unity`; `BattleView` alterna composição por orientação e recorta o cenário mantendo sua proporção.
-- Goblin e Esqueleto são variantes da mesma cena e dos mesmos componentes. `BattleView.SelectEncounter` escolhe as referências visuais antes do combate e expõe `SelectedEncounter` para o bootstrap; rejeita inimigos não configurados e mudanças durante combate. O Inspector permite prévia pelo campo `Selected Opponent`; Goblin permanece o padrão.
+- Goblin, Esqueleto e Lobisomem são variantes da mesma cena e dos mesmos componentes. `BattleView.SelectEncounter` escolhe as referências visuais antes do combate e expõe `SelectedEncounter` para o bootstrap; rejeita inimigos não configurados e mudanças durante combate. O Inspector permite prévia pelo campo `Selected Opponent`; Goblin permanece o padrão.
 - A cena `Battle` é a entrada habilitada no build desta vertical; a inicialização do combate continua sendo fornecida pelo bootstrap.
-- Introdução: Guerreiro `east` e Goblin `west`, frente a frente. Ao clicar em `Iniciar combate`, usar Guerreiro `north-east` em primeiro plano e Goblin `south-west` acima e à direita; ocultar o botão. A transição atual é visual, aguardando integração com o núcleo.
+- Introdução: Guerreiro `east` e inimigo `west`, frente a frente. Ao clicar em `Iniciar combate`, usar Guerreiro `north-east` em primeiro plano e inimigo `south-west` acima e à direita; ocultar o botão. A transição atual é visual, aguardando integração com o núcleo.
 - `Assets/IronTournament/Prefabs/BattleCombatant.prefab` é compartilhado por ambos os lados; variar o sprite na instância, sem duplicar o prefab.
 - Assets usados na cena-base: filtro point, sem mipmaps/compressão e 48 pixels por unidade; personagens usam múltiplos inteiros em pixels de tela.
+- A escala dos combatentes respeita a altura disponível acima do chão; sprites maiores devem caber inteiros na arena nas duas orientações.
 - `BattleHud.ShowHealth` recebe lado, HP atual e máximo válidos; só apresenta valores. Sem estado recebido, exibe `HP — / —`. `SetStatus` apresenta mensagens literais de até 80 caracteres, sem controles nem interpretação rich text.
 - `ActionMenu.SetAvailableActions` recebe ações disponíveis e bloqueio de entrada; apresenta `Atacar`/`Defender` nesta vertical. `ActionSelected` envia o `AbilityId` e bloqueia novos cliques até a próxima atualização; o controlador ainda deve validar a escolha no núcleo. Sem integração, ambos os botões ficam desabilitados.
 - `BattleEventPlayer.PlayEvents` recebe os `BattleEvent` aprovados e o `BattleState` do encontro: mapeia IDs pelos participantes, apresenta ataque/defesa, dano com crítico/penetração/reflexão e encerramento. O HP muda na interface somente quando o respectivo evento é apresentado, usando `RemainingHealth` e o máximo recebido; não calcula resultados nem modifica o núcleo.

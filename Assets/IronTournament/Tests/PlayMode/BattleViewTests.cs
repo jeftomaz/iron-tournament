@@ -36,54 +36,75 @@ namespace IronTournament.Presentation.Tests
         }
 
         [UnityTest]
-        public IEnumerator SkeletonUsesSharedSceneAndCombatPerspective()
+        public IEnumerator ConfiguredEnemiesUseSharedSceneAndCombatPerspective()
         {
-            var view = canvas.GetComponentInChildren<BattleView>();
-            view.SelectEncounter(CombatantId.Skeleton);
-            Assert.That(view.SelectedEncounter.Opponent.Id, Is.EqualTo(CombatantId.Skeleton));
-            Assert.Throws<ArgumentException>(() => canvas.GetComponentInChildren<BattlePresenter>()
-                .Initialize(new Battle(PresentationState(), new SeededRandomSource(17))));
-            Assert.That(view.GetCombatantRect(CombatantSide.Enemy).GetComponent<Image>().sprite.name, Is.EqualTo("west_0"));
-            Assert.That(canvas.GetComponentsInChildren<Text>().Any(text => text.text == "Esqueleto"), Is.True);
-            Assert.That(canvas.GetComponentsInChildren<Image>().Any(image => image.sprite != null && image.sprite.name == "skeleton-graveyard"), Is.True);
-            Assert.Throws<ArgumentOutOfRangeException>(() => view.SelectEncounter(CombatantId.Knight));
-            Assert.That(view.SelectedEncounter.Opponent.Id, Is.EqualTo(CombatantId.Skeleton));
-            StartPresentation();
-            yield return null;
-            var sprite = view.GetCombatantRect(CombatantSide.Enemy).GetComponent<Image>().sprite;
-            Assert.That(sprite.name, Is.EqualTo("south-west_0"));
-            Assert.That(sprite.texture.filterMode, Is.EqualTo(FilterMode.Point));
-            Assert.Throws<InvalidOperationException>(() => view.SelectEncounter(CombatantId.Goblin));
-            foreach (var size in new[] { new Vector2(360, 640), new Vector2(1280, 720) })
+            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf })
             {
-                canvas.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
-                canvas.GetComponent<RectTransform>().sizeDelta = size;
-                view.SendMessage("OnValidate");
+                if (id == CombatantId.Werewolf)
+                {
+                    yield return TearDown();
+                    yield return SetUp();
+                }
+                var view = canvas.GetComponentInChildren<BattleView>();
+                view.SelectEncounter(id);
+                Assert.That(view.SelectedEncounter.Opponent.Id, Is.EqualTo(id));
+                Assert.Throws<ArgumentException>(() => canvas.GetComponentInChildren<BattlePresenter>()
+                    .Initialize(new Battle(PresentationState(), new SeededRandomSource(17))));
+                Assert.That(view.GetCombatantRect(CombatantSide.Enemy).GetComponent<Image>().sprite.name, Is.EqualTo("west_0"));
+                Assert.That(canvas.GetComponentsInChildren<Text>().Any(text => text.text == view.SelectedEncounter.Opponent.DisplayName), Is.True);
+                string scenario = id == CombatantId.Skeleton ? "skeleton-graveyard" : "werewolf-ravine";
+                Assert.That(canvas.GetComponentsInChildren<Image>().Any(image => image.sprite != null && image.sprite.name == scenario), Is.True);
+                Assert.Throws<ArgumentOutOfRangeException>(() => view.SelectEncounter(CombatantId.Vampire));
+                Assert.That(view.SelectedEncounter.Opponent.Id, Is.EqualTo(id));
+                StartPresentation();
                 yield return null;
-                var enemy = view.GetCombatantRect(CombatantSide.Enemy);
-                Assert.That(enemy.anchoredPosition.y, Is.GreaterThan(view.GetCombatantRect(CombatantSide.Player).anchoredPosition.y));
+                var sprite = view.GetCombatantRect(CombatantSide.Enemy).GetComponent<Image>().sprite;
+                Assert.That(sprite.name, Is.EqualTo("south-west_0"));
+                Assert.That(sprite.texture.filterMode, Is.EqualTo(FilterMode.Point));
+                Assert.Throws<InvalidOperationException>(() => view.SelectEncounter(CombatantId.Goblin));
+                foreach (var size in new[] { new Vector2(360, 640), new Vector2(1280, 720) })
+                {
+                    canvas.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
+                    canvas.GetComponent<RectTransform>().sizeDelta = size;
+                    view.SendMessage("OnValidate");
+                    yield return null;
+                    var enemy = view.GetCombatantRect(CombatantSide.Enemy);
+                    Assert.That(enemy.anchoredPosition.y, Is.GreaterThan(view.GetCombatantRect(CombatantSide.Player).anchoredPosition.y));
+                    Assert.That(enemy.anchoredPosition.y + enemy.rect.height, Is.LessThanOrEqualTo(((RectTransform)enemy.parent).rect.height));
+                }
             }
         }
 
         [UnityTest]
-        public IEnumerator SkeletonContentUsesExistingPresenterAndEffects()
+        public IEnumerator ConfiguredEnemiesUseExistingPresenterAndEffects()
         {
-            var view = canvas.GetComponentInChildren<BattleView>();
-            view.SelectEncounter(CombatantId.Skeleton);
-            var hero = ContentMapper.BuildCombatant(AssetDatabase.LoadAssetAtPath<CombatantDefinition>("Assets/IronTournament/Content/Warrior.asset"));
-            var enemy = ContentMapper.BuildEncounter(view.SelectedEncounter).Opponent;
-            var state = new BattleState(new CombatantState(hero, hero.BaseStats), new CombatantState(enemy, enemy.BaseStats));
-            canvas.GetComponentInChildren<BattlePresenter>().Initialize(new Battle(state, new SeededRandomSource(17)));
-            StartPresentation();
-            yield return null;
-            Assert.That(HealthText("OpponentHealth"), Is.EqualTo("HP 62 / 62"));
-            var menu = canvas.GetComponentInChildren<ActionMenu>();
-            menu.GetComponentsInChildren<Button>().Single(button => button.name == "Attack").onClick.Invoke();
-            yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
-            yield return null;
-            Assert.That(HealthText("OpponentHealth"), Is.EqualTo($"HP {state.Opponent.CurrentHealth} / 62"));
-            Assert.That(state.Opponent.CurrentHealth, Is.LessThan(62));
-            Assert.That(menu.GetComponentsInChildren<Button>().All(button => button.interactable), Is.True);
+            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf })
+            {
+                if (id == CombatantId.Werewolf)
+                {
+                    yield return TearDown();
+                    yield return SetUp();
+                }
+                var view = canvas.GetComponentInChildren<BattleView>();
+                view.SelectEncounter(id);
+                var hero = ContentMapper.BuildCombatant(AssetDatabase.LoadAssetAtPath<CombatantDefinition>("Assets/IronTournament/Content/Warrior.asset"));
+                var enemy = ContentMapper.BuildEncounter(view.SelectedEncounter).Opponent;
+                var state = new BattleState(new CombatantState(hero, hero.BaseStats), new CombatantState(enemy, enemy.BaseStats));
+                canvas.GetComponentInChildren<BattlePresenter>().Initialize(new Battle(state, new SeededRandomSource(17)));
+                StartPresentation();
+                yield return null;
+                int maximumHealth = id == CombatantId.Skeleton ? 62 : 95;
+                Assert.That(enemy.BaseStats.Attack, Is.EqualTo(id == CombatantId.Skeleton ? 20 : 30));
+                Assert.That(enemy.BaseStats.Defense, Is.EqualTo(id == CombatantId.Skeleton ? 5 : 10));
+                Assert.That(HealthText("OpponentHealth"), Is.EqualTo($"HP {maximumHealth} / {maximumHealth}"));
+                var menu = canvas.GetComponentInChildren<ActionMenu>();
+                menu.GetComponentsInChildren<Button>().Single(button => button.name == "Attack").onClick.Invoke();
+                yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
+                yield return null;
+                Assert.That(HealthText("OpponentHealth"), Is.EqualTo($"HP {state.Opponent.CurrentHealth} / {maximumHealth}"));
+                Assert.That(state.Opponent.CurrentHealth, Is.LessThan(maximumHealth));
+                Assert.That(menu.GetComponentsInChildren<Button>().All(button => button.interactable), Is.True);
+            }
         }
 
         [UnityTest]
