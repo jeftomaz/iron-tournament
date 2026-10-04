@@ -6,7 +6,7 @@ namespace IronTournament.Core
 {
     public sealed class Battle : IBattle
     {
-        public const int ReflectionDivisor = 3;
+        public const int GuardDamage = 4;
 
         private readonly IRandomSource random;
 
@@ -141,19 +141,22 @@ namespace IronTournament.Core
         {
             var hero = State.Hero;
             var opponent = State.Opponent;
-            var bonus = hero.Stats.Defense;
-            hero.RaiseGuard(bonus);
-
-            var reflection = Math.Max(1, bonus / ReflectionDivisor);
-            opponent.TakeDamage(reflection);
+            hero.RaiseGuard(GuardBonus(hero.Stats.Defense));
+            opponent.TakeDamage(GuardDamage);
             events.Add(new DamageDealtEvent(
                 hero.Id,
                 opponent.Id,
                 DamageKind.Reflection,
-                reflection,
+                GuardDamage,
                 opponent.CurrentHealth,
                 false,
                 false));
+        }
+
+        // A DEF efetiva durante a próxima ação inimiga é ceil(DEF × 1,5).
+        private static int GuardBonus(int defense)
+        {
+            return defense / 2 + defense % 2;
         }
 
         private void Finish(BattlePhase result, List<BattleEvent> events)
