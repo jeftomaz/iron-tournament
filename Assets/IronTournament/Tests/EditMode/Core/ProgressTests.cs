@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace IronTournament.Core.Tests
@@ -13,7 +14,7 @@ namespace IronTournament.Core.Tests
             Assert.That(run.Phase, Is.EqualTo(CampaignPhase.Completed));
             Assert.That(run.FinalSnapshot.HeroClass, Is.EqualTo(CombatantId.Mage));
             Assert.That(run.FinalSnapshot.DisplayName, Is.EqualTo("Mage"));
-            Assert.That(run.FinalSnapshot.Stats, Is.EqualTo(new CombatantStats(110, 40, 5)));
+            Assert.That(run.FinalSnapshot.Stats, Is.EqualTo(new CombatantStats(110, 90, 5)));
         }
 
         [Test]
@@ -21,7 +22,7 @@ namespace IronTournament.Core.Tests
         {
             var run = CompleteWithAttackUpgrade(20000);
 
-            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(20030));
+            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(120030));
             Assert.That(run.FinalSnapshot.Stats.Attack, Is.EqualTo(HeroSnapshot.MaximumStatValue));
         }
 
@@ -30,7 +31,7 @@ namespace IronTournament.Core.Tests
         {
             var progress = new ProgressData();
             var afterMage = progress.WithCompletedCampaign(CompletedRun(TestContent.Mage()));
-            var afterBoth = afterMage.WithCompletedCampaign(CompletedRun(TestContent.Warrior(), 50, 50));
+            var afterBoth = afterMage.WithCompletedCampaign(CompletedRun(TestContent.Warrior()));
 
             Assert.That(progress.IsCleared(CombatantId.Mage), Is.False);
             Assert.That(progress.IsEnemyModeUnlocked, Is.False);
@@ -102,31 +103,36 @@ namespace IronTournament.Core.Tests
 
         private static CampaignRun CompleteWithAttackUpgrade(int amount)
         {
+            var weakEnemies = new List<CombatantConfiguration>();
+            foreach (var id in CampaignConfiguration.CanonicalOrder)
+            {
+                weakEnemies.Add(TestContent.WeakEnemy(id));
+            }
+
             var campaign = TestContent.CampaignWithDrops(
                 new[] { TestContent.Item(ItemId.AttackGem, 3, new ItemModifier(ItemModifierKind.Attack, amount)) },
-                TestContent.Enemy(CombatantId.Goblin, 1, 15, 3),
-                TestContent.Enemy(CombatantId.Skeleton, 1, 20, 0));
-            var run = new CampaignRun(TestContent.Mage(), campaign, new ScriptedRandomSource(0, 0, 0, 0, 0, 0, 0));
-            run.CurrentBattle.Submit(AbilityId.BasicAttack);
-            run.ConcludeEncounter();
-            run.ChooseDrop(ItemId.AttackGem);
-            Assert.That(run.FinalSnapshot, Is.Null);
+                weakEnemies.ToArray());
+            var run = new CampaignRun(TestContent.Mage(), campaign, new NeutralRandomSource());
+            while (run.Phase == CampaignPhase.Battle || run.Phase == CampaignPhase.DropChoice)
+            {
+                Assert.That(run.FinalSnapshot, Is.Null);
+                if (run.Phase == CampaignPhase.DropChoice)
+                {
+                    run.ChooseDrop(ItemId.AttackGem);
+                    continue;
+                }
 
-            run.CurrentBattle.Submit(AbilityId.BasicAttack);
-            run.ConcludeEncounter();
+                run.CurrentBattle.Submit(AbilityId.BasicAttack);
+                run.ConcludeEncounter();
+            }
+
             return run;
         }
 
-        private static CampaignRun CompletedRun(CombatantConfiguration hero, params int[] heroRolls)
+        private static CampaignRun CompletedRun(CombatantConfiguration hero)
         {
-            var rolls = new int[3 + heroRolls.Length];
-            heroRolls.CopyTo(rolls, 3);
-            var run = new CampaignRun(
-                hero,
-                TestContent.Campaign(TestContent.Enemy(CombatantId.Goblin, 1, 15, 3)),
-                new ScriptedRandomSource(rolls));
-            run.CurrentBattle.Submit(AbilityId.BasicAttack);
-            run.ConcludeEncounter();
+            var run = new CampaignRun(hero, TestContent.WeakCampaign(), new NeutralRandomSource());
+            TestContent.WinWithOneHit(run, CampaignConfiguration.CanonicalOrder.Count);
             return run;
         }
     }

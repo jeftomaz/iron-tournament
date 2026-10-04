@@ -2,6 +2,7 @@
 
 ## 2026-10-04
 
+- A ordem canônica dos sete inimigos virou contrato: `CampaignConfiguration.CanonicalOrder` é validada no construtor e no `ContentValidator`, com testes de rejeição; os testes de campanha passam a usar a sequência completa. As regras de ±20% no dano inimigo e de fúria foram confirmadas e registradas em `PROJECT.md` (revisão do PR #9).
 - Implementados progresso e modo inimigo: `CampaignRun.FinalSnapshot` guarda os atributos finais com melhorias, limitados a 9999 (teto validado do save); `ProgressData` registra uma classe por vez e libera o modo inimigo com as duas. `CampaignRun.StartEnemyMode` usa o inimigo escolhido como herói (com `Fury`), sorteia um oponente por tier (Goblin/Esqueleto, Cavaleiro/Lobisomem, Vampiro/Necromante) sem repetir o escolhido, oferece 3 itens base antes do chefe e termina contra o herói de uma classe concluída, sem variação nem fúria.
 - Fúria do herói no modo inimigo: com HP ≤ 30%, `Fury` vira a única ação, gasta o turno e reduz o oponente a 30% do HP máximo, uma vez por encontro; Vampiro e Necromante atacam ignorando a DEF.
 - Concluída a cobertura da reversão: além de HP, atributos, defesa temporária, fase e rodada, os testes restauram a flag de fúria (`RevertTurnRestoresTheFuryFlag`) e os consumíveis e efeitos de itens (`RevertTurnRestoresConsumedItemsAndArmedEffects`, `RevertBattleReturnsTheUnusedHorn`).
