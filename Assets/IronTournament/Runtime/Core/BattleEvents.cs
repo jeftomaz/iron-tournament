@@ -2,6 +2,13 @@ using System;
 
 namespace IronTournament.Core
 {
+    public enum DamageKind
+    {
+        None,
+        Attack,
+        Reflection
+    }
+
     public abstract class BattleEvent
     {
         internal BattleEvent()
@@ -27,9 +34,11 @@ namespace IronTournament.Core
         public DamageDealtEvent(
             CombatantId source,
             CombatantId target,
+            DamageKind kind,
             int amount,
             int remainingHealth,
-            bool isCritical)
+            bool isCritical,
+            bool isPiercing)
         {
             if (amount < 0)
             {
@@ -43,20 +52,26 @@ namespace IronTournament.Core
 
             Source = ConfigurationGuard.Defined(source, nameof(source));
             Target = ConfigurationGuard.Defined(target, nameof(target));
+            Kind = ConfigurationGuard.Defined(kind, nameof(kind));
             Amount = amount;
             RemainingHealth = remainingHealth;
             IsCritical = isCritical;
+            IsPiercing = isPiercing;
         }
 
         public CombatantId Source { get; }
 
         public CombatantId Target { get; }
 
+        public DamageKind Kind { get; }
+
         public int Amount { get; }
 
         public int RemainingHealth { get; }
 
         public bool IsCritical { get; }
+
+        public bool IsPiercing { get; }
     }
 
     public sealed class BattleEndedEvent : BattleEvent

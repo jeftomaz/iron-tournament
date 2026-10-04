@@ -3,7 +3,7 @@
 ## 2026-10-04
 
 - Definidos os contratos do `Core` para a `Presentation`: `IBattle` expõe `BattleState` somente leitura, ações disponíveis (`AbilityId`) e `Submit`, que devolve `ActionResult` com eventos ou motivo de rejeição; a implementação chega na Fase 1.
-- Só o `Core` cria novos tipos de evento (`AbilityUsedEvent`, `DamageDealtEvent`, `BattleEndedEvent`); a penetração não tem sinalização no evento até a regra ser definida.
+- Só o `Core` cria novos tipos de evento (`AbilityUsedEvent`, `DamageDealtEvent`, `BattleEndedEvent`); o dano informa tipo, crítico e penetração.
 - Aleatoriedade injetável por `IRandomSource`; `SeededRandomSource` é determinística por semente e fica fora do estado restaurável.
 
 ## 2026-10-03

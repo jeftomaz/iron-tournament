@@ -75,9 +75,11 @@ namespace IronTournament.Core.Tests
             Assert.Throws<ArgumentOutOfRangeException>(
                 () => new AbilityUsedEvent(CombatantId.Warrior, (AbilityId)99));
             Assert.Throws<ArgumentOutOfRangeException>(
-                () => new DamageDealtEvent(CombatantId.Warrior, CombatantId.Goblin, -1, 10, false));
+                () => new DamageDealtEvent(CombatantId.Warrior, CombatantId.Goblin, DamageKind.Attack, -1, 10, false, false));
             Assert.Throws<ArgumentOutOfRangeException>(
-                () => new DamageDealtEvent(CombatantId.Warrior, CombatantId.Goblin, 5, -1, false));
+                () => new DamageDealtEvent(CombatantId.Warrior, CombatantId.Goblin, DamageKind.Attack, 5, -1, false, false));
+            Assert.Throws<ArgumentOutOfRangeException>(
+                () => new DamageDealtEvent(CombatantId.Warrior, CombatantId.Goblin, DamageKind.None, 5, 10, false, false));
             Assert.Throws<ArgumentOutOfRangeException>(() => new BattleEndedEvent(BattlePhase.PlayerTurn));
         }
 
