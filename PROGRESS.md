@@ -1,5 +1,11 @@
 # Progresso
 
+## 2026-10-04 — Apresentação Guerreiro x Vampiro
+
+- Criada `feature/warrior-vs-vampire` a partir do Lobisomem `b9348b3`; conferidas branches remotas, sem novos commits. Revisada a fúria em `origin/feat/core-campaign`, ainda fora da `main`; configuração do Vampiro reutiliza cena/componentes existentes.
+- Validação local: EditMode 34/34 e PlayMode 21/21, incluindo o Vampiro nos testes compartilhados de seleção, perspectiva, limites da arena e ataque com núcleo real. Introdução/combate conferidos em `360x640` e `1280x720`, capturas em `Logs/Vampire-*.png` (não versionadas).
+- Pendentes integração/apresentação da fúria após aprovação do núcleo, bootstrap, variação dos atributos, transição automática e validação WebGL.
+
 ## 2026-10-04 — Apresentação Guerreiro x Lobisomem
 
 - Criada `feature/warrior-vs-werewolf` a partir do commit Esqueleto `3902c8e`; preparação parcial do Cavaleiro retirada por orientação do usuário. Sem novos commits remotos; Lobisomem configurado na cena compartilhada, conforme `DATA_MODEL.md` e `UI_CONTRACTS.md`.

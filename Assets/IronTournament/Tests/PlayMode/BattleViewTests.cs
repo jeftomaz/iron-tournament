@@ -38,9 +38,9 @@ namespace IronTournament.Presentation.Tests
         [UnityTest]
         public IEnumerator ConfiguredEnemiesUseSharedSceneAndCombatPerspective()
         {
-            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf })
+            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf, CombatantId.Vampire })
             {
-                if (id == CombatantId.Werewolf)
+                if (id != CombatantId.Skeleton)
                 {
                     yield return TearDown();
                     yield return SetUp();
@@ -52,9 +52,14 @@ namespace IronTournament.Presentation.Tests
                     .Initialize(new Battle(PresentationState(), new SeededRandomSource(17))));
                 Assert.That(view.GetCombatantRect(CombatantSide.Enemy).GetComponent<Image>().sprite.name, Is.EqualTo("west_0"));
                 Assert.That(canvas.GetComponentsInChildren<Text>().Any(text => text.text == view.SelectedEncounter.Opponent.DisplayName), Is.True);
-                string scenario = id == CombatantId.Skeleton ? "skeleton-graveyard" : "werewolf-ravine";
+                string scenario = id switch
+                {
+                    CombatantId.Skeleton => "skeleton-graveyard",
+                    CombatantId.Werewolf => "werewolf-ravine",
+                    _ => "vampire-castle"
+                };
                 Assert.That(canvas.GetComponentsInChildren<Image>().Any(image => image.sprite != null && image.sprite.name == scenario), Is.True);
-                Assert.Throws<ArgumentOutOfRangeException>(() => view.SelectEncounter(CombatantId.Vampire));
+                Assert.Throws<ArgumentOutOfRangeException>(() => view.SelectEncounter(CombatantId.Necromancer));
                 Assert.That(view.SelectedEncounter.Opponent.Id, Is.EqualTo(id));
                 StartPresentation();
                 yield return null;
@@ -78,9 +83,9 @@ namespace IronTournament.Presentation.Tests
         [UnityTest]
         public IEnumerator ConfiguredEnemiesUseExistingPresenterAndEffects()
         {
-            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf })
+            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf, CombatantId.Vampire })
             {
-                if (id == CombatantId.Werewolf)
+                if (id != CombatantId.Skeleton)
                 {
                     yield return TearDown();
                     yield return SetUp();
@@ -93,9 +98,15 @@ namespace IronTournament.Presentation.Tests
                 canvas.GetComponentInChildren<BattlePresenter>().Initialize(new Battle(state, new SeededRandomSource(17)));
                 StartPresentation();
                 yield return null;
-                int maximumHealth = id == CombatantId.Skeleton ? 62 : 95;
-                Assert.That(enemy.BaseStats.Attack, Is.EqualTo(id == CombatantId.Skeleton ? 20 : 30));
-                Assert.That(enemy.BaseStats.Defense, Is.EqualTo(id == CombatantId.Skeleton ? 5 : 10));
+                var expected = id switch
+                {
+                    CombatantId.Skeleton => (Health: 62, Attack: 20, Defense: 5),
+                    CombatantId.Werewolf => (Health: 95, Attack: 30, Defense: 10),
+                    _ => (Health: 110, Attack: 34, Defense: 12)
+                };
+                int maximumHealth = expected.Health;
+                Assert.That(enemy.BaseStats.Attack, Is.EqualTo(expected.Attack));
+                Assert.That(enemy.BaseStats.Defense, Is.EqualTo(expected.Defense));
                 Assert.That(HealthText("OpponentHealth"), Is.EqualTo($"HP {maximumHealth} / {maximumHealth}"));
                 var menu = canvas.GetComponentInChildren<ActionMenu>();
                 menu.GetComponentsInChildren<Button>().Single(button => button.name == "Attack").onClick.Invoke();

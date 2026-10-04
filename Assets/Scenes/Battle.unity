@@ -194,6 +194,11 @@ MonoBehaviour:
     combat: {fileID: -1505471383403432660, guid: 1a75fdb9539a24da5862c3c5f064766a, type: 3}
     background: {fileID: 21300000, guid: f6cbafa3d96006745930d9b89fe13e57, type: 3}
     caption: ENCONTRO 04 / RAVINA DA LUA
+  - definition: {fileID: 11400000, guid: e743afb13131c86438fac790569260f1, type: 2}
+    introduction: {fileID: 3373983171478037719, guid: 8651af2548ddd4bdcb5418d4b386ab2d, type: 3}
+    combat: {fileID: -1505471383403432660, guid: 315a95883d5ed449680e41936ef056e4, type: 3}
+    background: {fileID: 21300000, guid: 728e50167b1764c488d78a372d42aac4, type: 3}
+    caption: ENCONTRO 05 / CASTELO DO VAMPIRO
   selectedOpponent: 3
   opponentName: {fileID: 579583715}
   composition: {fileID: 46471659}
