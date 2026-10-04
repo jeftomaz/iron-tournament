@@ -71,7 +71,7 @@ namespace IronTournament.Core.Tests
         }
 
         [Test]
-        public void GuardDoublesDefenseForTheRoundAndReflectsDamage()
+        public void GuardRaisesDefenseForTheEnemyActionAndDealsFixedDamage()
         {
             var random = new ScriptedRandomSource(50);
             var opponent = TestContent.Enemy(CombatantId.Goblin, 45, 50, 3);
@@ -80,27 +80,31 @@ namespace IronTournament.Core.Tests
             var result = battle.Submit(AbilityId.Guard);
 
             AssertAbility(result.Events[0], CombatantId.Warrior, AbilityId.Guard);
-            AssertDamage(result.Events[1], CombatantId.Goblin, DamageKind.Reflection, 7, 38);
-            AssertDamage(result.Events[3], CombatantId.Warrior, DamageKind.Attack, 4, 116);
+            AssertDamage(result.Events[1], CombatantId.Goblin, DamageKind.Reflection, Battle.GuardDamage, 41);
+            AssertDamage(result.Events[3], CombatantId.Warrior, DamageKind.Attack, 15, 105);
             Assert.That(battle.State.Hero.GuardBonus, Is.Zero);
             Assert.That(battle.State.Hero.Defense, Is.EqualTo(23));
         }
 
-        [Test]
-        public void ReflectionDealsAtLeastOneDamage()
+        [TestCase(0, 50)]
+        [TestCase(5, 42)]
+        [TestCase(23, 15)]
+        public void GuardRoundsTheRaisedDefenseUp(int defense, int expectedDamage)
         {
-            var hero = TestContent.Hero(CombatantId.Warrior, new CombatantStats(120, 30, 0), AbilityId.Guard);
-            var battle = TestContent.StartBattle(hero, TestContent.Goblin(), new ScriptedRandomSource(15));
+            var hero = TestContent.Hero(CombatantId.Warrior, new CombatantStats(120, 30, defense), AbilityId.Guard);
+            var opponent = TestContent.Enemy(CombatantId.Goblin, 45, 50, 3);
+            var battle = TestContent.StartBattle(hero, opponent, new ScriptedRandomSource(50));
 
             var result = battle.Submit(AbilityId.Guard);
 
-            AssertDamage(result.Events[1], CombatantId.Goblin, DamageKind.Reflection, 1, 44);
+            AssertDamage(result.Events[1], CombatantId.Goblin, DamageKind.Reflection, Battle.GuardDamage, 41);
+            AssertDamage(result.Events[3], CombatantId.Warrior, DamageKind.Attack, expectedDamage, 120 - expectedDamage);
         }
 
         [Test]
-        public void ReflectionCanDefeatTheGoblin()
+        public void GuardDamageCanDefeatTheGoblin()
         {
-            var opponent = TestContent.Enemy(CombatantId.Goblin, 5, 15, 3);
+            var opponent = TestContent.Enemy(CombatantId.Goblin, 4, 15, 3);
             var battle = TestContent.StartBattle(TestContent.Warrior(), opponent, new ScriptedRandomSource());
 
             battle.Submit(AbilityId.Guard);
