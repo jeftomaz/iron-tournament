@@ -7,7 +7,7 @@ namespace IronTournament.Core.Tests
         [Test]
         public void AttackSubtractsDefenseAndTheGoblinResponds()
         {
-            var random = new ScriptedRandomSource(50, 50);
+            var random = new ScriptedRandomSource(50, 50, 15);
             var hero = TestContent.Hero(CombatantId.Warrior, new CombatantStats(120, 30, 5), AbilityId.BasicAttack);
             var battle = TestContent.StartBattle(hero, TestContent.Goblin(), random);
 
@@ -40,7 +40,7 @@ namespace IronTournament.Core.Tests
             var battle = TestContent.StartBattle(
                 TestContent.Warrior(),
                 opponent,
-                new ScriptedRandomSource(piercingRoll, criticalRoll));
+                new ScriptedRandomSource(piercingRoll, criticalRoll, 15));
 
             var result = battle.Submit(AbilityId.BasicAttack);
 
@@ -73,7 +73,7 @@ namespace IronTournament.Core.Tests
         [Test]
         public void GuardDoublesDefenseForTheRoundAndReflectsDamage()
         {
-            var random = new ScriptedRandomSource();
+            var random = new ScriptedRandomSource(50);
             var opponent = TestContent.Enemy(CombatantId.Goblin, 45, 50, 3);
             var battle = TestContent.StartBattle(TestContent.Warrior(), opponent, random);
 
@@ -90,7 +90,7 @@ namespace IronTournament.Core.Tests
         public void ReflectionDealsAtLeastOneDamage()
         {
             var hero = TestContent.Hero(CombatantId.Warrior, new CombatantStats(120, 30, 0), AbilityId.Guard);
-            var battle = TestContent.StartBattle(hero, TestContent.Goblin(), new ScriptedRandomSource());
+            var battle = TestContent.StartBattle(hero, TestContent.Goblin(), new ScriptedRandomSource(15));
 
             var result = battle.Submit(AbilityId.Guard);
 
@@ -113,7 +113,7 @@ namespace IronTournament.Core.Tests
         public void GoblinCanDefeatTheHero()
         {
             var hero = TestContent.Hero(CombatantId.Warrior, new CombatantStats(10, 1, 0), AbilityId.BasicAttack);
-            var battle = TestContent.StartBattle(hero, TestContent.Goblin(), new ScriptedRandomSource(50, 50));
+            var battle = TestContent.StartBattle(hero, TestContent.Goblin(), new ScriptedRandomSource(50, 50, 15));
 
             var result = battle.Submit(AbilityId.BasicAttack);
 

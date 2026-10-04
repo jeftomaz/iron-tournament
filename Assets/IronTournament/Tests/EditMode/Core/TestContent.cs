@@ -34,6 +34,20 @@ namespace IronTournament.Core.Tests
             return Combatant(id, CombatantSide.Enemy, new CombatantStats(health, attack, defense), AbilityId.BasicAttack);
         }
 
+        public static CampaignConfiguration Campaign(params CombatantConfiguration[] opponents)
+        {
+            var encounters = new List<EncounterConfiguration>();
+            foreach (var opponent in opponents)
+            {
+                encounters.Add(new EncounterConfiguration(
+                    opponent,
+                    EncounterConfiguration.RequiredEnemyStatVariancePercent,
+                    new List<ItemConfiguration>()));
+            }
+
+            return new CampaignConfiguration(encounters);
+        }
+
         public static Battle StartBattle(
             CombatantConfiguration hero,
             CombatantConfiguration opponent,

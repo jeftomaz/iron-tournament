@@ -27,7 +27,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 ## Fase 3 — Campanha, inimigos e itens
 
-- `todo` `JL` Implementar a sequência fixa dos sete inimigos, variação de ±15% nos atributos por encontro, variação de dano, fúria de Vampiro/Necromante/Rei Demônio e transição entre encontros.
+- `done` `JL` Implementar a sequência fixa dos sete inimigos, variação de ±15% nos atributos por encontro, variação de dano, fúria de Vampiro/Necromante/Rei Demônio e transição entre encontros.
 - `todo` `JL` Implementar drops ponderados, escolha entre dois tipos distintos, melhorias permanentes e itens exclusivos: Pergaminho, Manto de Chamas e Chifre da Irmandade.
 - `todo` `JP` Configurar assets dos sete inimigos e produzir telas/animações de transição, fúria, saque, itens, vitória e derrota nas duas orientações.
 - `todo` `JT` Criar e validar os assets `ScriptableObject` canônicos, garantindo Mago equipado com 30 ATK e faixas válidas para a variação dos inimigos.

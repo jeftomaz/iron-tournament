@@ -142,8 +142,31 @@ namespace IronTournament.Core
 
         private void ResolveOpponentTurn(List<BattleEvent> events)
         {
-            events.Add(new AbilityUsedEvent(State.Opponent.Id, AbilityId.BasicAttack));
-            Attack(State.Opponent, State.Hero, true, events);
+            var opponent = State.Opponent;
+            if (FuryRules.IsTriggered(opponent))
+            {
+                events.Add(new AbilityUsedEvent(opponent.Id, AbilityId.Fury));
+                Fury(opponent, State.Hero, events);
+                return;
+            }
+
+            events.Add(new AbilityUsedEvent(opponent.Id, AbilityId.BasicAttack));
+            Attack(opponent, State.Hero, true, events);
+        }
+
+        private static void Fury(CombatantState actor, CombatantState target, List<BattleEvent> events)
+        {
+            actor.MarkRaged();
+            var excess = Math.Max(0, target.CurrentHealth - FuryRules.Threshold(target));
+            target.TakeDamage(excess);
+            events.Add(new DamageDealtEvent(
+                actor.Id,
+                target.Id,
+                DamageKind.Fury,
+                excess,
+                target.CurrentHealth,
+                false,
+                false));
         }
 
         private void Attack(CombatantState attacker, CombatantState target, bool isOpponent, List<BattleEvent> events)

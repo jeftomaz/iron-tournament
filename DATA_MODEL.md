@@ -16,12 +16,27 @@ Definições são `ScriptableObject` em `Content`; o núcleo recebe valores de r
 
 O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration`, `ItemConfiguration`, `EncounterConfiguration` e `CampaignConfiguration` imutáveis no `Core`. `Content` referencia `Core`; o sentido inverso é proibido.
 
+### Valores canônicos
+
+| Combatente | HP | ATK | DEF | Habilidades / regra |
+|---|---:|---:|---:|---|
+| Guerreiro (equipado) | 120 | 30 | 23 | `BasicAttack`, `Guard` |
+| Mago (equipado) | 110 | 30 | 5 | `BasicAttack`, `RevertTurn`, `RevertBattle` |
+| Goblin | 45 | 15 | 3 | `BasicAttack` |
+| Esqueleto | 62 | 20 | 5 | `BasicAttack` |
+| Cavaleiro | 80 | 26 | 8 | `BasicAttack` |
+| Lobisomem | 95 | 30 | 10 | `BasicAttack` |
+| Vampiro | 110 | 34 | 12 | `BasicAttack`; fúria |
+| Necromante | 125 | 38 | 14 | `BasicAttack`; fúria |
+| Rei Demônio | 145 | 44 | 16 | `BasicAttack`; fúria |
+
 ## Estado de runtime
 
 | Tipo | Responsabilidade |
 |---|---|
-| `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais; hoje expõe HP, atributos e defesa temporária (`GuardBonus`) |
+| `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais; hoje expõe HP, atributos, defesa temporária (`GuardBonus`) e fúria (`CanRage`, `HasRaged`) |
 | `BattleState` | Participantes, fase, turno, flags e histórico do encontro; hoje expõe herói, oponente, fase (`PlayerTurn`, `Victory`, `Defeat`), rodada e cargas de reversão |
+| `CampaignRun` | Sequência fixa de encontros, herói persistente, encontro atual e fase (`Battle`, `Completed`, `Failed`) |
 | `ActionResult` | Eventos produzidos por uma ação aceita ou motivo de rejeição (`BattleOver`, `UnavailableAction`) |
 | Snapshot (`BattleState.Clone`, interno ao `Core`) | Cópia íntegra restaurável do estado do encontro, sem o estado do gerador aleatório |
 | `ProgressData` | Campanhas concluídas, desbloqueios e snapshots finais |

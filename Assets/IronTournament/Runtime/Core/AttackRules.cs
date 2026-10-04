@@ -23,6 +23,7 @@ namespace IronTournament.Core
         public const int CriticalChancePercent = 7;
         public const int CriticalMultiplier = 2;
         public const int PiercingChancePercent = 10;
+        public const int OpponentDamageVariancePercent = 20;
 
         public static AttackOutcome Resolve(
             CombatantState attacker,
@@ -32,7 +33,7 @@ namespace IronTournament.Core
         {
             if (isOpponent)
             {
-                return new AttackOutcome(Mitigate(attacker.Stats.Attack, target), false, false);
+                return new AttackOutcome(Mitigate(RollOpponentAttack(attacker, random), target), false, false);
             }
 
             if (IsArcane(attacker.Id))
@@ -59,6 +60,14 @@ namespace IronTournament.Core
             var damage = isPiercing ? attacker.Stats.Attack : Mitigate(attacker.Stats.Attack, target);
             var isCritical = Roll(random, CriticalChancePercent);
             return new AttackOutcome(isCritical ? damage * CriticalMultiplier : damage, isCritical, isPiercing);
+        }
+
+        private static int RollOpponentAttack(CombatantState attacker, IRandomSource random)
+        {
+            var attack = (long)attacker.Stats.Attack;
+            var minimum = (int)(attack * (100 - OpponentDamageVariancePercent) / 100);
+            var maximum = (int)(attack * (100 + OpponentDamageVariancePercent) / 100);
+            return random.Next(minimum, maximum + 1);
         }
 
         private static int Mitigate(int attack, CombatantState target)
