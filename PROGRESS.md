@@ -8,6 +8,43 @@
 - Implementados progresso e modo inimigo: `CampaignRun.FinalSnapshot` guarda atributos finais com melhorias, limitado a 9999; `ProgressData` libera o modo com as duas classes concluídas; o modo usa o inimigo escolhido com `Fury`, oferece três itens antes do chefe e termina contra uma classe concluída.
 - Adicionada a regressão (`RegressionTests`): 40 sementes por classe na campanha canônica e por personagem no modo inimigo, verificando término, HP dentro da faixa, evento final coerente, guarda zerada e determinismo por semente.
 - Endurecidos contra overflow de `int` o crítico, o golpe do guardião, a DEF com guarda e o teto da variação de dano para atributos extremos de conteúdo ou save adulterado.
+- Reconstruída a apresentação Guerreiro/Goblin: cena `Battle`, HUD, menu, eventos, presenter, prefab compartilhado, assets da vertical e testes PlayMode; o bootstrap permanece pendente.
+
+## 2026-10-04 — Assets do duelo e build WebGL
+
+- Criados os cinco assets da vertical com os tipos existentes, conforme `DATA_MODEL.md`; a cena `Battle` é a entrada habilitada no build. Conferidos os valores com o Java e os testes aprovados de João Lucas; sem novos commits na `main` durante esta etapa.
+- Testes locais: EditMode 28/28 e PlayMode 19/19, incluindo mapeamento dos assets reais e ações aceitas pelo núcleo. Build WebGL de desenvolvimento gerado em `Builds/WarriorGoblin-WebGL`, sem erros/avisos; não publicado.
+- Pendentes bootstrap de Jeferson para inicializar o duelo e aplicar a variação dos atributos, validação do fluxo na cena e revisão/commit/PR. Configurações, referências de sprites e build estão preparados; o build atual apresenta a cena sem iniciar o núcleo.
+
+## 2026-10-04 — Ligação da interface ao núcleo
+
+- Incorporada a `main` aprovada `f3c029a` com Guerreiro/Goblin; revisadas as regras de João Lucas, preservando o trabalho local. `BattlePresenter` ligado na cena envia escolhas ao `IBattle`, sincroniza o HUD e só reabre ações após os eventos, conforme `UI_CONTRACTS.md`.
+- Testes locais: EditMode 27/27 e PlayMode 19/19; ataque/defesa com núcleo real, clique repetido, vitória/derrota e retomada após interrupção. Esses testes usam configurações próprias de teste; a cena aguarda inicialização pelo bootstrap.
+
+## 2026-10-04 — Adaptação dos eventos do núcleo
+
+- `BattleEventPlayer` adapta os eventos aprovados conforme `UI_CONTRACTS.md`; mostra HP na ordem dos impactos e distingue reflexão, crítico e penetração. Testes locais: EditMode 13/13 e PlayMode 15/15, incluindo lote inválido sem efeitos parciais e cancelamento das atualizações pendentes.
+- Atualizado `PROJECT.md` com Unity UI e testes PlayMode; consultadas as branches remotas dos dois colaboradores, sem novos commits desde a revisão anterior.
+
+## 2026-10-04 — Encerramento da batalha
+
+- Preparada apresentação de vitória/derrota conforme `UI_CONTRACTS.md`, consumindo `BattleEndedEvent`; mantém o resultado após o impacto, oculta ações e não altera HP. Testes locais: EditMode 13/13 e PlayMode 11/11; conferidas as duas telas em mobile/desktop com dados de teste.
+- Incorporada a `main` aprovada (`07fb329`), preservando o trabalho local; revisados contratos `d448db5`/`8a9731b` e correção de Defender `62fcc6b` (DEF ×1,5, arredondada para cima, e 4 de dano).
+
+## 2026-10-04 — Efeitos de combate
+
+- Preparado `BattleEventPlayer` na cena existente, conforme `UI_CONTRACTS.md`: efeitos sequenciais de ataque, defesa e impacto, com bloqueio de entrada e cancelamento; sem calcular dano ou alterar HP.
+- Conferidas prévias visuais mobile/desktop; testes locais EditMode (2/2) e PlayMode (8/8) passaram, incluindo ordem dos efeitos, disponibilidade atualizada, cancelamento, entradas inválidas e troca de orientação durante impacto.
+
+## 2026-10-04 — HUD e menu
+
+- Preparados `BattleHud` e `ActionMenu` na cena existente, conforme `UI_CONTRACTS.md`; conferidas composições mobile/desktop e testes locais EditMode (2/2) e PlayMode (4/4), incluindo entradas inválidas e cliques repetidos.
+
+## 2026-10-04
+
+- Preparada `Assets/Scenes/Battle.unity` com cenário, prefab compartilhado e composições por orientação; adicionada a transição visual pelo botão `Iniciar combate`, conforme `UI_CONTRACTS.md`.
+- Conferidas capturas antes/depois em `360x640` e `1280x720`, clique real e orientação em Play Mode; testes locais EditMode (2/2) e PlayMode (1/1) passaram.
+- Registrado em `PROJECT.md` o padrão de branches solicitado pelo João Pedro.
 
 ## 2026-10-04
 

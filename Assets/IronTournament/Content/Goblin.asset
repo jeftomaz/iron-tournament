@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c398143a4d9547a4b2c194933d2b7177, type: 3}
+  m_Name: Goblin
+  m_EditorClassIdentifier: IronTournament.Content::IronTournament.Content.CombatantDefinition
+  id: 3
+  side: 2
+  displayName: Goblin
+  baseStats:
+    maximumHealth: 45
+    attack: 15
+    defense: 3
+  abilities:
+  - {fileID: 11400000, guid: d9800e89631625a448a01de68c5f263b, type: 2}
+  portrait: {fileID: 3373983171478037719, guid: 251435a68642e474ab790b7da30d8861, type: 3}
