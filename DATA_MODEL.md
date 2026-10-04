@@ -23,8 +23,10 @@ Local: `Assets/IronTournament/Content/`. Valores conferidos com a referência Ja
 | Asset | HP | ATK | DEF | Habilidades |
 |---|---:|---:|---:|---|
 | `Warrior.asset` | 120 | 30 | 23 | `BasicAttack.asset`, `Guard.asset` |
+| Mago (referência; asset pendente) | 110 | 30 | 5 | `BasicAttack`, `RevertTurn`, `RevertBattle` |
 | `Goblin.asset` | 45 | 15 | 3 | `BasicAttack.asset` |
 | `Skeleton.asset` | 62 | 20 | 5 | `BasicAttack.asset` |
+| Cavaleiro (referência; asset pendente) | 80 | 26 | 8 | `BasicAttack` |
 | `Werewolf.asset` | 95 | 30 | 10 | `BasicAttack.asset` |
 | `Vampire.asset` | 110 | 34 | 12 | `BasicAttack.asset` |
 | `Necromancer.asset` | 125 | 38 | 14 | `BasicAttack.asset` |
@@ -43,8 +45,9 @@ Local: `Assets/IronTournament/Content/`. Valores conferidos com a referência Ja
 
 | Tipo | Responsabilidade |
 |---|---|
-| `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais; hoje expõe HP, atributos e defesa temporária (`GuardBonus`) |
+| `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais; hoje expõe HP, atributos, defesa temporária (`GuardBonus`) e fúria (`CanRage`, `HasRaged`) |
 | `BattleState` | Participantes, fase, turno, flags e histórico do encontro; hoje expõe herói, oponente, fase (`PlayerTurn`, `Victory`, `Defeat`), rodada e cargas de reversão |
+| `CampaignRun` | Sequência fixa de encontros, herói persistente, encontro atual e fase (`Battle`, `Completed`, `Failed`) |
 | `ActionResult` | Eventos produzidos por uma ação aceita ou motivo de rejeição (`BattleOver`, `UnavailableAction`) |
 | Snapshot (`BattleState.Clone`, interno ao `Core`) | Cópia íntegra restaurável do estado do encontro, sem o estado do gerador aleatório |
 | `ProgressData` | Campanhas concluídas, desbloqueios e snapshots finais |
@@ -67,6 +70,8 @@ Local: `Assets/IronTournament/Content/`. Valores conferidos com a referência Ja
 - A restauração inclui participantes, HP, atributos efetivos, efeitos, recursos consumíveis, fase, flags e histórico. Depois dela, a carga compartilhada é marcada como consumida.
 - O estado do gerador aleatório não pertence ao snapshot; resultados futuros são sorteados novamente.
 - A reversão não pode ser acionada após a derrota do Mago.
+- Com o Manto de Chamas equipado, cada turno que consome ação, do Mago ou do inimigo, aplica 5 de dano direto ao inimigo; ações sem consumo não aplicam o efeito.
 - HP atual, itens e melhorias do jogador continuam entre encontros; ações reversíveis anteriores não.
 - Apenas o snapshot final da campanha, já com as melhorias obtidas, pode ser persistido para outros modos.
 - A progressão da campanha não usa sorteio para escolher ou ordenar inimigos.
+- `CampaignConfiguration` e o `ContentValidator` exigem exatamente os sete encontros na ordem canônica; campanhas truncadas, estendidas ou reordenadas são rejeitadas.

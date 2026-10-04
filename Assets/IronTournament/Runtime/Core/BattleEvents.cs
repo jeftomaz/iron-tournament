@@ -6,7 +6,8 @@ namespace IronTournament.Core
     {
         None,
         Attack,
-        Reflection
+        Reflection,
+        Fury
     }
 
     public abstract class BattleEvent
