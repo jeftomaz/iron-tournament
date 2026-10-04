@@ -31,9 +31,27 @@ namespace IronTournament.Content.Tests
 
             Assert.That(success, Is.True);
             Assert.That(report.IsValid, Is.True);
-            Assert.That(configuration.Encounters.Count, Is.EqualTo(1));
+            Assert.That(configuration.Encounters.Count, Is.EqualTo(CampaignConfiguration.CanonicalOrder.Count));
             Assert.That(configuration.Encounters[0].Opponent.Id, Is.EqualTo(CombatantId.Goblin));
             Assert.That(configuration.Encounters[0].Opponent.BaseStats.MaximumHealth, Is.EqualTo(45));
+        }
+
+        [Test]
+        public void TryBuildCampaignRejectsTruncatedOrReorderedCampaigns()
+        {
+            var encounters = CreateCanonicalEncounters();
+            var truncated = Create<CampaignDefinition>();
+            Set(truncated, "orderedEncounters", new[] { encounters[0], encounters[1] });
+            var reordered = Create<CampaignDefinition>();
+            var swapped = (EncounterDefinition[])encounters.Clone();
+            swapped[0] = encounters[1];
+            swapped[1] = encounters[0];
+            Set(reordered, "orderedEncounters", swapped);
+
+            Assert.That(ContentMapper.TryBuildCampaign(truncated, out _, out var truncatedReport), Is.False);
+            Assert.That(truncatedReport.IsValid, Is.False);
+            Assert.That(ContentMapper.TryBuildCampaign(reordered, out _, out var reorderedReport), Is.False);
+            Assert.That(reorderedReport.IsValid, Is.False);
         }
 
         [Test]
@@ -48,30 +66,43 @@ namespace IronTournament.Content.Tests
 
         private CampaignDefinition CreateValidCampaign(out EncounterDefinition encounter)
         {
+            var encounters = CreateCanonicalEncounters();
+            encounter = encounters[0];
+
+            var campaign = Create<CampaignDefinition>();
+            Set(campaign, "orderedEncounters", encounters);
+            return campaign;
+        }
+
+        private EncounterDefinition[] CreateCanonicalEncounters()
+        {
             var ability = Create<AbilityDefinition>();
             Set(ability, "id", AbilityId.BasicAttack);
             Set(ability, "displayName", "Atacar");
             Set(ability, "target", AbilityTarget.Opponent);
 
-            object statsBox = new CombatantStatsDefinition();
-            Set(statsBox, "maximumHealth", 45);
-            Set(statsBox, "attack", 15);
-            Set(statsBox, "defense", 3);
+            var encounters = new EncounterDefinition[CampaignConfiguration.CanonicalOrder.Count];
+            for (var index = 0; index < encounters.Length; index++)
+            {
+                object statsBox = new CombatantStatsDefinition();
+                Set(statsBox, "maximumHealth", 45);
+                Set(statsBox, "attack", 15);
+                Set(statsBox, "defense", 3);
 
-            var goblin = Create<CombatantDefinition>();
-            Set(goblin, "id", CombatantId.Goblin);
-            Set(goblin, "side", CombatantSide.Enemy);
-            Set(goblin, "displayName", "Goblin");
-            Set(goblin, "baseStats", (CombatantStatsDefinition)statsBox);
-            Set(goblin, "abilities", new[] { ability });
+                var opponentId = CampaignConfiguration.CanonicalOrder[index];
+                var opponent = Create<CombatantDefinition>();
+                Set(opponent, "id", opponentId);
+                Set(opponent, "side", CombatantSide.Enemy);
+                Set(opponent, "displayName", opponentId.ToString());
+                Set(opponent, "baseStats", (CombatantStatsDefinition)statsBox);
+                Set(opponent, "abilities", new[] { ability });
 
-            encounter = Create<EncounterDefinition>();
-            Set(encounter, "opponent", goblin);
-            Set(encounter, "dropPool", Array.Empty<ItemDefinition>());
+                encounters[index] = Create<EncounterDefinition>();
+                Set(encounters[index], "opponent", opponent);
+                Set(encounters[index], "dropPool", Array.Empty<ItemDefinition>());
+            }
 
-            var campaign = Create<CampaignDefinition>();
-            Set(campaign, "orderedEncounters", new[] { encounter });
-            return campaign;
+            return encounters;
         }
 
         private T Create<T>() where T : ScriptableObject

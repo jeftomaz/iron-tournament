@@ -29,7 +29,8 @@ namespace IronTournament.Core
         RevertTurn,
         RevertBattle,
         UseHopeScroll,
-        ArmGuardian
+        ArmGuardian,
+        Fury
     }
 
     public enum AbilityTarget

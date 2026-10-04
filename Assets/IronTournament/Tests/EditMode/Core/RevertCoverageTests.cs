@@ -8,7 +8,7 @@ namespace IronTournament.Core.Tests
         public void RevertBattleRestoresEveryTrackedValueExceptTheCharge()
         {
             var opponent = TestContent.Enemy(CombatantId.Goblin, 200, 15, 3);
-            var battle = TestContent.StartBattle(TestContent.Mage(), opponent, new ScriptedRandomSource());
+            var battle = TestContent.StartBattle(TestContent.Mage(), opponent, new ScriptedRandomSource(15, 15, 15));
             var heroStats = battle.State.Hero.Stats;
             var opponentStats = battle.State.Opponent.Stats;
             battle.Submit(AbilityId.BasicAttack);
@@ -38,7 +38,7 @@ namespace IronTournament.Core.Tests
                 AbilityId.Guard,
                 AbilityId.RevertTurn);
             var opponent = TestContent.Enemy(CombatantId.Goblin, 200, 40, 3);
-            var battle = TestContent.StartBattle(hero, opponent, new ScriptedRandomSource(50, 50));
+            var battle = TestContent.StartBattle(hero, opponent, new ScriptedRandomSource(50, 50, 40, 40));
             battle.Submit(AbilityId.BasicAttack);
             battle.Submit(AbilityId.Guard);
 
@@ -60,7 +60,7 @@ namespace IronTournament.Core.Tests
                 AbilityId.RevertTurn,
                 AbilityId.RevertBattle);
             var opponent = TestContent.Enemy(CombatantId.Goblin, 200, 15, 3);
-            var battle = TestContent.StartBattle(mage, opponent, new ScriptedRandomSource());
+            var battle = TestContent.StartBattle(mage, opponent, new ScriptedRandomSource(15));
 
             battle.Submit(AbilityId.BasicAttack);
 

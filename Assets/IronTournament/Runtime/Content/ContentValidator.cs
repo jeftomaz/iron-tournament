@@ -32,7 +32,32 @@ namespace IronTournament.Content
                 }
             }
 
+            if (!FollowsCanonicalOrder(definition.OrderedEncounters))
+            {
+                errors.Add(
+                    $"Campaign must follow the canonical order: {string.Join(", ", CampaignConfiguration.CanonicalOrder)}.");
+            }
+
             return new ContentValidationReport(errors);
+        }
+
+        private static bool FollowsCanonicalOrder(IReadOnlyList<EncounterDefinition> encounters)
+        {
+            if (encounters.Count != CampaignConfiguration.CanonicalOrder.Count)
+            {
+                return false;
+            }
+
+            for (var index = 0; index < encounters.Count; index++)
+            {
+                var opponent = encounters[index] == null ? null : encounters[index].Opponent;
+                if (opponent == null || opponent.Id != CampaignConfiguration.CanonicalOrder[index])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public static ContentValidationReport Validate(EncounterDefinition definition)

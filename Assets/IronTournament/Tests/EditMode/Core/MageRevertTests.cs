@@ -7,7 +7,7 @@ namespace IronTournament.Core.Tests
         [Test]
         public void MageAttackIgnoresDefenseWithoutRolling()
         {
-            var random = new ScriptedRandomSource();
+            var random = new ScriptedRandomSource(15);
             var battle = TestContent.StartBattle(TestContent.Mage(), TestContent.Goblin(), random);
 
             var result = battle.Submit(AbilityId.BasicAttack);
@@ -21,7 +21,7 @@ namespace IronTournament.Core.Tests
         [Test]
         public void RevertTurnUndoesTheAttackAndTheResponseAndReturnsControlToTheMage()
         {
-            var battle = TestContent.StartBattle(TestContent.Mage(), TestContent.Goblin(), new ScriptedRandomSource());
+            var battle = TestContent.StartBattle(TestContent.Mage(), TestContent.Goblin(), new ScriptedRandomSource(15, 15));
             var state = battle.State;
             battle.Submit(AbilityId.BasicAttack);
 
@@ -48,7 +48,7 @@ namespace IronTournament.Core.Tests
         public void RevertBattleRestoresTheEncounterEntry()
         {
             var opponent = TestContent.Enemy(CombatantId.Goblin, 200, 15, 3);
-            var battle = TestContent.StartBattle(TestContent.Mage(), opponent, new ScriptedRandomSource());
+            var battle = TestContent.StartBattle(TestContent.Mage(), opponent, new ScriptedRandomSource(15, 15));
             battle.Submit(AbilityId.BasicAttack);
             battle.Submit(AbilityId.BasicAttack);
 
@@ -64,7 +64,7 @@ namespace IronTournament.Core.Tests
         public void ReversionsNeedAPreviousTurnAndShareOneChargePerEncounter()
         {
             var opponent = TestContent.Enemy(CombatantId.Goblin, 200, 15, 3);
-            var battle = TestContent.StartBattle(TestContent.Mage(), opponent, new ScriptedRandomSource());
+            var battle = TestContent.StartBattle(TestContent.Mage(), opponent, new ScriptedRandomSource(15, 15));
 
             Assert.That(battle.State.RevertCharges, Is.EqualTo(BattleState.RevertChargesPerEncounter));
             Assert.That(battle.AvailableActions, Is.EqualTo(new[] { AbilityId.BasicAttack }));
@@ -91,7 +91,7 @@ namespace IronTournament.Core.Tests
                 AbilityId.BasicAttack,
                 AbilityId.RevertTurn);
             var opponent = TestContent.Enemy(CombatantId.Goblin, 200, 15, 3);
-            var battle = TestContent.StartBattle(hero, opponent, new ScriptedRandomSource());
+            var battle = TestContent.StartBattle(hero, opponent, new ScriptedRandomSource(15));
             battle.Submit(AbilityId.BasicAttack);
 
             Assert.That(battle.AvailableActions, Is.EqualTo(new[] { AbilityId.BasicAttack, AbilityId.RevertTurn }));
@@ -104,7 +104,7 @@ namespace IronTournament.Core.Tests
         [Test]
         public void ReversionDoesNotRewindTheRandomSequence()
         {
-            var random = new ScriptedRandomSource(50, 50, 9, 50);
+            var random = new ScriptedRandomSource(50, 50, 15, 9, 50, 15);
             var hero = TestContent.Hero(
                 CombatantId.Warrior,
                 new CombatantStats(120, 30, 23),

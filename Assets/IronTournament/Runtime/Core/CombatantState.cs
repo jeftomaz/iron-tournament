@@ -41,6 +41,10 @@ namespace IronTournament.Core
 
         public int Defense => Stats.Defense + GuardBonus;
 
+        public bool CanRage { get; private set; }
+
+        public bool HasRaged { get; private set; }
+
         public bool IsDefeated => CurrentHealth == 0;
 
         public bool HasAbility(AbilityId ability)
@@ -72,6 +76,16 @@ namespace IronTournament.Core
             GuardBonus = 0;
         }
 
+        internal void EnableRage()
+        {
+            CanRage = true;
+        }
+
+        internal void MarkRaged()
+        {
+            HasRaged = true;
+        }
+
         internal CombatantState Clone()
         {
             return new CombatantState(this);
@@ -87,6 +101,8 @@ namespace IronTournament.Core
             Stats = source.Stats;
             CurrentHealth = source.CurrentHealth;
             GuardBonus = source.GuardBonus;
+            CanRage = source.CanRage;
+            HasRaged = source.HasRaged;
         }
     }
 }
