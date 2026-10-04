@@ -39,8 +39,10 @@ O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration
 | Elixir da Vida (`LifeElixir`) | 1 | Cura total | — |
 | Defesa Divina (`DivineDefense`) | 1 | Modificador `Defense` +15 | — |
 | Pergaminho Misterioso (`HopeScroll`) | 2 | +1 uso de `UseHopeScroll`: com HP ≤ 30%, cura 50% do máximo e gasta o turno | Guerreiro |
-| Manto de Chamas (`FlameCloak`) | 2 | 5 de dano após a ação do herói e após o turno inimigo | Mago |
+| Manto de Chamas (`FlameCloak`) | 2 | 5 de dano após a ação do herói e após o turno inimigo; não volta a ser oferecido a quem já o tem | Mago |
 | Chifre da Irmandade (`BrotherhoodHorn`) | 2 | +1 uso de `ArmGuardian` (gasta o turno): o próximo golpe letal é interceptado com 30 + ATK do Mago; se vencer, HP sobe a 30%, senão fica em 1 | Mago |
+
+No protótipo todos os encontros usam o mesmo pool; cada `EncounterDefinition` deve repetir o pool completo, e o `Core` filtra os exclusivos pela classe.
 
 ## Estado de runtime
 
