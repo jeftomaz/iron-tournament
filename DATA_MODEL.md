@@ -48,10 +48,11 @@ O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration
 |---|---|
 | `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais; hoje expõe HP, atributos, defesa temporária (`GuardBonus`) fúria (`CanRage`, `HasRaged`) e recursos de itens (pergaminhos, chifres, guardião armado, manto) |
 | `BattleState` | Participantes, fase, turno, flags e histórico do encontro; hoje expõe herói, oponente, fase (`PlayerTurn`, `Victory`, `Defeat`), rodada e cargas de reversão |
-| `CampaignRun` | Sequência fixa de encontros, herói persistente, encontro atual, oferta de drop, itens obtidos e fase (`Battle`, `DropChoice`, `Completed`, `Failed`) |
+| `CampaignRun` | Campanha ou modo inimigo (`Mode`): sequência de oponentes, herói persistente, encontro atual, oferta de drop, itens obtidos, fase (`Battle`, `DropChoice`, `Completed`, `Failed`) e `FinalSnapshot` ao concluir a campanha |
 | `ActionResult` | Eventos produzidos por uma ação aceita ou motivo de rejeição (`BattleOver`, `UnavailableAction`) |
 | Snapshot (`BattleState.Clone`, interno ao `Core`) | Cópia íntegra restaurável do estado do encontro, sem o estado do gerador aleatório |
-| `ProgressData` | Campanhas concluídas, desbloqueios e snapshots finais |
+| `ProgressData` | Imutável: um `HeroSnapshot` por classe concluída; o modo inimigo libera com Guerreiro e Mago concluídos; `WithCompletedCampaign` substitui o snapshot da classe |
+| `HeroSnapshot` | Classe (Guerreiro ou Mago), nome e atributos finais com melhorias; cada atributo limitado a 9999 |
 
 ## Integridade
 

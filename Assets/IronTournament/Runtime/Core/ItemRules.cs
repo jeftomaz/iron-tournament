@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace IronTournament.Core
 {
     internal static class ItemRules
@@ -21,6 +23,20 @@ namespace IronTournament.Core
                 default:
                     return true;
             }
+        }
+
+        public static List<ItemConfiguration> Eligible(IReadOnlyList<ItemConfiguration> pool, CombatantId hero)
+        {
+            var eligible = new List<ItemConfiguration>();
+            for (var index = 0; index < pool.Count; index++)
+            {
+                if (IsAvailableTo(pool[index].Id, hero))
+                {
+                    eligible.Add(pool[index]);
+                }
+            }
+
+            return eligible;
         }
 
         public static void Apply(ItemConfiguration item, CombatantState hero)

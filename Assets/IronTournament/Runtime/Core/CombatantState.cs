@@ -126,6 +126,12 @@ namespace IronTournament.Core
             GuardBonus = 0;
         }
 
+        internal void PrepareForEncounter()
+        {
+            GuardBonus = 0;
+            HasRaged = false;
+        }
+
         internal void EnableRage()
         {
             CanRage = true;
