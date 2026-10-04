@@ -213,7 +213,7 @@ namespace IronTournament.Core
             hero.DisarmGuardian();
             events.Add(new GuardianInterceptedEvent(hero.Id, preventedDamage));
 
-            var strike = ItemRules.GuardianWarriorAttack + hero.Stats.Attack;
+            var strike = (int)Math.Min(int.MaxValue, (long)ItemRules.GuardianWarriorAttack + hero.Stats.Attack);
             Damage(hero, opponent, DamageKind.GuardianStrike, strike, false, false, events);
             if (opponent.IsDefeated)
             {

@@ -59,14 +59,15 @@ namespace IronTournament.Core
             var isPiercing = Roll(random, PiercingChancePercent);
             var damage = isPiercing ? attacker.Stats.Attack : Mitigate(attacker.Stats.Attack, target);
             var isCritical = Roll(random, CriticalChancePercent);
-            return new AttackOutcome(isCritical ? damage * CriticalMultiplier : damage, isCritical, isPiercing);
+            var total = isCritical ? Math.Min(int.MaxValue, (long)damage * CriticalMultiplier) : damage;
+            return new AttackOutcome((int)total, isCritical, isPiercing);
         }
 
         private static int RollOpponentAttack(CombatantState attacker, IRandomSource random)
         {
             var attack = (long)attacker.Stats.Attack;
             var minimum = (int)(attack * (100 - OpponentDamageVariancePercent) / 100);
-            var maximum = (int)(attack * (100 + OpponentDamageVariancePercent) / 100);
+            var maximum = (int)Math.Min(int.MaxValue - 1, attack * (100 + OpponentDamageVariancePercent) / 100);
             return random.Next(minimum, maximum + 1);
         }
 
