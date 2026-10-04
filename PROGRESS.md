@@ -2,6 +2,7 @@
 
 ## 2026-10-04
 
+- A ordem canônica dos sete inimigos virou contrato: `CampaignConfiguration.CanonicalOrder` é validada no construtor e no `ContentValidator`, com testes de rejeição; os testes de campanha passam a usar a sequência completa. As regras de ±20% no dano inimigo e de fúria foram confirmadas e registradas em `PROJECT.md` (revisão do PR #9).
 - Implementada a campanha (`CampaignRun`): encontros na ordem do `CampaignConfiguration`, herói único entre encontros (HP e atributos persistem), atributos do inimigo sorteados uma vez em ±15% (HP, ATK, DEF independentes, arredondados, mínimo 1/1/0), golpe inimigo com variação de ±20% antes da DEF, e `ConcludeEncounter` para avançar, concluir ou falhar.
 - Fúria (Vampiro, Necromante, Rei Demônio): uma vez por encontro, no turno do inimigo com HP ≤ 30%, substitui o ataque e reduz o HP do herói a 30% do máximo; a reversão restaura a flag.
 - Cobertos em EditMode a restauração de HP, atributos, defesa temporária, fase e rodada, a carga consumida após restaurar e a proibição de reverter após derrota ou vitória. O item de cobertura segue `doing`: efeitos de item, consumíveis e flags de fúria ainda não existem neste ponto e serão cobertos quando entrarem.

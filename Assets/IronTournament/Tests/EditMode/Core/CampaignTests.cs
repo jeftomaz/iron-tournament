@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace IronTournament.Core.Tests
@@ -81,9 +82,11 @@ namespace IronTournament.Core.Tests
         [TestCase(CombatantId.Werewolf, false)]
         public void OnlyTheLastThreeEnemiesCanRage(CombatantId id, bool canRage)
         {
-            var opponent = TestContent.Enemy(id, 100, 34, 12);
+            var run = new CampaignRun(TestContent.Mage(), TestContent.WeakCampaign(), new NeutralRandomSource());
 
-            var run = new CampaignRun(TestContent.Mage(), TestContent.Campaign(opponent), new ScriptedRandomSource(0, 0, 0));
+            TestContent.WinWithOneHit(run, CanonicalIndex(id));
+
+            Assert.That(run.CurrentBattle.State.Opponent.Id, Is.EqualTo(id));
 
             Assert.That(run.CurrentBattle.State.Opponent.CanRage, Is.EqualTo(canRage));
         }
@@ -91,7 +94,7 @@ namespace IronTournament.Core.Tests
         [Test]
         public void FuryTriggersOnceAtThirtyPercentAndReplacesTheAttack()
         {
-            var random = new ScriptedRandomSource(0, 0, 0, 30, 30, 30, 30, 30, 30, 30);
+            var random = new ScriptedRandomSource(TestContent.RollsAfter(4, 0, 0, 0, 30, 30, 30, 30, 30, 30, 30));
             var battle = StartFuryCampaign(random, AbilityId.BasicAttack);
             for (var round = 0; round < 6; round++)
             {
@@ -113,7 +116,7 @@ namespace IronTournament.Core.Tests
         [Test]
         public void RevertTurnRestoresTheFuryFlag()
         {
-            var random = new ScriptedRandomSource(0, 0, 0, 30, 30, 30, 30, 30, 30);
+            var random = new ScriptedRandomSource(TestContent.RollsAfter(4, 0, 0, 0, 30, 30, 30, 30, 30, 30));
             var battle = StartFuryCampaign(random, AbilityId.BasicAttack, AbilityId.RevertTurn);
             for (var round = 0; round < 7; round++)
             {
@@ -134,7 +137,7 @@ namespace IronTournament.Core.Tests
         [Test]
         public void CampaignFollowsTheFixedOrderAndCarriesTheHero()
         {
-            var campaign = TestContent.Campaign(TestContent.Goblin(), TestContent.Enemy(CombatantId.Skeleton, 62, 20, 5));
+            var campaign = TestContent.Campaign();
             var run = new CampaignRun(TestContent.Mage(), campaign, new ScriptedRandomSource(0, 0, 0, 15, 0, 0, 0));
             run.CurrentBattle.Submit(AbilityId.BasicAttack);
 
@@ -145,7 +148,7 @@ namespace IronTournament.Core.Tests
             Assert.That(run.ConcludeEncounter(), Is.True);
             Assert.That(run.Phase, Is.EqualTo(CampaignPhase.Battle));
             Assert.That(run.EncounterIndex, Is.EqualTo(1));
-            Assert.That(run.EncounterCount, Is.EqualTo(2));
+            Assert.That(run.EncounterCount, Is.EqualTo(CampaignConfiguration.CanonicalOrder.Count));
             Assert.That(run.CurrentBattle.State.Opponent.Id, Is.EqualTo(CombatantId.Skeleton));
             Assert.That(run.CurrentBattle.State.Hero, Is.SameAs(run.Hero));
             Assert.That(run.Hero.CurrentHealth, Is.EqualTo(100));
@@ -155,11 +158,11 @@ namespace IronTournament.Core.Tests
         [Test]
         public void CampaignCompletesAfterTheLastVictory()
         {
-            var run = new CampaignRun(
-                TestContent.Mage(),
-                TestContent.Campaign(TestContent.Goblin()),
-                new ScriptedRandomSource(0, 0, 0, 15));
-            run.CurrentBattle.Submit(AbilityId.BasicAttack);
+            var run = new CampaignRun(TestContent.Mage(), TestContent.WeakCampaign(), new NeutralRandomSource());
+
+            TestContent.WinWithOneHit(run, CampaignConfiguration.CanonicalOrder.Count - 1);
+            Assert.That(run.Phase, Is.EqualTo(CampaignPhase.Battle));
+            Assert.That(run.CurrentBattle.State.Opponent.Id, Is.EqualTo(CombatantId.DemonKing));
             run.CurrentBattle.Submit(AbilityId.BasicAttack);
 
             Assert.That(run.ConcludeEncounter(), Is.True);
@@ -179,9 +182,28 @@ namespace IronTournament.Core.Tests
         }
 
         [Test]
+        public void CampaignConfigurationRejectsTruncatedOrReorderedSequences()
+        {
+            var truncated = TestContent.CanonicalEncounters(false);
+            truncated.RemoveAt(truncated.Count - 1);
+            var reordered = TestContent.CanonicalEncounters(false);
+            var first = reordered[0];
+            reordered[0] = reordered[1];
+            reordered[1] = first;
+            var extended = TestContent.CanonicalEncounters(false);
+            extended.Add(extended[0]);
+
+            Assert.That(TestContent.Campaign().Encounters.Count, Is.EqualTo(CampaignConfiguration.CanonicalOrder.Count));
+            Assert.Throws<ArgumentException>(() => new CampaignConfiguration(truncated));
+            Assert.Throws<ArgumentException>(() => new CampaignConfiguration(reordered));
+            Assert.Throws<ArgumentException>(() => new CampaignConfiguration(extended));
+            Assert.Throws<ArgumentException>(() => new CampaignConfiguration(new List<EncounterConfiguration>()));
+        }
+
+        [Test]
         public void CampaignRequiresAPlayerHero()
         {
-            var campaign = TestContent.Campaign(TestContent.Enemy(CombatantId.Skeleton, 62, 20, 5));
+            var campaign = TestContent.Campaign();
 
             Assert.Throws<ArgumentException>(
                 () => new CampaignRun(TestContent.Goblin(), campaign, new ScriptedRandomSource(0, 0, 0)));
@@ -191,7 +213,22 @@ namespace IronTournament.Core.Tests
         {
             var hero = TestContent.Hero(CombatantId.Mage, new CombatantStats(500, 10, 5), heroAbilities);
             var vampire = TestContent.Enemy(CombatantId.Vampire, 100, 34, 12);
-            return new CampaignRun(hero, TestContent.Campaign(vampire), random).CurrentBattle;
+            var run = new CampaignRun(hero, TestContent.WeakCampaign(vampire), random);
+            TestContent.WinWithOneHit(run, CanonicalIndex(CombatantId.Vampire));
+            return run.CurrentBattle;
+        }
+
+        private static int CanonicalIndex(CombatantId id)
+        {
+            for (var index = 0; index < CampaignConfiguration.CanonicalOrder.Count; index++)
+            {
+                if (CampaignConfiguration.CanonicalOrder[index] == id)
+                {
+                    return index;
+                }
+            }
+
+            throw new ArgumentOutOfRangeException(nameof(id));
         }
     }
 }
