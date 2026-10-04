@@ -2,6 +2,8 @@
 
 ## 2026-10-04
 
+- Implementado Guerreiro x Goblin no `Core` (`Battle`): o ataque rola 10% de penetração (ignora DEF) e depois 7% de crítico (×2); Defender eleva a DEF a `ceil(DEF × 1,5)` durante a próxima ação inimiga e causa 4 de dano direto (regra definida na revisão do PR #6); o Goblin responde com `ATK − DEF` (mínimo 0); o golpe que vence encerra o encontro antes da resposta.
+- Valores canônicos retirados do protótipo Java no histórico (`5016de1^:ironturn/`): Guerreiro equipado 120 HP, 30 ATK, 23 DEF; Goblin 45 HP, 15 ATK, 3 DEF.
 - Definidos os contratos do `Core` para a `Presentation`: `IBattle` expõe `BattleState` somente leitura, ações disponíveis (`AbilityId`) e `Submit`, que devolve `ActionResult` com eventos ou motivo de rejeição; a implementação chega na Fase 1.
 - Só o `Core` cria novos tipos de evento (`AbilityUsedEvent`, `DamageDealtEvent`, `BattleEndedEvent`); o dano informa tipo, crítico e penetração.
 - Aleatoriedade injetável por `IRandomSource`; `SeededRandomSource` é determinística por semente e fica fora do estado restaurável.

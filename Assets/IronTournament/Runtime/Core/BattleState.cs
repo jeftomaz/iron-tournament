@@ -34,17 +34,35 @@ namespace IronTournament.Core
                 throw new ArgumentException("The opponent must be an enemy.", nameof(opponent));
             }
 
+            if (hero.Id == opponent.Id)
+            {
+                throw new ArgumentException("Combatants must be distinct.", nameof(opponent));
+            }
+
             Hero = hero;
             Opponent = opponent;
             Phase = BattlePhase.PlayerTurn;
+            Round = 1;
         }
 
         public CombatantState Hero { get; }
 
         public CombatantState Opponent { get; }
 
-        public BattlePhase Phase { get; }
+        public BattlePhase Phase { get; private set; }
+
+        public int Round { get; private set; }
 
         public bool IsOver => Phase == BattlePhase.Victory || Phase == BattlePhase.Defeat;
+
+        internal void AdvanceRound()
+        {
+            Round++;
+        }
+
+        internal void Finish(BattlePhase result)
+        {
+            Phase = result;
+        }
     }
 }
