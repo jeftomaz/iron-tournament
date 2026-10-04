@@ -69,6 +69,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - A entrega navegável usa o build Web do Unity; a hospedagem será definida antes da publicação.
 - O golpe de cada inimigo varia ±20% sobre o ATK antes da DEF (decisão de João Lucas, 2026-10-04, a partir do protótipo).
 - Vampiro, Necromante e Rei Demônio entram em fúria uma vez por encontro: no turno do inimigo com HP ≤ 30%, em vez de atacar, reduzem o HP do herói a 30% do máximo, se estiver acima (decisão de João Lucas, 2026-10-04, a partir do protótipo).
+- Defender: a DEF efetiva vira `ceil(DEF × 1,5)` durante a próxima ação inimiga e o inimigo sofre 4 de dano direto (definido na revisão do PR #6; confirmado por João Lucas, 2026-10-04).
 
 ## Restrições
 
