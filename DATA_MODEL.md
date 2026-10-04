@@ -8,11 +8,13 @@ Definições são `ScriptableObject` em `Content`; o núcleo recebe valores de r
 
 | Tipo | Responsabilidade |
 |---|---|
-| `CombatantDefinition` | Identidade, atributos-base, sprite e capacidades |
-| `AbilityDefinition` | Custo, alvo, disponibilidade e efeitos |
+| `CombatantDefinition` | Identidade estável, lado, atributos-base, capacidades e sprite opcional |
+| `AbilityDefinition` | Identidade estável, nome de exibição, alvo e consumo de turno; a regra do efeito fica no `Core` |
 | `ItemDefinition` | Peso de drop e modificadores aplicados |
-| `EncounterDefinition` | Oponentes, drops e regras do encontro |
+| `EncounterDefinition` | Oponente, pool de drops e variação fixa de `±15%` dos atributos inimigos |
 | `CampaignDefinition` | Ordem fixa dos encontros e condição de conclusão |
+
+O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration`, `ItemConfiguration`, `EncounterConfiguration` e `CampaignConfiguration` imutáveis no `Core`. `Content` referencia `Core`; o sentido inverso é proibido.
 
 ## Estado de runtime
 
@@ -26,6 +28,10 @@ Definições são `ScriptableObject` em `Content`; o núcleo recebe valores de r
 ## Integridade
 
 - Definições são imutáveis durante a partida.
+- IDs de combatente, habilidade e item são enums fechados; `None` e valores fora da enumeração são inválidos.
+- O mapeamento falha antes de alcançar o núcleo se encontrar referência ausente, atributo inválido, duplicidade de habilidade/drop/modificador, peso não positivo ou texto de exibição inseguro.
+- Construtores das configurações do núcleo repetem as validações estruturais para impedir dados inválidos por chamadas que não passam pelo adaptador.
+- Nomes de exibição são limitados a 48 caracteres e não aceitam controles nem tags rich text.
 - HP, ATK e DEF efetivos do inimigo são sorteados em ±15% dos valores-base uma vez na criação do encontro, com arredondamento e limite mínimo válido.
 - Reversão restaura os atributos efetivos já sorteados; nunca recria nem sorteia novamente o inimigo.
 - HP e atributos carregados são limitados a faixas válidas.
