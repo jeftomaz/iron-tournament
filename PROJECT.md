@@ -6,15 +6,16 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 ## Referência
 
-- `../ironturn/`: especificação funcional externa em Java; opcional para consulta e não versionada neste repositório. Suas regras serão revisadas, não portadas literalmente.
+- `../ironturn-exemplo/`: especificação funcional externa em Java; opcional para consulta e não versionada neste repositório. Suas regras serão revisadas, não portadas literalmente.
 - `Assets/`: sprites direcionais estáticos para personagens e conteúdo do Unity.
-- `Assets/Backgrounds/`: cenários estáticos de batalha e o respectivo `metadata.json`; aguardam integração nas cenas.
+- `Assets/Backgrounds/`: cenários estáticos de batalha e o respectivo `metadata.json`.
 
 ## Stack
 
 - Unity `6000.5.7f1`
 - C#
 - Projeto 2D pixel-perfect
+- Interface de batalha em Unity UI (uGUI), na assembly `Presentation`; contratos dos componentes e decisões visuais em `UI_CONTRACTS.md`.
 - GameCI executa testes EditMode e build WebGL em contêiner na pipeline do GitHub Actions
 - Build Web para execução no navegador
 - CI: testes EditMode e build WebGL usam GameCI em contêiner no runner hospedado Ubuntu, com `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD` como secrets.
@@ -32,6 +33,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - `Content`: definições em `ScriptableObject` e referências de assets.
 - `Presentation`: cenas, UI e adaptação dos dados de conteúdo ao núcleo.
 - `Tests/EditMode`: testes do núcleo sem carregar cenas.
+- `Tests/PlayMode`: testes da apresentação carregando a cena de batalha.
 
 ## Mapa técnico
 
@@ -45,12 +47,13 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 - Dependências seguem `Content -> Core` e `Presentation -> Content/Core`; referências circulares não são aceitas.
 - A fronteira pública é `ação -> Core -> estado/eventos`: adaptadores convertem conteúdo na inicialização e a interface apenas apresenta a resposta.
+- O bootstrap fornece a batalha via `IBattle` ao apresentador da cena; `Presentation` não instancia o núcleo com atributos ou fonte aleatória próprios. Detalhes da ligação em `UI_CONTRACTS.md`.
 - Estado restaurável e fonte aleatória são isolados para que a reversão não retroceda a sequência aleatória.
 - Decisões que mudem assemblies, contratos públicos ou esse fluxo exigem PR isolado antes das implementações dependentes.
 
 ## Premissas confirmadas
 
-- Combates frontais e sequenciais, inicialmente `1 x 1`.
+- Combates sequenciais, inicialmente `1 x 1`.
 - A campanha segue a ordem fixa: Goblin, Esqueleto, Cavaleiro, Lobisomem, Vampiro, Necromante e Rei Demônio.
 - Cada inimigo tem atributos-base canônicos; ao criar o encontro, HP, ATK e DEF efetivos variam independentemente em ±15% e permanecem fixos até seu encerramento.
 - Variação de dano, crítico, penetração e drops também permanecem probabilísticos.
@@ -89,6 +92,8 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - João Pedro instancia os `ScriptableObject`; Jeferson mantém seus tipos e validação; João Lucas define quais valores o núcleo requer.
 - Testes EditMode das regras pertencem a João Lucas; testes PlayMode e evidência visual pertencem a João Pedro; Jeferson mantém a execução de ambos na CI.
 - Cada mudança usa branch própria e Pull Request; ninguém envia diretamente para a `main`.
+- Branches de trabalho seguem `feature/<descricao-em-ingles>`.
+- Antes de cada etapa, buscar e revisar os commits novos de Jeferson e João Lucas, incluindo branches remotas; dependências seguem o fluxo de aprovação e integração na `main`.
 - A suíte completa roda localmente antes de cada commit; todo PR interno roda CI com testes essenciais, validações e build.
 - O estado visual é acompanhado localmente pelo Unity Editor, em Play Mode, nas janelas Game, Scene e Inspector.
 

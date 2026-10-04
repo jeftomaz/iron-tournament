@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6851f219a6a3842e68a9a3e45bd376a7
+guid: 7789f0f8e7fa1c942a45e090d81bbf16
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -206670225839568205
-    second: north-east_0
+      213: -3594151317422465442
+    second: goblin-forest_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: north-east_0
+      name: goblin-forest_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 0
         y: 0
-        width: 31
-        height: 48
+        width: 1672
+        height: 941
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3bace2b4682c12df0800000000000000
-      internalID: -206670225839568205
+      spriteID: e5e18006b620f1ec0800000000000000
+      internalID: -3594151317422465442
       vertices: []
       indices:
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData:
     physicsShape: []
     bones: []
-    spriteID:
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices:
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      north-east_0: -206670225839568205
+      goblin-forest_0: -3594151317422465442
   mipmapLimitGroupName:
   pSDRemoveMatte: 0
   userData:

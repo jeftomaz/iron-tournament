@@ -4,6 +4,7 @@ using System.Reflection;
 using IronTournament.Core;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEditor;
 
 namespace IronTournament.Content.Tests
 {
@@ -34,6 +35,37 @@ namespace IronTournament.Content.Tests
             Assert.That(configuration.Encounters.Count, Is.EqualTo(1));
             Assert.That(configuration.Encounters[0].Opponent.Id, Is.EqualTo(CombatantId.Goblin));
             Assert.That(configuration.Encounters[0].Opponent.BaseStats.MaximumHealth, Is.EqualTo(45));
+        }
+
+        [Test]
+        public void BattleAssetsMapToPlayableWarriorGoblinContent()
+        {
+            var warrior = AssetDatabase.LoadAssetAtPath<CombatantDefinition>("Assets/IronTournament/Content/Warrior.asset");
+            var encounter = AssetDatabase.LoadAssetAtPath<EncounterDefinition>("Assets/IronTournament/Content/GoblinEncounter.asset");
+            Assert.That(warrior, Is.Not.Null);
+            Assert.That(encounter, Is.Not.Null);
+            var hero = ContentMapper.BuildCombatant(warrior);
+            var configuration = ContentMapper.BuildEncounter(encounter);
+            Assert.That(hero.Id, Is.EqualTo(CombatantId.Warrior));
+            Assert.That(hero.Side, Is.EqualTo(CombatantSide.Player));
+            Assert.That(hero.BaseStats.MaximumHealth, Is.EqualTo(120));
+            Assert.That(hero.BaseStats.Attack, Is.EqualTo(30));
+            Assert.That(hero.BaseStats.Defense, Is.EqualTo(23));
+            Assert.That(hero.Abilities.Count, Is.EqualTo(2));
+            Assert.That(hero.Abilities[0].Id, Is.EqualTo(AbilityId.BasicAttack));
+            Assert.That(hero.Abilities[1].Id, Is.EqualTo(AbilityId.Guard));
+            Assert.That(configuration.Opponent.Id, Is.EqualTo(CombatantId.Goblin));
+            Assert.That(configuration.Opponent.Side, Is.EqualTo(CombatantSide.Enemy));
+            Assert.That(configuration.Opponent.BaseStats.MaximumHealth, Is.EqualTo(45));
+            Assert.That(configuration.Opponent.BaseStats.Attack, Is.EqualTo(15));
+            Assert.That(configuration.Opponent.BaseStats.Defense, Is.EqualTo(3));
+            Assert.That(configuration.EnemyStatVariancePercent, Is.EqualTo(15));
+            Assert.That(warrior.Portrait, Is.Not.Null);
+            Assert.That(encounter.Opponent.Portrait, Is.Not.Null);
+            var battle = new Battle(new BattleState(new CombatantState(hero, hero.BaseStats),
+                new CombatantState(configuration.Opponent, configuration.Opponent.BaseStats)), new SeededRandomSource(17));
+            Assert.That(battle.Submit(AbilityId.Guard).IsAccepted, Is.True);
+            Assert.That(battle.Submit(AbilityId.BasicAttack).IsAccepted, Is.True);
         }
 
         [Test]

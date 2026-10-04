@@ -3,7 +3,8 @@
   "rootNamespace": "IronTournament.Presentation",
   "references": [
     "IronTournament.Core",
-    "IronTournament.Content"
+    "IronTournament.Content",
+    "UnityEngine.UI"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
