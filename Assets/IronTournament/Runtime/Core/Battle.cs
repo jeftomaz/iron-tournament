@@ -84,6 +84,7 @@ namespace IronTournament.Core
 
         private bool IsAvailable(AbilityId ability)
         {
+            var hero = State.Hero;
             switch (ability)
             {
                 case AbilityId.BasicAttack:
@@ -92,6 +93,10 @@ namespace IronTournament.Core
                 case AbilityId.RevertTurn:
                 case AbilityId.RevertBattle:
                     return State.RevertCharges > 0 && turnStart != null;
+                case AbilityId.UseHopeScroll:
+                    return hero.HopeScrolls > 0 && hero.IsHealthAtOrBelow(ItemRules.HopeScrollThresholdPercent);
+                case AbilityId.ArmGuardian:
+                    return hero.GuardianHorns > 0 && !hero.IsGuardianArmed;
                 default:
                     return false;
             }
@@ -108,9 +113,11 @@ namespace IronTournament.Core
         private void PlayRound(AbilityId action, List<BattleEvent> events)
         {
             var hero = State.Hero;
+            var opponent = State.Opponent;
             events.Add(new AbilityUsedEvent(hero.Id, action));
             ResolveHeroAction(action, events);
-            if (State.Opponent.IsDefeated)
+            ApplyBurn(events);
+            if (opponent.IsDefeated)
             {
                 Finish(BattlePhase.Victory, events);
                 return;
@@ -123,19 +130,37 @@ namespace IronTournament.Core
                 return;
             }
 
+            ApplyBurn(events);
+            if (opponent.IsDefeated)
+            {
+                Finish(BattlePhase.Victory, events);
+                return;
+            }
+
             hero.LowerGuard();
             State.AdvanceRound();
         }
 
         private void ResolveHeroAction(AbilityId action, List<BattleEvent> events)
         {
+            var hero = State.Hero;
             switch (action)
             {
                 case AbilityId.BasicAttack:
-                    Attack(State.Hero, State.Opponent, false, events);
+                    var outcome = AttackRules.Resolve(hero, State.Opponent, false, random);
+                    Damage(hero, State.Opponent, DamageKind.Attack, outcome.Damage, outcome.IsCritical, outcome.IsPiercing, events);
                     break;
                 case AbilityId.Guard:
-                    Guard(events);
+                    var bonus = hero.Stats.Defense;
+                    hero.RaiseGuard(bonus);
+                    Damage(hero, State.Opponent, DamageKind.Reflection, Math.Max(1, bonus / ReflectionDivisor), false, false, events);
+                    break;
+                case AbilityId.UseHopeScroll:
+                    hero.ConsumeHopeScroll();
+                    Heal(hero, hero.HealthAtPercent(ItemRules.HopeScrollHealPercent), events);
+                    break;
+                case AbilityId.ArmGuardian:
+                    hero.ArmGuardian();
                     break;
             }
         }
@@ -143,63 +168,91 @@ namespace IronTournament.Core
         private void ResolveOpponentTurn(List<BattleEvent> events)
         {
             var opponent = State.Opponent;
+            var hero = State.Hero;
             if (FuryRules.IsTriggered(opponent))
             {
                 events.Add(new AbilityUsedEvent(opponent.Id, AbilityId.Fury));
-                Fury(opponent, State.Hero, events);
+                opponent.MarkRaged();
+                StrikeHero(DamageKind.Fury, FuryRules.Excess(hero), false, false, events);
                 return;
             }
 
             events.Add(new AbilityUsedEvent(opponent.Id, AbilityId.BasicAttack));
-            Attack(opponent, State.Hero, true, events);
+            var outcome = AttackRules.Resolve(opponent, hero, true, random);
+            StrikeHero(DamageKind.Attack, outcome.Damage, outcome.IsCritical, outcome.IsPiercing, events);
         }
 
-        private static void Fury(CombatantState actor, CombatantState target, List<BattleEvent> events)
+        private void StrikeHero(DamageKind kind, int amount, bool isCritical, bool isPiercing, List<BattleEvent> events)
         {
-            actor.MarkRaged();
-            var excess = Math.Max(0, target.CurrentHealth - FuryRules.Threshold(target));
-            target.TakeDamage(excess);
-            events.Add(new DamageDealtEvent(
-                actor.Id,
-                target.Id,
-                DamageKind.Fury,
-                excess,
-                target.CurrentHealth,
-                false,
-                false));
+            var hero = State.Hero;
+            if (hero.IsGuardianArmed && amount >= hero.CurrentHealth)
+            {
+                InterceptWithGuardian(amount, events);
+                return;
+            }
+
+            Damage(State.Opponent, hero, kind, amount, isCritical, isPiercing, events);
         }
 
-        private void Attack(CombatantState attacker, CombatantState target, bool isOpponent, List<BattleEvent> events)
-        {
-            var outcome = AttackRules.Resolve(attacker, target, isOpponent, random);
-            target.TakeDamage(outcome.Damage);
-            events.Add(new DamageDealtEvent(
-                attacker.Id,
-                target.Id,
-                DamageKind.Attack,
-                outcome.Damage,
-                target.CurrentHealth,
-                outcome.IsCritical,
-                outcome.IsPiercing));
-        }
-
-        private void Guard(List<BattleEvent> events)
+        private void InterceptWithGuardian(int preventedDamage, List<BattleEvent> events)
         {
             var hero = State.Hero;
             var opponent = State.Opponent;
-            var bonus = hero.Stats.Defense;
-            hero.RaiseGuard(bonus);
+            hero.DisarmGuardian();
+            events.Add(new GuardianInterceptedEvent(hero.Id, preventedDamage));
 
-            var reflection = Math.Max(1, bonus / ReflectionDivisor);
-            opponent.TakeDamage(reflection);
+            var strike = ItemRules.GuardianWarriorAttack + hero.Stats.Attack;
+            Damage(hero, opponent, DamageKind.GuardianStrike, strike, false, false, events);
+            if (opponent.IsDefeated)
+            {
+                var recovery = hero.HealthAtPercent(ItemRules.GuardianRecoveryPercent) - hero.CurrentHealth;
+                if (recovery > 0)
+                {
+                    Heal(hero, recovery, events);
+                }
+
+                return;
+            }
+
+            var recoil = hero.CurrentHealth - 1;
+            if (recoil > 0)
+            {
+                Damage(opponent, hero, DamageKind.GuardianRecoil, recoil, false, false, events);
+            }
+        }
+
+        private void ApplyBurn(List<BattleEvent> events)
+        {
+            if (State.Hero.HasFlameCloak && !State.Opponent.IsDefeated)
+            {
+                Damage(State.Hero, State.Opponent, DamageKind.Burn, ItemRules.FlameCloakBurn, false, false, events);
+            }
+        }
+
+        private static void Damage(
+            CombatantState source,
+            CombatantState target,
+            DamageKind kind,
+            int amount,
+            bool isCritical,
+            bool isPiercing,
+            List<BattleEvent> events)
+        {
+            target.TakeDamage(amount);
             events.Add(new DamageDealtEvent(
-                hero.Id,
-                opponent.Id,
-                DamageKind.Reflection,
-                reflection,
-                opponent.CurrentHealth,
-                false,
-                false));
+                source.Id,
+                target.Id,
+                kind,
+                amount,
+                target.CurrentHealth,
+                isCritical,
+                isPiercing));
+        }
+
+        private static void Heal(CombatantState target, int amount, List<BattleEvent> events)
+        {
+            var healed = target.Heal(amount);
+            events.Add(new HealthRestoredEvent(target.Id, healed, target.CurrentHealth));
         }
 
         private void Finish(BattlePhase result, List<BattleEvent> events)

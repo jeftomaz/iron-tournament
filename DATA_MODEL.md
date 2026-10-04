@@ -20,8 +20,8 @@ O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration
 
 | Combatente | HP | ATK | DEF | Habilidades / regra |
 |---|---:|---:|---:|---|
-| Guerreiro (equipado) | 120 | 30 | 23 | `BasicAttack`, `Guard` |
-| Mago (equipado) | 110 | 30 | 5 | `BasicAttack`, `RevertTurn`, `RevertBattle` |
+| Guerreiro (equipado) | 120 | 30 | 23 | `BasicAttack`, `Guard`, `UseHopeScroll` |
+| Mago (equipado) | 110 | 30 | 5 | `BasicAttack`, `RevertTurn`, `RevertBattle`, `ArmGuardian` |
 | Goblin | 45 | 15 | 3 | `BasicAttack` |
 | Esqueleto | 62 | 20 | 5 | `BasicAttack` |
 | Cavaleiro | 80 | 26 | 8 | `BasicAttack` |
@@ -30,13 +30,25 @@ O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration
 | Necromante | 125 | 38 | 14 | `BasicAttack`; fúria |
 | Rei Demônio | 145 | 44 | 16 | `BasicAttack`; fúria |
 
+| Item | Peso | Efeito | Exclusivo |
+|---|---:|---|---|
+| Poção de Cura (`HealingPotion`) | 3 | Cura 40 HP | — |
+| Gema de Sangue (`AttackGem`) | 3 | Modificador `Attack` +10 | — |
+| Runa do Guardião (`DefenseRune`) | 3 | Modificador `Defense` +5 | — |
+| Cristal da Ruína (`PowerCrystal`) | 2 | Modificador `Attack` +15 | — |
+| Elixir da Vida (`LifeElixir`) | 1 | Cura total | — |
+| Defesa Divina (`DivineDefense`) | 1 | Modificador `Defense` +15 | — |
+| Pergaminho Misterioso (`HopeScroll`) | 2 | +1 uso de `UseHopeScroll`: com HP ≤ 30%, cura 50% do máximo e gasta o turno | Guerreiro |
+| Manto de Chamas (`FlameCloak`) | 2 | 5 de dano após a ação do herói e após o turno inimigo | Mago |
+| Chifre da Irmandade (`BrotherhoodHorn`) | 2 | +1 uso de `ArmGuardian` (gasta o turno): o próximo golpe letal é interceptado com 30 + ATK do Mago; se vencer, HP sobe a 30%, senão fica em 1 | Mago |
+
 ## Estado de runtime
 
 | Tipo | Responsabilidade |
 |---|---|
-| `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais; hoje expõe HP, atributos, defesa temporária (`GuardBonus`) e fúria (`CanRage`, `HasRaged`) |
+| `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais; hoje expõe HP, atributos, defesa temporária (`GuardBonus`) fúria (`CanRage`, `HasRaged`) e recursos de itens (pergaminhos, chifres, guardião armado, manto) |
 | `BattleState` | Participantes, fase, turno, flags e histórico do encontro; hoje expõe herói, oponente, fase (`PlayerTurn`, `Victory`, `Defeat`), rodada e cargas de reversão |
-| `CampaignRun` | Sequência fixa de encontros, herói persistente, encontro atual e fase (`Battle`, `Completed`, `Failed`) |
+| `CampaignRun` | Sequência fixa de encontros, herói persistente, encontro atual, oferta de drop, itens obtidos e fase (`Battle`, `DropChoice`, `Completed`, `Failed`) |
 | `ActionResult` | Eventos produzidos por uma ação aceita ou motivo de rejeição (`BattleOver`, `UnavailableAction`) |
 | Snapshot (`BattleState.Clone`, interno ao `Core`) | Cópia íntegra restaurável do estado do encontro, sem o estado do gerador aleatório |
 | `ProgressData` | Campanhas concluídas, desbloqueios e snapshots finais |

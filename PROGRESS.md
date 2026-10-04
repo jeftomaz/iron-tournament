@@ -2,6 +2,7 @@
 
 ## 2026-10-04
 
+- Implementados drops e itens: após cada vitória que não é a última, o `CampaignRun` oferece até 2 itens distintos por sorteio ponderado sem reposição, filtrados pela classe; `ChooseDrop` aceita só itens da oferta, aplica modificadores permanentes ou o efeito do item e inicia o próximo encontro. Itens e recursos entram no snapshot da reversão.
 - Implementada a campanha (`CampaignRun`): encontros na ordem do `CampaignConfiguration`, herói único entre encontros (HP e atributos persistem), atributos do inimigo sorteados uma vez em ±15% (HP, ATK, DEF independentes, arredondados, mínimo 1/1/0), golpe inimigo com variação de ±20% antes da DEF, e `ConcludeEncounter` para avançar, concluir ou falhar.
 - Fúria (Vampiro, Necromante, Rei Demônio): uma vez por encontro, no turno do inimigo com HP ≤ 30%, substitui o ataque e reduz o HP do herói a 30% do máximo; a reversão restaura a flag.
 - Cobertos em EditMode a restauração de HP, atributos, defesa temporária, fase e rodada, a carga consumida após restaurar e a proibição de reverter após derrota ou vitória; consumíveis e efeitos de itens ganham cobertura quando os itens entram (Fase 3).
