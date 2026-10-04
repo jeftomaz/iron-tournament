@@ -78,4 +78,5 @@ No protótipo todos os encontros usam o mesmo pool; cada `EncounterDefinition` d
 - HP atual, itens e melhorias do jogador continuam entre encontros; ações reversíveis anteriores não.
 - Apenas o snapshot final da campanha, já com as melhorias obtidas, pode ser persistido para outros modos.
 - A progressão da campanha não usa sorteio para escolher ou ordenar inimigos.
+- O `Core` define quais habilidades gastam turno: todas, exceto `RevertTurn` e `RevertBattle`; o `consumesTurn` dos assets deve coincidir com essa regra.
 - `CampaignConfiguration` e o `ContentValidator` exigem exatamente os sete encontros na ordem canônica; campanhas truncadas, estendidas ou reordenadas são rejeitadas.
