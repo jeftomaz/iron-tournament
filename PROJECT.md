@@ -88,6 +88,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Não implementar exploração no escopo inicial.
 - Não instalar dependências sem aprovação.
 - Não colocar regras de combate em componentes de UI ou animação.
+- Até a tarefa dedicada após a limpeza das branches, não ajustar tamanho, proporção ou perspectiva visual dos personagens. A tarefa futura definirá, de uma vez, a escala-base de cada personagem e a redução por profundidade do inimigo.
 
 ## Colaboração
 

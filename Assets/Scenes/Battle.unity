@@ -189,6 +189,11 @@ MonoBehaviour:
     combat: {fileID: -1505471383403432660, guid: dfe61948768534555a5284b291f0a3b2, type: 3}
     background: {fileID: 21300000, guid: c51fd995e378a56468c91bd20dc19f16, type: 3}
     caption: "ENCONTRO 02 / CEMIT\xC9RIO ESQUECIDO"
+  - definition: {fileID: 11400000, guid: 5dc4fac1db5d0e74caaa19a4c1c42c90, type: 2}
+    introduction: {fileID: 3373983171478037719, guid: 081f5b3cfa0b64f65995b1a324867266, type: 3}
+    combat: {fileID: -1505471383403432660, guid: 1a75fdb9539a24da5862c3c5f064766a, type: 3}
+    background: {fileID: 21300000, guid: f6cbafa3d96006745930d9b89fe13e57, type: 3}
+    caption: ENCONTRO 04 / RAVINA DA LUA
   selectedOpponent: 3
   opponentName: {fileID: 579583715}
   composition: {fileID: 46471659}

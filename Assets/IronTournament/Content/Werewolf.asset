@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c398143a4d9547a4b2c194933d2b7177, type: 3}
+  m_Name: Werewolf
+  m_EditorClassIdentifier: IronTournament.Content::IronTournament.Content.CombatantDefinition
+  id: 6
+  side: 2
+  displayName: Lobisomem
+  baseStats:
+    maximumHealth: 95
+    attack: 30
+    defense: 10
+  abilities:
+  - {fileID: 11400000, guid: d9800e89631625a448a01de68c5f263b, type: 2}
+  portrait: {fileID: 3373983171478037719, guid: 081f5b3cfa0b64f65995b1a324867266, type: 3}
