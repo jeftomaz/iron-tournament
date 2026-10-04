@@ -6,6 +6,17 @@ namespace IronTournament.Core
 {
     public sealed class CampaignConfiguration
     {
+        public static readonly IReadOnlyList<CombatantId> CanonicalOrder = new ReadOnlyCollection<CombatantId>(new[]
+        {
+            CombatantId.Goblin,
+            CombatantId.Skeleton,
+            CombatantId.Knight,
+            CombatantId.Werewolf,
+            CombatantId.Vampire,
+            CombatantId.Necromancer,
+            CombatantId.DemonKing
+        });
+
         private readonly ReadOnlyCollection<EncounterConfiguration> encounters;
 
         public CampaignConfiguration(IList<EncounterConfiguration> encounters)
@@ -15,12 +26,11 @@ namespace IronTournament.Core
                 throw new ArgumentNullException(nameof(encounters));
             }
 
-            if (encounters.Count == 0)
+            if (encounters.Count != CanonicalOrder.Count)
             {
-                throw new ArgumentException("At least one encounter is required.", nameof(encounters));
+                throw new ArgumentException("The campaign must contain the canonical encounters.", nameof(encounters));
             }
 
-            var opponents = new HashSet<CombatantId>();
             for (var index = 0; index < encounters.Count; index++)
             {
                 var encounter = encounters[index];
@@ -29,9 +39,9 @@ namespace IronTournament.Core
                     throw new ArgumentException("An encounter is required.", nameof(encounters));
                 }
 
-                if (!opponents.Add(encounter.Opponent.Id))
+                if (encounter.Opponent.Id != CanonicalOrder[index])
                 {
-                    throw new ArgumentException("Encounter opponents must be unique.", nameof(encounters));
+                    throw new ArgumentException("Encounters must follow the canonical order.", nameof(encounters));
                 }
             }
 
