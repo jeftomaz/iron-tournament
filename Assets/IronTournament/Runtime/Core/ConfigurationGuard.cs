@@ -1,9 +1,20 @@
 using System;
+using System.Collections.Generic;
 
 namespace IronTournament.Core
 {
     internal static class ConfigurationGuard
     {
+        public static TEnum Defined<TEnum>(TEnum value, string parameterName) where TEnum : struct, Enum
+        {
+            if (!Enum.IsDefined(typeof(TEnum), value) || EqualityComparer<TEnum>.Default.Equals(value, default))
+            {
+                throw new ArgumentOutOfRangeException(parameterName);
+            }
+
+            return value;
+        }
+
         public static string DisplayName(string value, string parameterName)
         {
             if (string.IsNullOrWhiteSpace(value))
