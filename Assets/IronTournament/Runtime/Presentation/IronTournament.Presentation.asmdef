@@ -1,0 +1,17 @@
+{
+  "name": "IronTournament.Presentation",
+  "rootNamespace": "IronTournament.Presentation",
+  "references": [
+    "IronTournament.Core",
+    "IronTournament.Content"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

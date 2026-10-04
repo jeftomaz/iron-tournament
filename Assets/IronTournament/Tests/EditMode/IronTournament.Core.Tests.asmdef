@@ -1,0 +1,21 @@
+{
+  "name": "IronTournament.Core.Tests",
+  "rootNamespace": "IronTournament.Core.Tests",
+  "references": [
+    "IronTournament.Core"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": true,
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ]
+}
