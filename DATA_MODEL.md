@@ -20,8 +20,9 @@ O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration
 
 | Tipo | Responsabilidade |
 |---|---|
-| `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais |
-| `BattleState` | Participantes, fase, turno, flags e histórico do encontro |
+| `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais; hoje expõe configuração, atributos efetivos e HP |
+| `BattleState` | Participantes, fase, turno, flags e histórico do encontro; hoje expõe herói, oponente e fase (`PlayerTurn`, `Victory`, `Defeat`) |
+| `ActionResult` | Eventos produzidos por uma ação aceita ou motivo de rejeição (`BattleOver`, `UnavailableAction`) |
 | `BattleSnapshot` | Cópia íntegra restaurável do estado do encontro, sem o estado do gerador aleatório |
 | `ProgressData` | Campanhas concluídas, desbloqueios e snapshots finais |
 
