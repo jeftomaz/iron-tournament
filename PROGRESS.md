@@ -2,6 +2,7 @@
 
 ## 2026-10-04
 
+- Concluída a cobertura da reversão: além de HP, atributos, defesa temporária, fase e rodada, os testes restauram a flag de fúria (`RevertTurnRestoresTheFuryFlag`) e os consumíveis e efeitos de itens (`RevertTurnRestoresConsumedItemsAndArmedEffects`, `RevertBattleReturnsTheUnusedHorn`).
 - Implementados drops e itens: após cada vitória que não é a última, o `CampaignRun` oferece até 2 itens distintos por sorteio ponderado sem reposição, filtrados pela classe; `ChooseDrop` aceita só itens da oferta, aplica modificadores permanentes ou o efeito do item e inicia o próximo encontro; o Manto de Chamas não é oferecido a quem já o tem. Itens e recursos entram no snapshot da reversão.
 - Implementada a campanha (`CampaignRun`): encontros na ordem do `CampaignConfiguration`, herói único entre encontros (HP e atributos persistem), atributos do inimigo sorteados uma vez em ±15% (HP, ATK, DEF independentes, arredondados, mínimo 1/1/0), golpe inimigo com variação de ±20% antes da DEF, e `ConcludeEncounter` para avançar, concluir ou falhar.
 - Fúria (Vampiro, Necromante, Rei Demônio): uma vez por encontro, no turno do inimigo com HP ≤ 30%, substitui o ataque e reduz o HP do herói a 30% do máximo; a reversão restaura a flag.
