@@ -1,5 +1,11 @@
 # Progresso
 
+## 2026-10-04 — Apresentação Guerreiro x Necromante
+
+- Push do Vampiro confirmado em `c3887f5`; criada `feature/warrior-vs-necromancer`. Revisados commits remotos de João Lucas e `4a795b6` de Jeferson; incorporados somente os sprites do Necromante, com importação Unity e configuração na cena compartilhada. Alterações de regras fora da `main` permanecem para integração aprovada.
+- Validação local: EditMode 34/34 e PlayMode 21/21, incluindo seleção, perspectiva, limites da arena e ataque do Necromante com núcleo real. Introdução/combate conferidos em `360x640` e `1280x720`, capturas em `Logs/Necromancer-*.png` (não versionadas).
+- Pendentes integração/apresentação da fúria, bootstrap, variação dos atributos, transição automática da campanha e validação WebGL.
+
 ## 2026-10-04 — Apresentação Guerreiro x Vampiro
 
 - Criada `feature/warrior-vs-vampire` a partir do Lobisomem `b9348b3`; conferidas branches remotas, sem novos commits. Revisada a fúria em `origin/feat/core-campaign`, ainda fora da `main`; configuração do Vampiro reutiliza cena/componentes existentes.

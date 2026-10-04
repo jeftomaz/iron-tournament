@@ -199,6 +199,11 @@ MonoBehaviour:
     combat: {fileID: -1505471383403432660, guid: 315a95883d5ed449680e41936ef056e4, type: 3}
     background: {fileID: 21300000, guid: 728e50167b1764c488d78a372d42aac4, type: 3}
     caption: ENCONTRO 05 / CASTELO DO VAMPIRO
+  - definition: {fileID: 11400000, guid: 7aeaddcdeae2d594b95a5ce6db81279c, type: 2}
+    introduction: {fileID: 3373983171478037719, guid: 184cbef501cd2c8439820d7abc31a1c3, type: 3}
+    combat: {fileID: -1505471383403432660, guid: 65a2fdc3d1eb3804aaf536b0c6abf7bf, type: 3}
+    background: {fileID: 21300000, guid: 52c49889f76a8594985b712848b9392d, type: 3}
+    caption: ENCONTRO 6 / CRIPTA DO NECROMANTE
   selectedOpponent: 3
   opponentName: {fileID: 579583715}
   composition: {fileID: 46471659}
