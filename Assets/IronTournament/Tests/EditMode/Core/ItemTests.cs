@@ -59,6 +59,28 @@ namespace IronTournament.Core.Tests
         }
 
         [Test]
+        public void FlameCloakIsNotOfferedAgainOnceOwned()
+        {
+            var random = new ScriptedRandomSource(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            var campaign = TestContent.CampaignWithDrops(
+                new[] { TestContent.Item(ItemId.FlameCloak, 2), TestContent.Item(ItemId.HealingPotion, 3) },
+                WeakGoblin(),
+                TestContent.Enemy(CombatantId.Skeleton, 1, 20, 0),
+                TestContent.Enemy(CombatantId.Knight, 1, 26, 0));
+            var run = new CampaignRun(TestContent.Mage(), campaign, random);
+            run.CurrentBattle.Submit(AbilityId.BasicAttack);
+            run.ConcludeEncounter();
+            run.ChooseDrop(ItemId.FlameCloak);
+            run.CurrentBattle.Submit(AbilityId.BasicAttack);
+
+            run.ConcludeEncounter();
+
+            Assert.That(run.DropOffer.Count, Is.EqualTo(1));
+            Assert.That(run.DropOffer[0].Id, Is.EqualTo(ItemId.HealingPotion));
+            Assert.That(random.Remaining, Is.Zero);
+        }
+
+        [Test]
         public void PermanentUpgradesApplyTheirModifiers()
         {
             var run = ReachDropChoice(

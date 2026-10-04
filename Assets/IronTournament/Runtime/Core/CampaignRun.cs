@@ -136,7 +136,7 @@ namespace IronTournament.Core
             }
 
             var stage = stages[EncounterIndex];
-            var offer = DropTable.Roll(stage.DropPool, stage.DropOfferSize, random);
+            var offer = DropTable.Roll(UsefulDrops(stage.DropPool), stage.DropOfferSize, random);
             if (offer.Count == 0)
             {
                 StartEncounter(EncounterIndex + 1);
@@ -203,6 +203,20 @@ namespace IronTournament.Core
             }
 
             return stages;
+        }
+
+        private List<ItemConfiguration> UsefulDrops(IList<ItemConfiguration> pool)
+        {
+            var useful = new List<ItemConfiguration>();
+            foreach (var item in pool)
+            {
+                if (ItemRules.IsUseful(item, Hero))
+                {
+                    useful.Add(item);
+                }
+            }
+
+            return useful;
         }
 
         private void Complete()
