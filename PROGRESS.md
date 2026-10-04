@@ -2,6 +2,9 @@
 
 ## 2026-10-03
 
+- Registrado em `PROJECT.md` o mapa técnico vinculante: limites entre assemblies, fluxo `ação -> Core -> estado/eventos`, reversão e responsáveis de integração.
+- Restaurada a cache de `Library` exclusivamente nos runners hospedados, separada entre EditMode e WebGL e invalidada por fontes/configuração; não inclui credenciais ou artefatos.
+- Reduzido o uso do GameCI: toda PR faz somente a checagem de escopo; testes e build WebGL rodam em mudanças Unity/CI ou por acionamento manual, sem repetição automática após o merge na `main`.
 - Movidos os cenários para `Assets/Backgrounds/`, o único caminho de assets do Unity; a coexistência com `assets/` em minúsculas deixava o editor preso na importação no contêiner.
 - Ampliado para 60 minutos o timeout do build WebGL enquanto a correção da importação é validada; os cancelamentos não envolveram licença ou segredos.
 - Validados testes EditMode e build WebGL em contêineres GameCI hospedados; a `main` exige PR, checks `test` e `build` atualizados, resolução de conversas e aplica as regras a administradores.

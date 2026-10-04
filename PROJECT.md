@@ -33,6 +33,21 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - `Presentation`: cenas, UI e adaptação dos dados de conteúdo ao núcleo.
 - `Tests/EditMode`: testes do núcleo sem carregar cenas.
 
+## Mapa técnico
+
+| Limite | Pode depender de | Responsabilidade e contrato |
+|---|---|---|
+| `Core` | .NET | Estado somente leitura, ações válidas e eventos do combate; sem `UnityEngine`. |
+| `Content` | `Core`, Unity | `ScriptableObject`, validação e conversão para configurações puras do núcleo. |
+| `Presentation` | `Core`, `Content`, Unity | Cenas, interface e reprodução de eventos; envia ações, sem calcular ou alterar o estado. |
+| `Tests/EditMode` | `Core` e/ou `Content` | Regras puras e contratos de mapeamento sem cenas. |
+| CI | GitHub Actions, GameCI | Valida EditMode e o build WebGL em contêineres Linux. |
+
+- Dependências seguem `Content -> Core` e `Presentation -> Content/Core`; referências circulares não são aceitas.
+- A fronteira pública é `ação -> Core -> estado/eventos`: adaptadores convertem conteúdo na inicialização e a interface apenas apresenta a resposta.
+- Estado restaurável e fonte aleatória são isolados para que a reversão não retroceda a sequência aleatória.
+- Decisões que mudem assemblies, contratos públicos ou esse fluxo exigem PR isolado antes das implementações dependentes.
+
 ## Premissas confirmadas
 
 - Combates frontais e sequenciais, inicialmente `1 x 1`.
@@ -81,10 +96,15 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 - Os runners hospedados `ubuntu-latest` executam os contêineres GameCI para testes EditMode e build WebGL.
 - O runner macOS e a sessão do Unity Hub não são dependências da CI; ficam disponíveis apenas para desenvolvimento local.
+- Cada job restaura e salva somente `Library`, com chave separada por alvo, sistema e fontes/configuração do Unity; a primeira execução continua fria.
+- A workflow executa uma verificação leve em toda PR; GameCI só roda se mudarem `Assets/`, `Packages/`, `ProjectSettings/` ou a própria workflow. Uma execução completa adicional é manual (`workflow_dispatch`), não no push pós-merge.
+- A `main` só recebe código já validado pela PR atualizada; novas pushes na mesma PR cancelam a execução anterior.
 
 ## Segurança do repositório público
 
 - Segredos ficam somente em GitHub Actions Secrets; nunca em arquivos, logs, exemplos ou histórico Git.
 - A licença Personal e as credenciais da conta Unity ficam exclusivamente nos secrets `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD`; nunca em arquivo versionado, log ou artefato.
 - O runner atende somente este repositório e código de colaboradores confiáveis; PRs de forks não executam CI nele.
+- A cache não inclui arquivos de credencial, artefatos ou secrets: apenas o diretório transitório `Library` do Unity.
+- PRs de forks podem executar apenas a verificação de escopo, sem GameCI, cache ou acesso aos secrets.
 - Antes do merge, revisar o diff e a saída da CI para detectar chaves, tokens ou dados pessoais.
