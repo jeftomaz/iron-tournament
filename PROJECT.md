@@ -69,6 +69,11 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - A entrega navegável usa o build Web do Unity; a hospedagem será definida antes da publicação.
 - O golpe de cada inimigo varia ±20% sobre o ATK antes da DEF (decisão de João Lucas, 2026-10-04, a partir do protótipo).
 - Vampiro, Necromante e Rei Demônio entram em fúria uma vez por encontro: no turno do inimigo com HP ≤ 30%, em vez de atacar, reduzem o HP do herói a 30% do máximo, se estiver acima (decisão de João Lucas, 2026-10-04, a partir do protótipo).
+- Defender: a DEF efetiva vira `ceil(DEF × 1,5)` durante a próxima ação inimiga e o inimigo sofre 4 de dano direto (definido na revisão do PR #6; confirmado por João Lucas, 2026-10-04).
+- Drops: após cada vitória que não é a última, 2 itens de tipos distintos por sorteio ponderado; pesos Poção de Cura 3, Gema de Sangue 3, Runa do Guardião 3, Cristal da Ruína 2, Elixir da Vida 1, Defesa Divina 1 e exclusivos 2 cada (Pergaminho para o Guerreiro; Manto e Chifre para o Mago); efeitos na tabela do `DATA_MODEL.md` (decisão de João Lucas, 2026-10-04, a partir do protótipo).
+- Pergaminho Misterioso: com HP ≤ 30%, cura 50% do HP máximo e gasta o turno (decisão de João Lucas, 2026-10-04, a partir do protótipo).
+- Manto de Chamas: 5 de dano ao inimigo após a ação do herói e após o turno inimigo; não volta a ser oferecido a quem já o tem (decisão de João Lucas, 2026-10-04, a partir do protótipo).
+- Chifre da Irmandade: armar gasta o turno; o próximo golpe letal é interceptado por um golpe de 30 + ATK do Mago; se o inimigo cair, o HP do Mago sobe a 30% do máximo, senão fica em 1 (decisão de João Lucas, 2026-10-04, a partir do protótipo).
 
 ## Restrições
 
