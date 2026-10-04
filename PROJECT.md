@@ -8,15 +8,16 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 - `../ironturn/`: especificação funcional externa em Java; opcional para consulta e não versionada neste repositório. Suas regras serão revisadas, não portadas literalmente.
 - `Assets/`: sprites direcionais estáticos para personagens e conteúdo do Unity.
+- `Assets/Backgrounds/`: cenários estáticos de batalha e o respectivo `metadata.json`; aguardam integração nas cenas.
 
 ## Stack
 
 - Unity `6000.5.7f1`
 - C#
 - Projeto 2D pixel-perfect
-- GameCI aprovado exclusivamente para a pipeline do GitHub Actions
+- GameCI executa testes EditMode e build WebGL em contêiner na pipeline do GitHub Actions
 - Build Web para execução no navegador
-- CI em runner próprio macOS ARM64, com Unity Hub autenticado; não usa `UNITY_LICENSE` no GitHub.
+- CI: testes EditMode e build WebGL usam GameCI em contêiner no runner hospedado Ubuntu, com `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD` como secrets.
 
 ## Plataformas e telas
 
@@ -76,15 +77,14 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - A suíte completa roda localmente antes de cada commit; todo PR interno roda CI com testes essenciais, validações e build.
 - O estado visual é acompanhado localmente pelo Unity Editor, em Play Mode, nas janelas Game, Scene e Inspector.
 
-## Runner de CI
+## CI
 
-- Registrar no repositório um runner GitHub Actions `self-hosted`, `macOS`, `ARM64`, executado pelo usuário que ativou o Unity Hub.
-- Instalar Unity `6000.5.7f1` no caminho padrão do Hub: `/Applications/Unity/Hub/Editor/6000.5.7f1/Unity.app/Contents/MacOS/Unity`.
-- Manter o Mac ligado e o usuário da sessão do Hub autenticado durante as execuções; não instalar o runner como serviço do sistema. Testes usam o executável local e o build WebGL usa GameCI com `skipActivation`.
+- Os runners hospedados `ubuntu-latest` executam os contêineres GameCI para testes EditMode e build WebGL.
+- O runner macOS e a sessão do Unity Hub não são dependências da CI; ficam disponíveis apenas para desenvolvimento local.
 
 ## Segurança do repositório público
 
 - Segredos ficam somente em GitHub Actions Secrets; nunca em arquivos, logs, exemplos ou histórico Git.
-- A ativação do Unity fica apenas no perfil local do runner; nenhuma credencial da Unity é cadastrada no GitHub.
+- A licença Personal e as credenciais da conta Unity ficam exclusivamente nos secrets `UNITY_LICENSE`, `UNITY_EMAIL` e `UNITY_PASSWORD`; nunca em arquivo versionado, log ou artefato.
 - O runner atende somente este repositório e código de colaboradores confiáveis; PRs de forks não executam CI nele.
 - Antes do merge, revisar o diff e a saída da CI para detectar chaves, tokens ou dados pessoais.

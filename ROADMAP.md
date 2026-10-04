@@ -5,7 +5,8 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 ## Fase 0 — Base do projeto
 
 - `done` `JT` Inicializar Unity, assemblies `Core/Content/Presentation`, testes EditMode e pipeline WebGL.
-- `doing` `JT` Registrar runner macOS, proteger a `main` e validar testes e build de PR interno.
+- `done` `JP` Criar cenários estáticos de batalha para heróis e inimigos; a integração no Unity permanece pendente.
+- `done` `JT` Proteger a `main` com PR obrigatória e checks de testes EditMode e build WebGL em contêiner GameCI.
 - `done` `JT` Definir tipos de `Content`, validadores e adaptação para os modelos puros do `Core`.
 - `todo` `JL` Implementar contratos fundamentais: estados, fases, ações, eventos, resultados e fonte aleatória injetável.
 - `todo` `JP` Preparar cena-base, importação pixel-perfect, prefabs dos combatentes e composições `360x640` e `1280x720`.
