@@ -31,7 +31,11 @@ namespace IronTournament.Core.Tests
 
         public static CombatantConfiguration Enemy(CombatantId id, int health, int attack, int defense)
         {
-            return Combatant(id, CombatantSide.Enemy, new CombatantStats(health, attack, defense), AbilityId.BasicAttack);
+            return Combatant(
+                id,
+                CombatantSide.Enemy,
+                new CombatantStats(health, attack, defense),
+                new[] { AbilityId.BasicAttack });
         }
 
         public static Battle StartBattle(
