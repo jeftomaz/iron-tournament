@@ -84,6 +84,11 @@ namespace IronTournament.Core
 
         private bool IsAvailable(AbilityId ability)
         {
+            if (!State.Hero.HasAbility(ability))
+            {
+                return false;
+            }
+
             switch (ability)
             {
                 case AbilityId.BasicAttack:

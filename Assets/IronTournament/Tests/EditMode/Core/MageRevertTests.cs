@@ -83,6 +83,25 @@ namespace IronTournament.Core.Tests
         }
 
         [Test]
+        public void ReversionsTheHeroDoesNotHaveAreRejected()
+        {
+            var hero = TestContent.Hero(
+                CombatantId.Mage,
+                new CombatantStats(110, 30, 5),
+                AbilityId.BasicAttack,
+                AbilityId.RevertTurn);
+            var opponent = TestContent.Enemy(CombatantId.Goblin, 200, 15, 3);
+            var battle = TestContent.StartBattle(hero, opponent, new ScriptedRandomSource());
+            battle.Submit(AbilityId.BasicAttack);
+
+            Assert.That(battle.AvailableActions, Is.EqualTo(new[] { AbilityId.BasicAttack, AbilityId.RevertTurn }));
+            Assert.That(battle.Submit(AbilityId.RevertBattle).Rejection, Is.EqualTo(ActionRejection.UnavailableAction));
+            Assert.That(battle.State.RevertCharges, Is.EqualTo(BattleState.RevertChargesPerEncounter));
+            Assert.That(battle.State.Opponent.CurrentHealth, Is.EqualTo(170));
+            Assert.That(battle.State.Round, Is.EqualTo(2));
+        }
+
+        [Test]
         public void ReversionDoesNotRewindTheRandomSequence()
         {
             var random = new ScriptedRandomSource(50, 50, 15, 9, 50, 15);
