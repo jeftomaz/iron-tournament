@@ -9,6 +9,16 @@ namespace IronTournament.Core.Tests
             return Hero(CombatantId.Warrior, new CombatantStats(120, 30, 23), AbilityId.BasicAttack, AbilityId.Guard);
         }
 
+        public static CombatantConfiguration Mage()
+        {
+            return Hero(
+                CombatantId.Mage,
+                new CombatantStats(110, 30, 5),
+                AbilityId.BasicAttack,
+                AbilityId.RevertTurn,
+                AbilityId.RevertBattle);
+        }
+
         public static CombatantConfiguration Goblin()
         {
             return Enemy(CombatantId.Goblin, 45, 15, 3);
