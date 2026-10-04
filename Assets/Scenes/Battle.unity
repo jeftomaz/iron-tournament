@@ -178,6 +178,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 359894ed329ab9845a770cc76f865b2e, type: 3}
   m_Name:
   m_EditorClassIdentifier: IronTournament.Presentation::IronTournament.Presentation.BattleView
+  encounters:
+  - definition: {fileID: 11400000, guid: 28232861edc63264498b08c49345f2bb, type: 2}
+    introduction: {fileID: 3373983171478037719, guid: 251435a68642e474ab790b7da30d8861, type: 3}
+    combat: {fileID: -1505471383403432660, guid: ff9644591f7e34814b73fecbac2d4311, type: 3}
+    background: {fileID: 21300000, guid: 7789f0f8e7fa1c942a45e090d81bbf16, type: 3}
+    caption: ENCONTRO 01 / FLORESTA SOMBRIA
+  - definition: {fileID: 11400000, guid: d383b3511eba2e54dad8388618ace77d, type: 2}
+    introduction: {fileID: 3373983171478037719, guid: cc63d9831826b438ea4fb0a3d8357007, type: 3}
+    combat: {fileID: -1505471383403432660, guid: dfe61948768534555a5284b291f0a3b2, type: 3}
+    background: {fileID: 21300000, guid: c51fd995e378a56468c91bd20dc19f16, type: 3}
+    caption: "ENCONTRO 02 / CEMIT\xC9RIO ESQUECIDO"
+  selectedOpponent: 3
+  opponentName: {fileID: 579583715}
   composition: {fileID: 46471659}
   title: {fileID: 1930769792}
   encounter: {fileID: 922421907}
@@ -1508,7 +1521,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ENCONTRO 01  /  FLORESTA SOMBRIA
+  m_Text: ENCONTRO 01 / FLORESTA SOMBRIA
 --- !u!222 &922421908
 CanvasRenderer:
   m_ObjectHideFlags: 0

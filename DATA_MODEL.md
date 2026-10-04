@@ -16,7 +16,7 @@ Definições são `ScriptableObject` em `Content`; o núcleo recebe valores de r
 
 O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration`, `ItemConfiguration`, `EncounterConfiguration` e `CampaignConfiguration` imutáveis no `Core`. `Content` referencia `Core`; o sentido inverso é proibido.
 
-## Assets da vertical Guerreiro/Goblin
+## Assets dos encontros
 
 Local: `Assets/IronTournament/Content/`. Valores conferidos com a referência Java e os testes aprovados do núcleo; Guerreiro já inclui equipamento inicial, sem reaplicar bônus no bootstrap.
 
@@ -24,8 +24,10 @@ Local: `Assets/IronTournament/Content/`. Valores conferidos com a referência Ja
 |---|---:|---:|---:|---|
 | `Warrior.asset` | 120 | 30 | 23 | `BasicAttack.asset`, `Guard.asset` |
 | `Goblin.asset` | 45 | 15 | 3 | `BasicAttack.asset` |
+| `Skeleton.asset` | 62 | 20 | 5 | `BasicAttack.asset` |
 
 - `GoblinEncounter.asset` referencia Goblin e declara variação de ±15%; o bootstrap deve sortear os atributos efetivos na criação do encontro.
+- `SkeletonEncounter.asset` referencia Esqueleto com a mesma variação; segundo encontro da sequência, com pool de drops vazio nesta preparação.
 - Ambas as ações consomem turno; Atacar mira o oponente e Defender mira o próprio combatente.
 - Pool de drops vazio nesta vertical; campanha e saque permanecem nas fases posteriores.
 

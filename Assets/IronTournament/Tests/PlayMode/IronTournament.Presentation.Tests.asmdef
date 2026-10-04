@@ -1,7 +1,7 @@
 {
   "name": "IronTournament.Presentation.Tests",
   "rootNamespace": "IronTournament.Presentation.Tests",
-  "references": ["IronTournament.Presentation", "IronTournament.Core", "UnityEngine.UI"],
+  "references": ["IronTournament.Presentation", "IronTournament.Core", "IronTournament.Content", "UnityEngine.UI"],
   "autoReferenced": false,
   "optionalUnityReferences": ["TestAssemblies"]
 }

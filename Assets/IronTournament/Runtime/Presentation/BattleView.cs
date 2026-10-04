@@ -1,5 +1,6 @@
 using System;
 using IronTournament.Core;
+using IronTournament.Content;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,19 @@ namespace IronTournament.Presentation
     [DisallowMultipleComponent]
     public sealed class BattleView : MonoBehaviour
     {
+        [Serializable]
+        private sealed class EncounterVisual
+        {
+            public EncounterDefinition definition;
+            public Sprite introduction;
+            public Sprite combat;
+            public Sprite background;
+            public string caption;
+        }
+
+        [SerializeField] private EncounterVisual[] encounters;
+        [SerializeField] private CombatantId selectedOpponent = CombatantId.Goblin;
+        [SerializeField] private Text opponentName;
         [SerializeField] private RectTransform composition;
         [SerializeField] private Text title;
         [SerializeField] private Text encounter;
@@ -34,6 +48,38 @@ namespace IronTournament.Presentation
         public bool HasOutcome => outcome == BattlePhase.Victory || outcome == BattlePhase.Defeat;
         public bool IsCombatStarted => combatPresentationStarted;
         public event Action CombatStarted;
+
+        public EncounterDefinition SelectedEncounter { get; private set; }
+
+        public void SelectEncounter(CombatantId id)
+        {
+            if (combatPresentationStarted) throw new InvalidOperationException("An encounter cannot change during combat.");
+            EncounterVisual visual = null;
+            if (encounters != null)
+                foreach (var candidate in encounters)
+                    if (candidate?.definition?.Opponent != null && candidate.definition.Opponent.Id == id)
+                    {
+                        visual = candidate;
+                        break;
+                    }
+            if (visual == null) throw new ArgumentOutOfRangeException(nameof(id));
+            if (!ContentValidator.Validate(visual.definition).IsValid || visual.introduction == null ||
+                visual.combat == null || visual.background == null || string.IsNullOrWhiteSpace(visual.caption) ||
+                visual.caption.Length > 80)
+                throw new ArgumentException("A valid encounter and complete visual references are required.", nameof(id));
+            foreach (char character in visual.caption)
+                if (char.IsControl(character)) throw new ArgumentException("Invalid encounter caption.", nameof(id));
+            selectedOpponent = id;
+            SelectedEncounter = visual.definition;
+            opponent.sprite = visual.introduction;
+            combatOpponentSprite = visual.combat;
+            background.sprite = visual.background;
+            opponentName.supportRichText = encounter.supportRichText = false;
+            opponentName.text = visual.definition.Opponent.DisplayName;
+            encounter.text = visual.caption;
+            previousViewport = new Vector2(-1, -1);
+            LateUpdate();
+        }
 
         internal void ShowOutcome(BattlePhase result)
         {
@@ -89,6 +135,8 @@ namespace IronTournament.Presentation
 
         private void OnEnable()
         {
+            if (encounters != null && encounters.Length > 0 && !combatPresentationStarted)
+                SelectEncounter(selectedOpponent);
             previousViewport = new Vector2(-1, -1);
             if (Application.isPlaying && startButton != null)
                 startButton.onClick.AddListener(StartCombatPresentation);
@@ -116,7 +164,12 @@ namespace IronTournament.Presentation
             CombatStarted?.Invoke();
         }
 
-        private void OnValidate() => previousViewport = new Vector2(-1, -1);
+        private void OnValidate()
+        {
+            previousViewport = new Vector2(-1, -1);
+            if (!Application.isPlaying && encounters != null && encounters.Length > 0)
+                SelectEncounter(selectedOpponent);
+        }
 
         private void LateUpdate()
         {

@@ -48,6 +48,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Dependências seguem `Content -> Core` e `Presentation -> Content/Core`; referências circulares não são aceitas.
 - A fronteira pública é `ação -> Core -> estado/eventos`: adaptadores convertem conteúdo na inicialização e a interface apenas apresenta a resposta.
 - O bootstrap fornece a batalha via `IBattle` ao apresentador da cena; `Presentation` não instancia o núcleo com atributos ou fonte aleatória próprios. Detalhes da ligação em `UI_CONTRACTS.md`.
+- A cena concentra as variantes visuais dos encontros; definições e regras permanecem em `Content/Core`.
 - Estado restaurável e fonte aleatória são isolados para que a reversão não retroceda a sequência aleatória.
 - Decisões que mudem assemblies, contratos públicos ou esse fluxo exigem PR isolado antes das implementações dependentes.
 

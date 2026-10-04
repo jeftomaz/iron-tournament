@@ -1,5 +1,11 @@
 # Progresso
 
+## 2026-10-04 — Apresentação Guerreiro x Esqueleto
+
+- Criada `feature/warrior-vs-skeleton` a partir da entrega Goblin `92d81e0`, incorporando a `main` aprovada `4e2b9d3`; revisados os commits de Mago/reversão e a campanha remota ainda não integrada. Esqueleto preparado como variante da cena existente, conforme `DATA_MODEL.md` e `UI_CONTRACTS.md`.
+- Validação local: EditMode 34/34 e PlayMode 21/21; seleção inválida, incompatibilidade com `IBattle`, ataque com núcleo real e perspectiva do Esqueleto. Introdução/combate conferidos em `360x640` e `1280x720`, capturas em `Logs/Skeleton-*.png` (não versionadas).
+- Pendentes bootstrap de Jeferson, variação dos atributos e transição automática da campanha; a cena mantém Goblin como padrão. Revisão/commit/PR desta etapa pendentes; build WebGL desta variante ainda não executado.
+
 ## 2026-10-04 — Assets do duelo e build WebGL
 
 - Criados os cinco assets da vertical com os tipos existentes, conforme `DATA_MODEL.md`; a cena `Battle` é a entrada habilitada no build. Conferidos os valores com o Java e os testes aprovados de João Lucas; sem novos commits na `main` durante esta etapa.
