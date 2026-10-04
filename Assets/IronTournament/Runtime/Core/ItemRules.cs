@@ -23,6 +23,11 @@ namespace IronTournament.Core
             }
         }
 
+        public static bool IsUseful(ItemConfiguration item, CombatantState hero)
+        {
+            return item.Id != ItemId.FlameCloak || !hero.HasFlameCloak;
+        }
+
         public static void Apply(ItemConfiguration item, CombatantState hero)
         {
             for (var index = 0; index < item.Modifiers.Count; index++)

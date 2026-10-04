@@ -126,7 +126,7 @@ namespace IronTournament.Core
             var eligible = new List<ItemConfiguration>();
             for (var index = 0; index < pool.Count; index++)
             {
-                if (ItemRules.IsAvailableTo(pool[index].Id, Hero.Id))
+                if (ItemRules.IsAvailableTo(pool[index].Id, Hero.Id) && ItemRules.IsUseful(pool[index], Hero))
                 {
                     eligible.Add(pool[index]);
                 }
