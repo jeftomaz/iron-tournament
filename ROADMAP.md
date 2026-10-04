@@ -21,7 +21,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 ## Fase 2 — Mago e reversão
 
 - `done` `JL` Implementar ataque que ignora defesa, carga compartilhada por encontro, snapshots completos de turno/batalha e continuidade da aleatoriedade; testar ataque A, resposta B, reversão para antes de A e nova escolha do Mago.
-- `done` `JL` Cobrir por testes a restauração de HP, atributos, efeitos, consumíveis, fase, flags e histórico, além da proibição após morte.
+- `doing` `JL` Cobrir por testes a restauração de HP, atributos, efeitos, consumíveis, fase, flags e histórico, além da proibição após morte.
 - `todo` `JP` Apresentar as duas reversões, cancelar eventos visuais desfeitos, redesenhar o estado restaurado e devolver o controle sem reproduzir a resposta inimiga.
 - `todo` `JT` Integrar os checkpoints à `Presentation` e revisar isolamento entre estado restaurável e fonte aleatória.
 
