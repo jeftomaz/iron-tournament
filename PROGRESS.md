@@ -2,6 +2,8 @@
 
 ## 2026-10-04
 
+- Adicionada a regressão (`RegressionTests`): 40 sementes por classe na campanha canônica e por personagem no modo inimigo, verificando término, HP dentro da faixa, último evento coerente com o fim do encontro, guarda zerada fora da rodada e determinismo por semente. Nenhum ajuste de balanceamento foi aprovado; os valores canônicos seguem inalterados.
+- Endurecidos contra estouro de `int` o crítico, o golpe do guardião, a DEF com guarda e o teto da variação de dano, para atributos extremos vindos de conteúdo ou save adulterado.
 - Implementados progresso e modo inimigo: `CampaignRun.FinalSnapshot` guarda os atributos finais com melhorias; `ProgressData` registra uma classe por vez e libera o modo inimigo com as duas. `CampaignRun.StartEnemyMode` usa o inimigo escolhido como herói (com `Fury`), sorteia um oponente por tier (Goblin/Esqueleto, Cavaleiro/Lobisomem, Vampiro/Necromante) sem repetir o escolhido, oferece 3 itens base antes do chefe e termina contra o herói de uma classe concluída, sem variação nem fúria.
 - Fúria do herói no modo inimigo: com HP ≤ 30%, `Fury` vira a única ação, gasta o turno e reduz o oponente a 30% do HP máximo, uma vez por encontro; Vampiro e Necromante atacam ignorando a DEF.
 - Implementados drops e itens: após cada vitória que não é a última, o `CampaignRun` oferece até 2 itens distintos por sorteio ponderado sem reposição, filtrados pela classe; `ChooseDrop` aceita só itens da oferta, aplica modificadores permanentes ou o efeito do item e inicia o próximo encontro. Itens e recursos entram no snapshot da reversão.

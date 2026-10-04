@@ -42,5 +42,5 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 ## Fase 5 — Fechamento
 
 - `todo` `JP` Completar arte, animações, áudio e testes PlayMode; anexar evidência visual mobile/desktop aos PRs.
-- `todo` `JL` Executar testes de regressão e ajustar balanceamento apenas por valores canônicos aprovados.
+- `done` `JL` Executar testes de regressão e ajustar balanceamento apenas por valores canônicos aprovados.
 - `todo` `JT` Publicar e validar o build Web nos navegadores-alvo, revisar segurança, desempenho, CI e integração final.
