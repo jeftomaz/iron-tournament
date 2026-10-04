@@ -8,24 +8,21 @@ namespace IronTournament.Core.Tests
         [Test]
         public void CompletedCampaignRecordsTheFinalSnapshotWithUpgrades()
         {
-            var campaign = TestContent.CampaignWithDrops(
-                new[] { TestContent.Item(ItemId.AttackGem, 3, new ItemModifier(ItemModifierKind.Attack, 10)) },
-                TestContent.Enemy(CombatantId.Goblin, 1, 15, 3),
-                TestContent.Enemy(CombatantId.Skeleton, 1, 20, 0));
-            var run = new CampaignRun(TestContent.Mage(), campaign, new ScriptedRandomSource(0, 0, 0, 0, 0, 0, 0));
-            run.CurrentBattle.Submit(AbilityId.BasicAttack);
-            run.ConcludeEncounter();
-            run.ChooseDrop(ItemId.AttackGem);
-
-            Assert.That(run.FinalSnapshot, Is.Null);
-
-            run.CurrentBattle.Submit(AbilityId.BasicAttack);
-            run.ConcludeEncounter();
+            var run = CompleteWithAttackUpgrade(10);
 
             Assert.That(run.Phase, Is.EqualTo(CampaignPhase.Completed));
             Assert.That(run.FinalSnapshot.HeroClass, Is.EqualTo(CombatantId.Mage));
             Assert.That(run.FinalSnapshot.DisplayName, Is.EqualTo("Mage"));
             Assert.That(run.FinalSnapshot.Stats, Is.EqualTo(new CombatantStats(110, 40, 5)));
+        }
+
+        [Test]
+        public void FinalSnapshotKeepsStatsWithinTheSaveLimit()
+        {
+            var run = CompleteWithAttackUpgrade(20000);
+
+            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(20030));
+            Assert.That(run.FinalSnapshot.Stats.Attack, Is.EqualTo(HeroSnapshot.MaximumStatValue));
         }
 
         [Test]
@@ -101,6 +98,23 @@ namespace IronTournament.Core.Tests
             var campaign = TestContent.Campaign(TestContent.Enemy(CombatantId.Skeleton, 62, 20, 5));
 
             Assert.Throws<ArgumentException>(() => new CampaignRun(goblin, campaign, new ScriptedRandomSource(0, 0, 0)));
+        }
+
+        private static CampaignRun CompleteWithAttackUpgrade(int amount)
+        {
+            var campaign = TestContent.CampaignWithDrops(
+                new[] { TestContent.Item(ItemId.AttackGem, 3, new ItemModifier(ItemModifierKind.Attack, amount)) },
+                TestContent.Enemy(CombatantId.Goblin, 1, 15, 3),
+                TestContent.Enemy(CombatantId.Skeleton, 1, 20, 0));
+            var run = new CampaignRun(TestContent.Mage(), campaign, new ScriptedRandomSource(0, 0, 0, 0, 0, 0, 0));
+            run.CurrentBattle.Submit(AbilityId.BasicAttack);
+            run.ConcludeEncounter();
+            run.ChooseDrop(ItemId.AttackGem);
+            Assert.That(run.FinalSnapshot, Is.Null);
+
+            run.CurrentBattle.Submit(AbilityId.BasicAttack);
+            run.ConcludeEncounter();
+            return run;
         }
 
         private static CampaignRun CompletedRun(CombatantConfiguration hero, params int[] heroRolls)
