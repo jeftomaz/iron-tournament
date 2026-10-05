@@ -44,7 +44,7 @@ O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration
 
 No protótipo todos os encontros usam o mesmo pool; cada `EncounterDefinition` deve repetir o pool completo, e o `Core` filtra os exclusivos pela classe.
 
-### Assets da vertical Guerreiro/Goblin
+### Assets dos encontros Guerreiro/Goblin e Esqueleto
 
 Local: `Assets/IronTournament/Content/`. Esses assets servem ao encontro isolado da cena `Battle`; a composição canônica da campanha continua sendo responsabilidade do bootstrap.
 
@@ -52,8 +52,10 @@ Local: `Assets/IronTournament/Content/`. Esses assets servem ao encontro isolado
 |---|---:|---:|---:|---|
 | `Warrior.asset` | 120 | 30 | 23 | `BasicAttack.asset`, `Guard.asset` |
 | `Goblin.asset` | 45 | 15 | 3 | `BasicAttack.asset` |
+| `Skeleton.asset` | 62 | 20 | 5 | `BasicAttack.asset` |
 
 - `GoblinEncounter.asset` referencia Goblin e declara variação de ±15%; o bootstrap deve sortear os atributos efetivos na criação do encontro.
+- `SkeletonEncounter.asset` referencia Esqueleto com a mesma variação; segundo encontro da sequência, com pool de drops vazio nesta preparação.
 - Ambas as ações consomem turno; Atacar mira o oponente e Defender mira o próprio combatente.
 - O pool de drops está vazio neste encontro isolado; campanha e saque usam as configurações canônicas próprias.
 

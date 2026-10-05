@@ -21,6 +21,9 @@ namespace IronTournament.Presentation
             if (battle != null) throw new InvalidOperationException("The presenter is already bound to a battle.");
             if (encounter.State == null || encounter.State.IsOver)
                 throw new ArgumentException("An active battle is required.", nameof(encounter));
+            if (view.SelectedEncounter != null &&
+                encounter.State.Opponent.Id != view.SelectedEncounter.Opponent.Id)
+                throw new ArgumentException("The battle opponent must match the selected encounter.", nameof(encounter));
             battle = encounter;
             if (isActiveAndEnabled && view.IsCombatStarted) RenderState();
         }
