@@ -12,38 +12,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      unity: ${{ steps.scope.outputs.unity }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-      - id: scope
-        shell: bash
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || git diff --name-only HEAD^1 HEAD^2 | grep -Eq '^(\.github/workflows/unity\.yml|Assets/|Packages/|ProjectSettings/)'; then
-            echo "unity=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "unity=false" >> "$GITHUB_OUTPUT"
-          fi
-
   test:
-    needs: changes
-    if: (github.event_name == 'workflow_dispatch' || needs.changes.outputs.unity == 'true') && (github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository)
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
         with:
           path: Library
-          key: Library-EditMode-${{ runner.os }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-Tests-${{ runner.os }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
-            Library-EditMode-${{ runner.os }}-
+            Library-Tests-${{ runner.os }}-
       - uses: game-ci/unity-test-runner@v4
-        id: tests
+        id: editmode
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -51,16 +33,27 @@ jobs:
         with:
           testMode: EditMode
           githubToken: ''
+      - uses: game-ci/unity-test-runner@v4
+        id: playmode
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          testMode: PlayMode
+          githubToken: ''
       - if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: editmode-results
-          path: ${{ steps.tests.outputs.artifactsPath }}
+          name: test-results
+          path: |
+            ${{ steps.editmode.outputs.artifactsPath }}
+            ${{ steps.playmode.outputs.artifactsPath }}
           retention-days: 7
 
   build:
-    needs: [changes, test]
-    if: (github.event_name == 'workflow_dispatch' || needs.changes.outputs.unity == 'true') && (github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository)
+    needs: test
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
