@@ -204,6 +204,11 @@ MonoBehaviour:
     combat: {fileID: -1505471383403432660, guid: 65a2fdc3d1eb3804aaf536b0c6abf7bf, type: 3}
     background: {fileID: 21300000, guid: 52c49889f76a8594985b712848b9392d, type: 3}
     caption: ENCONTRO 6 / CRIPTA DO NECROMANTE
+  - definition: {fileID: 11400000, guid: 2eddf0f8042097545824a4db98ef8603, type: 2}
+    introduction: {fileID: 3373983171478037719, guid: c682d59250101e94c8bb004224326eb9, type: 3}
+    combat: {fileID: -1505471383403432660, guid: eb4da79ec832cfc4ca19dca001273fc0, type: 3}
+    background: {fileID: 21300000, guid: 526edec5c3f91c441ad9771ef186c552, type: 3}
+    caption: "ENCONTRO 07 / CIDADELA DO REI DEM\xD4NIO"
   selectedOpponent: 3
   opponentName: {fileID: 579583715}
   composition: {fileID: 46471659}
