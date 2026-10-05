@@ -7,7 +7,10 @@ namespace IronTournament.Core
         None,
         Attack,
         Reflection,
-        Fury
+        Fury,
+        Burn,
+        GuardianStrike,
+        GuardianRecoil
     }
 
     public abstract class BattleEvent
@@ -73,6 +76,50 @@ namespace IronTournament.Core
         public bool IsCritical { get; }
 
         public bool IsPiercing { get; }
+    }
+
+    public sealed class HealthRestoredEvent : BattleEvent
+    {
+        public HealthRestoredEvent(CombatantId target, int amount, int currentHealth)
+        {
+            if (amount < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(amount));
+            }
+
+            if (currentHealth < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(currentHealth));
+            }
+
+            Target = ConfigurationGuard.Defined(target, nameof(target));
+            Amount = amount;
+            CurrentHealth = currentHealth;
+        }
+
+        public CombatantId Target { get; }
+
+        public int Amount { get; }
+
+        public int CurrentHealth { get; }
+    }
+
+    public sealed class GuardianInterceptedEvent : BattleEvent
+    {
+        public GuardianInterceptedEvent(CombatantId protectedCombatant, int preventedDamage)
+        {
+            if (preventedDamage < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(preventedDamage));
+            }
+
+            ProtectedCombatant = ConfigurationGuard.Defined(protectedCombatant, nameof(protectedCombatant));
+            PreventedDamage = preventedDamage;
+        }
+
+        public CombatantId ProtectedCombatant { get; }
+
+        public int PreventedDamage { get; }
     }
 
     public sealed class BattleEndedEvent : BattleEvent
