@@ -39,7 +39,7 @@ namespace IronTournament.Core
 
         public int GuardBonus { get; private set; }
 
-        public int Defense => Stats.Defense + GuardBonus;
+        public int Defense => (int)Math.Min(int.MaxValue, (long)Stats.Defense + GuardBonus);
 
         public bool CanRage { get; private set; }
 

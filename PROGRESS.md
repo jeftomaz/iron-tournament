@@ -6,6 +6,8 @@
 - Separada a validação por etapa: testes afetados durante o desenvolvimento, `git diff --cached --check` em todo commit, suíte Unity completa em mudanças não documentais e novamente na CI interna.
 - Adicionado o check `policy` para bloquear PR com destino incorreto, branch desatualizada ou empilhada e sem declaração de tarefa única; o template padroniza escopo e validação.
 - Implementados progresso e modo inimigo: `CampaignRun.FinalSnapshot` guarda atributos finais com melhorias, limitado a 9999; `ProgressData` libera o modo com as duas classes concluídas; o modo usa o inimigo escolhido com `Fury`, oferece três itens antes do chefe e termina contra uma classe concluída.
+- Adicionada a regressão (`RegressionTests`): 40 sementes por classe na campanha canônica e por personagem no modo inimigo, verificando término, HP dentro da faixa, evento final coerente, guarda zerada e determinismo por semente.
+- Endurecidos contra overflow de `int` o crítico, o golpe do guardião, a DEF com guarda e o teto da variação de dano para atributos extremos de conteúdo ou save adulterado.
 
 ## 2026-10-04
 
