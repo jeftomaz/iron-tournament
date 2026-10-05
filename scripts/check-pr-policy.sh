@@ -34,7 +34,8 @@ while IFS= read -r ref; do
   fi
 done < <(git for-each-ref --format='%(refname)' refs/remotes/origin)
 
-if ! grep -Eiq '^- \[[xX]\] O PR contém uma única tarefa coesa\.$' <<< "$pr_body"; then
+if [[ "$pr_body" != *"- [x] O PR contém uma única tarefa coesa."* &&
+      "$pr_body" != *"- [X] O PR contém uma única tarefa coesa."* ]]; then
   echo "Confirme no template: O PR contém uma única tarefa coesa." >&2
   exit 1
 fi
