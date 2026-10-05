@@ -55,11 +55,13 @@ Local: `Assets/IronTournament/Content/`. Esses assets servem ao encontro isolado
 | `Skeleton.asset` | 62 | 20 | 5 | `BasicAttack.asset` |
 | `Werewolf.asset` | 95 | 30 | 10 | `BasicAttack.asset` |
 | `Vampire.asset` | 110 | 34 | 12 | `BasicAttack.asset` |
+| `Necromancer.asset` | 125 | 38 | 14 | `BasicAttack.asset` |
 
 - `GoblinEncounter.asset` referencia Goblin e declara variação de ±15%; o bootstrap deve sortear os atributos efetivos na criação do encontro.
 - `SkeletonEncounter.asset` referencia Esqueleto com a mesma variação; segundo encontro da sequência, com pool de drops vazio nesta preparação.
 - `WerewolfEncounter.asset` referencia Lobisomem com a mesma variação; quarto encontro da sequência, com pool de drops vazio nesta preparação.
 - `VampireEncounter.asset` referencia Vampiro com a mesma variação; quinto encontro da sequência, com pool de drops vazio. Fúria é regra do núcleo, não uma habilidade criada neste asset.
+- `NecromancerEncounter.asset` referencia Necromante com a mesma variação; sexto encontro da sequência, com pool de drops vazio. Fúria depende da integração do núcleo.
 - Ambas as ações consomem turno; Atacar mira o oponente e Defender mira o próprio combatente.
 - O pool de drops está vazio neste encontro isolado; campanha e saque usam as configurações canônicas próprias.
 
