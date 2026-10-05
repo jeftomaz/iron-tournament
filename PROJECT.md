@@ -92,8 +92,8 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Jeferson define e revisa as fronteiras públicas entre `Core`, `Content` e `Presentation`; mudanças nessas fronteiras exigem PR isolado antes das implementações dependentes.
 - João Pedro instancia os `ScriptableObject`; Jeferson mantém seus tipos e validação; João Lucas define quais valores o núcleo requer.
 - Testes EditMode das regras pertencem a João Lucas; testes PlayMode e evidência visual pertencem a João Pedro; Jeferson mantém a execução de ambos na CI.
-- Cada mudança usa branch própria e Pull Request; ninguém envia diretamente para a `main`.
-- A suíte completa roda localmente antes de cada commit; todo PR interno roda CI com testes essenciais, validações e build.
+- Cada branch nasce da `main` atualizada e cada PR aponta para `main`; branches e PRs empilhadas sobre outra feature são proibidas. Trabalho dependente espera o merge e então faz rebase na `main`.
+- Antes de subir commit que altere código, assets, `Packages/`, `ProjectSettings/` ou CI, executar EditMode, PlayMode e build WebGL; mudanças exclusivamente documentais exigem `git diff --check`. Todo PR interno roda CI com validações e build.
 - O estado visual é acompanhado localmente pelo Unity Editor, em Play Mode, nas janelas Game, Scene e Inspector.
 
 ## CI

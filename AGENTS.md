@@ -45,6 +45,12 @@ Regras para esses arquivos:
 - Mesmos princípios do código: mínimos, sem prosa decorativa, sem histórico morto (entradas de `PROGRESS.md` obsoletas podem ser removidas se não explicam decisões vigentes).
 - Um agente novo deve entender estado e contexto do projeto lendo apenas esses arquivos, sem ler o histórico da conversa.
 
+## Git e validação
+
+- Toda branch nasce da `main` atualizada e toda PR aponta para `main`. Branches e PRs empilhadas sobre outra feature são proibidas; trabalho dependente espera o merge e então faz rebase na `main`.
+- Antes de subir commit que altere código, assets, `Packages/`, `ProjectSettings/` ou CI, executar a suíte completa: EditMode, PlayMode e build WebGL. Não subir mudança com falha conhecida; se o ambiente impedir a execução, registrar o bloqueio e pedir orientação.
+- Em mudança exclusivamente documental, validar `git diff --check`; a CI de escopo confirma que não há alteração Unity.
+
 ## Fluxo de trabalho por tarefa
 
 1. Ler `PROJECT.md` + `ROADMAP.md` + `PROGRESS.md`. Só leia `DATA_MODEL.md` se a tarefa toca dados e `UI_CONTRACTS.md` se toca interface — carregar os dois em toda tarefa custa contexto sem dar nada em troca.
