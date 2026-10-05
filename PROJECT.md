@@ -34,6 +34,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - `Presentation`: cenas, UI e adaptação dos dados de conteúdo ao núcleo.
 - `Tests/EditMode`: testes do núcleo sem carregar cenas.
 - `Tests/PlayMode`: testes da apresentação carregando a cena de batalha.
+- `Tests/PlayMode/Editor`: prévia manual de duelos pelo menu `Iron Tournament`, exclusiva do Editor; reaproveita as assemblies e o contrato de inicialização existentes.
 
 ## Mapa técnico
 
@@ -96,10 +97,10 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Jeferson define e revisa as fronteiras públicas entre `Core`, `Content` e `Presentation`; mudanças nessas fronteiras exigem PR isolado antes das implementações dependentes.
 - João Pedro instancia os `ScriptableObject`; Jeferson mantém seus tipos e validação; João Lucas define quais valores o núcleo requer.
 - Testes EditMode das regras pertencem a João Lucas; testes PlayMode e evidência visual pertencem a João Pedro; Jeferson mantém a execução de ambos na CI.
-- Cada mudança usa branch própria e Pull Request; ninguém envia diretamente para a `main`.
+- Cada branch nasce da `main` atualizada e cada PR aponta para `main`; branches e PRs empilhadas sobre outra feature são proibidas. Trabalho dependente espera o merge e então faz rebase na `main`.
 - Branches de trabalho seguem `feature/<descricao-em-ingles>`.
 - Antes de cada etapa, buscar e revisar os commits novos de Jeferson e João Lucas, incluindo branches remotas; dependências seguem o fluxo de aprovação e integração na `main`.
-- A suíte completa roda localmente antes de cada commit; todo PR interno roda CI com testes essenciais, validações e build.
+- Antes de subir commit que altere código, assets, `Packages/`, `ProjectSettings/` ou CI, executar EditMode, PlayMode e build WebGL; mudanças exclusivamente documentais exigem `git diff --check`. Todo PR interno roda CI com validações e build.
 - O estado visual é acompanhado localmente pelo Unity Editor, em Play Mode, nas janelas Game, Scene e Inspector.
 
 ## CI

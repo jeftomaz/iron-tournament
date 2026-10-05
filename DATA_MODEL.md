@@ -18,12 +18,12 @@ O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration
 
 ## Assets dos encontros
 
-Local: `Assets/IronTournament/Content/`. Valores conferidos com a referência Java e os testes aprovados do núcleo; Guerreiro já inclui equipamento inicial, sem reaplicar bônus no bootstrap.
+Local: `Assets/IronTournament/Content/`. Valores conferidos com a referência Java e os testes aprovados do núcleo; Guerreiro e Mago já incluem equipamento inicial, sem reaplicar bônus no bootstrap.
 
 | Asset | HP | ATK | DEF | Habilidades |
 |---|---:|---:|---:|---|
 | `Warrior.asset` | 120 | 30 | 23 | `BasicAttack.asset`, `Guard.asset` |
-| Mago (referência; asset pendente) | 110 | 30 | 5 | `BasicAttack`, `RevertTurn`, `RevertBattle` |
+| `Mage.asset` | 110 | 30 | 5 | `BasicAttack.asset`, `RevertTurn.asset`, `RevertBattle.asset` |
 | `Goblin.asset` | 45 | 15 | 3 | `BasicAttack.asset` |
 | `Skeleton.asset` | 62 | 20 | 5 | `BasicAttack.asset` |
 | Cavaleiro (referência; asset pendente) | 80 | 26 | 8 | `BasicAttack` |
@@ -36,9 +36,10 @@ Local: `Assets/IronTournament/Content/`. Valores conferidos com a referência Ja
 - `SkeletonEncounter.asset` referencia Esqueleto com a mesma variação; segundo encontro da sequência, com pool de drops vazio nesta preparação.
 - `WerewolfEncounter.asset` referencia Lobisomem com a mesma variação; quarto encontro da sequência, com pool de drops vazio nesta preparação.
 - `VampireEncounter.asset` referencia Vampiro com a mesma variação; quinto encontro da sequência, com pool de drops vazio. Fúria é regra do núcleo, não uma habilidade criada neste asset.
-- `NecromancerEncounter.asset` referencia Necromante com a mesma variação; sexto encontro da sequência, com pool de drops vazio. Fúria depende da integração do núcleo.
-- `DemonKingEncounter.asset` referencia Rei Demônio com a mesma variação; sétimo encontro da sequência, com pool de drops vazio. Fúria depende da integração do núcleo.
-- Ambas as ações consomem turno; Atacar mira o oponente e Defender mira o próprio combatente.
+- `NecromancerEncounter.asset` referencia Necromante com a mesma variação; sexto encontro da sequência, com pool de drops vazio.
+- `DemonKingEncounter.asset` referencia Rei Demônio com a mesma variação; sétimo encontro da sequência, com pool de drops vazio.
+- `BasicAttack.asset` mira o oponente e `Guard.asset` mira o próprio combatente; ambas consomem turno. As reversões do Mago miram o próprio combatente e não consomem turno.
+- `CampaignRun` configura variação e elegibilidade de fúria na criação do encontro; inicializar `BattleState` diretamente não ativa esses recursos de campanha.
 - Pool de drops vazio nesta vertical; campanha e saque permanecem nas fases posteriores.
 
 ## Estado de runtime

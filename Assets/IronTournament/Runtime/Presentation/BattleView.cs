@@ -20,6 +20,17 @@ namespace IronTournament.Presentation
             public string caption;
         }
 
+        [Serializable]
+        private sealed class HeroVisual
+        {
+            public CombatantDefinition definition;
+            public Sprite introduction;
+            public Sprite combat;
+        }
+
+        [SerializeField] private HeroVisual[] heroes;
+        [SerializeField] private CombatantId selectedHero = CombatantId.Warrior;
+        [SerializeField] private Text heroName;
         [SerializeField] private EncounterVisual[] encounters;
         [SerializeField] private CombatantId selectedOpponent = CombatantId.Goblin;
         [SerializeField] private Text opponentName;
@@ -41,6 +52,7 @@ namespace IronTournament.Presentation
 
         private Vector2 previousViewport = new Vector2(-1, -1);
         private bool combatPresentationStarted;
+        private bool refreshSelection;
         private Vector2 playerFeedbackOffset;
         private Vector2 opponentFeedbackOffset;
         private BattlePhase outcome;
@@ -50,6 +62,29 @@ namespace IronTournament.Presentation
         public event Action CombatStarted;
 
         public EncounterDefinition SelectedEncounter { get; private set; }
+        public CombatantDefinition SelectedHero { get; private set; }
+
+        public void SelectHero(CombatantId id)
+        {
+            if (combatPresentationStarted) throw new InvalidOperationException("The hero cannot change during combat.");
+            HeroVisual visual = null;
+            if (heroes != null)
+                foreach (var candidate in heroes)
+                    if (candidate?.definition != null && candidate.definition.Id == id) { visual = candidate; break; }
+            if (visual == null) throw new ArgumentOutOfRangeException(nameof(id));
+            if (!ContentValidator.Validate(visual.definition).IsValid || visual.definition.Side != CombatantSide.Player ||
+                visual.introduction == null || visual.combat == null)
+                throw new ArgumentException("A valid hero and complete visual references are required.", nameof(id));
+            actionMenu.ConfigureHero(id);
+            selectedHero = id;
+            SelectedHero = visual.definition;
+            player.sprite = visual.introduction;
+            combatPlayerSprite = visual.combat;
+            heroName.supportRichText = false;
+            heroName.text = visual.definition.DisplayName;
+            previousViewport = new Vector2(-1, -1);
+            LateUpdate();
+        }
 
         public void SelectEncounter(CombatantId id)
         {
@@ -135,6 +170,7 @@ namespace IronTournament.Presentation
 
         private void OnEnable()
         {
+            if (heroes != null && heroes.Length > 0 && !combatPresentationStarted) SelectHero(selectedHero);
             if (encounters != null && encounters.Length > 0 && !combatPresentationStarted)
                 SelectEncounter(selectedOpponent);
             previousViewport = new Vector2(-1, -1);
@@ -167,12 +203,17 @@ namespace IronTournament.Presentation
         private void OnValidate()
         {
             previousViewport = new Vector2(-1, -1);
-            if (!Application.isPlaying && encounters != null && encounters.Length > 0)
-                SelectEncounter(selectedOpponent);
+            refreshSelection = !Application.isPlaying;
         }
 
         private void LateUpdate()
         {
+            if (refreshSelection)
+            {
+                refreshSelection = false;
+                if (heroes != null && heroes.Length > 0) SelectHero(selectedHero);
+                if (encounters != null && encounters.Length > 0) SelectEncounter(selectedOpponent);
+            }
             if (composition == null || !(composition.parent is RectTransform viewport)) return;
             var size = viewport.rect.size;
             if (size.x <= 0 || size.y <= 0 || size == previousViewport) return;
@@ -182,6 +223,7 @@ namespace IronTournament.Presentation
 
             previousViewport = size;
             bool portrait = size.y > size.x;
+            bool mage = combatPresentationStarted && SelectedHero?.Id == CombatantId.Mage;
             var reference = portrait ? new Vector2(360, 640) : new Vector2(1280, 720);
             float scale = Mathf.Min(size.x / reference.x, size.y / reference.y);
             if (scale >= 1) scale = Mathf.Floor(scale);
@@ -194,23 +236,23 @@ namespace IronTournament.Presentation
             {
                 Place(title.rectTransform, 16, 24, 328, 32);
                 Place(encounter.rectTransform, 16, 66, 328, 20);
-                Place(arena, 16, 106, 328, 310);
-                Place(playerLabel, 16, 432, 156, 76);
-                Place(opponentLabel, 188, 432, 156, 76);
+                Place(arena, 16, 106, 328, mage ? 286 : 310);
+                Place(playerLabel, 16, mage ? 408 : 432, 156, 76);
+                Place(opponentLabel, 188, mage ? 408 : 432, 156, 76);
                 Place((RectTransform)startButton.transform, 16, 536, 328, 48);
-                Place(battleStatus, 16, 520, 328, HasOutcome ? 80 : 20);
-                Place((RectTransform)actionMenu.transform, 16, 552, 328, 48);
+                Place(battleStatus, 16, mage ? 496 : 520, 328, HasOutcome ? 80 : 20);
+                Place((RectTransform)actionMenu.transform, 16, mage ? 528 : 552, 328, mage ? 90 : 48);
             }
             else
             {
                 Place(title.rectTransform, 40, 24, 1200, 42);
                 Place(encounter.rectTransform, 40, 76, 1200, 24);
-                Place(arena, 40, 116, 1200, combatPresentationStarted ? 384 : 454);
-                Place(playerLabel, 40, combatPresentationStarted ? 516 : 590, 580, 76);
-                Place(opponentLabel, 660, combatPresentationStarted ? 516 : 590, 580, 76);
+                Place(arena, 40, 116, 1200, combatPresentationStarted ? (mage ? 370 : 384) : 454);
+                Place(playerLabel, 40, combatPresentationStarted ? (mage ? 502 : 516) : 590, 580, 76);
+                Place(opponentLabel, 660, combatPresentationStarted ? (mage ? 502 : 516) : 590, 580, 76);
                 Place((RectTransform)startButton.transform, 440, 678, 400, 32);
-                Place(battleStatus, 40, 606, 1200, HasOutcome ? 86 : 24);
-                Place((RectTransform)actionMenu.transform, 340, 644, 600, 48);
+                Place(battleStatus, 40, mage ? 592 : 606, 1200, HasOutcome ? 86 : 24);
+                Place((RectTransform)actionMenu.transform, 340, mage ? 624 : 644, 600, mage ? 90 : 48);
             }
 
             title.fontSize = portrait ? 26 : 36;

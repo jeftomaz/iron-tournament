@@ -1,5 +1,21 @@
 # Progresso
 
+## 2026-10-04 — Validação para commit do Mago
+
+- EditMode 60/60, PlayMode 27/27 e build WebGL concluídos sem erros ou avisos; resultados em `Logs/PreCommit-*`, build em `Builds/Mage-WebGL` (não versionados). Prévia do Inspector atualizada fora de `OnValidate` para evitar avisos de alteração do layout.
+- Revisados `ffc2dc4`/`414801e` de Jeferson: somente regras de branches a partir da `main` e validação completa, sem bootstrap. A base atual inclui seis entregas do Guerreiro ainda fora da `main`; aguardando decisão do usuário sobre exceção nesta entrega ou integração prévia.
+
+## 2026-10-04 — Teste manual de duelos no Editor
+
+- Adicionado `Iron Tournament > Testar duelo selecionado` na assembly de testes existente: liga os assets escolhidos ao apresentador e libera o teste de HP, ataque, defesa e reversões pelo núcleo. Não acompanha o build; bootstrap de Jeferson continua pendente.
+- Prévia usa atributos-base e seed fixa, sem recursos de configuração da campanha. PlayMode 27/27 passou; cliques reais de início, ataque e reversão conferidos no Editor com Mago/Goblin. Remotas conferidas novamente; sem novos commits de Jeferson nem bootstrap publicado.
+
+## 2026-10-04 — Mago contra os seis inimigos configurados
+
+- Criada `feature/mage-vs-enemies` a partir do Rei Demônio `6364bde`; revisadas as branches de Jeferson/João Lucas e incorporada a `main` aprovada `e485d37`, incluindo campanha/fúria. Cena, menu e efeitos compartilhados adaptados para Mago, com sprites existentes e assets canônicos.
+- Validação local: EditMode 60/60 e PlayMode 26/26; ataque nos seis inimigos, ambas as reversões com retorno imediato, descarte de efeitos pendentes, reversão da fúria e bloqueio após vitória/derrota. Introdução/combate conferidos em `360x640` e `1280x720`; capturas em `Logs/Mage-*.png` (não versionadas).
+- Pendentes bootstrap de Jeferson, fluxo automático de campanha, Cavaleiro, seleção de classe e saque/itens. Alterações de apresentação ainda sem commit/push.
+
 ## 2026-10-04 — Apresentação Guerreiro x Rei Demônio
 
 - Commit/push do Necromante confirmado em `c9a83f5`; criada `feature/warrior-vs-demon-king` e incorporada a `main` aprovada `accf883` (cobertura de reversão). Revisadas atualizações remotas de João Lucas; campanha/fúria continuam fora da `main`. Sprites de Jeferson (`4a795b6`) importados e configurados na cena compartilhada.
@@ -62,6 +78,7 @@
 
 ## 2026-10-04
 
+- Tornadas vinculantes as regras de integração: branches e PRs sempre partem da `main`, sem encadeamento entre features; antes de commit de código/configuração, executar EditMode, PlayMode e build WebGL.
 - Preparada `Assets/Scenes/Battle.unity` com cenário, prefab compartilhado e composições por orientação; adicionada a transição visual pelo botão `Iniciar combate`, conforme `UI_CONTRACTS.md`.
 - Conferidas capturas antes/depois em `360x640` e `1280x720`, clique real e orientação em Play Mode; testes locais EditMode (2/2) e PlayMode (1/1) passaram.
 - Registrado em `PROJECT.md` o padrão de branches solicitado pelo João Pedro.

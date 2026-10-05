@@ -28,6 +28,7 @@ namespace IronTournament.Presentation
             if (state.Hero.Id == state.Opponent.Id)
                 throw new ArgumentException("Combatant IDs must be distinct.", nameof(state));
             var effects = new List<IEnumerator>(events.Count);
+            bool restored = false;
             for (int index = 0; index < events.Count; index++)
             {
                 switch (events[index])
@@ -36,8 +37,22 @@ namespace IronTournament.Presentation
                         var actor = Participant(state, ability.Actor).Side;
                         switch (ability.Ability)
                         {
-                            case AbilityId.BasicAttack: effects.Add(Attack(actor)); break;
+                            case AbilityId.BasicAttack:
+                                effects.Add(ability.Actor == CombatantId.Mage ? AnimateSpecial(actor, "Ataque mágico", "Magia", new Color(.65f, .6f, 1)) : Attack(actor));
+                                break;
                             case AbilityId.Guard: effects.Add(Guard(actor)); break;
+                            case AbilityId.RevertTurn:
+                            case AbilityId.RevertBattle:
+                                if (ability.Actor != CombatantId.Mage || actor != CombatantSide.Player)
+                                    throw new NotSupportedException("Only the Mage has reversal presentation.");
+                                if (events.Count != 1 || state.IsOver || view.HasOutcome)
+                                    throw new ArgumentException("Reversal requires one event and an active restored state.", nameof(events));
+                                restored = true;
+                                break;
+                            case AbilityId.Fury:
+                                if (actor != CombatantSide.Enemy) throw new ArgumentException("Fury belongs to the opponent.", nameof(events));
+                                effects.Add(AnimateSpecial(actor, "Fúria do inimigo", "Fúria", new Color(1, .4f, .25f)));
+                                break;
                             default: throw new NotSupportedException($"Unsupported visual ability: {ability.Ability}.");
                         }
                         break;
@@ -56,7 +71,14 @@ namespace IronTournament.Presentation
                     default: throw new ArgumentException("Every event must have a supported type.", nameof(events));
                 }
             }
-            Play(effects);
+            if (restored)
+            {
+                Cancel();
+                view.ResetCombatantFeedback();
+                hud.ShowHealth(CombatantSide.Player, state.Hero.CurrentHealth, state.Hero.Stats.MaximumHealth);
+                hud.ShowHealth(CombatantSide.Enemy, state.Opponent.CurrentHealth, state.Opponent.Stats.MaximumHealth);
+            }
+            else Play(effects);
         }
 
         private static CombatantState Participant(BattleState state, CombatantId id)
@@ -70,7 +92,7 @@ namespace IronTournament.Presentation
         {
             hud.ShowHealth(target, damage.RemainingHealth, maximumHealth);
             yield return AnimateDamage(target, damage.Amount, damage.IsCritical, damage.IsPiercing,
-                damage.Kind == DamageKind.Reflection);
+                damage.Kind == DamageKind.Reflection, damage.Kind == DamageKind.Fury);
         }
 
         public void Play(IReadOnlyList<IEnumerator> effects)
@@ -185,10 +207,20 @@ namespace IronTournament.Presentation
             feedback.gameObject.SetActive(false);
         }
 
-        private IEnumerator AnimateDamage(CombatantSide target, int amount, bool critical, bool piercing, bool reflection = false)
+        private IEnumerator AnimateSpecial(CombatantSide actor, string status, string label, Color tint)
+        {
+            hud.SetStatus(status);
+            ShowFeedback(actor, label, tint);
+            view.SetCombatantFeedback(actor, Vector2.zero, tint);
+            yield return new WaitForSecondsRealtime(.27f);
+            view.SetCombatantFeedback(actor, Vector2.zero, Color.white);
+            feedback.gameObject.SetActive(false);
+        }
+
+        private IEnumerator AnimateDamage(CombatantSide target, int amount, bool critical, bool piercing, bool reflection = false, bool fury = false)
         {
             string qualifiers = (critical ? " · Crítico" : "") + (piercing ? " · Penetração" : "");
-            hud.SetStatus($"{(reflection ? "Reflexão · " : "")}{amount} de dano{qualifiers}");
+            hud.SetStatus($"{(reflection ? "Reflexão · " : fury ? "Fúria · " : "")}{amount} de dano{qualifiers}");
             ShowFeedback(target, amount == 0 ? "0" : $"−{amount}", critical ? new Color32(245, 198, 82, 255) : Color.white);
             var tint = amount == 0 ? Color.white : new Color(1, 0.45f, 0.4f);
             view.SetCombatantFeedback(target, new Vector2(amount == 0 ? 0 : -3, 0), tint);

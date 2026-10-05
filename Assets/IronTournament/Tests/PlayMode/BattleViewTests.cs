@@ -222,6 +222,256 @@ namespace IronTournament.Presentation.Tests
         private void StartPresentation()
             => canvas.GetComponentsInChildren<Button>(true).Single(item => item.name == "StartCombat").onClick.Invoke();
 
+        private Button ActionButton(string name)
+            => canvas.GetComponentInChildren<ActionMenu>(true).GetComponentsInChildren<Button>(true).Single(button => button.name == name);
+
+        [UnityTest]
+        public IEnumerator ManualPreviewStartsSelectedHeroWithHealthAndWorkingActions()
+        {
+            foreach (var hero in new[] { CombatantId.Mage, CombatantId.Warrior })
+            {
+                if (hero == CombatantId.Warrior) { yield return TearDown(); yield return SetUp(); }
+                var view = canvas.GetComponentInChildren<BattleView>();
+                view.SelectHero(hero);
+                var battle = ManualBattlePreview.Initialize(view);
+                StartPresentation();
+                yield return null;
+                int maximumHealth = hero == CombatantId.Mage ? 110 : 120;
+                Assert.That(HealthText("PlayerHealth"), Is.EqualTo($"HP {maximumHealth} / {maximumHealth}"));
+                Assert.That(HealthText("OpponentHealth"), Is.EqualTo("HP 45 / 45"));
+                Assert.That(ActionButton("Attack").interactable, Is.True);
+                ActionButton("Attack").onClick.Invoke();
+                yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
+                yield return null;
+                Assert.That(battle.State.Opponent.CurrentHealth, Is.LessThan(45));
+                Assert.That(HealthText("OpponentHealth"), Is.EqualTo($"HP {battle.State.Opponent.CurrentHealth} / 45"));
+                ActionButton(hero == CombatantId.Mage ? "RevertTurn" : "Guard").onClick.Invoke();
+                yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
+                yield return null;
+                if (hero == CombatantId.Mage)
+                {
+                    Assert.That(HealthText("PlayerHealth"), Is.EqualTo("HP 110 / 110"));
+                    Assert.That(HealthText("OpponentHealth"), Is.EqualTo("HP 45 / 45"));
+                }
+                Assert.That(ActionButton("Attack").interactable, Is.True);
+            }
+        }
+
+        private Battle MageBattle(CombatantId enemyId, int heroHealth = 110)
+        {
+            var view = canvas.GetComponentInChildren<BattleView>();
+            view.SelectHero(CombatantId.Mage);
+            view.SelectEncounter(enemyId);
+            var hero = ContentMapper.BuildCombatant(view.SelectedHero);
+            if (heroHealth != hero.BaseStats.MaximumHealth)
+                hero = new CombatantConfiguration(hero.Id, hero.Side, hero.DisplayName,
+                    new CombatantStats(heroHealth, hero.BaseStats.Attack, hero.BaseStats.Defense), hero.Abilities.ToArray());
+            var enemy = ContentMapper.BuildEncounter(view.SelectedEncounter).Opponent;
+            return new Battle(new BattleState(new CombatantState(hero, hero.BaseStats),
+                new CombatantState(enemy, enemy.BaseStats)), new SeededRandomSource(17));
+        }
+
+        [UnityTest]
+        public IEnumerator MageUsesSharedSceneAndMagicAgainstAllConfiguredEnemies()
+        {
+            foreach (var id in new[] { CombatantId.Goblin, CombatantId.Skeleton, CombatantId.Werewolf,
+                CombatantId.Vampire, CombatantId.Necromancer, CombatantId.DemonKing })
+            {
+                if (id != CombatantId.Goblin) { yield return TearDown(); yield return SetUp(); }
+                var battle = MageBattle(id);
+                var view = canvas.GetComponentInChildren<BattleView>();
+                Assert.That(view.SelectedHero.DisplayName, Is.EqualTo("Mago"));
+                Assert.That(battle.State.Hero.Stats.MaximumHealth, Is.EqualTo(110));
+                Assert.That(battle.State.Hero.Stats.Attack, Is.EqualTo(30));
+                Assert.That(battle.State.Hero.Stats.Defense, Is.EqualTo(5));
+                Assert.That(view.GetCombatantRect(CombatantSide.Player).GetComponent<Image>().sprite.name, Is.EqualTo("east_0"));
+                Assert.Throws<ArgumentOutOfRangeException>(() => view.SelectHero(CombatantId.Goblin));
+                Assert.That(view.SelectedHero.Id, Is.EqualTo(CombatantId.Mage));
+                if (id == CombatantId.Goblin)
+                    Assert.Throws<ArgumentException>(() => canvas.GetComponentInChildren<BattlePresenter>()
+                        .Initialize(new Battle(PresentationState(), new SeededRandomSource(17))));
+                canvas.GetComponentInChildren<BattlePresenter>().Initialize(battle);
+                StartPresentation();
+                yield return null;
+                Assert.Throws<InvalidOperationException>(() => view.SelectHero(CombatantId.Warrior));
+                var sprite = view.GetCombatantRect(CombatantSide.Player).GetComponent<Image>().sprite;
+                Assert.That(sprite.name, Is.EqualTo("north-east_0"));
+                Assert.That(sprite.texture.filterMode, Is.EqualTo(FilterMode.Point));
+                Assert.That(ActionButton("Guard").gameObject.activeSelf, Is.False);
+                Assert.That(ActionButton("RevertTurn").interactable || ActionButton("RevertBattle").interactable, Is.False);
+                Assert.That(canvas.GetComponentInChildren<BattleHud>().StatusMessage, Does.Contain("Reversão: 1"));
+                foreach (var size in new[] { new Vector2(360, 640), new Vector2(1280, 720) })
+                {
+                    canvas.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
+                    canvas.GetComponent<RectTransform>().sizeDelta = size;
+                    view.SendMessage("OnValidate");
+                    yield return null;
+                    Canvas.ForceUpdateCanvases();
+                    var menu = canvas.GetComponentInChildren<ActionMenu>();
+                    var menuRect = (RectTransform)menu.transform;
+                    var corners = new Vector3[4];
+                    foreach (var button in menu.GetComponentsInChildren<Button>())
+                    {
+                        ((RectTransform)button.transform).GetWorldCorners(corners);
+                        foreach (var corner in corners)
+                            Assert.That(menuRect.rect.Contains(menuRect.InverseTransformPoint(corner)), Is.True);
+                    }
+                    Assert.That(menu.GetComponentsInChildren<Button>().Length, Is.EqualTo(3));
+                    var enemy = view.GetCombatantRect(CombatantSide.Enemy);
+                    Assert.That(enemy.anchoredPosition.y + enemy.rect.height, Is.LessThanOrEqualTo(((RectTransform)enemy.parent).rect.height));
+                }
+                int initialEnemyHealth = battle.State.Opponent.CurrentHealth;
+                ActionButton("Attack").onClick.Invoke();
+                ActionButton("Attack").onClick.Invoke();
+                Assert.That(battle.State.Round, Is.EqualTo(2));
+                Assert.That(canvas.GetComponentInChildren<BattleHud>().StatusMessage, Is.EqualTo("Ataque mágico"));
+                yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
+                yield return null;
+                Assert.That(battle.State.Opponent.CurrentHealth, Is.EqualTo(initialEnemyHealth - 30));
+                Assert.That(HealthText("OpponentHealth"), Is.EqualTo($"HP {battle.State.Opponent.CurrentHealth} / {initialEnemyHealth}"));
+                Assert.That(ActionButton("RevertTurn").interactable && ActionButton("RevertBattle").interactable, Is.True);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator MageReversalsRestoreDifferentSnapshotsAndReturnControlImmediately()
+        {
+            foreach (string action in new[] { "RevertTurn", "RevertBattle" })
+            {
+                if (action != "RevertTurn") { yield return TearDown(); yield return SetUp(); }
+                var battle = MageBattle(CombatantId.DemonKing);
+                canvas.GetComponentInChildren<BattlePresenter>().Initialize(battle);
+                StartPresentation();
+                yield return null;
+                ActionButton("Attack").onClick.Invoke();
+                yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
+                yield return null;
+                int heroBefore = battle.State.Hero.CurrentHealth;
+                int enemyBefore = battle.State.Opponent.CurrentHealth;
+                ActionButton("Attack").onClick.Invoke();
+                yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
+                yield return null;
+                ActionButton(action).onClick.Invoke();
+                Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(action == "RevertTurn" ? heroBefore : 110));
+                Assert.That(battle.State.Opponent.CurrentHealth, Is.EqualTo(action == "RevertTurn" ? enemyBefore : 145));
+                Assert.That(battle.State.RevertCharges, Is.Zero);
+                Assert.That(ActionButton("Attack").interactable, Is.True);
+                Assert.That(ActionButton("RevertTurn").interactable || ActionButton("RevertBattle").interactable, Is.False);
+                Assert.That(canvas.GetComponentInChildren<BattleEventPlayer>().IsPlaying, Is.False);
+                Assert.That(HealthText("PlayerHealth"), Is.EqualTo($"HP {battle.State.Hero.CurrentHealth} / 110"));
+                Assert.That(HealthText("OpponentHealth"), Is.EqualTo($"HP {battle.State.Opponent.CurrentHealth} / 145"));
+                string restoredHero = HealthText("PlayerHealth"), restoredEnemy = HealthText("OpponentHealth");
+                yield return new WaitForSecondsRealtime(.8f);
+                Assert.That(HealthText("PlayerHealth"), Is.EqualTo(restoredHero));
+                Assert.That(HealthText("OpponentHealth"), Is.EqualTo(restoredEnemy));
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator MageReversalDiscardsPendingDamageAndFeedback()
+        {
+            var battle = MageBattle(CombatantId.DemonKing);
+            StartPresentation();
+            yield return null;
+            var events = canvas.GetComponentInChildren<BattleEventPlayer>();
+            events.PlayEvents(battle.Submit(AbilityId.BasicAttack).Events, battle.State);
+            yield return null;
+            Assert.That(events.IsPlaying, Is.True);
+            var reversal = battle.Submit(AbilityId.RevertTurn);
+            Assert.That(reversal.IsAccepted, Is.True);
+            events.PlayEvents(reversal.Events, battle.State);
+            Assert.That(events.IsPlaying, Is.False);
+            Assert.That(canvas.GetComponentsInChildren<Text>(true).Single(text => text.name == "CombatFeedback").gameObject.activeSelf, Is.False);
+            yield return new WaitForSecondsRealtime(1.5f);
+            Assert.That(HealthText("PlayerHealth"), Is.EqualTo("HP 110 / 110"));
+            Assert.That(HealthText("OpponentHealth"), Is.EqualTo("HP 145 / 145"));
+        }
+
+        private sealed class NeutralRandom : IRandomSource
+        {
+            public int Next(int minInclusive, int maxExclusive) => Math.Max(minInclusive, Math.Min(0, maxExclusive - 1));
+        }
+
+        [UnityTest]
+        public IEnumerator MagePresentsAndReversesFuryFromApprovedCampaignCore()
+        {
+            foreach (var boss in new[] { CombatantId.Vampire, CombatantId.Necromancer, CombatantId.DemonKing })
+            {
+                if (boss != CombatantId.Vampire) { yield return TearDown(); yield return SetUp(); }
+                var view = canvas.GetComponentInChildren<BattleView>();
+                view.SelectHero(CombatantId.Mage);
+                view.SelectEncounter(boss);
+                var encounters = new List<EncounterConfiguration>();
+                var attack = new AbilityConfiguration(AbilityId.BasicAttack, "Atacar", AbilityTarget.Opponent, true);
+                foreach (var id in CampaignConfiguration.CanonicalOrder)
+                {
+                    var stats = new CombatantStats(id == boss ? view.SelectedEncounter.Opponent.BaseStats.MaximumHealth : 1, 1, 0);
+                    encounters.Add(new EncounterConfiguration(new CombatantConfiguration(id, CombatantSide.Enemy,
+                        id.ToString(), stats, new[] { attack }), 15, Array.Empty<ItemConfiguration>()));
+                }
+                var campaign = new CampaignRun(ContentMapper.BuildCombatant(view.SelectedHero), new CampaignConfiguration(encounters), new NeutralRandom());
+                while (campaign.CurrentBattle.State.Opponent.Id != boss)
+                {
+                    Assert.That(campaign.CurrentBattle.Submit(AbilityId.BasicAttack).IsAccepted, Is.True);
+                    Assert.That(campaign.ConcludeEncounter(), Is.True);
+                }
+                var battle = campaign.CurrentBattle;
+                canvas.GetComponentInChildren<BattlePresenter>().Initialize(battle);
+                StartPresentation();
+                yield return null;
+                int heroBefore = 0, enemyBefore = 0;
+                bool shownFury = false;
+                for (int round = 0; round < 5 && !battle.State.Opponent.HasRaged; round++)
+                {
+                    heroBefore = battle.State.Hero.CurrentHealth;
+                    enemyBefore = battle.State.Opponent.CurrentHealth;
+                    ActionButton("Attack").onClick.Invoke();
+                    var events = canvas.GetComponentInChildren<BattleEventPlayer>();
+                    float deadline = Time.realtimeSinceStartup + 3;
+                    while (events.IsPlaying && Time.realtimeSinceStartup < deadline)
+                    {
+                        shownFury |= canvas.GetComponentInChildren<BattleHud>().StatusMessage.StartsWith("Fúria");
+                        yield return null;
+                    }
+                    Assert.That(events.IsPlaying, Is.False);
+                    yield return null;
+                }
+                Assert.That(shownFury && battle.State.Opponent.HasRaged, Is.True);
+                Assert.That(HealthText("PlayerHealth"), Is.EqualTo("HP 33 / 110"));
+                ActionButton("RevertTurn").onClick.Invoke();
+                Assert.That(battle.State.Opponent.HasRaged, Is.False);
+                Assert.That(HealthText("PlayerHealth"), Is.EqualTo($"HP {heroBefore} / 110"));
+                Assert.That(battle.State.Opponent.CurrentHealth, Is.EqualTo(enemyBefore));
+                Assert.That(ActionButton("Attack").interactable, Is.True);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator MageOutcomeDisablesActionsAndReversals()
+        {
+            foreach (int heroHealth in new[] { 110, 1 })
+            {
+                if (heroHealth == 1) { yield return TearDown(); yield return SetUp(); }
+                var battle = MageBattle(CombatantId.Goblin, heroHealth);
+                canvas.GetComponentInChildren<BattlePresenter>().Initialize(battle);
+                StartPresentation();
+                yield return null;
+                while (!battle.State.IsOver)
+                {
+                    ActionButton("Attack").onClick.Invoke();
+                    yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
+                    yield return null;
+                }
+                Assert.That(battle.State.Phase, Is.EqualTo(heroHealth == 1 ? BattlePhase.Defeat : BattlePhase.Victory));
+                Assert.That(canvas.GetComponentInChildren<ActionMenu>(true).gameObject.activeSelf, Is.False);
+                int round = battle.State.Round;
+                ActionButton("RevertTurn").onClick.Invoke();
+                ActionButton("RevertBattle").onClick.Invoke();
+                Assert.That(battle.State.Round, Is.EqualTo(round));
+                Assert.That(battle.Submit(AbilityId.RevertTurn).IsAccepted, Is.False);
+            }
+        }
+
         private IEnumerator WaitForPlayback(BattleEventPlayer events)
         {
             float deadline = Time.realtimeSinceStartup + 3;
