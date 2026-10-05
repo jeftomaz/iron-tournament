@@ -13,6 +13,7 @@
 - Reconstruída a apresentação Guerreiro/Esqueleto como variante da cena compartilhada, com assets, seleção validada, compatibilidade com o bootstrap e cobertura PlayMode; Goblin permanece o padrão e a escala será refinada após a organização.
 - Reconstruída a variante Guerreiro/Lobisomem sem o limitador de escala legado; ajustes de proporção e perspectiva ficam proibidos até a tarefa dedicada após a limpeza.
 - Reconstruída a variante Guerreiro/Vampiro na cena compartilhada, com assets, seleção validada e cobertura PlayMode; escala, proporção e perspectiva permanecem fora do escopo.
+- Reconstruída a variante Guerreiro/Necromante na cena compartilhada, com sprites, assets, seleção validada e cobertura PlayMode; escala, proporção e perspectiva permanecem fora do escopo.
 
 ## 2026-10-04 — Assets do duelo e build WebGL
 

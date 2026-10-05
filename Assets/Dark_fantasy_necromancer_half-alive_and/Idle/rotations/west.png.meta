@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 52c49889f76a8594985b712848b9392d
+guid: 184cbef501cd2c8439820d7abc31a1c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9031040882146613907
-    second: necromancer-crypt_0
+      213: 3373983171478037719
+    second: west_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: necromancer-crypt_0
+      name: west_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1672
-        height: 941
+        x: 17
+        y: 1
+        width: 20
+        height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData:
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39a116475d3b45d70800000000000000
-      internalID: 9031040882146613907
+      spriteID: 7d4281e71dbc2de20800000000000000
+      internalID: 3373983171478037719
       vertices: []
       indices:
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData:
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID:
     internalID: 0
     vertices: []
     indices:
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      necromancer-crypt_0: 9031040882146613907
+      west_0: 3373983171478037719
   mipmapLimitGroupName:
   pSDRemoveMatte: 0
   userData:

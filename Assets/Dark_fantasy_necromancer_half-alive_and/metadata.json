@@ -1,0 +1,36 @@
+{
+  "group_id": "62605b27-521c-4d33-8eaa-67c6298063e0",
+  "states": [
+    {
+      "character": {
+        "id": "ca209ed6-1473-4be6-856b-5958b0e08388",
+        "name": "Idle",
+        "prompt": "Dark fantasy necromancer, half-alive and half-dead, gothic medieval aesthetic inspired by Castlevania: Lords of Shadow 1. Full-body pixel art game sprite, facing south toward the viewer, matching the reference characters' scale, proportions, perspective, pixel density, dark outlines and detailed shading. Compact silhouette, slightly oversized head, readable equipment.\n\nEmaciated, partially skeletal body, with patches of pale decaying flesh still clinging to the bones. Sunken face beneath a deep charcoal hood, exposed cheekbone and part of the jaw, small glowing spectral green eyes. Thin bony arms, skeletal fingers and a few visible ribs beneath torn clothing. His appearance suggests an undead sorcerer suspended between life and death.\n\nWorn black and muted dark purple robes, tattered layered fabric, aged metal shoulder pieces, skull clasp, leather belt and short hanging chains. Clothing leaves portions of his skeletal anatomy visible while preserving a clear silhouette. Holds a dark wooden staff topped with a small ivory skull in one hand, with a restrained spectral green magical glow around the skeletal fingers of the other. Both feet visible beneath the robe.\n\nSlightly hunched but commanding idle stance. Muted colors, strong contrast, crisp pixel clusters, clear silhouette and restrained highlights. Single centered character, isolated on a transparent background. No scenery, text, additional characters, large magical aura, excessive gore, blur or anti-aliasing",
+        "size": {
+          "width": 56,
+          "height": 56
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-10-04T16:41:38.415350+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-10-04T16:44:19.825043"
+}
