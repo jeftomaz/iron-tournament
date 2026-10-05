@@ -1,8 +1,14 @@
 # Progresso
 
+## 2026-10-05
+
+- Tornado explícito o fluxo Git: `main` única branch permanente, uma tarefa por branch/PR, dependências aguardam merge, atualização somente por rebase e limpeza obrigatória após integração.
+- Separada a validação por etapa: testes afetados durante o desenvolvimento, `git diff --cached --check` em todo commit, suíte Unity completa em mudanças não documentais e novamente na CI interna.
+- Adicionado o check `policy` para bloquear PR com destino incorreto, branch desatualizada ou empilhada e sem declaração de tarefa única; o template padroniza escopo e validação.
+
 ## 2026-10-04
 
-- Automatizada a validação antes de commits: `scripts/verify.sh` roda EditMode, PlayMode e build WebGL pelo hook versionado `pre-commit`; a CI interna também passou a executar a suíte completa em toda PR.
+- Automatizada a validação antes de commits pelo hook versionado `pre-commit`; a CI interna também passou a executar a suíte completa em toda PR.
 - Tornadas vinculantes as regras de integração: branches e PRs sempre partem da `main`, sem encadeamento entre features.
 - Corrigido o contrato do Manto de Chamas após cotejo com o IronTurn: ele causa 5 de dano direto após cada turno que consome ação, tanto do Mago quanto do inimigo; ações sem consumo não o disparam.
 - A ordem canônica dos sete inimigos virou contrato: `CampaignConfiguration.CanonicalOrder` é validada no construtor e no `ContentValidator`, com testes de rejeição; os testes de campanha passam a usar a sequência completa. As regras de ±20% no dano inimigo e de fúria foram confirmadas e registradas em `PROJECT.md` (revisão do PR #9).
@@ -20,7 +26,6 @@
 
 - Registrado em `PROJECT.md` o mapa técnico vinculante: limites entre assemblies, fluxo `ação -> Core -> estado/eventos`, reversão e responsáveis de integração.
 - Restaurada a cache de `Library` exclusivamente nos runners hospedados, separada entre EditMode e WebGL e invalidada por fontes/configuração; não inclui credenciais ou artefatos.
-- Reduzido o uso do GameCI: toda PR faz somente a checagem de escopo; testes e build WebGL rodam em mudanças Unity/CI ou por acionamento manual, sem repetição automática após o merge na `main`.
 - Movidos os cenários para `Assets/Backgrounds/`, o único caminho de assets do Unity; a coexistência com `assets/` em minúsculas deixava o editor preso na importação no contêiner.
 - Ampliado para 60 minutos o timeout do build WebGL enquanto a correção da importação é validada; os cancelamentos não envolveram licença ou segredos.
 - Validados testes EditMode e build WebGL em contêineres GameCI hospedados; a `main` exige PR, checks `test` e `build` atualizados, resolução de conversas e aplica as regras a administradores.
