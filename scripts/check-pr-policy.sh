@@ -13,7 +13,7 @@ fi
 git fetch --no-tags origin '+refs/heads/*:refs/remotes/origin/*'
 
 if ! git merge-base --is-ancestor origin/main HEAD; then
-  echo "Branch desatualizada: execute git rebase origin/main." >&2
+  echo "Branch desatualizada: recrie-a a partir de origin/main e reaplique somente a tarefa." >&2
   exit 1
 fi
 
