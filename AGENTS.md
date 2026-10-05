@@ -45,10 +45,25 @@ Regras para esses arquivos:
 - Mesmos princípios do código: mínimos, sem prosa decorativa, sem histórico morto (entradas de `PROGRESS.md` obsoletas podem ser removidas se não explicam decisões vigentes).
 - Um agente novo deve entender estado e contexto do projeto lendo apenas esses arquivos, sem ler o histórico da conversa.
 
-## Git e validação
+## Git e integração
 
-- Toda branch nasce da `main` atualizada e toda PR aponta para `main`. Branches e PRs empilhadas sobre outra feature são proibidas; trabalho dependente espera o merge e então faz rebase na `main`.
-- Antes de qualquer commit, executar `scripts/verify.sh`: EditMode, PlayMode e build WebGL. O hook `pre-commit` é obrigatório; `--no-verify` é proibido. Se o ambiente impedir a execução, não subir o commit e pedir orientação.
+- A `main` é a única branch permanente. Commit, push direto e force push na `main` são proibidos; toda mudança entra por PR.
+- Antes de criar uma branch: confirmar o worktree limpo; executar, nesta ordem, `git fetch origin --prune`, `git switch main`, `git pull --ff-only origin main` e `git switch -c <tipo>/<escopo>`. Nunca iniciar da branch atualmente aberta por conveniência.
+- Cada branch e PR contém exatamente uma tarefa coesa; itens distintos do `ROADMAP.md` não compartilham PR. O destino do PR é sempre `main`.
+- Trabalho dependente não cria branch nem inicia implementação antes do merge da dependência. Depois do merge, cria uma nova branch da `main` atualizada.
+- Nunca incorporar outra branch de tarefa, nem executar `git merge main` numa branch de tarefa. Para atualizar uma branch ainda aberta, executar `git fetch origin --prune` e `git rebase origin/main`.
+- Antes de abrir ou atualizar um PR, conferir `git log --oneline origin/main..HEAD`: devem aparecer somente commits da tarefa atual. Se aparecer commit de outra tarefa, interromper e corrigir a base antes do push.
+- Após rebase, force push só é permitido na própria branch com `--force-with-lease`. `--force` é proibido.
+- Preencher o template do PR, identificar a única tarefa entregue e confirmar seu escopo. O check `policy` valida destino, atualização com `main`, empilhamento e essa declaração.
+- Merge exige branch atualizada com `main`, escopo revisado, checks obrigatórios aprovados e conversas resolvidas. PR de interface também segue as evidências de `UI_CONTRACTS.md`.
+- Após o merge, remover a branch remota e local. PR substituído deve ser fechado antes da remoção de sua branch.
+
+## Validação
+
+- Durante a implementação, executar os testes afetados: EditMode para `Core`/`Content`; PlayMode e revisão visual para `Presentation`; build WebGL para integração, configuração de build ou CI.
+- Todo commit executa `git diff --cached --check` pelo hook `pre-commit`.
+- Commit exclusivamente de arquivos `.md` dispensa Unity. Qualquer outro arquivo exige `scripts/verify.sh`: EditMode, PlayMode e build WebGL.
+- O hook `pre-commit` é obrigatório; `--no-verify` é proibido. Se o ambiente impedir a validação exigida, não criar nem subir o commit e pedir orientação.
 - Após clonar, executar `scripts/install-git-hooks.sh` para ativar os hooks versionados.
 
 ## Fluxo de trabalho por tarefa
