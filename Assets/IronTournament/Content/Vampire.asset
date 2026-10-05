@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c398143a4d9547a4b2c194933d2b7177, type: 3}
+  m_Name: Vampire
+  m_EditorClassIdentifier: IronTournament.Content::IronTournament.Content.CombatantDefinition
+  id: 7
+  side: 2
+  displayName: Vampiro
+  baseStats:
+    maximumHealth: 110
+    attack: 34
+    defense: 12
+  abilities:
+  - {fileID: 11400000, guid: d9800e89631625a448a01de68c5f263b, type: 2}
+  portrait: {fileID: 3373983171478037719, guid: 8651af2548ddd4bdcb5418d4b386ab2d, type: 3}
