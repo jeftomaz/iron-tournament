@@ -50,10 +50,11 @@ No protótipo todos os encontros usam o mesmo pool; cada `EncounterDefinition` d
 |---|---|
 | `CombatantState` | HP, atributos efetivos, efeitos e recursos atuais; hoje expõe HP, atributos, defesa temporária (`GuardBonus`) fúria (`CanRage`, `HasRaged`) e recursos de itens (pergaminhos, chifres, guardião armado, manto) |
 | `BattleState` | Participantes, fase, turno, flags e histórico do encontro; hoje expõe herói, oponente, fase (`PlayerTurn`, `Victory`, `Defeat`), rodada e cargas de reversão |
-| `CampaignRun` | Sequência fixa de encontros, herói persistente, encontro atual, oferta de drop, itens obtidos e fase (`Battle`, `DropChoice`, `Completed`, `Failed`) |
+| `CampaignRun` | Campanha ou modo inimigo (`Mode`): sequência de oponentes, herói persistente, encontro atual, oferta de drop, itens obtidos, fase (`Battle`, `DropChoice`, `Completed`, `Failed`) e `FinalSnapshot` ao concluir a campanha |
 | `ActionResult` | Eventos produzidos por uma ação aceita ou motivo de rejeição (`BattleOver`, `UnavailableAction`) |
 | Snapshot (`BattleState.Clone`, interno ao `Core`) | Cópia íntegra restaurável do estado do encontro, sem o estado do gerador aleatório |
-| `ProgressData` | Campanhas concluídas, desbloqueios e snapshots finais |
+| `ProgressData` | Imutável: um `HeroSnapshot` por classe concluída; o modo inimigo libera com Guerreiro e Mago concluídos; `WithCompletedCampaign` substitui o snapshot da classe |
+| `HeroSnapshot` | Classe (Guerreiro ou Mago), nome e atributos finais com melhorias; cada atributo limitado a 9999 |
 
 ## Integridade
 
@@ -77,4 +78,5 @@ No protótipo todos os encontros usam o mesmo pool; cada `EncounterDefinition` d
 - HP atual, itens e melhorias do jogador continuam entre encontros; ações reversíveis anteriores não.
 - Apenas o snapshot final da campanha, já com as melhorias obtidas, pode ser persistido para outros modos.
 - A progressão da campanha não usa sorteio para escolher ou ordenar inimigos.
+- O `Core` define quais habilidades gastam turno: todas, exceto `RevertTurn` e `RevertBattle`; o `consumesTurn` dos assets deve coincidir com essa regra.
 - `CampaignConfiguration` e o `ContentValidator` exigem exatamente os sete encontros na ordem canônica; campanhas truncadas, estendidas ou reordenadas são rejeitadas.

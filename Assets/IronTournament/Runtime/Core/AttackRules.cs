@@ -51,7 +51,7 @@ namespace IronTournament.Core
 
         private static bool IsArcane(CombatantId id)
         {
-            return id == CombatantId.Mage;
+            return id == CombatantId.Mage || id == CombatantId.Vampire || id == CombatantId.Necromancer;
         }
 
         private static AttackOutcome Physical(CombatantState attacker, CombatantState target, IRandomSource random)

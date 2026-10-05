@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace IronTournament.Core
 {
     internal static class ItemRules
@@ -26,6 +28,20 @@ namespace IronTournament.Core
         public static bool IsUseful(ItemConfiguration item, CombatantState hero)
         {
             return item.Id != ItemId.FlameCloak || !hero.HasFlameCloak;
+        }
+
+        public static List<ItemConfiguration> Eligible(IReadOnlyList<ItemConfiguration> pool, CombatantId hero)
+        {
+            var eligible = new List<ItemConfiguration>();
+            for (var index = 0; index < pool.Count; index++)
+            {
+                if (IsAvailableTo(pool[index].Id, hero))
+                {
+                    eligible.Add(pool[index]);
+                }
+            }
+
+            return eligible;
         }
 
         public static void Apply(ItemConfiguration item, CombatantState hero)

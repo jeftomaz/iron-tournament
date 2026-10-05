@@ -11,10 +11,12 @@ namespace IronTournament.Core
             IRandomSource random)
         {
             var stats = opponent.BaseStats;
-            var effective = new CombatantStats(
-                Vary(stats.MaximumHealth, variancePercent, 1, random),
-                Vary(stats.Attack, variancePercent, 1, random),
-                Vary(stats.Defense, variancePercent, 0, random));
+            var effective = variancePercent == 0
+                ? stats
+                : new CombatantStats(
+                    Vary(stats.MaximumHealth, variancePercent, 1, random),
+                    Vary(stats.Attack, variancePercent, 1, random),
+                    Vary(stats.Defense, variancePercent, 0, random));
             var state = new CombatantState(opponent, effective);
             if (canRage)
             {

@@ -19,6 +19,14 @@ namespace IronTournament.Core
                 && combatant.IsHealthAtOrBelow(ThresholdPercent);
         }
 
+        public static bool IsHeroReady(CombatantState hero)
+        {
+            return hero.HasAbility(AbilityId.Fury)
+                && !hero.HasRaged
+                && !hero.IsDefeated
+                && hero.IsHealthAtOrBelow(ThresholdPercent);
+        }
+
         public static int Excess(CombatantState target)
         {
             return Math.Max(0, target.CurrentHealth - target.HealthAtPercent(ThresholdPercent));

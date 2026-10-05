@@ -13,6 +13,13 @@ namespace IronTournament.Core
         Failed
     }
 
+    public enum CampaignMode
+    {
+        None,
+        Campaign,
+        EnemyMode
+    }
+
     public sealed class CampaignRun
     {
         public const int DropOfferSize = 2;
@@ -20,40 +27,45 @@ namespace IronTournament.Core
         private static readonly ReadOnlyCollection<ItemConfiguration> NoOffer =
             new ReadOnlyCollection<ItemConfiguration>(new List<ItemConfiguration>());
 
-        private readonly IReadOnlyList<EncounterConfiguration> encounters;
+        private readonly List<EncounterStage> stages;
         private readonly IRandomSource random;
         private readonly List<ItemId> obtainedItems = new List<ItemId>();
         private Battle battle;
 
         public CampaignRun(CombatantConfiguration hero, CampaignConfiguration campaign, IRandomSource random)
+            : this(CampaignMode.Campaign, CampaignHero(hero), CampaignStages(campaign), random)
         {
-            if (hero == null)
-            {
-                throw new ArgumentNullException(nameof(hero));
-            }
+        }
 
-            if (campaign == null)
-            {
-                throw new ArgumentNullException(nameof(campaign));
-            }
-
+        private CampaignRun(
+            CampaignMode mode,
+            CombatantConfiguration hero,
+            List<EncounterStage> stages,
+            IRandomSource random)
+        {
             if (random == null)
             {
                 throw new ArgumentNullException(nameof(random));
             }
 
-            if (hero.Side != CombatantSide.Player)
-            {
-                throw new ArgumentException("The hero must be a player.", nameof(hero));
-            }
-
+            Mode = mode;
             Hero = new CombatantState(hero, hero.BaseStats);
-            encounters = campaign.Encounters;
+            this.stages = stages;
             this.random = random;
             DropOffer = NoOffer;
             ObtainedItems = new ReadOnlyCollection<ItemId>(obtainedItems);
+
+            var opponents = new List<CombatantId>();
+            foreach (var stage in stages)
+            {
+                opponents.Add(stage.Opponent.Id);
+            }
+
+            Opponents = new ReadOnlyCollection<CombatantId>(opponents);
             StartEncounter(0);
         }
+
+        public CampaignMode Mode { get; }
 
         public CombatantState Hero { get; }
 
@@ -61,13 +73,48 @@ namespace IronTournament.Core
 
         public int EncounterIndex { get; private set; }
 
-        public int EncounterCount => encounters.Count;
+        public int EncounterCount => stages.Count;
+
+        public IReadOnlyList<CombatantId> Opponents { get; }
 
         public IBattle CurrentBattle => battle;
 
         public IReadOnlyList<ItemConfiguration> DropOffer { get; private set; }
 
         public IReadOnlyList<ItemId> ObtainedItems { get; }
+
+        public HeroSnapshot FinalSnapshot { get; private set; }
+
+        public static CampaignRun StartEnemyMode(
+            CombatantId character,
+            CampaignConfiguration campaign,
+            ProgressData progress,
+            IRandomSource random)
+        {
+            if (campaign == null)
+            {
+                throw new ArgumentNullException(nameof(campaign));
+            }
+
+            if (progress == null)
+            {
+                throw new ArgumentNullException(nameof(progress));
+            }
+
+            if (random == null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            if (!progress.IsEnemyModeUnlocked)
+            {
+                throw new ArgumentException("Enemy mode is locked.", nameof(progress));
+            }
+
+            var hero = EnemyModeSetup.Character(character, campaign);
+            var stages = EnemyModeSetup.Stages(character, campaign, progress, random);
+            return new CampaignRun(CampaignMode.EnemyMode, hero, stages, random);
+        }
 
         public bool ConcludeEncounter()
         {
@@ -82,13 +129,14 @@ namespace IronTournament.Core
                 return true;
             }
 
-            if (EncounterIndex == encounters.Count - 1)
+            if (EncounterIndex == stages.Count - 1)
             {
-                Phase = CampaignPhase.Completed;
+                Complete();
                 return true;
             }
 
-            var offer = DropTable.Roll(EligibleDrops(encounters[EncounterIndex].DropPool), DropOfferSize, random);
+            var stage = stages[EncounterIndex];
+            var offer = DropTable.Roll(EligibleDrops(stage.DropPool), stage.DropOfferSize, random);
             if (offer.Count == 0)
             {
                 StartEncounter(EncounterIndex + 1);
@@ -121,7 +169,7 @@ namespace IronTournament.Core
             return false;
         }
 
-        private List<ItemConfiguration> EligibleDrops(IReadOnlyList<ItemConfiguration> pool)
+        private List<ItemConfiguration> EligibleDrops(IList<ItemConfiguration> pool)
         {
             var eligible = new List<ItemConfiguration>();
             for (var index = 0; index < pool.Count; index++)
@@ -135,16 +183,65 @@ namespace IronTournament.Core
             return eligible;
         }
 
+        private static CombatantConfiguration CampaignHero(CombatantConfiguration hero)
+        {
+            if (hero == null)
+            {
+                throw new ArgumentNullException(nameof(hero));
+            }
+
+            if (hero.Side != CombatantSide.Player || !HeroSnapshot.IsHeroClass(hero.Id))
+            {
+                throw new ArgumentException("The hero must be the Warrior or the Mage.", nameof(hero));
+            }
+
+            return hero;
+        }
+
+        private static List<EncounterStage> CampaignStages(CampaignConfiguration campaign)
+        {
+            if (campaign == null)
+            {
+                throw new ArgumentNullException(nameof(campaign));
+            }
+
+            var stages = new List<EncounterStage>();
+            foreach (var encounter in campaign.Encounters)
+            {
+                stages.Add(new EncounterStage(
+                    encounter.Opponent,
+                    encounter.EnemyStatVariancePercent,
+                    FuryRules.CanRageInCampaign(encounter.Opponent.Id),
+                    new List<ItemConfiguration>(encounter.DropPool),
+                    DropOfferSize));
+            }
+
+            return stages;
+        }
+
+        private void Complete()
+        {
+            Phase = CampaignPhase.Completed;
+            if (Mode == CampaignMode.Campaign)
+            {
+                var stats = Hero.Stats;
+                FinalSnapshot = new HeroSnapshot(
+                    Hero.Id,
+                    Hero.Configuration.DisplayName,
+                    new CombatantStats(
+                        Math.Min(stats.MaximumHealth, HeroSnapshot.MaximumStatValue),
+                        Math.Min(stats.Attack, HeroSnapshot.MaximumStatValue),
+                        Math.Min(stats.Defense, HeroSnapshot.MaximumStatValue)));
+            }
+        }
+
         private void StartEncounter(int index)
         {
-            var encounter = encounters[index];
-            var opponent = EncounterSetup.CreateOpponent(
-                encounter.Opponent,
-                encounter.EnemyStatVariancePercent,
-                FuryRules.CanRageInCampaign(encounter.Opponent.Id),
-                random);
+            var stage = stages[index];
+            var opponent = EncounterSetup.CreateOpponent(stage.Opponent, stage.VariancePercent, stage.CanRage, random);
             EncounterIndex = index;
             DropOffer = NoOffer;
+            Hero.PrepareForEncounter();
             battle = new Battle(new BattleState(Hero, opponent), random);
             Phase = CampaignPhase.Battle;
         }

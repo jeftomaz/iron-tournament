@@ -75,6 +75,9 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Pergaminho Misterioso: com HP ≤ 30%, cura 50% do HP máximo e gasta o turno (decisão de João Lucas, 2026-10-04, a partir do protótipo).
 - Manto de Chamas: não volta a ser oferecido a quem já o tem (decisão de João Lucas, 2026-10-04, a partir do protótipo).
 - Chifre da Irmandade: armar gasta o turno; o próximo golpe letal é interceptado por um golpe de 30 + ATK do Mago; se o inimigo cair, o HP do Mago sobe a 30% do máximo, senão fica em 1 (decisão de João Lucas, 2026-10-04, a partir do protótipo).
+- Modo inimigo: o inimigo escolhido joga com seus atributos-base e enfrenta um oponente sorteado por tier (Goblin/Esqueleto, Cavaleiro/Lobisomem, Vampiro/Necromante), sem repetir o escolhido; antes do chefe escolhe 1 de 3 itens base; o chefe é o snapshot final de uma classe concluída, sorteada, sem variação nem fúria (decisão de João Lucas, 2026-10-04, a partir do protótipo).
+- Fúria do herói no modo inimigo: com HP ≤ 30%, vira a única ação, gasta o turno e reduz o oponente a 30% do HP máximo, uma vez por encontro (decisão de João Lucas, 2026-10-04, a partir do protótipo).
+- Vampiro e Necromante, como heróis do modo inimigo, atacam ignorando a DEF; os demais usam o ataque físico com crítico e penetração (decisão de João Lucas, 2026-10-04, a partir do protótipo).
 
 ## Restrições
 

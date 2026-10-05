@@ -67,7 +67,11 @@ namespace IronTournament.Core
         private ReadOnlyCollection<AbilityId> ComputeAvailableActions()
         {
             var actions = new List<AbilityId>();
-            if (!State.IsOver)
+            if (!State.IsOver && FuryRules.IsHeroReady(State.Hero))
+            {
+                actions.Add(AbilityId.Fury);
+            }
+            else if (!State.IsOver)
             {
                 var abilities = State.Hero.Configuration.Abilities;
                 for (var index = 0; index < abilities.Count; index++)
@@ -165,6 +169,10 @@ namespace IronTournament.Core
                     break;
                 case AbilityId.ArmGuardian:
                     hero.ArmGuardian();
+                    break;
+                case AbilityId.Fury:
+                    hero.MarkRaged();
+                    Damage(hero, State.Opponent, DamageKind.Fury, FuryRules.Excess(State.Opponent), false, false, events);
                     break;
             }
         }

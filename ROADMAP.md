@@ -34,7 +34,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 ## Fase 4 — Progresso e modo inimigo
 
-- `todo` `JL` Implementar `ProgressData`, conclusão por classe, desbloqueio após Guerreiro e Mago, snapshot final com melhorias e regras do modo inimigo por tiers.
+- `done` `JL` Implementar `ProgressData`, conclusão por classe, desbloqueio após Guerreiro e Mago, snapshot final com melhorias e regras do modo inimigo por tiers.
 - `todo` `JT` Implementar save local versionado, validação de faixas, escrita atômica compatível com WebGL e testes de corrupção/migração.
 - `todo` `JP` Implementar seleção de classe, indicadores de progresso, desbloqueio, seleção de inimigo, drop pré-boss e apresentação do herói final.
 - `todo` `JT` Integrar campanha, persistência e modo inimigo sem expor save ou alteração de estado pela UI.
