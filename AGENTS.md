@@ -51,9 +51,10 @@ Regras para esses arquivos:
 - Antes de criar uma branch: confirmar o worktree limpo; executar, nesta ordem, `git fetch origin --prune`, `git switch main`, `git pull --ff-only origin main` e `git switch -c <tipo>/<escopo>`. Nunca iniciar da branch atualmente aberta por conveniência.
 - Cada branch e PR contém exatamente uma tarefa coesa; itens distintos do `ROADMAP.md` não compartilham PR. O destino do PR é sempre `main`.
 - Trabalho dependente não cria branch nem inicia implementação antes do merge da dependência. Depois do merge, cria uma nova branch da `main` atualizada.
-- Nunca incorporar outra branch de tarefa, nem executar `git merge main` numa branch de tarefa. Para atualizar uma branch ainda aberta, executar `git fetch origin --prune` e `git rebase origin/main`.
+- A integração é linear: concluir e integrar uma PR antes de iniciar a próxima da fila. Nunca incorporar outra branch de tarefa, nem executar `git merge main` numa branch de tarefa.
+- Rebase não é rotina. Só pode ocorrer uma vez, excepcionalmente, para recuperar uma branch histórica ou defasada que precise ser preservada; antes, confirmar que a `main` não receberá outra PR antes do merge. Se houver dependência ou a base continuar mudando, fechar a PR e criar uma nova branch da `main` após o merge necessário.
 - Antes de abrir ou atualizar um PR, conferir `git log --oneline origin/main..HEAD`: devem aparecer somente commits da tarefa atual. Se aparecer commit de outra tarefa, interromper e corrigir a base antes do push.
-- Após rebase, force push só é permitido na própria branch com `--force-with-lease`. `--force` é proibido.
+- No rebase excepcional, force push só é permitido na própria branch com `--force-with-lease`. `--force` é proibido.
 - Preencher o template do PR, identificar a única tarefa entregue e confirmar seu escopo. O check `policy` valida destino, atualização com `main`, empilhamento e essa declaração.
 - Merge exige branch atualizada com `main`, escopo revisado, checks obrigatórios aprovados e conversas resolvidas. PR de interface também segue as evidências de `UI_CONTRACTS.md`.
 - Após o merge, remover a branch remota e local. PR substituído deve ser fechado antes da remoção de sua branch.
