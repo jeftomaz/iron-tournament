@@ -1,3 +1,5 @@
+using System;
+
 namespace IronTournament.Core
 {
     internal static class FuryRules
@@ -14,17 +16,12 @@ namespace IronTournament.Core
             return combatant.CanRage
                 && !combatant.HasRaged
                 && !combatant.IsDefeated
-                && IsAtOrBelowThreshold(combatant);
+                && combatant.IsHealthAtOrBelow(ThresholdPercent);
         }
 
-        public static bool IsAtOrBelowThreshold(CombatantState combatant)
+        public static int Excess(CombatantState target)
         {
-            return (long)combatant.CurrentHealth * 100 <= (long)combatant.Stats.MaximumHealth * ThresholdPercent;
-        }
-
-        public static int Threshold(CombatantState target)
-        {
-            return (int)((long)target.Stats.MaximumHealth * ThresholdPercent / 100);
+            return Math.Max(0, target.CurrentHealth - target.HealthAtPercent(ThresholdPercent));
         }
     }
 }

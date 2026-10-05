@@ -45,7 +45,13 @@ namespace IronTournament.Core
         None,
         HopeScroll,
         FlameCloak,
-        BrotherhoodHorn
+        BrotherhoodHorn,
+        HealingPotion,
+        AttackGem,
+        DefenseRune,
+        PowerCrystal,
+        LifeElixir,
+        DivineDefense
     }
 
     public enum ItemModifierKind

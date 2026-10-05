@@ -21,14 +21,14 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 ## Fase 2 — Mago e reversão
 
 - `done` `JL` Implementar ataque que ignora defesa, carga compartilhada por encontro, snapshots completos de turno/batalha e continuidade da aleatoriedade; testar ataque A, resposta B, reversão para antes de A e nova escolha do Mago.
-- `doing` `JL` Cobrir por testes a restauração de HP, atributos, efeitos, consumíveis, fase, flags e histórico, além da proibição após morte.
+- `done` `JL` Cobrir por testes a restauração de HP, atributos, efeitos, consumíveis, fase, flags e histórico, além da proibição após morte.
 - `todo` `JP` Apresentar as duas reversões, cancelar eventos visuais desfeitos, redesenhar o estado restaurado e devolver o controle sem reproduzir a resposta inimiga.
 - `todo` `JT` Integrar os checkpoints à `Presentation` e revisar isolamento entre estado restaurável e fonte aleatória.
 
 ## Fase 3 — Campanha, inimigos e itens
 
 - `done` `JL` Implementar a sequência fixa dos sete inimigos, variação de ±15% nos atributos por encontro, variação de dano, fúria de Vampiro/Necromante/Rei Demônio e transição entre encontros.
-- `todo` `JL` Implementar drops ponderados, escolha entre dois tipos distintos, melhorias permanentes e itens exclusivos: Pergaminho, Manto de Chamas (5 de dano direto após cada turno que consome ação, de qualquer lado) e Chifre da Irmandade.
+- `done` `JL` Implementar drops ponderados, escolha entre dois tipos distintos, melhorias permanentes e itens exclusivos: Pergaminho, Manto de Chamas (5 de dano direto após cada turno que consome ação, de qualquer lado) e Chifre da Irmandade.
 - `todo` `JP` Configurar assets dos sete inimigos e produzir telas/animações de transição, fúria, saque, itens, vitória e derrota nas duas orientações.
 - `todo` `JT` Criar e validar os assets `ScriptableObject` canônicos, garantindo Mago equipado com 30 ATK e faixas válidas para a variação dos inimigos.
 

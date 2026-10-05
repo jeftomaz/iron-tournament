@@ -17,7 +17,12 @@ namespace IronTournament.Core.Tests
 
         public static CombatantConfiguration Warrior()
         {
-            return Hero(CombatantId.Warrior, new CombatantStats(120, 30, 23), AbilityId.BasicAttack, AbilityId.Guard);
+            return Hero(
+                CombatantId.Warrior,
+                new CombatantStats(120, 30, 23),
+                AbilityId.BasicAttack,
+                AbilityId.Guard,
+                AbilityId.UseHopeScroll);
         }
 
         public static CombatantConfiguration Mage()
@@ -27,7 +32,8 @@ namespace IronTournament.Core.Tests
                 new CombatantStats(110, 30, 5),
                 AbilityId.BasicAttack,
                 AbilityId.RevertTurn,
-                AbilityId.RevertBattle);
+                AbilityId.RevertBattle,
+                AbilityId.ArmGuardian);
         }
 
         public static CombatantConfiguration Goblin()
@@ -54,6 +60,11 @@ namespace IronTournament.Core.Tests
             return Enemy(id, 1, 1, 0);
         }
 
+        public static ItemConfiguration Item(ItemId id, int dropWeight, params ItemModifier[] modifiers)
+        {
+            return new ItemConfiguration(id, id.ToString(), dropWeight, modifiers);
+        }
+
         public static CampaignConfiguration Campaign(params CombatantConfiguration[] overrides)
         {
             return new CampaignConfiguration(CanonicalEncounters(false, overrides));
@@ -64,29 +75,16 @@ namespace IronTournament.Core.Tests
             return new CampaignConfiguration(CanonicalEncounters(true, overrides));
         }
 
+        public static CampaignConfiguration CampaignWithDrops(
+            IList<ItemConfiguration> dropPool,
+            params CombatantConfiguration[] overrides)
+        {
+            return new CampaignConfiguration(CanonicalEncounters(dropPool, false, overrides));
+        }
+
         public static List<EncounterConfiguration> CanonicalEncounters(bool weak, params CombatantConfiguration[] overrides)
         {
-            var encounters = new List<EncounterConfiguration>();
-            for (var index = 0; index < CampaignConfiguration.CanonicalOrder.Count; index++)
-            {
-                var id = CampaignConfiguration.CanonicalOrder[index];
-                var stats = CanonicalEnemyStats[index];
-                var opponent = weak ? WeakEnemy(id) : Enemy(id, stats.MaximumHealth, stats.Attack, stats.Defense);
-                foreach (var replacement in overrides)
-                {
-                    if (replacement.Id == id)
-                    {
-                        opponent = replacement;
-                    }
-                }
-
-                encounters.Add(new EncounterConfiguration(
-                    opponent,
-                    EncounterConfiguration.RequiredEnemyStatVariancePercent,
-                    new List<ItemConfiguration>()));
-            }
-
-            return encounters;
+            return CanonicalEncounters(new List<ItemConfiguration>(), weak, overrides);
         }
 
         // Cada encontro vencido sem rolagens de ataque consome só as três rolagens de variação (0).
@@ -115,6 +113,34 @@ namespace IronTournament.Core.Tests
                 new CombatantState(hero, hero.BaseStats),
                 new CombatantState(opponent, opponent.BaseStats));
             return new Battle(state, random);
+        }
+
+        private static List<EncounterConfiguration> CanonicalEncounters(
+            IList<ItemConfiguration> dropPool,
+            bool weak,
+            CombatantConfiguration[] overrides)
+        {
+            var encounters = new List<EncounterConfiguration>();
+            for (var index = 0; index < CampaignConfiguration.CanonicalOrder.Count; index++)
+            {
+                var id = CampaignConfiguration.CanonicalOrder[index];
+                var stats = CanonicalEnemyStats[index];
+                var opponent = weak ? WeakEnemy(id) : Enemy(id, stats.MaximumHealth, stats.Attack, stats.Defense);
+                foreach (var replacement in overrides)
+                {
+                    if (replacement.Id == id)
+                    {
+                        opponent = replacement;
+                    }
+                }
+
+                encounters.Add(new EncounterConfiguration(
+                    opponent,
+                    EncounterConfiguration.RequiredEnemyStatVariancePercent,
+                    dropPool));
+            }
+
+            return encounters;
         }
 
         private static CombatantConfiguration Combatant(
