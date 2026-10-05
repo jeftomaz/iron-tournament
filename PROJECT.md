@@ -93,7 +93,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - João Pedro instancia os `ScriptableObject`; Jeferson mantém seus tipos e validação; João Lucas define quais valores o núcleo requer.
 - Testes EditMode das regras pertencem a João Lucas; testes PlayMode e evidência visual pertencem a João Pedro; Jeferson mantém a execução de ambos na CI.
 - Cada branch nasce da `main` atualizada e cada PR aponta para `main`; branches e PRs empilhadas sobre outra feature são proibidas. Trabalho dependente espera o merge e então faz rebase na `main`.
-- Antes de subir commit que altere código, assets, `Packages/`, `ProjectSettings/` ou CI, executar EditMode, PlayMode e build WebGL; mudanças exclusivamente documentais exigem `git diff --check`. Todo PR interno roda CI com validações e build.
+- Antes de qualquer commit, executar `scripts/verify.sh`: EditMode, PlayMode e build WebGL. O hook `pre-commit` é obrigatório; `--no-verify` é proibido. Após clonar, executar `scripts/install-git-hooks.sh` para ativar os hooks versionados.
 - O estado visual é acompanhado localmente pelo Unity Editor, em Play Mode, nas janelas Game, Scene e Inspector.
 
 ## CI
@@ -101,7 +101,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Os runners hospedados `ubuntu-latest` executam os contêineres GameCI para testes EditMode e build WebGL.
 - O runner macOS e a sessão do Unity Hub não são dependências da CI; ficam disponíveis apenas para desenvolvimento local.
 - Cada job restaura e salva somente `Library`, com chave separada por alvo, sistema e fontes/configuração do Unity; a primeira execução continua fria.
-- A workflow executa uma verificação leve em toda PR; GameCI só roda se mudarem `Assets/`, `Packages/`, `ProjectSettings/` ou a própria workflow. Uma execução completa adicional é manual (`workflow_dispatch`), não no push pós-merge.
+- Toda PR interna executa EditMode, PlayMode e build WebGL; PRs de forks continuam sem GameCI, cache ou secrets.
 - A `main` só recebe código já validado pela PR atualizada; novas pushes na mesma PR cancelam a execução anterior.
 
 ## Segurança do repositório público

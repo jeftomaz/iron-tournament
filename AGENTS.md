@@ -48,8 +48,8 @@ Regras para esses arquivos:
 ## Git e validação
 
 - Toda branch nasce da `main` atualizada e toda PR aponta para `main`. Branches e PRs empilhadas sobre outra feature são proibidas; trabalho dependente espera o merge e então faz rebase na `main`.
-- Antes de subir commit que altere código, assets, `Packages/`, `ProjectSettings/` ou CI, executar a suíte completa: EditMode, PlayMode e build WebGL. Não subir mudança com falha conhecida; se o ambiente impedir a execução, registrar o bloqueio e pedir orientação.
-- Em mudança exclusivamente documental, validar `git diff --check`; a CI de escopo confirma que não há alteração Unity.
+- Antes de qualquer commit, executar `scripts/verify.sh`: EditMode, PlayMode e build WebGL. O hook `pre-commit` é obrigatório; `--no-verify` é proibido. Se o ambiente impedir a execução, não subir o commit e pedir orientação.
+- Após clonar, executar `scripts/install-git-hooks.sh` para ativar os hooks versionados.
 
 ## Fluxo de trabalho por tarefa
 
