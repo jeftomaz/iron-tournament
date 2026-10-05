@@ -6,6 +6,7 @@
 | `BattleHud` | Exibir HP, estados e mensagens | Alterar o estado da batalha |
 | `ActionMenu` | Mostrar ações disponíveis e enviar a escolha | Decidir disponibilidade de ações |
 | `BattleEventPlayer` | Apresentar eventos em sequência | Criar resultados de combate |
+| `BattlePresenter` | Enviar escolhas ao `IBattle` e sincronizar a apresentação | Criar configurações ou implementar regras |
 
 ## Referências de tela
 
@@ -16,7 +17,20 @@
 
 ## Regras vinculantes
 
+- Cena-base: `Assets/Scenes/Battle.unity`; `BattleView` alterna composição por orientação e recorta o cenário mantendo sua proporção.
+- A cena `Battle` é a entrada habilitada no build desta vertical; a inicialização do combate continua sendo fornecida pelo bootstrap.
+- Introdução: Guerreiro `east` e Goblin `west`, frente a frente. Ao clicar em `Iniciar combate`, usar Guerreiro `north-east` em primeiro plano e Goblin `south-west` acima e à direita; ocultar o botão. A transição atual é visual, aguardando integração com o núcleo.
+- `Assets/IronTournament/Prefabs/BattleCombatant.prefab` é compartilhado por ambos os lados; variar o sprite na instância, sem duplicar o prefab.
+- Assets usados na cena-base: filtro point, sem mipmaps/compressão e 48 pixels por unidade; personagens usam múltiplos inteiros em pixels de tela.
+- `BattleHud.ShowHealth` recebe lado, HP atual e máximo válidos; só apresenta valores. Sem estado recebido, exibe `HP — / —`. `SetStatus` apresenta mensagens literais de até 80 caracteres, sem controles nem interpretação rich text.
+- `ActionMenu.SetAvailableActions` recebe ações disponíveis e bloqueio de entrada; apresenta `Atacar`/`Defender` nesta vertical. `ActionSelected` envia o `AbilityId` e bloqueia novos cliques até a próxima atualização; o controlador ainda deve validar a escolha no núcleo. Sem integração, ambos os botões ficam desabilitados.
+- `BattleEventPlayer.PlayEvents` recebe os `BattleEvent` aprovados e o `BattleState` do encontro: mapeia IDs pelos participantes, apresenta ataque/defesa, dano com crítico/penetração/reflexão e encerramento. O HP muda na interface somente quando o respectivo evento é apresentado, usando `RemainingHealth` e o máximo recebido; não calcula resultados nem modifica o núcleo.
+- O lote é validado integralmente antes da reprodução: rejeitar participantes externos, HP acima do máximo, eventos nulos, habilidades sem apresentação e encerramento fora do fim. `Play` reutiliza as mesmas rotinas de efeitos; a lista recebida é copiada antes de iniciar.
+- A sequência bloqueia o menu por `SetPresentationBlocked`; atualizações de disponibilidade durante a animação só aparecem após o desbloqueio, preservando o bloqueio recebido do controlador. `Cancel` e desativação restauram cores/posições, ocultam o feedback e descartam a sequência pendente.
+- Cancelar também descarta atualizações de HP ainda não apresentadas; o controlador deve redesenhar o estado vigente antes de reabrir as ações.
+- `BattleEventPlayer.End` recebe o `BattleEndedEvent` aprovado do núcleo e encerra a sequência após os efeitos anteriores; reutiliza a mensagem do HUD para vitória/derrota, oculta as ações e escurece o vencido. Não deduz resultado pelo HP, não altera a saúde e rejeita novas sequências após o encerramento. Cancelar antes do evento descarta também o resultado pendente.
 - A UI consome estado somente para exibição.
+- `BattlePresenter.Initialize(IBattle)` recebe uma batalha ativa do bootstrap de Jeferson, uma vez por cena. `BattleView.CombatStarted` inicia a exibição; escolhas passam por `Submit`, ficam bloqueadas durante os eventos e são reabertas com `AvailableActions`. Ao retomar uma apresentação interrompida, redesenhar o estado vigente do núcleo. Sem inicialização, as ações permanecem desabilitadas.
 - `Presentation` pode referenciar `Core` e `Content`; o núcleo não referencia `UnityEngine` nem componentes de interface.
 - Toda escolha passa pela validação do núcleo.
 - Entrada fica bloqueada enquanto eventos do turno estão sendo apresentados.

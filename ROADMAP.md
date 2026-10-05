@@ -10,12 +10,12 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 - `done` `JT` Definir tipos de `Content`, validadores e adaptação para os modelos puros do `Core`.
 - `doing` `JT` Manter o mapa de arquitetura, contratos e decisões estruturais para a integração e a entrega final.
 - `done` `JL` Implementar contratos fundamentais: estados, fases, ações, eventos, resultados e fonte aleatória injetável.
-- `todo` `JP` Preparar cena-base, importação pixel-perfect, prefabs dos combatentes e composições `360x640` e `1280x720`.
+- `done` `JP` Preparar cena-base, importação pixel-perfect, prefab compartilhado dos combatentes e composições `360x640` e `1280x720`.
 
 ## Fase 1 — Vertical Guerreiro x Goblin
 
 - `done` `JL` Implementar ataque físico, defesa temporária, reflexão, crítico de 7%, penetração de 10%, resposta do Goblin, vitória e derrota; cobrir regras e extremos em EditMode.
-- `todo` `JP` Implementar `BattleView`, `BattleHud`, `ActionMenu` e `BattleEventPlayer`, com bloqueio de entrada, estados extremos e fluxo completo do encontro.
+- `doing` `JP` Completar apresentação Guerreiro/Goblin: componentes, ligação ao `IBattle`, assets de conteúdo e cena no build preparados; pendente validação do fluxo com bootstrap.
 - `todo` `JT` Compor configurações Guerreiro/Goblin, ligar cena ao núcleo e validar o fluxo na CI e no build WebGL.
 
 ## Fase 2 — Mago e reversão
