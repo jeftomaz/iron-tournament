@@ -2,7 +2,7 @@
 
 ## 2026-10-05
 
-- Tornado explícito o fluxo Git: `main` única branch permanente, uma tarefa por branch/PR, dependências aguardam merge, atualização somente por rebase e limpeza obrigatória após integração.
+- Tornado explícito o fluxo Git: `main` única branch permanente, uma tarefa por branch/PR, integração em fila linear, rebase único e excepcional para resgatar branch histórica e limpeza obrigatória após integração.
 - Separada a validação por etapa: testes afetados durante o desenvolvimento, `git diff --cached --check` em todo commit, suíte Unity completa em mudanças não documentais e novamente na CI interna.
 - Adicionado o check `policy` para bloquear PR com destino incorreto, branch desatualizada ou empilhada e sem declaração de tarefa única; o template padroniza escopo e validação.
 
