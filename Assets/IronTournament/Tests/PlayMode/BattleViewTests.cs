@@ -121,7 +121,10 @@ namespace IronTournament.Presentation.Tests
                 yield return null;
                 Assert.That(HealthText("OpponentHealth"), Is.EqualTo($"HP {state.Opponent.CurrentHealth} / {maximumHealth}"));
                 Assert.That(state.Opponent.CurrentHealth, Is.LessThan(maximumHealth));
-                Assert.That(menu.GetComponentsInChildren<Button>().All(button => button.interactable), Is.True);
+                var buttons = menu.GetComponentsInChildren<Button>();
+                Assert.That(buttons.Single(button => button.name == "Attack").interactable, Is.True);
+                Assert.That(buttons.Single(button => button.name == "Guard").interactable, Is.True);
+                Assert.That(buttons.Single(button => button.name == "UseHopeScroll").interactable, Is.False);
             }
         }
 
@@ -576,10 +579,11 @@ namespace IronTournament.Presentation.Tests
                 Assert.That(view.SelectedPlayer.Id, Is.EqualTo(CombatantId.Mage));
                 Assert.That(view.GetCombatantRect(CombatantSide.Player).GetComponent<Image>().sprite.name,
                     Is.EqualTo("north-east_0"));
-                Assert.That(buttons.Length, Is.EqualTo(3));
+                Assert.That(buttons.Length, Is.EqualTo(4));
                 Assert.That(buttons.Single(button => button.name == "Attack").GetComponentInChildren<Text>().text,
                     Is.EqualTo("Ataque mágico"));
                 Assert.That(buttons.Single(button => button.name == "RevertTurn").interactable, Is.False);
+                Assert.That(buttons.Single(button => button.name == "ArmGuardian").interactable, Is.False);
 
                 var initialPlayerHealth = battle.State.Hero.CurrentHealth;
                 var initialOpponentHealth = battle.State.Opponent.CurrentHealth;
