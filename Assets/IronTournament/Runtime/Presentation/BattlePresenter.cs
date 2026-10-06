@@ -14,11 +14,29 @@ namespace IronTournament.Presentation
 
         private IBattle battle;
         private bool awaitingPlayback;
+        private bool completionReported;
+
+        public event Action<BattlePhase> EncounterConcluded;
 
         public void Initialize(IBattle encounter)
         {
             if (encounter == null) throw new ArgumentNullException(nameof(encounter));
             if (battle != null) throw new InvalidOperationException("The presenter is already bound to a battle.");
+            Bind(encounter);
+        }
+
+        public void BeginNextEncounter(IBattle encounter)
+        {
+            if (encounter == null) throw new ArgumentNullException(nameof(encounter));
+            if (battle == null || !battle.State.IsOver)
+                throw new InvalidOperationException("The current encounter must be over before advancing.");
+            if (awaitingPlayback || events.IsPlaying)
+                throw new InvalidOperationException("The previous encounter is still being presented.");
+            Bind(encounter);
+        }
+
+        private void Bind(IBattle encounter)
+        {
             if (encounter.State == null || encounter.State.IsOver)
                 throw new ArgumentException("An active battle is required.", nameof(encounter));
             if (view.SelectedPlayer != null && encounter.State.Hero.Id != view.SelectedPlayer.Id)
@@ -27,6 +45,7 @@ namespace IronTournament.Presentation
                 encounter.State.Opponent.Id != view.SelectedEncounter.Opponent.Id)
                 throw new ArgumentException("The battle opponent must match the selected encounter.", nameof(encounter));
             battle = encounter;
+            completionReported = false;
             menu.ConfigureActions(encounter.State.Hero.Configuration.Abilities);
             if (isActiveAndEnabled && view.IsCombatStarted) RenderState();
         }
@@ -52,6 +71,11 @@ namespace IronTournament.Presentation
             if (!awaitingPlayback || events.IsPlaying) return;
             awaitingPlayback = false;
             RenderState();
+            if (battle.State.IsOver && !completionReported)
+            {
+                completionReported = true;
+                EncounterConcluded?.Invoke(battle.State.Phase);
+            }
         }
 
         private void Submit(AbilityId action)

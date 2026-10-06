@@ -212,6 +212,14 @@ MonoBehaviour:
     southWest: {fileID: -1505471383403432660, guid: dfe61948768534555a5284b291f0a3b2, type: 3}
     background: {fileID: 21300000, guid: c51fd995e378a56468c91bd20dc19f16, type: 3}
     caption: "ENCONTRO 02 / CEMIT\xC9RIO ESQUECIDO"
+  - definition: {fileID: 11400000, guid: a6f69d9acb8b48d3bb114590770acc45, type: 2}
+    encounter: {fileID: 11400000, guid: bd5a2e648aa94f60a683b4cb10737c64, type: 2}
+    east: {fileID: -2097619832946416524, guid: 5b267512f169c4c49853c649f47290a3, type: 3}
+    northEast: {fileID: -206670225839568205, guid: 79cb0870af2d94cce876035443e1601b, type: 3}
+    west: {fileID: 3373983171478037719, guid: 56d30c9ee06c34388bffef288d14baaf, type: 3}
+    southWest: {fileID: -1505471383403432660, guid: f1c6898686a6e4497aa4fa8aa7f06be5, type: 3}
+    background: {fileID: 3620857774534399047, guid: 4667ab8d57d047744a001efdbe63a4b9, type: 3}
+    caption: ENCONTRO 03 / FORTALEZA DO CAVALEIRO
   - definition: {fileID: 11400000, guid: 48b22cf52a887ee41a637c639f8142e8, type: 2}
     encounter: {fileID: 11400000, guid: 5dc4fac1db5d0e74caaa19a4c1c42c90, type: 2}
     east: {fileID: -2097619832946416524, guid: d540115dbb2634066982b1599d467020, type: 3}
@@ -326,6 +334,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: IronTournament.Bootstrap::IronTournament.Bootstrap.BattleBootstrap
   view: {fileID: 46471660}
   presenter: {fileID: 46471663}
+  menu: {fileID: 221525479}
+  campaign: {fileID: 11400000, guid: 3175bc3317584e21a21a145aa960e416, type: 2}
 --- !u!1 &75410421
 GameObject:
   m_ObjectHideFlags: 0

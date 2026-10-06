@@ -10,19 +10,28 @@ namespace IronTournament.Presentation
     [DisallowMultipleComponent]
     public sealed class ActionMenu : MonoBehaviour
     {
+        private enum MenuMode
+        {
+            Actions,
+            Drops
+        }
+
         [SerializeField] private Button attackButton;
         [SerializeField] private Button guardButton;
 
         private readonly List<Button> buttons = new List<Button>();
         private readonly List<AbilityConfiguration> actions = new List<AbilityConfiguration>();
+        private readonly List<ItemConfiguration> drops = new List<ItemConfiguration>();
         private readonly Dictionary<Button, UnityAction> listeners = new Dictionary<Button, UnityAction>();
         private readonly HashSet<AbilityId> available = new HashSet<AbilityId>();
         private bool inputBlocked = true;
         private bool presentationBlocked;
+        private MenuMode mode;
 
         public event Action<AbilityId> ActionSelected;
+        public event Action<ItemId> DropSelected;
 
-        public int ActionRows => Math.Max(1, (actions.Count + 1) / 2);
+        public int ActionRows => Math.Max(1, (OptionCount + 1) / 2);
 
         private void Awake()
         {
@@ -53,10 +62,37 @@ namespace IronTournament.Presentation
             }
             var listening = isActiveAndEnabled;
             if (listening) DetachListeners();
+            mode = MenuMode.Actions;
             actions.Clear();
+            drops.Clear();
             foreach (var configuration in configurations) actions.Add(configuration);
             EnsureButtonPool(actions.Count);
             available.Clear();
+            if (listening) AttachListeners();
+            Render();
+        }
+
+        public void ConfigureDrops(IReadOnlyList<ItemConfiguration> offer)
+        {
+            if (offer == null || offer.Count == 0)
+                throw new ArgumentException("At least one drop is required.", nameof(offer));
+
+            var ids = new HashSet<ItemId>();
+            foreach (var item in offer)
+            {
+                if (item == null || !ids.Add(item.Id))
+                    throw new ArgumentException("Distinct drop configurations are required.", nameof(offer));
+            }
+
+            var listening = isActiveAndEnabled;
+            if (listening) DetachListeners();
+            mode = MenuMode.Drops;
+            actions.Clear();
+            drops.Clear();
+            foreach (var item in offer) drops.Add(item);
+            EnsureButtonPool(drops.Count);
+            available.Clear();
+            inputBlocked = false;
             if (listening) AttachListeners();
             Render();
         }
@@ -99,11 +135,20 @@ namespace IronTournament.Presentation
         private void AttachListeners()
         {
             DetachListeners();
-            for (var index = 0; index < actions.Count; index++)
+            for (var index = 0; index < OptionCount; index++)
             {
-                var action = actions[index].Id;
                 var button = buttons[index];
-                UnityAction listener = () => Select(action);
+                UnityAction listener;
+                if (mode == MenuMode.Actions)
+                {
+                    var action = actions[index].Id;
+                    listener = () => Select(action);
+                }
+                else
+                {
+                    var item = drops[index].Id;
+                    listener = () => SelectDrop(item);
+                }
                 listeners.Add(button, listener);
                 button.onClick.AddListener(listener);
             }
@@ -119,23 +164,38 @@ namespace IronTournament.Presentation
         {
             var blocked = inputBlocked || presentationBlocked;
             var rows = ActionRows;
-            var firstRowSingle = actions.Count % 2 != 0;
+            var firstRowSingle = OptionCount % 2 != 0;
             for (var index = 0; index < buttons.Count; index++)
             {
-                var visible = index < actions.Count;
+                var visible = index < OptionCount;
                 var button = buttons[index];
                 button.gameObject.SetActive(visible);
                 if (!visible) continue;
-                var action = actions[index];
-                button.name = ButtonName(action.Id);
-                button.interactable = available.Contains(action.Id) && !blocked;
-                var label = button.GetComponentInChildren<Text>();
-                label.supportRichText = false;
-                label.text = action.DisplayName;
-                label.fontSize = rows > 1 ? 14 : 16;
+                if (mode == MenuMode.Actions)
+                {
+                    var action = actions[index];
+                    button.name = ButtonName(action.Id);
+                    button.interactable = available.Contains(action.Id) && !blocked;
+                    var actionLabel = button.GetComponentInChildren<Text>();
+                    actionLabel.supportRichText = false;
+                    actionLabel.text = action.DisplayName;
+                    actionLabel.fontSize = rows > 1 ? 14 : 16;
+                }
+                else
+                {
+                    var item = drops[index];
+                    button.name = $"Drop{item.Id}";
+                    button.interactable = !blocked;
+                    var dropLabel = button.GetComponentInChildren<Text>();
+                    dropLabel.supportRichText = false;
+                    dropLabel.text = item.DisplayName;
+                    dropLabel.fontSize = rows > 1 ? 14 : 16;
+                }
                 Place((RectTransform)button.transform, index, rows, firstRowSingle);
             }
         }
+
+        private int OptionCount => mode == MenuMode.Actions ? actions.Count : drops.Count;
 
         private bool HasAction(AbilityId action)
         {
@@ -146,10 +206,18 @@ namespace IronTournament.Presentation
 
         private void Select(AbilityId action)
         {
-            if (!isActiveAndEnabled || !available.Contains(action) || inputBlocked || presentationBlocked) return;
+            if (mode != MenuMode.Actions || !isActiveAndEnabled || !available.Contains(action) || inputBlocked || presentationBlocked) return;
             inputBlocked = true;
             Render();
             ActionSelected?.Invoke(action);
+        }
+
+        private void SelectDrop(ItemId item)
+        {
+            if (mode != MenuMode.Drops || !isActiveAndEnabled || inputBlocked || presentationBlocked) return;
+            inputBlocked = true;
+            Render();
+            DropSelected?.Invoke(item);
         }
 
         private static string ButtonName(AbilityId ability)

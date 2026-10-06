@@ -15,8 +15,8 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 ## Fase 1 — Vertical Guerreiro x Goblin
 
 - `done` `JL` Implementar ataque físico, defesa temporária, reflexão, crítico de 7%, penetração de 10%, resposta do Goblin, vitória e derrota; cobrir regras e extremos em EditMode.
-- `doing` `JP` Completar apresentação Guerreiro/Goblin: componentes, ligação ao `IBattle`, assets de conteúdo e cena no build preparados; pendente validação do fluxo com bootstrap.
-- `doing` `JT` Compor configurações Guerreiro/Goblin, ligar cena ao núcleo e validar o fluxo na CI e no build WebGL.
+- `done` `JP` Completar apresentação Guerreiro/Goblin: componentes, ligação ao `IBattle`, assets de conteúdo e cena no build preparados.
+- `done` `JT` Compor configurações Guerreiro/Goblin, ligar cena ao núcleo e validar o fluxo na CI e no build WebGL.
 
 ## Fase 2 — Mago e reversão
 
@@ -29,8 +29,10 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 - `done` `JL` Implementar a sequência fixa dos sete inimigos, variação de ±15% nos atributos por encontro, variação de dano, fúria de Vampiro/Necromante/Rei Demônio e transição entre encontros.
 - `done` `JL` Implementar drops ponderados, escolha entre dois tipos distintos, melhorias permanentes e itens exclusivos: Pergaminho, Manto de Chamas (5 de dano direto após cada turno que consome ação, de qualquer lado) e Chifre da Irmandade.
-- `doing` `JP` Configurar assets dos sete inimigos: Goblin, Esqueleto, Lobisomem, Vampiro, Necromante e Rei Demônio preparados; Cavaleiro e telas de transição, fúria, saque e itens pendentes.
+- `done` `JP` Configurar assets dos sete inimigos, incluindo o Cavaleiro, e reutilizar a cena compartilhada para transição e escolha de saque.
 - `done` `JT` Criar e validar os assets `ScriptableObject` canônicos, garantindo Mago equipado com 30 ATK e faixas válidas para a variação dos inimigos.
+- `done` `JT` Integrar `CampaignRun` à cena: campanha linear, troca de encontro, escolha de saque e encerramento após o Rei Demônio.
+- `done` `JT` Criar tela inicial com regras, objetivo, desafios e entrada para a campanha.
 
 ## Fase 4 — Progresso e modo inimigo
 
