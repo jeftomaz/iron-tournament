@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c398143a4d9547a4b2c194933d2b7177, type: 3}
-  m_Name: Warrior
+  m_Name: Knight
   m_EditorClassIdentifier: IronTournament.Content::IronTournament.Content.CombatantDefinition
-  id: 1
-  side: 1
-  displayName: Guerreiro
+  id: 5
+  side: 2
+  displayName: Cavaleiro
   baseStats:
-    maximumHealth: 120
-    attack: 30
-    defense: 23
+    maximumHealth: 80
+    attack: 26
+    defense: 8
   abilities:
   - {fileID: 11400000, guid: d9800e89631625a448a01de68c5f263b, type: 2}
-  - {fileID: 11400000, guid: 251b993d50052cf42bf6271486de0ad7, type: 2}
-  - {fileID: 11400000, guid: 80464ec5855645de9f2e4eb760096d90, type: 2}
-  portrait: {fileID: -2097619832946416524, guid: 8fcbcc5df380446e0ba94f23700cd268, type: 3}
+  portrait: {fileID: 3373983171478037719, guid: a1c6b27c1debe413683e2fd361d424a2, type: 3}

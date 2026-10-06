@@ -14,4 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: IronTournament.Content::IronTournament.Content.EncounterDefinition
   opponent: {fileID: 11400000, guid: 32f53e266aa61e644a19a8633a02e0db, type: 2}
   enemyStatVariancePercent: 15
-  dropPool: []
+  dropPool:
+  - {fileID: 11400000, guid: a413d0317f344128ad0fa1002736d7eb, type: 2}
+  - {fileID: 11400000, guid: c9e90461de1745ce912cf679bd282ec8, type: 2}
+  - {fileID: 11400000, guid: 2222a8f74d27454199358b0d5beb6305, type: 2}
+  - {fileID: 11400000, guid: f3126a0fbab34b3780b996a1c74ba8ff, type: 2}
+  - {fileID: 11400000, guid: ed87055d4e9f4a6b817ec3a57b14f325, type: 2}
+  - {fileID: 11400000, guid: 38d72437a7664209b057b796bde63b08, type: 2}
+  - {fileID: 11400000, guid: 9fec351c8d5f4ff6933aa7e354695bb6, type: 2}
+  - {fileID: 11400000, guid: 82ab4e4f5dfb4c7fac6eff5e64aae2dd, type: 2}
+  - {fileID: 11400000, guid: b03adca271a64b5599be7af4c00fddf1, type: 2}

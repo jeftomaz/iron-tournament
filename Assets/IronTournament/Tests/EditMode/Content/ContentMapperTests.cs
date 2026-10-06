@@ -69,9 +69,10 @@ namespace IronTournament.Content.Tests
             Assert.That(hero.BaseStats.MaximumHealth, Is.EqualTo(120));
             Assert.That(hero.BaseStats.Attack, Is.EqualTo(30));
             Assert.That(hero.BaseStats.Defense, Is.EqualTo(23));
-            Assert.That(hero.Abilities.Count, Is.EqualTo(2));
+            Assert.That(hero.Abilities.Count, Is.EqualTo(3));
             Assert.That(hero.Abilities[0].Id, Is.EqualTo(AbilityId.BasicAttack));
             Assert.That(hero.Abilities[1].Id, Is.EqualTo(AbilityId.Guard));
+            Assert.That(hero.Abilities[2].Id, Is.EqualTo(AbilityId.UseHopeScroll));
             Assert.That(configuration.Opponent.Id, Is.EqualTo(CombatantId.Goblin));
             Assert.That(configuration.Opponent.Side, Is.EqualTo(CombatantSide.Enemy));
             Assert.That(configuration.Opponent.BaseStats.MaximumHealth, Is.EqualTo(45));
@@ -84,6 +85,42 @@ namespace IronTournament.Content.Tests
                 new CombatantState(configuration.Opponent, configuration.Opponent.BaseStats)), new SeededRandomSource(17));
             Assert.That(battle.Submit(AbilityId.Guard).IsAccepted, Is.True);
             Assert.That(battle.Submit(AbilityId.BasicAttack).IsAccepted, Is.True);
+        }
+
+        [Test]
+        public void CanonicalCampaignAssetMapsAllEncountersAndDrops()
+        {
+            var campaign = AssetDatabase.LoadAssetAtPath<CampaignDefinition>(
+                "Assets/IronTournament/Content/Campaign.asset");
+            var warrior = AssetDatabase.LoadAssetAtPath<CombatantDefinition>(
+                "Assets/IronTournament/Content/Warrior.asset");
+            var mage = AssetDatabase.LoadAssetAtPath<CombatantDefinition>(
+                "Assets/IronTournament/Content/Mage.asset");
+            var knight = AssetDatabase.LoadAssetAtPath<CombatantDefinition>(
+                "Assets/IronTournament/Content/Knight.asset");
+
+            Assert.That(campaign, Is.Not.Null);
+            Assert.That(warrior, Is.Not.Null);
+            Assert.That(mage, Is.Not.Null);
+            Assert.That(knight, Is.Not.Null);
+
+            var configuration = ContentMapper.BuildCampaign(campaign);
+            Assert.That(configuration.Encounters.Count, Is.EqualTo(CampaignConfiguration.CanonicalOrder.Count));
+
+            for (var index = 0; index < configuration.Encounters.Count; index++)
+            {
+                var encounter = configuration.Encounters[index];
+                Assert.That(encounter.Opponent.Id, Is.EqualTo(CampaignConfiguration.CanonicalOrder[index]));
+                Assert.That(encounter.DropPool.Count, Is.EqualTo(9));
+            }
+
+            var warriorConfiguration = ContentMapper.BuildCombatant(warrior);
+            var mageConfiguration = ContentMapper.BuildCombatant(mage);
+            var knightConfiguration = ContentMapper.BuildCombatant(knight);
+            Assert.That(warriorConfiguration.Abilities[2].Id, Is.EqualTo(AbilityId.UseHopeScroll));
+            Assert.That(mageConfiguration.Abilities[3].Id, Is.EqualTo(AbilityId.ArmGuardian));
+            Assert.That(knightConfiguration.BaseStats, Is.EqualTo(new CombatantStats(80, 26, 8)));
+            Assert.That(knight.Portrait, Is.Not.Null);
         }
 
         [Test]
