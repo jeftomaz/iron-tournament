@@ -524,6 +524,101 @@ namespace IronTournament.Presentation.Tests
             Assert.That(HealthText("OpponentHealth"), Is.EqualTo("HP 100 / 100"));
         }
 
+        [UnityTest]
+        public IEnumerator MageUsesTheSharedSceneAgainstEveryConfiguredEnemyAndRevertsImmediately()
+        {
+            foreach (var opponent in new[]
+            {
+                CombatantId.Goblin,
+                CombatantId.Skeleton,
+                CombatantId.Werewolf,
+                CombatantId.Vampire,
+                CombatantId.Necromancer,
+                CombatantId.DemonKing
+            })
+            {
+                if (opponent != CombatantId.Goblin)
+                {
+                    yield return TearDown();
+                    yield return SetUp();
+                }
+                var view = canvas.GetComponentInChildren<BattleView>();
+                view.SelectPlayer(CombatantId.Mage);
+                view.SelectEncounter(opponent);
+                var mage = ContentMapper.BuildCombatant(view.SelectedPlayer);
+                var enemy = ContentMapper.BuildEncounter(view.SelectedEncounter).Opponent;
+                var battle = new Battle(new BattleState(new CombatantState(mage, mage.BaseStats),
+                    new CombatantState(enemy, enemy.BaseStats)), new SeededRandomSource(17));
+                canvas.GetComponentInChildren<BattlePresenter>().Initialize(battle);
+                StartPresentation();
+                yield return null;
+
+                var menu = canvas.GetComponentInChildren<ActionMenu>();
+                var buttons = menu.GetComponentsInChildren<Button>();
+                Assert.That(view.SelectedPlayer.Id, Is.EqualTo(CombatantId.Mage));
+                Assert.That(view.GetCombatantRect(CombatantSide.Player).GetComponent<Image>().sprite.name,
+                    Is.EqualTo("north-east_0"));
+                Assert.That(buttons.Length, Is.EqualTo(3));
+                Assert.That(buttons.Single(button => button.name == "Attack").GetComponentInChildren<Text>().text,
+                    Is.EqualTo("Ataque mágico"));
+                Assert.That(buttons.Single(button => button.name == "RevertTurn").interactable, Is.False);
+
+                var initialPlayerHealth = battle.State.Hero.CurrentHealth;
+                var initialOpponentHealth = battle.State.Opponent.CurrentHealth;
+                buttons.Single(button => button.name == "Attack").onClick.Invoke();
+                yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
+                yield return null;
+                Assert.That(battle.State.Opponent.CurrentHealth, Is.LessThan(initialOpponentHealth));
+                buttons.Single(button => button.name == "RevertTurn").onClick.Invoke();
+                Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(initialPlayerHealth));
+                Assert.That(battle.State.Opponent.CurrentHealth, Is.EqualTo(initialOpponentHealth));
+                Assert.That(battle.State.RevertCharges, Is.Zero);
+                Assert.That(buttons.Single(button => button.name == "Attack").interactable, Is.True);
+                Assert.That(buttons.Single(button => button.name == "RevertTurn").interactable, Is.False);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator SharedVisualRegistrationCanShowGoblinAgainstNecromancer()
+        {
+            var view = canvas.GetComponentInChildren<BattleView>();
+            view.SelectPlayer(CombatantId.Goblin);
+            view.SelectEncounter(CombatantId.Necromancer);
+            var goblin = ContentMapper.BuildCombatant(view.SelectedPlayer);
+            var controlledGoblin = new CombatantConfiguration(goblin.Id, CombatantSide.Player, goblin.DisplayName,
+                goblin.BaseStats, goblin.Abilities.ToArray());
+            var necromancer = ContentMapper.BuildEncounter(view.SelectedEncounter).Opponent;
+            var battle = new Battle(new BattleState(new CombatantState(controlledGoblin, controlledGoblin.BaseStats),
+                new CombatantState(necromancer, necromancer.BaseStats)), new SeededRandomSource(17));
+            canvas.GetComponentInChildren<BattlePresenter>().Initialize(battle);
+            StartPresentation();
+            yield return null;
+
+            Assert.That(view.GetCombatantRect(CombatantSide.Player).GetComponent<Image>().sprite.name,
+                Is.EqualTo("north-east_0"));
+            Assert.That(canvas.GetComponentsInChildren<Image>().Any(image => image.sprite != null &&
+                image.sprite.name == "necromancer-crypt"), Is.True);
+            Assert.That(canvas.GetComponentsInChildren<Text>().Any(text => text.text == "Goblin"), Is.True);
+            Assert.That(canvas.GetComponentInChildren<ActionMenu>().GetComponentsInChildren<Button>().Length, Is.EqualTo(1));
+        }
+
+        [UnityTest]
+        public IEnumerator FuryEventsUseTheSharedEnemyPresentation()
+        {
+            StartPresentation();
+            yield return null;
+            var events = canvas.GetComponentInChildren<BattleEventPlayer>();
+            events.PlayEvents(new BattleEvent[]
+            {
+                new AbilityUsedEvent(CombatantId.Goblin, AbilityId.Fury),
+                new DamageDealtEvent(CombatantId.Goblin, CombatantId.Warrior, DamageKind.Fury, 20, 80, false, false)
+            }, PresentationState());
+            yield return null;
+            Assert.That(canvas.GetComponentInChildren<BattleHud>().StatusMessage, Does.StartWith("Fúria"));
+            yield return WaitForPlayback(events);
+            Assert.That(HealthText("PlayerHealth"), Is.EqualTo("HP 80 / 100"));
+        }
+
         private string HealthText(string name)
             => canvas.GetComponentsInChildren<Text>().Single(text => text.name == name).text;
 

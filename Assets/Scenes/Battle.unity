@@ -178,38 +178,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 359894ed329ab9845a770cc76f865b2e, type: 3}
   m_Name:
   m_EditorClassIdentifier: IronTournament.Presentation::IronTournament.Presentation.BattleView
-  encounters:
-  - definition: {fileID: 11400000, guid: 28232861edc63264498b08c49345f2bb, type: 2}
-    introduction: {fileID: 3373983171478037719, guid: 251435a68642e474ab790b7da30d8861, type: 3}
-    combat: {fileID: -1505471383403432660, guid: ff9644591f7e34814b73fecbac2d4311, type: 3}
+  combatants:
+  - definition: {fileID: 11400000, guid: 40fb7609cb7ad2c4dbdae9600d57cd38, type: 2}
+    encounter: {fileID: 0}
+    east: {fileID: -2097619832946416524, guid: 8fcbcc5df380446e0ba94f23700cd268, type: 3}
+    northEast: {fileID: -206670225839568205, guid: 6851f219a6a3842e68a9a3e45bd376a7, type: 3}
+    west: {fileID: 3373983171478037719, guid: f7a9758d995dc4b4ca58203a5a6d1818, type: 3}
+    southWest: {fileID: -1505471383403432660, guid: 855a0dc9e2aaf458396c6a0fc09adce4, type: 3}
+    background: {fileID: -8556865065655044053, guid: c2a0f0bf57ed4b74caea48e9f1879aaa, type: 3}
+    caption: "P\xC1TIO DO GUERREIRO"
+  - definition: {fileID: 11400000, guid: e03c31352c486f847971c5de955a2526, type: 2}
+    encounter: {fileID: 0}
+    east: {fileID: -2097619832946416524, guid: a06314d801cfc46629bad31a9b362051, type: 3}
+    northEast: {fileID: -206670225839568205, guid: 3ff96150c8d5744f9b773fcfc59a5e2d, type: 3}
+    west: {fileID: 3373983171478037719, guid: 93e7b26a258714df0887e09ca725a996, type: 3}
+    southWest: {fileID: -1505471383403432660, guid: 1682975ebdc144dba939d53d4e0f8e75, type: 3}
+    background: {fileID: 2345763522601577234, guid: 98890dd62ee0f3c4da75275b8c4ad616, type: 3}
+    caption: "OBSERVAT\xD3RIO DO MAGO"
+  - definition: {fileID: 11400000, guid: f4c7bc5ac37a64244adc2c0a181faa1d, type: 2}
+    encounter: {fileID: 11400000, guid: 28232861edc63264498b08c49345f2bb, type: 2}
+    east: {fileID: -2097619832946416524, guid: 7f6b905d77144400fbf99cce2b2ade4d, type: 3}
+    northEast: {fileID: -206670225839568205, guid: 7e4bd9471bcaf492396a13822bfb035d, type: 3}
+    west: {fileID: 3373983171478037719, guid: 251435a68642e474ab790b7da30d8861, type: 3}
+    southWest: {fileID: -1505471383403432660, guid: ff9644591f7e34814b73fecbac2d4311, type: 3}
     background: {fileID: 21300000, guid: 7789f0f8e7fa1c942a45e090d81bbf16, type: 3}
     caption: ENCONTRO 01 / FLORESTA SOMBRIA
-  - definition: {fileID: 11400000, guid: d383b3511eba2e54dad8388618ace77d, type: 2}
-    introduction: {fileID: 3373983171478037719, guid: cc63d9831826b438ea4fb0a3d8357007, type: 3}
-    combat: {fileID: -1505471383403432660, guid: dfe61948768534555a5284b291f0a3b2, type: 3}
+  - definition: {fileID: 11400000, guid: 4b40087309f512842a564e97cd719816, type: 2}
+    encounter: {fileID: 11400000, guid: d383b3511eba2e54dad8388618ace77d, type: 2}
+    east: {fileID: -2097619832946416524, guid: 67ba78a9155db46f29e35e4a0877d08c, type: 3}
+    northEast: {fileID: -206670225839568205, guid: d9a0e897d4564410cb68879f68c05032, type: 3}
+    west: {fileID: 3373983171478037719, guid: cc63d9831826b438ea4fb0a3d8357007, type: 3}
+    southWest: {fileID: -1505471383403432660, guid: dfe61948768534555a5284b291f0a3b2, type: 3}
     background: {fileID: 21300000, guid: c51fd995e378a56468c91bd20dc19f16, type: 3}
     caption: "ENCONTRO 02 / CEMIT\xC9RIO ESQUECIDO"
-  - definition: {fileID: 11400000, guid: 5dc4fac1db5d0e74caaa19a4c1c42c90, type: 2}
-    introduction: {fileID: 3373983171478037719, guid: 081f5b3cfa0b64f65995b1a324867266, type: 3}
-    combat: {fileID: -1505471383403432660, guid: 1a75fdb9539a24da5862c3c5f064766a, type: 3}
+  - definition: {fileID: 11400000, guid: 48b22cf52a887ee41a637c639f8142e8, type: 2}
+    encounter: {fileID: 11400000, guid: 5dc4fac1db5d0e74caaa19a4c1c42c90, type: 2}
+    east: {fileID: -2097619832946416524, guid: d540115dbb2634066982b1599d467020, type: 3}
+    northEast: {fileID: -206670225839568205, guid: ee5dce98f1db84e7ea3bbc4a57732bbd, type: 3}
+    west: {fileID: 3373983171478037719, guid: 081f5b3cfa0b64f65995b1a324867266, type: 3}
+    southWest: {fileID: -1505471383403432660, guid: 1a75fdb9539a24da5862c3c5f064766a, type: 3}
     background: {fileID: 21300000, guid: f6cbafa3d96006745930d9b89fe13e57, type: 3}
     caption: ENCONTRO 04 / RAVINA DA LUA
-  - definition: {fileID: 11400000, guid: e743afb13131c86438fac790569260f1, type: 2}
-    introduction: {fileID: 3373983171478037719, guid: 8651af2548ddd4bdcb5418d4b386ab2d, type: 3}
-    combat: {fileID: -1505471383403432660, guid: 315a95883d5ed449680e41936ef056e4, type: 3}
+  - definition: {fileID: 11400000, guid: c670130552d982a43b49aba548d398d5, type: 2}
+    encounter: {fileID: 11400000, guid: e743afb13131c86438fac790569260f1, type: 2}
+    east: {fileID: -2097619832946416524, guid: 58478b50694cc4be8bc1b3d002747570, type: 3}
+    northEast: {fileID: -206670225839568205, guid: 8e5c39f419192410a9f7d6b14dbe35c0, type: 3}
+    west: {fileID: 3373983171478037719, guid: 8651af2548ddd4bdcb5418d4b386ab2d, type: 3}
+    southWest: {fileID: -1505471383403432660, guid: 315a95883d5ed449680e41936ef056e4, type: 3}
     background: {fileID: 21300000, guid: 728e50167b1764c488d78a372d42aac4, type: 3}
     caption: ENCONTRO 05 / CASTELO DO VAMPIRO
-  - definition: {fileID: 11400000, guid: 7aeaddcdeae2d594b95a5ce6db81279c, type: 2}
-    introduction: {fileID: 3373983171478037719, guid: 184cbef501cd2c8439820d7abc31a1c3, type: 3}
-    combat: {fileID: -1505471383403432660, guid: 65a2fdc3d1eb3804aaf536b0c6abf7bf, type: 3}
+  - definition: {fileID: 11400000, guid: d4416f9fed4f7f64fbbff842b407e090, type: 2}
+    encounter: {fileID: 11400000, guid: 7aeaddcdeae2d594b95a5ce6db81279c, type: 2}
+    east: {fileID: -2097619832946416524, guid: 7e6378e08679f8245945e0d57ee880e2, type: 3}
+    northEast: {fileID: -206670225839568205, guid: dd855378536766048bdb8525aa517426, type: 3}
+    west: {fileID: 3373983171478037719, guid: 184cbef501cd2c8439820d7abc31a1c3, type: 3}
+    southWest: {fileID: -1505471383403432660, guid: 65a2fdc3d1eb3804aaf536b0c6abf7bf, type: 3}
     background: {fileID: 21300000, guid: 52c49889f76a8594985b712848b9392d, type: 3}
-    caption: ENCONTRO 6 / CRIPTA DO NECROMANTE
-  - definition: {fileID: 11400000, guid: 2eddf0f8042097545824a4db98ef8603, type: 2}
-    introduction: {fileID: 3373983171478037719, guid: c682d59250101e94c8bb004224326eb9, type: 3}
-    combat: {fileID: -1505471383403432660, guid: eb4da79ec832cfc4ca19dca001273fc0, type: 3}
+    caption: ENCONTRO 06 / CRIPTA DO NECROMANTE
+  - definition: {fileID: 11400000, guid: 32f53e266aa61e644a19a8633a02e0db, type: 2}
+    encounter: {fileID: 11400000, guid: 2eddf0f8042097545824a4db98ef8603, type: 2}
+    east: {fileID: -2097619832946416524, guid: 4dbc4ec2021a72649ad5db9ad2ce5be1, type: 3}
+    northEast: {fileID: -206670225839568205, guid: c77aa82dc17717143aa163717e819868, type: 3}
+    west: {fileID: 3373983171478037719, guid: c682d59250101e94c8bb004224326eb9, type: 3}
+    southWest: {fileID: -1505471383403432660, guid: eb4da79ec832cfc4ca19dca001273fc0, type: 3}
     background: {fileID: 21300000, guid: 526edec5c3f91c441ad9771ef186c552, type: 3}
     caption: "ENCONTRO 07 / CIDADELA DO REI DEM\xD4NIO"
-  selectedOpponent: 3
+  selectedPlayer: 1
+  selectedOpponent: 7
+  heroName: {fileID: 363076140}
   opponentName: {fileID: 579583715}
   composition: {fileID: 46471659}
   title: {fileID: 1930769792}
@@ -221,8 +257,6 @@ MonoBehaviour:
   playerLabel: {fileID: 834568867}
   opponentLabel: {fileID: 1789381930}
   startButton: {fileID: 2141059269}
-  combatPlayerSprite: {fileID: -206670225839568205, guid: 6851f219a6a3842e68a9a3e45bd376a7, type: 3}
-  combatOpponentSprite: {fileID: -1505471383403432660, guid: ff9644591f7e34814b73fecbac2d4311, type: 3}
   hud: {fileID: 46471661}
   battleStatus: {fileID: 786903760}
   actionMenu: {fileID: 221525479}
@@ -334,7 +368,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7789f0f8e7fa1c942a45e090d81bbf16, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 728e50167b1764c488d78a372d42aac4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1190,7 +1224,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Goblin
+  m_Text: Vampiro
 --- !u!222 &579583716
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1541,7 +1575,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ENCONTRO 01 / FLORESTA SOMBRIA
+  m_Text: ENCONTRO 05 / CASTELO DO VAMPIRO
 --- !u!222 &922421908
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2022,11 +2056,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3353256916562111274, guid: 2419908165ce09940b1e0638b84e35bc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 72
+      value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 3353256916562111274, guid: 2419908165ce09940b1e0638b84e35bc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 144
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 3353256916562111274, guid: 2419908165ce09940b1e0638b84e35bc, type: 3}
       propertyPath: m_LocalPosition.x

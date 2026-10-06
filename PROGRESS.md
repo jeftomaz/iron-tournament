@@ -2,6 +2,7 @@
 
 ## 2026-10-05
 
+- Reconstruídos os duelos do Mago contra Goblin, Esqueleto, Lobisomem, Vampiro, Necromante e Rei Demônio na única cena `Battle`: registro visual por combatente, cenário do adversário e sprites direcionais para introdução e combate. O menu passa a ler as habilidades configuradas; o `BattleEventPlayer` apresenta ataque mágico, reversões e fúria sem alterar o núcleo. Validação local: EditMode 91/91, PlayMode 24/24 e build WebGL concluído.
 - Tornado explícito o fluxo Git: `main` única branch permanente, uma tarefa por branch/PR, integração em fila linear, rebase único e excepcional para resgatar branch histórica e limpeza obrigatória após integração.
 - Removida a orientação residual de rebase do template e do guard de PR; branches desatualizadas devem ser recriadas a partir da `main`.
 - Separada a validação por etapa: testes afetados durante o desenvolvimento, `git diff --cached --check` em todo commit, suíte Unity completa em mudanças não documentais e novamente na CI interna.

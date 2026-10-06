@@ -44,13 +44,14 @@ O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration
 
 No protótipo todos os encontros usam o mesmo pool; cada `EncounterDefinition` deve repetir o pool completo, e o `Core` filtra os exclusivos pela classe.
 
-### Assets dos encontros Guerreiro/Goblin e Esqueleto
+### Assets da cena de batalha
 
 Local: `Assets/IronTournament/Content/`. Esses assets servem ao encontro isolado da cena `Battle`; a composição canônica da campanha continua sendo responsabilidade do bootstrap.
 
 | Asset | HP | ATK | DEF | Habilidades |
 |---|---:|---:|---:|---|
 | `Warrior.asset` | 120 | 30 | 23 | `BasicAttack.asset`, `Guard.asset` |
+| `Mage.asset` | 110 | 30 | 5 | `MagicAttack.asset`, `RevertTurn.asset`, `RevertBattle.asset` |
 | `Goblin.asset` | 45 | 15 | 3 | `BasicAttack.asset` |
 | `Skeleton.asset` | 62 | 20 | 5 | `BasicAttack.asset` |
 | `Werewolf.asset` | 95 | 30 | 10 | `BasicAttack.asset` |
@@ -58,6 +59,8 @@ Local: `Assets/IronTournament/Content/`. Esses assets servem ao encontro isolado
 | `Necromancer.asset` | 125 | 38 | 14 | `BasicAttack.asset` |
 | `DemonKing.asset` | 145 | 44 | 16 | `BasicAttack.asset` |
 
+- `MagicAttack.asset` mantém o ID `BasicAttack`, mira o oponente e consome turno; o nome de exibição é `Ataque mágico`.
+- `RevertTurn.asset` e `RevertBattle.asset` miram o próprio Mago e não consomem turno. Recursos de itens do Mago seguem a etapa de campanha.
 - `GoblinEncounter.asset` referencia Goblin e declara variação de ±15%; o bootstrap deve sortear os atributos efetivos na criação do encontro.
 - `SkeletonEncounter.asset` referencia Esqueleto com a mesma variação; segundo encontro da sequência, com pool de drops vazio nesta preparação.
 - `WerewolfEncounter.asset` referencia Lobisomem com a mesma variação; quarto encontro da sequência, com pool de drops vazio nesta preparação.
@@ -66,6 +69,7 @@ Local: `Assets/IronTournament/Content/`. Esses assets servem ao encontro isolado
 - `DemonKingEncounter.asset` referencia Rei Demônio com a mesma variação; sétimo encontro da sequência, com pool de drops vazio. Fúria depende da integração do núcleo.
 - Ambas as ações consomem turno; Atacar mira o oponente e Defender mira o próprio combatente.
 - O pool de drops está vazio neste encontro isolado; campanha e saque usam as configurações canônicas próprias.
+- O registro de sprites direcionais e cenários fica na cena `Battle`, ligado a cada `CombatantDefinition`; não duplica definições de combate nem regras do `Core`.
 
 ## Estado de runtime
 
