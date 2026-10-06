@@ -37,13 +37,13 @@ rsync -a \
   "$repository_root/" "$project_root/"
 mkdir -p "$results_directory"
 
-"$unity" -batchmode -nographics -quit \
+"$unity" -batchmode -nographics \
   -projectPath "$project_root" \
   -runTests -testPlatform EditMode \
   -testResults "$results_directory/editmode.xml" \
   -logFile "$results_directory/editmode.log"
 
-"$unity" -batchmode -nographics -quit \
+"$unity" -batchmode -nographics \
   -projectPath "$project_root" \
   -runTests -testPlatform PlayMode \
   -testResults "$results_directory/playmode.xml" \
