@@ -2,6 +2,7 @@
 
 ## 2026-10-06
 
+- Integrada a campanha na cena `Battle`: a batalha avança de Goblin ao Rei Demônio com o mesmo herói, oferta dois saques válidos após cada vitória intermediária e troca o cenário sem levar regras para a interface. Incluído o registro visual do Cavaleiro e cobertura PlayMode da primeira transição; EditMode 93/93, PlayMode 27/27 e build WebGL local aprovados.
 - Corrigido o verificador local: os processos de teste não recebem mais `-quit`, que encerrava o Unity antes de executar a suíte; EditMode e PlayMode passam a produzir resultados reais antes do build WebGL.
 - Configurado o conteúdo canônico da campanha: `Campaign.asset` na ordem dos sete encontros, Cavaleiro com sprite e atributos aprovados, nove itens em todos os pools e ações exclusivas dos heróis. Coberto o mapeamento integral em EditMode; a apresentação de campanha continua pendente.
 - Adicionado o `Bootstrap` da cena `Battle`: ao iniciar o combate, a seleção padrão Guerreiro/Goblin é mapeada por `ContentMapper`, cria uma `IBattle` ativa no `Core` e a fornece ao `BattlePresenter`, sem transferir regras, variação ou fúria para a interface. Cobertos o factory e o início real da cena em PlayMode; `scripts/verify.sh` passou (EditMode, PlayMode e WebGL).

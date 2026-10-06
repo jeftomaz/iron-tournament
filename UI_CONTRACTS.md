@@ -4,10 +4,10 @@
 |---|---|---|
 | `BattleView` | Exibir combatentes e cenário | Calcular ou aplicar dano |
 | `BattleHud` | Exibir HP, estados e mensagens | Alterar o estado da batalha |
-| `ActionMenu` | Mostrar ações disponíveis e enviar a escolha | Decidir disponibilidade de ações |
+| `ActionMenu` | Mostrar ações ou saques disponíveis e enviar a escolha | Decidir disponibilidade ou efeitos |
 | `BattleEventPlayer` | Apresentar eventos em sequência | Criar resultados de combate |
-| `BattlePresenter` | Enviar escolhas ao `IBattle` e sincronizar a apresentação | Criar configurações ou implementar regras |
-| `BattleBootstrap` | Mapear a seleção de conteúdo e fornecer uma batalha ativa | Alterar estado de combate ou regras |
+| `BattlePresenter` | Enviar escolhas ao `IBattle`, sincronizar a apresentação e informar o encerramento | Criar configurações ou implementar regras |
+| `BattleBootstrap` | Mapear conteúdo, iniciar a campanha e fornecer sua batalha ativa | Alterar estado de combate ou regras |
 
 ## Referências de tela
 
@@ -26,15 +26,15 @@
 - Assets usados na cena-base: filtro point, sem mipmaps/compressão e 48 pixels por unidade; personagens usam múltiplos inteiros em pixels de tela.
 - Até a PR dedicada após a limpeza das branches, não alterar escala, proporção ou perspectiva dos combatentes. Essa PR definirá proporções-base por personagem e o fator de profundidade do inimigo, preservando sprites sem deformação.
 - `BattleHud.ShowHealth` recebe lado, HP atual e máximo válidos; só apresenta valores. Sem estado recebido, exibe `HP — / —`. `SetStatus` apresenta mensagens literais de até 80 caracteres, sem controles nem interpretação rich text.
-- `BattlePresenter.Initialize` configura `ActionMenu` pelas `AbilityConfiguration` do herói. O menu cria a quantidade necessária de botões a partir dos dois modelos existentes, usa os nomes do conteúdo e mantém `SetAvailableActions` como única fonte da disponibilidade. `ActionSelected` envia o `AbilityId` e bloqueia novos cliques até a próxima atualização.
+- `BattlePresenter.Initialize` configura `ActionMenu` pelas `AbilityConfiguration` do herói. Ao encerrar uma batalha, `EncounterConcluded` informa o resultado depois da reprodução; a próxima `IBattle` ativa entra somente por `BeginNextEncounter`. O menu cria botões a partir dos dois modelos existentes, usa os nomes do conteúdo e mantém `SetAvailableActions` como única fonte da disponibilidade das ações. `ActionSelected` envia o `AbilityId`; `ConfigureDrops` exibe a oferta recebida e `DropSelected` envia apenas o `ItemId` escolhido.
 - `BattleEventPlayer.PlayEvents` recebe os `BattleEvent` aprovados e o `BattleState` do encontro: mapeia IDs pelos participantes, apresenta ataque mágico, defesa, fúria, cura, guardião, dano com crítico/penetração/reflexão e encerramento. O HP muda na interface somente quando o respectivo evento é apresentado, usando o estado recebido; não calcula resultados nem modifica o núcleo.
 - O lote é validado integralmente antes da reprodução: rejeitar participantes externos, HP acima do máximo, eventos nulos e encerramento fora do fim. `Play` reutiliza as mesmas rotinas de efeitos; a lista recebida é copiada antes de iniciar.
 - A sequência bloqueia o menu por `SetPresentationBlocked`; atualizações de disponibilidade durante a animação só aparecem após o desbloqueio, preservando o bloqueio recebido do controlador. `Cancel` e desativação restauram cores/posições, ocultam o feedback e descartam a sequência pendente.
 - Cancelar também descarta atualizações de HP ainda não apresentadas; o controlador deve redesenhar o estado vigente antes de reabrir as ações.
 - `BattleEventPlayer.End` recebe o `BattleEndedEvent` aprovado do núcleo e encerra a sequência após os efeitos anteriores; reutiliza a mensagem do HUD para vitória/derrota, oculta as ações e escurece o vencido. Não deduz resultado pelo HP, não altera a saúde e rejeita novas sequências após o encerramento. Cancelar antes do evento descarta também o resultado pendente.
 - A UI consome estado somente para exibição.
-- Ao receber `BattleView.CombatStarted`, `BattleBootstrap` entrega uma batalha ativa ao `BattlePresenter`, uma vez por cena. Escolhas passam por `Submit`, ficam bloqueadas durante os eventos e são reabertas com `AvailableActions`. Ao retomar uma apresentação interrompida, redesenhar o estado vigente do núcleo. Sem inicialização, as ações permanecem desabilitadas.
-- `BattleBootstrap` usa as seleções validadas de `BattleView`, `ContentMapper` e `EncounterBattleFactory`; a variação de atributos e a fúria continuam sendo criadas no `Core`.
+- Ao receber `BattleView.CombatStarted`, `BattleBootstrap` mapeia o herói selecionado e a configuração `Campaign`, cria o `CampaignRun` e entrega sua batalha ativa ao `BattlePresenter`. Cada vitória é concluída pelo núcleo: o bootstrap mostra a oferta recebida, envia a escolha ao `CampaignRun` e troca a cena para o próximo encontro; derrota e conclusão final permanecem terminais. Escolhas passam por `Submit`, ficam bloqueadas durante os eventos e são reabertas com `AvailableActions`. Ao retomar uma apresentação interrompida, redesenhar o estado vigente do núcleo. Sem inicialização, as ações permanecem desabilitadas.
+- `BattleBootstrap` usa as seleções validadas de `BattleView` e `ContentMapper`; a variação de atributos, fúria, drops e efeitos dos itens continuam no `Core`.
 - `Presentation` pode referenciar `Core` e `Content`; o núcleo não referencia `UnityEngine` nem componentes de interface.
 - Toda escolha passa pela validação do núcleo.
 - Entrada fica bloqueada enquanto eventos do turno estão sendo apresentados.

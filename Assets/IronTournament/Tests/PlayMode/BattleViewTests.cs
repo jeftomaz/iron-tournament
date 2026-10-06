@@ -42,7 +42,7 @@ namespace IronTournament.Presentation.Tests
         [UnityTest]
         public IEnumerator ConfiguredEnemiesUseSharedSceneAndCombatPerspective()
         {
-            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf, CombatantId.Vampire, CombatantId.Necromancer, CombatantId.DemonKing })
+            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Knight, CombatantId.Werewolf, CombatantId.Vampire, CombatantId.Necromancer, CombatantId.DemonKing })
             {
                 if (id != CombatantId.Skeleton)
                 {
@@ -59,6 +59,7 @@ namespace IronTournament.Presentation.Tests
                 string scenario = id switch
                 {
                     CombatantId.Skeleton => "skeleton-graveyard",
+                    CombatantId.Knight => "knight-fortress_0",
                     CombatantId.Werewolf => "werewolf-ravine",
                     CombatantId.Vampire => "vampire-castle",
                     CombatantId.Necromancer => "necromancer-crypt",
@@ -88,7 +89,7 @@ namespace IronTournament.Presentation.Tests
         [UnityTest]
         public IEnumerator ConfiguredEnemiesUseExistingPresenterAndEffects()
         {
-            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Werewolf, CombatantId.Vampire, CombatantId.Necromancer, CombatantId.DemonKing })
+            foreach (var id in new[] { CombatantId.Skeleton, CombatantId.Knight, CombatantId.Werewolf, CombatantId.Vampire, CombatantId.Necromancer, CombatantId.DemonKing })
             {
                 if (id != CombatantId.Skeleton)
                 {
@@ -106,6 +107,7 @@ namespace IronTournament.Presentation.Tests
                 var expected = id switch
                 {
                     CombatantId.Skeleton => (Health: 62, Attack: 20, Defense: 5),
+                    CombatantId.Knight => (Health: 80, Attack: 26, Defense: 8),
                     CombatantId.Werewolf => (Health: 95, Attack: 30, Defense: 10),
                     CombatantId.Vampire => (Health: 110, Attack: 34, Defense: 12),
                     CombatantId.Necromancer => (Health: 125, Attack: 38, Defense: 14),
@@ -171,6 +173,41 @@ namespace IronTournament.Presentation.Tests
             yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
             Assert.That(HealthText("OpponentHealth"), Does.StartWith("HP "));
             Assert.That(HealthText("OpponentHealth"), Does.Not.Contain("—"));
+        }
+
+        [UnityTest]
+        public IEnumerator CampaignVictoryOffersDropsAndStartsTheNextEncounter()
+        {
+            bootstrap.enabled = true;
+            yield return null;
+            StartPresentation();
+            yield return null;
+
+            var view = canvas.GetComponentInChildren<BattleView>();
+            var menu = canvas.GetComponentInChildren<ActionMenu>();
+            var events = canvas.GetComponentInChildren<BattleEventPlayer>();
+            var deadline = Time.realtimeSinceStartup + 10;
+            while (!view.HasOutcome && Time.realtimeSinceStartup < deadline)
+            {
+                var attack = menu.GetComponentsInChildren<Button>().Single(button => button.name == "Attack");
+                if (attack.interactable) attack.onClick.Invoke();
+                yield return WaitForPlayback(events);
+                yield return null;
+            }
+
+            Assert.That(view.HasOutcome, Is.True);
+            Assert.That(canvas.GetComponentInChildren<BattleHud>().StatusMessage, Is.EqualTo("Escolha um saque"));
+            var drops = menu.GetComponentsInChildren<Button>();
+            Assert.That(drops, Has.Length.EqualTo(2));
+            Assert.That(drops.All(button => button.name.StartsWith("Drop")), Is.True);
+            Assert.That(drops.All(button => button.interactable), Is.True);
+
+            drops[0].onClick.Invoke();
+            yield return null;
+
+            Assert.That(view.HasOutcome, Is.False);
+            Assert.That(view.SelectedEncounter.Opponent.Id, Is.EqualTo(CombatantId.Skeleton));
+            Assert.That(menu.GetComponentsInChildren<Button>().Any(button => button.name == "Attack" && button.interactable), Is.True);
         }
 
         [UnityTest]

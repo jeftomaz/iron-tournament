@@ -42,13 +42,13 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 | `Core` | .NET | Estado somente leitura, ações válidas e eventos do combate; sem `UnityEngine`. |
 | `Content` | `Core`, Unity | `ScriptableObject`, validação e conversão para configurações puras do núcleo. |
 | `Presentation` | `Core`, `Content`, Unity | Cenas, interface e reprodução de eventos; envia ações, sem calcular ou alterar o estado. |
-| `Bootstrap` | `Core`, `Content`, `Presentation`, Unity | Cria a batalha do encontro selecionado e a entrega ao apresentador; não contém regras. |
+| `Bootstrap` | `Core`, `Content`, `Presentation`, Unity | Cria a campanha pelo conteúdo e entrega cada batalha ativa ao apresentador; não contém regras. |
 | `Tests/EditMode` | `Core` e/ou `Content` | Regras puras e contratos de mapeamento sem cenas. |
 | CI | GitHub Actions, GameCI | Valida EditMode e o build WebGL em contêineres Linux. |
 
 - Dependências seguem `Content -> Core` e `Presentation -> Content/Core`; referências circulares não são aceitas.
 - A fronteira pública é `ação -> Core -> estado/eventos`: adaptadores convertem conteúdo na inicialização e a interface apenas apresenta a resposta.
-- O bootstrap fornece a batalha via `IBattle` ao apresentador da cena; `Presentation` não instancia o núcleo com atributos ou fonte aleatória próprios. Detalhes da ligação em `UI_CONTRACTS.md`.
+- O bootstrap fornece cada batalha via `IBattle` ao apresentador da cena; `Presentation` não instancia o núcleo com atributos, campanha ou fonte aleatória próprios. Detalhes da ligação em `UI_CONTRACTS.md`.
 - A cena concentra as variantes visuais dos encontros; definições e regras permanecem em `Content/Core`.
 - Estado restaurável e fonte aleatória são isolados para que a reversão não retroceda a sequência aleatória.
 - Decisões que mudem assemblies, contratos públicos ou esse fluxo exigem PR isolado antes das implementações dependentes.

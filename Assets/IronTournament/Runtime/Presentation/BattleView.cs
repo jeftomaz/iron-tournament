@@ -73,6 +73,49 @@ namespace IronTournament.Presentation
         public void SelectEncounter(CombatantId id)
         {
             if (combatPresentationStarted) throw new InvalidOperationException("An encounter cannot change during combat.");
+            ApplyEncounterSelection(id, false);
+        }
+
+        public void ShowDropChoice()
+        {
+            if (!combatPresentationStarted || outcome != BattlePhase.Victory)
+                throw new InvalidOperationException("A victorious encounter is required for a drop choice.");
+
+            actionMenu.gameObject.SetActive(true);
+            battleStatus.gameObject.SetActive(true);
+            hud.SetStatus("Escolha um saque");
+            RequestLayout();
+        }
+
+        public void BeginNextEncounter(CombatantId id)
+        {
+            if (!combatPresentationStarted)
+                throw new InvalidOperationException("Combat must be started before advancing an encounter.");
+
+            outcome = BattlePhase.None;
+            ApplyEncounterSelection(id, true);
+            var playerVisual = FindVisual(SelectedPlayer.Id);
+            player.sprite = playerVisual.northEast;
+            startButton.gameObject.SetActive(false);
+            hud.Clear();
+            battleStatus.gameObject.SetActive(true);
+            actionMenu.gameObject.SetActive(true);
+            actionMenu.SetAvailableActions(Array.Empty<AbilityId>(), true);
+            ResetCombatantFeedback();
+            RequestLayout();
+        }
+
+        public void ShowCampaignComplete()
+        {
+            if (outcome != BattlePhase.Victory)
+                throw new InvalidOperationException("A victorious encounter is required to complete the campaign.");
+
+            hud.SetStatus("Campanha concluída!");
+            RequestLayout();
+        }
+
+        private void ApplyEncounterSelection(CombatantId id, bool combatPose)
+        {
             var visual = FindVisual(id);
             ValidateVisual(visual, id);
             if (visual.encounter == null || !ContentValidator.Validate(visual.encounter).IsValid ||
@@ -80,7 +123,7 @@ namespace IronTournament.Presentation
                 throw new ArgumentException("A valid encounter matching the opponent is required.", nameof(id));
             selectedOpponent = id;
             SelectedEncounter = visual.encounter;
-            opponent.sprite = visual.west;
+            opponent.sprite = combatPose ? visual.southWest : visual.west;
             background.sprite = visual.background;
             opponentName.supportRichText = encounter.supportRichText = false;
             opponentName.text = visual.definition.DisplayName;
