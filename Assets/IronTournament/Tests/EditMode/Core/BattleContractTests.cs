@@ -27,6 +27,23 @@ namespace IronTournament.Core.Tests
         }
 
         [Test]
+        public void EncounterFactoryCreatesAnActiveBattleWithEncounterVariation()
+        {
+            var hero = Configuration(CombatantId.Warrior, CombatantSide.Player);
+            var opponent = Configuration(CombatantId.DemonKing, CombatantSide.Enemy);
+            var encounter = new EncounterConfiguration(opponent,
+                EncounterConfiguration.RequiredEnemyStatVariancePercent,
+                new List<ItemConfiguration>());
+
+            var battle = EncounterBattleFactory.Create(hero, encounter, new SeededRandomSource(17));
+
+            Assert.That(battle.State.Phase, Is.EqualTo(BattlePhase.PlayerTurn));
+            Assert.That(battle.State.Hero.Stats, Is.EqualTo(hero.BaseStats));
+            Assert.That(battle.State.Opponent.Stats.MaximumHealth, Is.InRange(38, 52));
+            Assert.That(battle.State.Opponent.CanRage, Is.True);
+        }
+
+        [Test]
         public void CombatantRejectsUninitializedStats()
         {
             var configuration = Configuration(CombatantId.Goblin, CombatantSide.Enemy);
