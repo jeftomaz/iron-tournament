@@ -46,14 +46,15 @@ No protótipo todos os encontros usam o mesmo pool; cada `EncounterDefinition` d
 
 ### Assets da cena de batalha
 
-Local: `Assets/IronTournament/Content/`. Esses assets servem ao encontro isolado da cena `Battle`; a composição canônica da campanha continua sendo responsabilidade do bootstrap.
+Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição canônica; a cena `Battle` ainda usa o encontro isolado selecionado até a integração da campanha no bootstrap.
 
 | Asset | HP | ATK | DEF | Habilidades |
 |---|---:|---:|---:|---|
-| `Warrior.asset` | 120 | 30 | 23 | `BasicAttack.asset`, `Guard.asset` |
-| `Mage.asset` | 110 | 30 | 5 | `MagicAttack.asset`, `RevertTurn.asset`, `RevertBattle.asset` |
+| `Warrior.asset` | 120 | 30 | 23 | `BasicAttack.asset`, `Guard.asset`, `UseHopeScroll.asset` |
+| `Mage.asset` | 110 | 30 | 5 | `MagicAttack.asset`, `RevertTurn.asset`, `RevertBattle.asset`, `ArmGuardian.asset` |
 | `Goblin.asset` | 45 | 15 | 3 | `BasicAttack.asset` |
 | `Skeleton.asset` | 62 | 20 | 5 | `BasicAttack.asset` |
+| `Knight.asset` | 80 | 26 | 8 | `BasicAttack.asset` |
 | `Werewolf.asset` | 95 | 30 | 10 | `BasicAttack.asset` |
 | `Vampire.asset` | 110 | 34 | 12 | `BasicAttack.asset` |
 | `Necromancer.asset` | 125 | 38 | 14 | `BasicAttack.asset` |
@@ -61,14 +62,10 @@ Local: `Assets/IronTournament/Content/`. Esses assets servem ao encontro isolado
 
 - `MagicAttack.asset` mantém o ID `BasicAttack`, mira o oponente e consome turno; o nome de exibição é `Ataque mágico`.
 - `RevertTurn.asset` e `RevertBattle.asset` miram o próprio Mago e não consomem turno. Recursos de itens do Mago seguem a etapa de campanha.
-- `GoblinEncounter.asset` referencia Goblin e declara variação de ±15%; o bootstrap deve sortear os atributos efetivos na criação do encontro.
-- `SkeletonEncounter.asset` referencia Esqueleto com a mesma variação; segundo encontro da sequência, com pool de drops vazio nesta preparação.
-- `WerewolfEncounter.asset` referencia Lobisomem com a mesma variação; quarto encontro da sequência, com pool de drops vazio nesta preparação.
-- `VampireEncounter.asset` referencia Vampiro com a mesma variação; quinto encontro da sequência, com pool de drops vazio. Fúria é regra do núcleo, não uma habilidade criada neste asset.
-- `NecromancerEncounter.asset` referencia Necromante com a mesma variação; sexto encontro da sequência, com pool de drops vazio. Fúria depende da integração do núcleo.
-- `DemonKingEncounter.asset` referencia Rei Demônio com a mesma variação; sétimo encontro da sequência, com pool de drops vazio. Fúria depende da integração do núcleo.
+- `Campaign.asset` ordena `GoblinEncounter`, `SkeletonEncounter`, `KnightEncounter`, `WerewolfEncounter`, `VampireEncounter`, `NecromancerEncounter` e `DemonKingEncounter`.
+- Cada encontro declara variação de ±15% e o pool completo de nove itens. O núcleo filtra exclusivos pela classe e não oferece saque após o Rei Demônio; fúria continua sendo regra do núcleo.
 - Ambas as ações consomem turno; Atacar mira o oponente e Defender mira o próprio combatente.
-- O pool de drops está vazio neste encontro isolado; campanha e saque usam as configurações canônicas próprias.
+- A seleção isolada atual da cena não consome drops; saque e avanço dependem da integração de `CampaignRun`.
 - O registro de sprites direcionais e cenários fica na cena `Battle`, ligado a cada `CombatantDefinition`; não duplica definições de combate nem regras do `Core`.
 
 ## Estado de runtime

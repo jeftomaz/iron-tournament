@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ab55b520c2d4d7ab598362a5101e6e6, type: 3}
-  m_Name: VampireEncounter
+  m_Name: KnightEncounter
   m_EditorClassIdentifier: IronTournament.Content::IronTournament.Content.EncounterDefinition
-  opponent: {fileID: 11400000, guid: c670130552d982a43b49aba548d398d5, type: 2}
+  opponent: {fileID: 11400000, guid: a6f69d9acb8b48d3bb114590770acc45, type: 2}
   enemyStatVariancePercent: 15
   dropPool:
   - {fileID: 11400000, guid: a413d0317f344128ad0fa1002736d7eb, type: 2}
