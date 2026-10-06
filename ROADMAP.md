@@ -16,7 +16,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 - `done` `JL` Implementar ataque físico, defesa temporária, reflexão, crítico de 7%, penetração de 10%, resposta do Goblin, vitória e derrota; cobrir regras e extremos em EditMode.
 - `doing` `JP` Completar apresentação Guerreiro/Goblin: componentes, ligação ao `IBattle`, assets de conteúdo e cena no build preparados; pendente validação do fluxo com bootstrap.
-- `todo` `JT` Compor configurações Guerreiro/Goblin, ligar cena ao núcleo e validar o fluxo na CI e no build WebGL.
+- `doing` `JT` Compor configurações Guerreiro/Goblin, ligar cena ao núcleo e validar o fluxo na CI e no build WebGL.
 
 ## Fase 2 — Mago e reversão
 

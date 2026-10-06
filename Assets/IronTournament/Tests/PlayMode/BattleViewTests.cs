@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using IronTournament.Bootstrap;
 using IronTournament.Core;
 using IronTournament.Content;
 using UnityEditor;
@@ -19,6 +20,7 @@ namespace IronTournament.Presentation.Tests
     {
         private Scene scene;
         private GameObject canvas;
+        private BattleBootstrap bootstrap;
 
         [UnitySetUp]
         public IEnumerator SetUp()
@@ -27,6 +29,8 @@ namespace IronTournament.Presentation.Tests
                 new LoadSceneParameters(LoadSceneMode.Additive));
             yield return null;
             canvas = scene.GetRootGameObjects().Single(root => root.name == "BattleCanvas");
+            bootstrap = canvas.GetComponentInChildren<BattleBootstrap>();
+            bootstrap.enabled = false;
         }
 
         [UnityTearDown]
@@ -144,6 +148,26 @@ namespace IronTournament.Presentation.Tests
             Assert.That(opponent.sprite.texture.filterMode, Is.EqualTo(FilterMode.Point));
             Assert.That(canvas.GetComponentInChildren<ActionMenu>().gameObject.activeInHierarchy, Is.True);
             Assert.That(canvas.GetComponentsInChildren<Button>().All(item => !item.interactable), Is.True);
+        }
+
+        [UnityTest]
+        public IEnumerator DefaultSceneBootstrapsPlayableWarriorGoblin()
+        {
+            bootstrap.enabled = true;
+            yield return null;
+
+            StartPresentation();
+            yield return null;
+
+            var menu = canvas.GetComponentInChildren<ActionMenu>();
+            Assert.That(HealthText("PlayerHealth"), Is.EqualTo("HP 120 / 120"));
+            Assert.That(HealthText("OpponentHealth"), Does.StartWith("HP "));
+            Assert.That(HealthText("OpponentHealth"), Does.Not.Contain("—"));
+            Assert.That(menu.GetComponentsInChildren<Button>().Any(button => button.interactable), Is.True);
+            menu.GetComponentsInChildren<Button>().Single(button => button.name == "Attack").onClick.Invoke();
+            yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
+            Assert.That(HealthText("OpponentHealth"), Does.StartWith("HP "));
+            Assert.That(HealthText("OpponentHealth"), Does.Not.Contain("—"));
         }
 
         [UnityTest]

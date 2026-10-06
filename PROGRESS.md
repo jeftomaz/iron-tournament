@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-10-06
+
+- Adicionado o `Bootstrap` da cena `Battle`: ao iniciar o combate, a seleção padrão Guerreiro/Goblin é mapeada por `ContentMapper`, cria uma `IBattle` ativa no `Core` e a fornece ao `BattlePresenter`, sem transferir regras, variação ou fúria para a interface. Cobertos o factory e o início real da cena em PlayMode; `scripts/verify.sh` passou (EditMode, PlayMode e WebGL).
+
 ## 2026-10-05
 
 - Reconstruídos os duelos do Mago contra Goblin, Esqueleto, Lobisomem, Vampiro, Necromante e Rei Demônio na única cena `Battle`: registro visual por combatente, cenário do adversário e sprites direcionais para introdução e combate. O menu passa a ler as habilidades configuradas; o `BattleEventPlayer` apresenta ataque mágico, reversões e fúria sem alterar o núcleo. Restaurada a prévia Guerreiro/Goblin, removida a alteração proibida de tamanho do inimigo e coberta `Reverter Batalha` em PlayMode; `scripts/verify.sh` passou (EditMode, PlayMode e WebGL).

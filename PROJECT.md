@@ -31,7 +31,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 - `Core`: regras e estado de runtime sem referência ao Unity.
 - `Content`: definições em `ScriptableObject` e referências de assets.
-- `Presentation`: cenas, UI e adaptação dos dados de conteúdo ao núcleo.
+- `Presentation`: cenas, interface e reprodução de eventos.
 - `Tests/EditMode`: testes do núcleo sem carregar cenas.
 - `Tests/PlayMode`: testes da apresentação carregando a cena de batalha.
 
@@ -42,6 +42,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 | `Core` | .NET | Estado somente leitura, ações válidas e eventos do combate; sem `UnityEngine`. |
 | `Content` | `Core`, Unity | `ScriptableObject`, validação e conversão para configurações puras do núcleo. |
 | `Presentation` | `Core`, `Content`, Unity | Cenas, interface e reprodução de eventos; envia ações, sem calcular ou alterar o estado. |
+| `Bootstrap` | `Core`, `Content`, `Presentation`, Unity | Cria a batalha do encontro selecionado e a entrega ao apresentador; não contém regras. |
 | `Tests/EditMode` | `Core` e/ou `Content` | Regras puras e contratos de mapeamento sem cenas. |
 | CI | GitHub Actions, GameCI | Valida EditMode e o build WebGL em contêineres Linux. |
 

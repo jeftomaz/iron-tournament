@@ -7,6 +7,7 @@
 | `ActionMenu` | Mostrar ações disponíveis e enviar a escolha | Decidir disponibilidade de ações |
 | `BattleEventPlayer` | Apresentar eventos em sequência | Criar resultados de combate |
 | `BattlePresenter` | Enviar escolhas ao `IBattle` e sincronizar a apresentação | Criar configurações ou implementar regras |
+| `BattleBootstrap` | Mapear a seleção de conteúdo e fornecer uma batalha ativa | Alterar estado de combate ou regras |
 
 ## Referências de tela
 
@@ -32,7 +33,8 @@
 - Cancelar também descarta atualizações de HP ainda não apresentadas; o controlador deve redesenhar o estado vigente antes de reabrir as ações.
 - `BattleEventPlayer.End` recebe o `BattleEndedEvent` aprovado do núcleo e encerra a sequência após os efeitos anteriores; reutiliza a mensagem do HUD para vitória/derrota, oculta as ações e escurece o vencido. Não deduz resultado pelo HP, não altera a saúde e rejeita novas sequências após o encerramento. Cancelar antes do evento descarta também o resultado pendente.
 - A UI consome estado somente para exibição.
-- `BattlePresenter.Initialize(IBattle)` recebe uma batalha ativa do bootstrap de Jeferson, uma vez por cena. `BattleView.CombatStarted` inicia a exibição; escolhas passam por `Submit`, ficam bloqueadas durante os eventos e são reabertas com `AvailableActions`. Ao retomar uma apresentação interrompida, redesenhar o estado vigente do núcleo. Sem inicialização, as ações permanecem desabilitadas.
+- Ao receber `BattleView.CombatStarted`, `BattleBootstrap` entrega uma batalha ativa ao `BattlePresenter`, uma vez por cena. Escolhas passam por `Submit`, ficam bloqueadas durante os eventos e são reabertas com `AvailableActions`. Ao retomar uma apresentação interrompida, redesenhar o estado vigente do núcleo. Sem inicialização, as ações permanecem desabilitadas.
+- `BattleBootstrap` usa as seleções validadas de `BattleView`, `ContentMapper` e `EncounterBattleFactory`; a variação de atributos e a fúria continuam sendo criadas no `Core`.
 - `Presentation` pode referenciar `Core` e `Content`; o núcleo não referencia `UnityEngine` nem componentes de interface.
 - Toda escolha passa pela validação do núcleo.
 - Entrada fica bloqueada enquanto eventos do turno estão sendo apresentados.

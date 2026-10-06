@@ -1,0 +1,18 @@
+{
+  "name": "IronTournament.Bootstrap",
+  "rootNamespace": "IronTournament.Bootstrap",
+  "references": [
+    "IronTournament.Core",
+    "IronTournament.Content",
+    "IronTournament.Presentation"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
