@@ -8,6 +8,7 @@
 | `BattleEventPlayer` | Apresentar eventos em sequência | Criar resultados de combate |
 | `BattlePresenter` | Enviar escolhas ao `IBattle`, sincronizar a apresentação e informar o encerramento | Criar configurações ou implementar regras |
 | `BattleBootstrap` | Mapear conteúdo, iniciar a campanha e fornecer sua batalha ativa | Alterar estado de combate ou regras |
+| `MainMenuController` | Carregar a cena `Battle` pelo botão de início | Definir regras ou estado da campanha |
 
 ## Referências de tela
 
@@ -18,7 +19,8 @@
 
 ## Regras vinculantes
 
-- Cena-base: `Assets/Scenes/Battle.unity`; `BattleView` alterna composição por orientação e recorta o cenário mantendo sua proporção.
+- Entrada do build: `Assets/Scenes/MainMenu.unity`, com os tópicos consultáveis `Regras`, `Objetivo` e `Desafios` e o botão `Iniciar campanha`; ele carrega `Battle` sem carregar estado de jogo.
+- Cena-base de combate: `Assets/Scenes/Battle.unity`; `BattleView` alterna composição por orientação e recorta o cenário mantendo sua proporção.
 - `BattleView` mantém um registro visual por combatente configurado: definição de conteúdo, encontro quando for adversário, quatro sprites (`east`, `north-east`, `west`, `south-west`), cenário e legenda. `SelectPlayer` e `SelectEncounter` selecionam os dois participantes antes do combate, expõem `SelectedPlayer` e `SelectedEncounter` ao bootstrap e rejeitam referências inválidas ou mudanças durante combate. Guerreiro/Goblin permanecem o padrão.
 - A cena `Battle` é a entrada habilitada no build desta vertical; a inicialização do combate continua sendo fornecida pelo bootstrap.
 - Introdução: controlado `east` e adversário `west`, frente a frente, com o cenário do adversário. Ao clicar em `Iniciar combate`, usar controlado `north-east` em primeiro plano e adversário `south-west` acima e à direita; ocultar o botão. A transição é a mesma para Guerreiro, Mago e modo inimigo.

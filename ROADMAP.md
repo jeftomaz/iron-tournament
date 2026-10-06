@@ -32,6 +32,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 - `done` `JP` Configurar assets dos sete inimigos, incluindo o Cavaleiro, e reutilizar a cena compartilhada para transição e escolha de saque.
 - `done` `JT` Criar e validar os assets `ScriptableObject` canônicos, garantindo Mago equipado com 30 ATK e faixas válidas para a variação dos inimigos.
 - `done` `JT` Integrar `CampaignRun` à cena: campanha linear, troca de encontro, escolha de saque e encerramento após o Rei Demônio.
+- `done` `JT` Criar tela inicial com regras, objetivo, desafios e entrada para a campanha.
 
 ## Fase 4 — Progresso e modo inimigo
 

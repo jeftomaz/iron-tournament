@@ -2,6 +2,7 @@
 
 ## 2026-10-06
 
+- Adicionada a entrada demonstrável `MainMenu`: os tópicos consultáveis de regras, objetivo e desafios preservam a tela inicial enxuta; `Iniciar campanha` carrega `Battle`, que inicia a campanha canônica no Goblin.
 - Integrada a campanha na cena `Battle`: a batalha avança de Goblin ao Rei Demônio com o mesmo herói, oferta dois saques válidos após cada vitória intermediária e troca o cenário sem levar regras para a interface. Incluído o registro visual do Cavaleiro e cobertura PlayMode da primeira transição; EditMode 93/93, PlayMode 27/27 e build WebGL local aprovados.
 - Corrigido o verificador local: os processos de teste não recebem mais `-quit`, que encerrava o Unity antes de executar a suíte; EditMode e PlayMode passam a produzir resultados reais antes do build WebGL.
 - Configurado o conteúdo canônico da campanha: `Campaign.asset` na ordem dos sete encontros, Cavaleiro com sprite e atributos aprovados, nove itens em todos os pools e ações exclusivas dos heróis. Coberto o mapeamento integral em EditMode; a apresentação de campanha continua pendente.
