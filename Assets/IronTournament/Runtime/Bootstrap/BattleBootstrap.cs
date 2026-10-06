@@ -12,7 +12,17 @@ namespace IronTournament.Bootstrap
         [SerializeField] private BattleView view;
         [SerializeField] private BattlePresenter presenter;
 
-        private void Start()
+        private void OnEnable()
+        {
+            if (view != null) view.CombatStarted += InitializeSelectedBattle;
+        }
+
+        private void OnDisable()
+        {
+            if (view != null) view.CombatStarted -= InitializeSelectedBattle;
+        }
+
+        private void InitializeSelectedBattle()
         {
             if (view == null || presenter == null || view.SelectedPlayer == null || view.SelectedEncounter == null)
             {

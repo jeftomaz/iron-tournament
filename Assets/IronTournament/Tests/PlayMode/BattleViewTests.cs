@@ -27,10 +27,10 @@ namespace IronTournament.Presentation.Tests
         {
             scene = EditorSceneManager.LoadSceneInPlayMode("Assets/Scenes/Battle.unity",
                 new LoadSceneParameters(LoadSceneMode.Additive));
+            yield return null;
             canvas = scene.GetRootGameObjects().Single(root => root.name == "BattleCanvas");
             bootstrap = canvas.GetComponentInChildren<BattleBootstrap>();
             bootstrap.enabled = false;
-            yield return null;
         }
 
         [UnityTearDown]
