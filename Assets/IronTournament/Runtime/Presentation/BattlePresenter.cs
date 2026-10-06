@@ -21,10 +21,13 @@ namespace IronTournament.Presentation
             if (battle != null) throw new InvalidOperationException("The presenter is already bound to a battle.");
             if (encounter.State == null || encounter.State.IsOver)
                 throw new ArgumentException("An active battle is required.", nameof(encounter));
+            if (view.SelectedPlayer != null && encounter.State.Hero.Id != view.SelectedPlayer.Id)
+                throw new ArgumentException("The battle player must match the selected player.", nameof(encounter));
             if (view.SelectedEncounter != null &&
                 encounter.State.Opponent.Id != view.SelectedEncounter.Opponent.Id)
                 throw new ArgumentException("The battle opponent must match the selected encounter.", nameof(encounter));
             battle = encounter;
+            menu.ConfigureActions(encounter.State.Hero.Configuration.Abilities);
             if (isActiveAndEnabled && view.IsCombatStarted) RenderState();
         }
 
@@ -64,6 +67,12 @@ namespace IronTournament.Presentation
             awaitingPlayback = true;
             menu.SetAvailableActions(battle.AvailableActions, true);
             events.PlayEvents(result.Events, battle.State);
+            if (action == AbilityId.RevertTurn || action == AbilityId.RevertBattle)
+            {
+                awaitingPlayback = false;
+                RenderState();
+                hud.SetStatus($"{(action == AbilityId.RevertTurn ? "Turno revertido" : "Batalha revertida")} · Reversão: {battle.State.RevertCharges}");
+            }
         }
 
         private void RenderState()
@@ -75,7 +84,8 @@ namespace IronTournament.Presentation
             if (state.IsOver) view.ShowOutcome(state.Phase);
             else
             {
-                hud.SetStatus("Vez do Guerreiro");
+                hud.SetStatus($"Vez do {state.Hero.Configuration.DisplayName}" +
+                    (state.Hero.Id == CombatantId.Mage ? $" · Reversão: {state.RevertCharges}" : ""));
                 menu.SetAvailableActions(battle.AvailableActions, false);
             }
         }

@@ -1,6 +1,6 @@
 using System;
-using IronTournament.Core;
 using IronTournament.Content;
+using IronTournament.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,17 +11,22 @@ namespace IronTournament.Presentation
     public sealed class BattleView : MonoBehaviour
     {
         [Serializable]
-        private sealed class EncounterVisual
+        private sealed class CombatantVisual
         {
-            public EncounterDefinition definition;
-            public Sprite introduction;
-            public Sprite combat;
+            public CombatantDefinition definition;
+            public EncounterDefinition encounter;
+            public Sprite east;
+            public Sprite northEast;
+            public Sprite west;
+            public Sprite southWest;
             public Sprite background;
             public string caption;
         }
 
-        [SerializeField] private EncounterVisual[] encounters;
+        [SerializeField] private CombatantVisual[] combatants;
+        [SerializeField] private CombatantId selectedPlayer = CombatantId.Warrior;
         [SerializeField] private CombatantId selectedOpponent = CombatantId.Goblin;
+        [SerializeField] private Text heroName;
         [SerializeField] private Text opponentName;
         [SerializeField] private RectTransform composition;
         [SerializeField] private Text title;
@@ -33,52 +38,54 @@ namespace IronTournament.Presentation
         [SerializeField] private RectTransform playerLabel;
         [SerializeField] private RectTransform opponentLabel;
         [SerializeField] private Button startButton;
-        [SerializeField] private Sprite combatPlayerSprite;
-        [SerializeField] private Sprite combatOpponentSprite;
         [SerializeField] private BattleHud hud;
         [SerializeField] private RectTransform battleStatus;
         [SerializeField] private ActionMenu actionMenu;
 
         private Vector2 previousViewport = new Vector2(-1, -1);
         private bool combatPresentationStarted;
+        private bool refreshSelection;
         private Vector2 playerFeedbackOffset;
         private Vector2 opponentFeedbackOffset;
         private BattlePhase outcome;
+        private int actionRows = -1;
 
         public bool HasOutcome => outcome == BattlePhase.Victory || outcome == BattlePhase.Defeat;
         public bool IsCombatStarted => combatPresentationStarted;
         public event Action CombatStarted;
 
+        public CombatantDefinition SelectedPlayer { get; private set; }
         public EncounterDefinition SelectedEncounter { get; private set; }
+
+        public void SelectPlayer(CombatantId id)
+        {
+            if (combatPresentationStarted) throw new InvalidOperationException("The player cannot change during combat.");
+            var visual = FindVisual(id);
+            ValidateVisual(visual, id);
+            selectedPlayer = id;
+            SelectedPlayer = visual.definition;
+            player.sprite = visual.east;
+            heroName.supportRichText = false;
+            heroName.text = visual.definition.DisplayName;
+            RequestLayout();
+        }
 
         public void SelectEncounter(CombatantId id)
         {
             if (combatPresentationStarted) throw new InvalidOperationException("An encounter cannot change during combat.");
-            EncounterVisual visual = null;
-            if (encounters != null)
-                foreach (var candidate in encounters)
-                    if (candidate?.definition?.Opponent != null && candidate.definition.Opponent.Id == id)
-                    {
-                        visual = candidate;
-                        break;
-                    }
-            if (visual == null) throw new ArgumentOutOfRangeException(nameof(id));
-            if (!ContentValidator.Validate(visual.definition).IsValid || visual.introduction == null ||
-                visual.combat == null || visual.background == null || string.IsNullOrWhiteSpace(visual.caption) ||
-                visual.caption.Length > 80)
-                throw new ArgumentException("A valid encounter and complete visual references are required.", nameof(id));
-            foreach (char character in visual.caption)
-                if (char.IsControl(character)) throw new ArgumentException("Invalid encounter caption.", nameof(id));
+            var visual = FindVisual(id);
+            ValidateVisual(visual, id);
+            if (visual.encounter == null || !ContentValidator.Validate(visual.encounter).IsValid ||
+                visual.encounter.Opponent.Id != id)
+                throw new ArgumentException("A valid encounter matching the opponent is required.", nameof(id));
             selectedOpponent = id;
-            SelectedEncounter = visual.definition;
-            opponent.sprite = visual.introduction;
-            combatOpponentSprite = visual.combat;
+            SelectedEncounter = visual.encounter;
+            opponent.sprite = visual.west;
             background.sprite = visual.background;
             opponentName.supportRichText = encounter.supportRichText = false;
-            opponentName.text = visual.definition.Opponent.DisplayName;
+            opponentName.text = visual.definition.DisplayName;
             encounter.text = visual.caption;
-            previousViewport = new Vector2(-1, -1);
-            LateUpdate();
+            RequestLayout();
         }
 
         internal void ShowOutcome(BattlePhase result)
@@ -92,8 +99,7 @@ namespace IronTournament.Presentation
             battleStatus.gameObject.SetActive(true);
             hud.SetStatus(result == BattlePhase.Victory ? "Vitória!" : "Derrota");
             ResetCombatantFeedback();
-            previousViewport = new Vector2(-1, -1);
-            LateUpdate();
+            RequestLayout();
         }
 
         public RectTransform GetCombatantRect(CombatantSide side) => CombatantImage(side).rectTransform;
@@ -108,17 +114,154 @@ namespace IronTournament.Presentation
             if (side == CombatantSide.Player) playerFeedbackOffset = offset;
             else opponentFeedbackOffset = offset;
             image.color = tint;
-            previousViewport = new Vector2(-1, -1);
+            RequestLayout();
             LateUpdate();
         }
 
         public void ResetCombatantFeedback()
         {
-            var defeatedTint = new Color(0.45f, 0.45f, 0.45f, 0.65f);
+            var defeatedTint = new Color(.45f, .45f, .45f, .65f);
             if (player != null) SetCombatantFeedback(CombatantSide.Player, Vector2.zero,
                 outcome == BattlePhase.Defeat ? defeatedTint : Color.white);
             if (opponent != null) SetCombatantFeedback(CombatantSide.Enemy, Vector2.zero,
                 outcome == BattlePhase.Victory ? defeatedTint : Color.white);
+        }
+
+        private void OnEnable()
+        {
+            if (combatants != null && combatants.Length > 0 && !combatPresentationStarted)
+            {
+                SelectPlayer(selectedPlayer);
+                SelectEncounter(selectedOpponent);
+            }
+            RequestLayout();
+            if (Application.isPlaying && startButton != null)
+                startButton.onClick.AddListener(StartCombatPresentation);
+        }
+
+        private void OnDisable()
+        {
+            if (startButton != null) startButton.onClick.RemoveListener(StartCombatPresentation);
+        }
+
+        private void StartCombatPresentation()
+        {
+            if (combatPresentationStarted || player == null || opponent == null ||
+                SelectedPlayer == null || SelectedEncounter == null) return;
+            var playerVisual = FindVisual(SelectedPlayer.Id);
+            var opponentVisual = FindVisual(SelectedEncounter.Opponent.Id);
+            if (playerVisual.northEast == null || opponentVisual.southWest == null) return;
+            combatPresentationStarted = true;
+            player.sprite = playerVisual.northEast;
+            opponent.sprite = opponentVisual.southWest;
+            startButton.gameObject.SetActive(false);
+            hud.Clear();
+            battleStatus.gameObject.SetActive(true);
+            actionMenu.gameObject.SetActive(true);
+            actionMenu.SetAvailableActions(Array.Empty<AbilityId>(), true);
+            RequestLayout();
+            CombatStarted?.Invoke();
+        }
+
+        private void OnValidate()
+        {
+            RequestLayout();
+            refreshSelection = !Application.isPlaying;
+        }
+
+        private void LateUpdate()
+        {
+            if (refreshSelection)
+            {
+                refreshSelection = false;
+                if (combatants != null && combatants.Length > 0)
+                {
+                    SelectPlayer(selectedPlayer);
+                    SelectEncounter(selectedOpponent);
+                }
+            }
+            if (actionMenu != null && actionRows != actionMenu.ActionRows) RequestLayout();
+            if (composition == null || !(composition.parent is RectTransform viewport)) return;
+            var size = viewport.rect.size;
+            if (size.x <= 0 || size.y <= 0 || size == previousViewport) return;
+            if (title == null || encounter == null || arena == null || background == null || player == null ||
+                opponent == null || playerLabel == null || opponentLabel == null || startButton == null || hud == null ||
+                battleStatus == null || actionMenu == null) return;
+
+            previousViewport = size;
+            actionRows = actionMenu.ActionRows;
+            var extraRows = Mathf.Max(0, actionRows - 1);
+            var portrait = size.y > size.x;
+            var reference = portrait ? new Vector2(360, 640) : new Vector2(1280, 720);
+            var scale = Mathf.Min(size.x / reference.x, size.y / reference.y);
+            if (scale >= 1) scale = Mathf.Floor(scale);
+            composition.anchorMin = composition.anchorMax = composition.pivot = new Vector2(.5f, .5f);
+            composition.anchoredPosition = Vector2.zero;
+            composition.sizeDelta = reference;
+            composition.localScale = Vector3.one * scale;
+
+            if (portrait)
+            {
+                Place(title.rectTransform, 16, 24, 328, 32);
+                Place(encounter.rectTransform, 16, 66, 328, 20);
+                Place(arena, 16, 106, 328, 310 - extraRows * 24);
+                Place(playerLabel, 16, 432 - extraRows * 24, 156, 76);
+                Place(opponentLabel, 188, 432 - extraRows * 24, 156, 76);
+                Place((RectTransform)startButton.transform, 16, 536, 328, 48);
+                Place(battleStatus, 16, 520 - extraRows * 24, 328, HasOutcome ? 80 : 20);
+                Place((RectTransform)actionMenu.transform, 16, 552 - extraRows * 24, 328, 48 + extraRows * 42);
+            }
+            else
+            {
+                Place(title.rectTransform, 40, 24, 1200, 42);
+                Place(encounter.rectTransform, 40, 76, 1200, 24);
+                Place(arena, 40, 116, 1200, (combatPresentationStarted ? 384 : 454) - extraRows * 14);
+                Place(playerLabel, 40, (combatPresentationStarted ? 516 : 590) - extraRows * 14, 580, 76);
+                Place(opponentLabel, 660, (combatPresentationStarted ? 516 : 590) - extraRows * 14, 580, 76);
+                Place((RectTransform)startButton.transform, 440, 678, 400, 32);
+                Place(battleStatus, 40, 606 - extraRows * 14, 1200, HasOutcome ? 86 : 24);
+                Place((RectTransform)actionMenu.transform, 340, 644 - extraRows * 20, 600, 48 + extraRows * 42);
+            }
+
+            title.fontSize = portrait ? 26 : 36;
+            encounter.fontSize = portrait ? 12 : 14;
+            var status = battleStatus.GetComponent<Text>();
+            status.fontSize = HasOutcome ? (portrait ? 30 : 36) : 14;
+            status.color = outcome == BattlePhase.Victory ? new Color32(245, 198, 82, 255)
+                : outcome == BattlePhase.Defeat ? new Color32(242, 130, 120, 255) : Color.white;
+            FitBackground();
+            PlaceCombatant(player, portrait ? .27f : .32f, portrait ? 3 : 5, scale,
+                combatPresentationStarted ? .09f : .12f, playerFeedbackOffset);
+            PlaceCombatant(opponent, portrait ? .73f : .68f, portrait ? 3 : 5, scale,
+                combatPresentationStarted ? .34f : .12f, opponentFeedbackOffset);
+        }
+
+        private CombatantVisual FindVisual(CombatantId id)
+        {
+            if (combatants != null)
+                foreach (var visual in combatants)
+                    if (visual?.definition != null && visual.definition.Id == id) return visual;
+            throw new ArgumentOutOfRangeException(nameof(id));
+        }
+
+        private static void ValidateVisual(CombatantVisual visual, CombatantId id)
+        {
+            if (visual == null)
+                throw new ArgumentException("Complete combatant visual references are required.", nameof(id));
+
+            var content = ContentValidator.Validate(visual.definition);
+            if (!content.IsValid)
+                throw new ArgumentException(string.Join(" | ", content.Errors), nameof(id));
+
+            if (visual.east == null) throw new ArgumentException("East sprite is required.", nameof(id));
+            if (visual.northEast == null) throw new ArgumentException("North-east sprite is required.", nameof(id));
+            if (visual.west == null) throw new ArgumentException("West sprite is required.", nameof(id));
+            if (visual.southWest == null) throw new ArgumentException("South-west sprite is required.", nameof(id));
+            if (visual.background == null) throw new ArgumentException("Background sprite is required.", nameof(id));
+            if (string.IsNullOrWhiteSpace(visual.caption) || visual.caption.Length > 80)
+                throw new ArgumentException("A valid combatant caption is required.", nameof(id));
+            foreach (var character in visual.caption)
+                if (char.IsControl(character)) throw new ArgumentException("Invalid combatant caption.", nameof(id));
         }
 
         private Image CombatantImage(CombatantSide side)
@@ -133,118 +276,29 @@ namespace IronTournament.Presentation
 
         private static bool IsFinite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
 
-        private void OnEnable()
-        {
-            if (encounters != null && encounters.Length > 0 && !combatPresentationStarted)
-                SelectEncounter(selectedOpponent);
-            previousViewport = new Vector2(-1, -1);
-            if (Application.isPlaying && startButton != null)
-                startButton.onClick.AddListener(StartCombatPresentation);
-        }
-
-        private void OnDisable()
-        {
-            if (startButton != null) startButton.onClick.RemoveListener(StartCombatPresentation);
-        }
-
-        private void StartCombatPresentation()
-        {
-            if (combatPresentationStarted || player == null || opponent == null ||
-                combatPlayerSprite == null || combatOpponentSprite == null) return;
-            combatPresentationStarted = true;
-            player.sprite = combatPlayerSprite;
-            opponent.sprite = combatOpponentSprite;
-            startButton.gameObject.SetActive(false);
-            hud.Clear();
-            battleStatus.gameObject.SetActive(true);
-            actionMenu.gameObject.SetActive(true);
-            actionMenu.SetAvailableActions(System.Array.Empty<IronTournament.Core.AbilityId>(), true);
-            previousViewport = new Vector2(-1, -1);
-            LateUpdate();
-            CombatStarted?.Invoke();
-        }
-
-        private void OnValidate()
-        {
-            previousViewport = new Vector2(-1, -1);
-            if (!Application.isPlaying && encounters != null && encounters.Length > 0)
-                SelectEncounter(selectedOpponent);
-        }
-
-        private void LateUpdate()
-        {
-            if (composition == null || !(composition.parent is RectTransform viewport)) return;
-            var size = viewport.rect.size;
-            if (size.x <= 0 || size.y <= 0 || size == previousViewport) return;
-            if (title == null || encounter == null || arena == null || background == null ||
-                player == null || opponent == null || playerLabel == null || opponentLabel == null || startButton == null ||
-                hud == null || battleStatus == null || actionMenu == null) return;
-
-            previousViewport = size;
-            bool portrait = size.y > size.x;
-            var reference = portrait ? new Vector2(360, 640) : new Vector2(1280, 720);
-            float scale = Mathf.Min(size.x / reference.x, size.y / reference.y);
-            if (scale >= 1) scale = Mathf.Floor(scale);
-            composition.anchorMin = composition.anchorMax = composition.pivot = new Vector2(0.5f, 0.5f);
-            composition.anchoredPosition = Vector2.zero;
-            composition.sizeDelta = reference;
-            composition.localScale = Vector3.one * scale;
-
-            if (portrait)
-            {
-                Place(title.rectTransform, 16, 24, 328, 32);
-                Place(encounter.rectTransform, 16, 66, 328, 20);
-                Place(arena, 16, 106, 328, 310);
-                Place(playerLabel, 16, 432, 156, 76);
-                Place(opponentLabel, 188, 432, 156, 76);
-                Place((RectTransform)startButton.transform, 16, 536, 328, 48);
-                Place(battleStatus, 16, 520, 328, HasOutcome ? 80 : 20);
-                Place((RectTransform)actionMenu.transform, 16, 552, 328, 48);
-            }
-            else
-            {
-                Place(title.rectTransform, 40, 24, 1200, 42);
-                Place(encounter.rectTransform, 40, 76, 1200, 24);
-                Place(arena, 40, 116, 1200, combatPresentationStarted ? 384 : 454);
-                Place(playerLabel, 40, combatPresentationStarted ? 516 : 590, 580, 76);
-                Place(opponentLabel, 660, combatPresentationStarted ? 516 : 590, 580, 76);
-                Place((RectTransform)startButton.transform, 440, 678, 400, 32);
-                Place(battleStatus, 40, 606, 1200, HasOutcome ? 86 : 24);
-                Place((RectTransform)actionMenu.transform, 340, 644, 600, 48);
-            }
-
-            title.fontSize = portrait ? 26 : 36;
-            encounter.fontSize = portrait ? 12 : 14;
-            var status = battleStatus.GetComponent<Text>();
-            status.fontSize = HasOutcome ? (portrait ? 30 : 36) : 14;
-            status.color = outcome == BattlePhase.Victory ? new Color32(245, 198, 82, 255)
-                : outcome == BattlePhase.Defeat ? new Color32(242, 130, 120, 255) : Color.white;
-            FitBackground();
-            PlaceCombatant(player, portrait ? 0.27f : 0.32f, portrait ? 3 : 5, scale,
-                combatPresentationStarted ? 0.09f : 0.12f, playerFeedbackOffset);
-            PlaceCombatant(opponent, portrait ? 0.73f : 0.68f, portrait ? 3 : 5, scale,
-                combatPresentationStarted ? 0.34f : 0.12f, opponentFeedbackOffset);
-        }
+        private void RequestLayout() => previousViewport = new Vector2(-1, -1);
 
         private void FitBackground()
         {
             if (background.sprite == null) return;
             var source = background.sprite.rect.size;
-            float cover = Mathf.Max(arena.rect.width / source.x, arena.rect.height / source.y);
+            var cover = Mathf.Max(arena.rect.width / source.x, arena.rect.height / source.y);
             var rect = background.rectTransform;
-            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, .5f);
             rect.anchoredPosition = Vector2.zero;
             rect.sizeDelta = source * cover;
         }
 
-        private void PlaceCombatant(Image image, float horizontalPosition, int referenceScale, float scale, float groundPosition, Vector2 feedbackOffset)
+        private void PlaceCombatant(Image image, float horizontalPosition, int referenceScale, float scale,
+            float groundPosition, Vector2 feedbackOffset)
         {
             if (image.sprite == null) return;
-            // Round in screen pixels even when a small Game View must scale the composition down.
-            float pixelScale = Mathf.Max(1, Mathf.Floor(referenceScale * scale));
+            var pixelScale = Mathf.Max(1, Mathf.Floor(referenceScale * scale));
+            var availableHeight = arena.rect.height * (1 - groundPosition) - 8;
+            pixelScale = Mathf.Min(pixelScale, Mathf.Max(1, Mathf.Floor(availableHeight * scale / image.sprite.rect.height)));
             var rect = image.rectTransform;
             rect.anchorMin = rect.anchorMax = Vector2.zero;
-            rect.pivot = new Vector2(0.5f, 0);
+            rect.pivot = new Vector2(.5f, 0);
             rect.anchoredPosition = new Vector2(
                 Mathf.Round((arena.rect.width * horizontalPosition + feedbackOffset.x) * scale) / scale,
                 Mathf.Round((arena.rect.height * groundPosition + feedbackOffset.y) * scale) / scale);
