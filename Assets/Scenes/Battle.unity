@@ -244,7 +244,7 @@ MonoBehaviour:
     background: {fileID: 21300000, guid: 526edec5c3f91c441ad9771ef186c552, type: 3}
     caption: "ENCONTRO 07 / CIDADELA DO REI DEM\xD4NIO"
   selectedPlayer: 1
-  selectedOpponent: 7
+  selectedOpponent: 3
   heroName: {fileID: 363076140}
   opponentName: {fileID: 579583715}
   composition: {fileID: 46471659}
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 728e50167b1764c488d78a372d42aac4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7789f0f8e7fa1c942a45e090d81bbf16, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1224,7 +1224,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Vampiro
+  m_Text: Goblin
 --- !u!222 &579583716
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1575,7 +1575,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ENCONTRO 05 / CASTELO DO VAMPIRO
+  m_Text: ENCONTRO 01 / FLORESTA SOMBRIA
 --- !u!222 &922421908
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2056,11 +2056,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3353256916562111274, guid: 2419908165ce09940b1e0638b84e35bc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 84
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 3353256916562111274, guid: 2419908165ce09940b1e0638b84e35bc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 180
+      value: 144
       objectReference: {fileID: 0}
     - target: {fileID: 3353256916562111274, guid: 2419908165ce09940b1e0638b84e35bc, type: 3}
       propertyPath: m_LocalPosition.x

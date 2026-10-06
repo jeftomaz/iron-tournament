@@ -543,13 +543,7 @@ namespace IronTournament.Presentation.Tests
                     yield return SetUp();
                 }
                 var view = canvas.GetComponentInChildren<BattleView>();
-                view.SelectPlayer(CombatantId.Mage);
-                view.SelectEncounter(opponent);
-                var mage = ContentMapper.BuildCombatant(view.SelectedPlayer);
-                var enemy = ContentMapper.BuildEncounter(view.SelectedEncounter).Opponent;
-                var battle = new Battle(new BattleState(new CombatantState(mage, mage.BaseStats),
-                    new CombatantState(enemy, enemy.BaseStats)), new SeededRandomSource(17));
-                canvas.GetComponentInChildren<BattlePresenter>().Initialize(battle);
+                var battle = InitializeMageBattle(view, opponent);
                 StartPresentation();
                 yield return null;
 
@@ -576,6 +570,34 @@ namespace IronTournament.Presentation.Tests
                 Assert.That(buttons.Single(button => button.name == "Attack").interactable, Is.True);
                 Assert.That(buttons.Single(button => button.name == "RevertTurn").interactable, Is.False);
             }
+        }
+
+        [UnityTest]
+        public IEnumerator MageRevertBattleRestoresTheEncounterAndReopensActions()
+        {
+            var view = canvas.GetComponentInChildren<BattleView>();
+            var battle = InitializeMageBattle(view, CombatantId.Goblin);
+            var initialPlayerHealth = battle.State.Hero.CurrentHealth;
+            var initialOpponentHealth = battle.State.Opponent.CurrentHealth;
+            var initialRound = battle.State.Round;
+            StartPresentation();
+            yield return null;
+
+            var menu = canvas.GetComponentInChildren<ActionMenu>();
+            var buttons = menu.GetComponentsInChildren<Button>();
+            buttons.Single(button => button.name == "Attack").onClick.Invoke();
+            yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
+            yield return null;
+            buttons.Single(button => button.name == "RevertBattle").onClick.Invoke();
+
+            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(initialPlayerHealth));
+            Assert.That(battle.State.Opponent.CurrentHealth, Is.EqualTo(initialOpponentHealth));
+            Assert.That(battle.State.Round, Is.EqualTo(initialRound));
+            Assert.That(battle.State.RevertCharges, Is.Zero);
+            Assert.That(HealthText("PlayerHealth"), Is.EqualTo($"HP {initialPlayerHealth} / {initialPlayerHealth}"));
+            Assert.That(HealthText("OpponentHealth"), Is.EqualTo($"HP {initialOpponentHealth} / {initialOpponentHealth}"));
+            Assert.That(buttons.Single(button => button.name == "Attack").interactable, Is.True);
+            Assert.That(buttons.Single(button => button.name == "RevertBattle").interactable, Is.False);
         }
 
         [UnityTest]
@@ -621,6 +643,18 @@ namespace IronTournament.Presentation.Tests
 
         private string HealthText(string name)
             => canvas.GetComponentsInChildren<Text>().Single(text => text.name == name).text;
+
+        private Battle InitializeMageBattle(BattleView view, CombatantId opponent)
+        {
+            view.SelectPlayer(CombatantId.Mage);
+            view.SelectEncounter(opponent);
+            var mage = ContentMapper.BuildCombatant(view.SelectedPlayer);
+            var enemy = ContentMapper.BuildEncounter(view.SelectedEncounter).Opponent;
+            var battle = new Battle(new BattleState(new CombatantState(mage, mage.BaseStats),
+                new CombatantState(enemy, enemy.BaseStats)), new SeededRandomSource(17));
+            canvas.GetComponentInChildren<BattlePresenter>().Initialize(battle);
+            return battle;
+        }
 
         private static BattleState PresentationState(int heroHealth = 100, int enemyHealth = 100)
         {
