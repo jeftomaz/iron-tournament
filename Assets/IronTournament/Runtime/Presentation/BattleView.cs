@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using IronTournament.Content;
 using IronTournament.Core;
 using UnityEngine;
@@ -40,6 +42,7 @@ namespace IronTournament.Presentation
         [SerializeField] private Button startButton;
         [SerializeField] private BattleHud hud;
         [SerializeField] private RectTransform battleStatus;
+        [SerializeField] private Text dropDetails;
         [SerializeField] private ActionMenu actionMenu;
 
         private Vector2 previousViewport = new Vector2(-1, -1);
@@ -76,13 +79,18 @@ namespace IronTournament.Presentation
             ApplyEncounterSelection(id, false);
         }
 
-        public void ShowDropChoice()
+        public void ShowDropChoice(IReadOnlyList<ItemConfiguration> offer)
         {
             if (!combatPresentationStarted || outcome != BattlePhase.Victory)
                 throw new InvalidOperationException("A victorious encounter is required for a drop choice.");
+            if (offer == null || offer.Count == 0)
+                throw new ArgumentException("At least one drop is required.", nameof(offer));
 
             actionMenu.gameObject.SetActive(true);
             battleStatus.gameObject.SetActive(true);
+            dropDetails.supportRichText = false;
+            dropDetails.text = DescribeOffer(offer);
+            dropDetails.gameObject.SetActive(true);
             hud.SetStatus("Escolha um saque");
             RequestLayout();
         }
@@ -99,6 +107,7 @@ namespace IronTournament.Presentation
             startButton.gameObject.SetActive(false);
             hud.Clear();
             battleStatus.gameObject.SetActive(true);
+            dropDetails.gameObject.SetActive(false);
             actionMenu.gameObject.SetActive(true);
             actionMenu.SetAvailableActions(Array.Empty<AbilityId>(), true);
             ResetCombatantFeedback();
@@ -111,6 +120,7 @@ namespace IronTournament.Presentation
                 throw new InvalidOperationException("A victorious encounter is required to complete the campaign.");
 
             hud.SetStatus("Campanha concluída!");
+            dropDetails.gameObject.SetActive(false);
             RequestLayout();
         }
 
@@ -139,6 +149,7 @@ namespace IronTournament.Presentation
             startButton.gameObject.SetActive(false);
             actionMenu.SetAvailableActions(Array.Empty<AbilityId>(), true);
             actionMenu.gameObject.SetActive(false);
+            dropDetails.gameObject.SetActive(false);
             battleStatus.gameObject.SetActive(true);
             hud.SetStatus(result == BattlePhase.Victory ? "Vitória!" : "Derrota");
             ResetCombatantFeedback();
@@ -200,6 +211,7 @@ namespace IronTournament.Presentation
             startButton.gameObject.SetActive(false);
             hud.Clear();
             battleStatus.gameObject.SetActive(true);
+            dropDetails.gameObject.SetActive(false);
             actionMenu.gameObject.SetActive(true);
             actionMenu.SetAvailableActions(Array.Empty<AbilityId>(), true);
             RequestLayout();
@@ -229,11 +241,12 @@ namespace IronTournament.Presentation
             if (size.x <= 0 || size.y <= 0 || size == previousViewport) return;
             if (title == null || encounter == null || arena == null || background == null || player == null ||
                 opponent == null || playerLabel == null || opponentLabel == null || startButton == null || hud == null ||
-                battleStatus == null || actionMenu == null) return;
+                battleStatus == null || dropDetails == null || actionMenu == null) return;
 
             previousViewport = size;
             actionRows = actionMenu.ActionRows;
             var extraRows = Mathf.Max(0, actionRows - 1);
+            var showingDrops = HasOutcome && actionMenu.gameObject.activeSelf && dropDetails.gameObject.activeSelf;
             var portrait = size.y > size.x;
             var reference = portrait ? new Vector2(360, 640) : new Vector2(1280, 720);
             var scale = Mathf.Min(size.x / reference.x, size.y / reference.y);
@@ -251,19 +264,39 @@ namespace IronTournament.Presentation
                 Place(playerLabel, 16, 432 - extraRows * 24, 156, 76);
                 Place(opponentLabel, 188, 432 - extraRows * 24, 156, 76);
                 Place((RectTransform)startButton.transform, 16, 536, 328, 48);
-                Place(battleStatus, 16, 520 - extraRows * 24, 328, HasOutcome ? 80 : 20);
-                Place((RectTransform)actionMenu.transform, 16, 552 - extraRows * 24, 328, 48 + extraRows * 42);
+                if (showingDrops)
+                {
+                    Place(battleStatus, 16, 516 - extraRows * 24, 328, 20);
+                    Place(dropDetails.rectTransform, 16, 540 - extraRows * 24, 328, 28);
+                    Place((RectTransform)actionMenu.transform, 16, 574 - extraRows * 28, 328, 48 + extraRows * 42);
+                }
+                else
+                {
+                    Place(battleStatus, 16, 520 - extraRows * 24, 328, HasOutcome ? 80 : 20);
+                    Place((RectTransform)actionMenu.transform, 16, 552 - extraRows * 24, 328, 48 + extraRows * 42);
+                }
             }
             else
             {
                 Place(title.rectTransform, 40, 24, 1200, 42);
                 Place(encounter.rectTransform, 40, 76, 1200, 24);
-                Place(arena, 40, 116, 1200, (combatPresentationStarted ? 384 : 454) - extraRows * 14);
-                Place(playerLabel, 40, (combatPresentationStarted ? 516 : 590) - extraRows * 14, 580, 76);
-                Place(opponentLabel, 660, (combatPresentationStarted ? 516 : 590) - extraRows * 14, 580, 76);
+                var dropOffset = showingDrops ? extraRows * 42 : extraRows * 14;
+                Place(arena, 40, 116, 1200, (combatPresentationStarted ? 384 : 454) - dropOffset);
+                var labelOffset = showingDrops ? extraRows * 48 : extraRows * 14;
+                Place(playerLabel, 40, (combatPresentationStarted ? 516 : 590) - labelOffset, 580, 76);
+                Place(opponentLabel, 660, (combatPresentationStarted ? 516 : 590) - labelOffset, 580, 76);
                 Place((RectTransform)startButton.transform, 440, 678, 400, 32);
-                Place(battleStatus, 40, 606 - extraRows * 14, 1200, HasOutcome ? 86 : 24);
-                Place((RectTransform)actionMenu.transform, 340, 644 - extraRows * 20, 600, 48 + extraRows * 42);
+                if (showingDrops)
+                {
+                    Place(battleStatus, 40, 602 - extraRows * 42, 1200, 20);
+                    Place(dropDetails.rectTransform, 40, 626 - extraRows * 42, 1200, 24);
+                    Place((RectTransform)actionMenu.transform, 340, 656 - extraRows * 42, 600, 48 + extraRows * 42);
+                }
+                else
+                {
+                    Place(battleStatus, 40, 606 - extraRows * 14, 1200, HasOutcome ? 86 : 24);
+                    Place((RectTransform)actionMenu.transform, 340, 644 - extraRows * 20, 600, 48 + extraRows * 42);
+                }
             }
 
             title.fontSize = portrait ? 26 : 36;
@@ -353,6 +386,46 @@ namespace IronTournament.Presentation
             rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0, 1);
             rect.anchoredPosition = new Vector2(x, -y);
             rect.sizeDelta = new Vector2(width, height);
+        }
+
+        private static string DescribeOffer(IReadOnlyList<ItemConfiguration> offer)
+        {
+            var result = new StringBuilder();
+            for (var index = 0; index < offer.Count; index++)
+            {
+                var item = offer[index] ?? throw new ArgumentException("Drop entries are required.", nameof(offer));
+                if (index > 0) result.Append('\n');
+                result.Append(item.DisplayName).Append(" · ").Append(DescribeItem(item));
+            }
+            return result.ToString();
+        }
+
+        private static string DescribeItem(ItemConfiguration item)
+        {
+            switch (item.Id)
+            {
+                case ItemId.HealingPotion: return "recupera 40 HP";
+                case ItemId.LifeElixir: return "recupera todo o HP";
+                case ItemId.HopeScroll: return "cura 50% com HP baixo";
+                case ItemId.FlameCloak: return "causa 5 de dano por turno";
+                case ItemId.BrotherhoodHorn: return "bloqueia golpe letal";
+            }
+
+            var result = new StringBuilder();
+            for (var index = 0; index < item.Modifiers.Count; index++)
+            {
+                if (index > 0) result.Append(" · ");
+                var modifier = item.Modifiers[index];
+                switch (modifier.Kind)
+                {
+                    case ItemModifierKind.MaximumHealth: result.Append("HP máx. "); break;
+                    case ItemModifierKind.Attack: result.Append("ATQ "); break;
+                    case ItemModifierKind.Defense: result.Append("DEF "); break;
+                    default: throw new ArgumentOutOfRangeException();
+                }
+                result.Append(modifier.Amount >= 0 ? "+" : string.Empty).Append(modifier.Amount);
+            }
+            return result.Length > 0 ? result.ToString() : "efeito especial";
         }
     }
 }

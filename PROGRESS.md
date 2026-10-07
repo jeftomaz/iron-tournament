@@ -2,6 +2,7 @@
 
 ## 2026-10-06
 
+- Refinada a interface de demonstração: os tópicos do menu agora têm título, destaque visual e área própria; a escala preserva a leitura em telas largas. Após uma vitória intermediária, a oferta mostra o efeito de cada item em área separada dos botões e é ocultada ao avançar o encontro. `scripts/verify.sh` passou (EditMode, PlayMode 29/29 e WebGL).
 - Documentada a execução da demonstração no `README.md`: fluxo do menu à campanha, mecânicas apresentadas, execução no Unity, build WebGL e validação local.
 - Adicionada a entrada demonstrável `MainMenu`: os tópicos consultáveis de regras, objetivo e desafios preservam a tela inicial enxuta; `Iniciar campanha` carrega `Battle`, que inicia a campanha canônica no Goblin.
 - Integrada a campanha na cena `Battle`: a batalha avança de Goblin ao Rei Demônio com o mesmo herói, oferta dois saques válidos após cada vitória intermediária e troca o cenário sem levar regras para a interface. Incluído o registro visual do Cavaleiro e cobertura PlayMode da primeira transição; EditMode 93/93, PlayMode 27/27 e build WebGL local aprovados.
