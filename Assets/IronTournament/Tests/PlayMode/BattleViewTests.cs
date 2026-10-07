@@ -201,12 +201,18 @@ namespace IronTournament.Presentation.Tests
             Assert.That(drops, Has.Length.EqualTo(2));
             Assert.That(drops.All(button => button.name.StartsWith("Drop")), Is.True);
             Assert.That(drops.All(button => button.interactable), Is.True);
+            var details = canvas.GetComponentsInChildren<Text>(true).Single(text => text.name == "DropDetails");
+            Assert.That(details.gameObject.activeInHierarchy, Is.True);
+            Assert.That(details.text, Does.Contain("·"));
+            Assert.That(details.rectTransform.anchoredPosition.y - details.rectTransform.rect.height,
+                Is.GreaterThan(((RectTransform)menu.transform).anchoredPosition.y));
 
             drops[0].onClick.Invoke();
             yield return null;
 
             Assert.That(view.HasOutcome, Is.False);
             Assert.That(view.SelectedEncounter.Opponent.Id, Is.EqualTo(CombatantId.Skeleton));
+            Assert.That(details.gameObject.activeInHierarchy, Is.False);
             Assert.That(menu.GetComponentsInChildren<Button>().Any(button => button.name == "Attack" && button.interactable), Is.True);
         }
 

@@ -43,6 +43,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 ## Fase 5 — Fechamento
 
+- `done` `JT` Refinar o menu demonstrável e apresentar, sem sobreposição, os efeitos dos dois itens oferecidos após cada vitória.
 - `todo` `JP` Refinar a escala relativa dos personagens após a limpeza das branches: aplicar proporção-base por personagem e redução por perspectiva do inimigo, sem deformar sprites.
 - `todo` `JP` Completar arte, animações, áudio e testes PlayMode; anexar evidência visual mobile/desktop aos PRs.
 - `done` `JL` Executar testes de regressão e ajustar balanceamento apenas por valores canônicos aprovados.

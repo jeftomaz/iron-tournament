@@ -2,13 +2,13 @@
 
 | Componente | Responsabilidade | Não deve fazer |
 |---|---|---|
-| `BattleView` | Exibir combatentes e cenário | Calcular ou aplicar dano |
+| `BattleView` | Exibir combatentes, cenário e detalhes da oferta de saque | Calcular ou aplicar dano |
 | `BattleHud` | Exibir HP, estados e mensagens | Alterar o estado da batalha |
 | `ActionMenu` | Mostrar ações ou saques disponíveis e enviar a escolha | Decidir disponibilidade ou efeitos |
 | `BattleEventPlayer` | Apresentar eventos em sequência | Criar resultados de combate |
 | `BattlePresenter` | Enviar escolhas ao `IBattle`, sincronizar a apresentação e informar o encerramento | Criar configurações ou implementar regras |
 | `BattleBootstrap` | Mapear conteúdo, iniciar a campanha e fornecer sua batalha ativa | Alterar estado de combate ou regras |
-| `MainMenuController` | Carregar a cena `Battle` pelo botão de início | Definir regras ou estado da campanha |
+| `MainMenuController` | Exibir tópicos do menu e carregar `Battle` pelo botão de início | Definir regras ou estado da campanha |
 
 ## Referências de tela
 
@@ -19,7 +19,7 @@
 
 ## Regras vinculantes
 
-- Entrada do build: `Assets/Scenes/MainMenu.unity`, com os tópicos consultáveis `Regras`, `Objetivo` e `Desafios` e o botão `Iniciar campanha`; ele carrega `Battle` sem carregar estado de jogo.
+- Entrada do build: `Assets/Scenes/MainMenu.unity`, com os tópicos consultáveis `Regras`, `Objetivo` e `Desafios`, cabeçalho e texto informativo, e o botão `Iniciar campanha`; o tópico ativo só altera esse briefing e a cor do rótulo. A escala deve preservar todos os controles em telas largas; ele carrega `Battle` sem carregar estado de jogo.
 - Cena-base de combate: `Assets/Scenes/Battle.unity`; `BattleView` alterna composição por orientação e recorta o cenário mantendo sua proporção.
 - `BattleView` mantém um registro visual por combatente configurado: definição de conteúdo, encontro quando for adversário, quatro sprites (`east`, `north-east`, `west`, `south-west`), cenário e legenda. `SelectPlayer` e `SelectEncounter` selecionam os dois participantes antes do combate, expõem `SelectedPlayer` e `SelectedEncounter` ao bootstrap e rejeitam referências inválidas ou mudanças durante combate. Guerreiro/Goblin permanecem o padrão.
 - A cena `Battle` é a entrada habilitada no build desta vertical; a inicialização do combate continua sendo fornecida pelo bootstrap.
@@ -36,6 +36,7 @@
 - `BattleEventPlayer.End` recebe o `BattleEndedEvent` aprovado do núcleo e encerra a sequência após os efeitos anteriores; reutiliza a mensagem do HUD para vitória/derrota, oculta as ações e escurece o vencido. Não deduz resultado pelo HP, não altera a saúde e rejeita novas sequências após o encerramento. Cancelar antes do evento descarta também o resultado pendente.
 - A UI consome estado somente para exibição.
 - Ao receber `BattleView.CombatStarted`, `BattleBootstrap` mapeia o herói selecionado e a configuração `Campaign`, cria o `CampaignRun` e entrega sua batalha ativa ao `BattlePresenter`. Cada vitória é concluída pelo núcleo: o bootstrap mostra a oferta recebida, envia a escolha ao `CampaignRun` e troca a cena para o próximo encontro; derrota e conclusão final permanecem terminais. Escolhas passam por `Submit`, ficam bloqueadas durante os eventos e são reabertas com `AvailableActions`. Ao retomar uma apresentação interrompida, redesenhar o estado vigente do núcleo. Sem inicialização, as ações permanecem desabilitadas.
+- Durante `DropChoice`, `BattleView` apresenta nome e efeito de cada item em `DropDetails`, numa área exclusiva acima das ações; esse texto não decide nem aplica efeitos e é ocultado ao iniciar o próximo encontro ou encerrar a campanha.
 - `BattleBootstrap` usa as seleções validadas de `BattleView` e `ContentMapper`; a variação de atributos, fúria, drops e efeitos dos itens continuam no `Core`.
 - `Presentation` pode referenciar `Core` e `Content`; o núcleo não referencia `UnityEngine` nem componentes de interface.
 - Toda escolha passa pela validação do núcleo.

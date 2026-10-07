@@ -23,17 +23,30 @@ namespace IronTournament.Presentation.Tests
             var canvas = scene.GetRootGameObjects().Single(root => root.name == "MainMenuCanvas");
             var buttons = canvas.GetComponentsInChildren<Button>();
             var briefing = canvas.GetComponentsInChildren<Text>().Single(text => text.name == "BriefingText");
+            var heading = canvas.GetComponentsInChildren<Text>().Single(text => text.name == "BriefingHeading");
+            var topics = new[]
+            {
+                buttons.Single(button => button.name == "RulesButton"),
+                buttons.Single(button => button.name == "ObjectiveButton"),
+                buttons.Single(button => button.name == "ChallengesButton")
+            };
 
-            Assert.That(buttons.Single(button => button.name == "RulesButton").interactable, Is.True);
-            Assert.That(buttons.Single(button => button.name == "ObjectiveButton").interactable, Is.True);
-            Assert.That(buttons.Single(button => button.name == "ChallengesButton").interactable, Is.True);
+            Assert.That(topics.All(button => button.interactable && button.GetComponent<Text>() != null), Is.True);
+            Assert.That(((RectTransform)topics[0].transform).anchoredPosition.y - ((RectTransform)topics[0].transform).rect.height,
+                Is.GreaterThan(((RectTransform)topics[1].transform).anchoredPosition.y));
+            Assert.That(((RectTransform)topics[1].transform).anchoredPosition.y - ((RectTransform)topics[1].transform).rect.height,
+                Is.GreaterThan(((RectTransform)topics[2].transform).anchoredPosition.y));
 
-            buttons.Single(button => button.name == "RulesButton").onClick.Invoke();
+            topics[0].onClick.Invoke();
+            Assert.That(heading.text, Is.EqualTo("REGRAS DA ARENA"));
             Assert.That(briefing.text, Does.Contain("Atacar"));
-            buttons.Single(button => button.name == "ObjectiveButton").onClick.Invoke();
+            Assert.That(topics[0].GetComponent<Text>().color, Is.Not.EqualTo(topics[1].GetComponent<Text>().color));
+            topics[1].onClick.Invoke();
+            Assert.That(heading.text, Is.EqualTo("OBJETIVO DA CAMPANHA"));
             Assert.That(briefing.text, Does.Contain("Goblin"));
-            buttons.Single(button => button.name == "ChallengesButton").onClick.Invoke();
-            Assert.That(briefing.text, Does.Contain("furia"));
+            topics[2].onClick.Invoke();
+            Assert.That(heading.text, Is.EqualTo("DESAFIOS"));
+            Assert.That(briefing.text, Does.Contain("fúria"));
         }
 
         [UnityTest]
