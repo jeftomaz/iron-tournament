@@ -32,6 +32,7 @@ namespace IronTournament.Presentation.Tests
             };
 
             Assert.That(topics.All(button => button.interactable && button.GetComponent<Text>() != null), Is.True);
+            Assert.That(topics.All(button => button.targetGraphic.raycastTarget), Is.True);
             Assert.That(((RectTransform)topics[0].transform).anchoredPosition.y - ((RectTransform)topics[0].transform).rect.height,
                 Is.GreaterThan(((RectTransform)topics[1].transform).anchoredPosition.y));
             Assert.That(((RectTransform)topics[1].transform).anchoredPosition.y - ((RectTransform)topics[1].transform).rect.height,

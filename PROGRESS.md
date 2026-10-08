@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-10-07
+
+- Corrigida a interação dos tópicos `Regras`, `Objetivo` e `Desafios` no menu: seus rótulos agora recebem raycasts e atualizam o balão de briefing; a cobertura PlayMode exige esse requisito.
+
 ## 2026-10-06
 
 - Refinada a interface de demonstração: os tópicos do menu agora têm título, destaque visual e área própria; a escala preserva a leitura em telas largas. Após uma vitória intermediária, a oferta mostra o efeito de cada item em área separada dos botões e é ocultada ao avançar o encontro. `scripts/verify.sh` passou (EditMode, PlayMode 29/29 e WebGL).
