@@ -3,6 +3,7 @@
 | Componente | Responsabilidade | Não deve fazer |
 |---|---|---|
 | `BattleView` | Exibir combatentes, cenário e detalhes da oferta de saque | Calcular ou aplicar dano |
+| `BattleCombatantAnimator` | Reproduzir sequências de sprites e restaurar o estado visual estável | Interpretar eventos ou decidir resultados de combate |
 | `BattleHud` | Exibir HP, estados e mensagens | Alterar o estado da batalha |
 | `ActionMenu` | Mostrar ações ou saques disponíveis e enviar a escolha | Decidir disponibilidade ou efeitos |
 | `BattleEventPlayer` | Apresentar eventos em sequência | Criar resultados de combate |
@@ -25,6 +26,7 @@
 - A cena `Battle` é a entrada habilitada no build desta vertical; a inicialização do combate continua sendo fornecida pelo bootstrap.
 - Introdução: controlado `east` e adversário `west`, frente a frente, com o cenário do adversário. Ao clicar em `Iniciar combate`, usar controlado `north-east` em primeiro plano e adversário `south-west` acima e à direita; ocultar o botão. A transição é a mesma para Guerreiro, Mago e modo inimigo.
 - `Assets/IronTournament/Prefabs/BattleCombatant.prefab` é compartilhado por ambos os lados; variar o sprite na instância, sem duplicar o prefab.
+- Cada instância do prefab usa `BattleCombatantAnimator`. Perfis opcionais associam `Idle`, `Attack`, `Hurt`, `Wounded` e `Down` a sequências de sprites; um estado ausente conserva o idle ou sprite estático configurado. A orientação é definida pelo perfil visual, não pelo estado semântico.
 - Assets usados na cena-base: filtro point, sem mipmaps/compressão e 48 pixels por unidade; personagens usam múltiplos inteiros em pixels de tela.
 - Até a PR dedicada após a limpeza das branches, não alterar escala, proporção ou perspectiva dos combatentes. Essa PR definirá proporções-base por personagem e o fator de profundidade do inimigo, preservando sprites sem deformação.
 - `BattleHud.ShowHealth` recebe lado, HP atual e máximo válidos; só apresenta valores. Sem estado recebido, exibe `HP — / —`. `SetStatus` apresenta mensagens literais de até 80 caracteres, sem controles nem interpretação rich text.

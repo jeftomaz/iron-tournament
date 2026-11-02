@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-11-02 — Fundação de animação
+
+- Preparada a reprodução de sprites por estado semântico no prefab de combate, com fallback estático e cobertura PlayMode; os perfis visuais específicos permanecem pendentes.
+
 ## 2026-10-07
 
 - Corrigida a interação dos tópicos `Regras`, `Objetivo` e `Desafios` no menu: seus rótulos agora recebem raycasts e atualizam o balão de briefing; a cobertura PlayMode exige esse requisito.
