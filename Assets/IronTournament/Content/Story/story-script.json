@@ -349,10 +349,15 @@
     }
   ],
   "houses": [
-    "ambiente único, interior parcialmente destruído, paredes com buracos etc. Há uma mesa partida ao meio e restos de madeira no centro, além de móveis ao redor também quebrados. Há rastros de sangue pelo chão e paredes. É possível que o jogador encontre um dos itens especiais dos protagonistas escondido em um pedaço do chão composto por tábuas quebradas onde sai um pequeno sobro de ar (nessa casa, a espada do caos);",
-    "ambiente único, interior parcialmente destruído. Há uma mesa de jantar partida ao meio com restos de comida e cadeiras caídas, uma cama de casal em um dos cantos e uma mesa de preparo de alimentos em outro, além de uma lareira ainda em brasa. O ambiente está levemente iluminado por pequenas chamas que estão queimando os móveis, prestes a se apagarem. É possível que o jogador encontre um dos itens especiais dos protagonistas escondido em um pedaço do chão composto por tábuas quebradas onde sai um pequeno sobro de ar (nessa casa, o manto de chamas);",
-    "ambiente separado. Há um ambiente central, totalmente destruído, com uma mesa de jantar parcialmente quebrada com uma cadeira próxima. Ao redor, há restos de outros móveis quebrados. Há um rastro de sangue levando até o quarto (lado direito). Dentro, há uma cama de casal; sobre ela, há um corpo ensanguentado enquanto no canto do quarto há outro, preso na parede por uma espada.",
-    "ambiente separado, interior totalmente destruído, sangue espalhado pelo chão e paredes. No centro, um caldeirão caído. Dele é possível ver o que seria uma sopa com alguns legumes. Nesse momento, o jogador poderá recolher um pouco da comida. No canto de trás, é possível ver um corpo deitado, ensanguentado, ainda segurando uma faca. No lado esquerdo, há um quarto. Nele, é possível ver uma cama com uma lança cravada sobre ela. É possível ver também uma mão saindo de baixo da cama, sem movimento, com sangue ao redor (alguém estava escondido embaixo do cama e foi morto pela lança, mas não é visível);",
-    "ambiente separado, interior totalmente destruído. No centro, há uma pilha com quatro corpos dentro de um círculo de sangue com moscas voando sobre eles. Há sangue pelo chão, indicando por onde os corpos foram arrastados. Os móveis quebrados foram jogados em um canto (esquerdo). No fundo, há um quarto separado. Em um canto do quarto há uma cama suja de sangue enquanto no fundo há um corpo cravado por várias lanças, ainda segurando uma espada curta."
+    "Uma mesa partida ao meio domina a sala. Os móveis estão destruídos e há manchas de sangue pelo chão.\n\nEntre os destroços, um leve sopro de ar escapa pelas tábuas quebradas.",
+    "A casa ainda guarda o calor das últimas chamas. O fogo se apaga aos poucos entre os móveis quebrados.\n\nUm sopro de ar passa pelas tábuas danificadas do chão.",
+    "O ambiente está destruído, com móveis quebrados e restos da vida que havia ali.\n\nUm rastro de sangue atravessa o chão, levando até um quarto.\n\nO que será que resta lá?",
+    "Sangue e destroços cobrem a sala. Perto de um corpo, há um caldeirão tombado.\n\nAinda resta um pouco de sopa com legumes. Ao lado, uma passagem leva ao quarto.",
+    "Móveis quebrados foram amontoados em um canto da sala.\n\nNo centro, corpos repousam em meio ao sangue. Marcas pelo chão mostram por onde foram arrastados.\n\nAo fundo, há um quarto separado."
+  ],
+  "bedrooms": [
+    "Sobre a cama, repousa um corpo. Outro está preso à parede por uma espada.\n\nO quarto guarda os vestígios de uma luta violenta.",
+    "Uma lança atravessa a cama. Debaixo dela, uma mão imóvel se estende entre manchas de sangue.\n\nAlguém tentou se esconder aqui.",
+    "A cama está manchada de sangue. Ao fundo, um corpo ainda segura uma espada curta, atravessado por lanças.\n\nA resistência terminou aqui."
   ]
 }

@@ -52,4 +52,4 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 ## Prova narrativa — vila e Goblin
 
 - `done` `JT` Entregar prova isolada em StoryProof com seleção, cenários quadrados, exploração/itens, três desfechos, combate existente, saque e checkpoint; testes e build WebGL aprovados, revisão funcional no navegador.
-- `todo` `JP` Refinar identidade visual de abertura, menus, diálogos, indicadores e efeitos da prova a partir de direção de arte aprovada.
+- `done` `JP` Recuperar a prévia aprovada de abertura, menus, diálogos, indicadores e efeitos, substituindo a interface restrita por assets redistribuíveis.

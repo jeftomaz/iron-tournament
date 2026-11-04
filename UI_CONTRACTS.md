@@ -71,6 +71,9 @@
 - `StoryView` mantém o cenário em um quadrado com ajuste por aspecto, integralmente visível; atores e pontos clicáveis são filhos desse quadrado. Desktop tem painéis laterais; retrato tem informação e ações abaixo do cenário.
 - Casas visitadas usam marca de revisita; não alteram a contagem ao reabrir. Gritos bloqueiam a abertura de casas até escolher investigar ou continuar; a última recusa fixa o desfecho de morte anterior ao combate.
 - Texto digitado: um toque completa a fala; o próximo avança. Descrições longas de ambientes e cartas são paginadas.
+- A abertura e a narração do capítulo usam fundo preto e texto centralizado; falas de personagens usam balões próximos aos atores. Menus distinguem ações principais, secundárias e inventário.
+- Os indicadores próximos aos combatentes exibem valores e barras de HP; ofertas de saque mostram uma descrição curta de cada item.
+- A interface usa sprites CC0 do Pixel UI Pack da Kenney; sons da prova usam os efeitos selecionados do RPG Essentials.
 - Botões de combate ficam bloqueados durante apresentação dos eventos. `StoryProofController` envia `Submit` ao mesmo núcleo da demonstração clássica; não reimplementa regras.
 - Escala inicial: Guerreiro 1,80 m, Mago 1,70 m, Goblin 0,80 m; redução virtual do adversário por profundidade `4/5,5`. Esses parâmetros de câmera são uma calibração de prova, não distância canônica aprovada.
 - Não mostrar valores iniciais antes de escolher Ver atributos. Confirmar troca de protagonista antes de substituir o checkpoint. Não criar histórico de campanha completa ao terminar o trecho.

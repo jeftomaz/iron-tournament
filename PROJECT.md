@@ -137,3 +137,4 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - `StorySaveStore` mantém um checkpoint local com dois slots alternados e checksum; carregar durante combate reinicia o encontro com a mesma configuração, não o turno intermediário. No navegador, o progresso pertence à origem e ao perfil usados, sem sincronização entre dispositivos.
 - Encerrar a prova não conclui a campanha de sete encontros. A variante narrativa da segunda campanha está descrita em conteúdo/modelo, mas sua seleção automática depende da futura integração com o histórico da campanha completa.
 - Arte recebida é referenciada sem sobrescrever PNGs. Sprites recortados por alpha ficam em assets derivados; poses mantêm proporção. Itens usam nomes/descrições na interface enquanto sua arte específica não estiver integrada.
+- A prova usa `opening_screen`, narração centralizada, balões, barras de HP e sons; a interface usa sprites CC0.

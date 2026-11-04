@@ -1,5 +1,10 @@
 # Progresso
 
+## 2026-11-04 — Recuperação da prévia visual
+
+- Recuperadas da cópia de demonstração a abertura, os balões, os menus, as barras de HP, os sons e as descrições da vila.
+- Interface restrita substituída por sprites CC0 da Kenney, com molduras aprovadas pelo usuário; EditMode 105/105, PlayMode 40/40 e build WebGL aprovados. Esqueleto preservado separadamente.
+
 ## 2026-11-02 — Prova narrativa
 
 - Implementada a prova da vila e do Goblin em `StoryProof`, com exploração, combate, saque e checkpoint; revisão estética pendente.
