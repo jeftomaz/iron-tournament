@@ -20,7 +20,8 @@ namespace IronTournament.Bootstrap
         private bool busy;
         private bool atHome = true;
         private string notice;
-        private Image heroImage, opponentImage;
+        private Image heroImage, opponentImage, childImage;
+        private Text heroHealth, opponentHealth;
         private Action resizeScreen;
         public StoryRun Run => run;
         public IBattle ActiveBattle => battle;
@@ -59,8 +60,8 @@ namespace IronTournament.Bootstrap
         {
             atHome = true;
             resizeScreen = Home;
-            view.Draw(content.distantVillage, "Um chamado nas trevas", "Uma jornada. Duas classes. Suas escolhas.");
-            view.SceneTitle("IRON\nTOURNAMENT");
+            view.Draw(content.opening, "Um chamado nas trevas", "Uma jornada. Duas classes. Suas escolhas.");
+            view.SceneTitle("IRON\nTOURNAMENT", .48f);
             view.Text("A jornada", "Escolha seu protagonista e descubra o que restou da vila.");
             if (saves.TryLoad(out var saved))
             {
@@ -75,42 +76,42 @@ namespace IronTournament.Bootstrap
             resizeScreen = ConfirmNew;
             view.Draw(content.distantVillage, "Nova jornada", "O progresso atual será substituído ao confirmar a classe.");
             view.Text("Confirmar", "Deseja iniciar outra jornada? A partida salva atual será substituída.");
-            view.Choice("Escolher classe", Selection, 0, 2); view.Choice("Voltar", Home, 1, 2);
+            view.Choice("Escolher classe", Selection, 0, 2); view.Choice("Voltar", Home, 1, 2, StoryButtonStyle.Secondary);
         }
 
         private void Selection()
         {
             resizeScreen = Selection;
             view.Draw(null, "Escolha seu protagonista", "Guerreiro ou Mago");
-            view.Actor(content.warriorPoses[0], .28f, .24f, .43f);
-            view.Actor(content.magePoses[0], .72f, .24f, .40f);
-            view.Button(view.SceneArea, "Guerreiro", .04f, .12f, .43f, .10f, () => ConfirmHero(CombatantId.Warrior));
-            view.Button(view.SceneArea, "Mago", .53f, .12f, .43f, .10f, () => ConfirmHero(CombatantId.Mage));
-            view.Button(view.SceneArea, "Ver atributos", .04f, .01f, .43f, .10f, () => Attributes(content.warrior));
-            view.Button(view.SceneArea, "Ver atributos", .53f, .01f, .43f, .10f, () => Attributes(content.mage));
+            view.Actor(content.warriorPoses[0], .28f, .27f, .43f);
+            view.Actor(content.magePoses[0], .72f, .27f, .40f);
+            view.Button(view.SceneArea, "Guerreiro", .04f, .15f, .43f, .08f, () => ConfirmHero(CombatantId.Warrior));
+            view.Button(view.SceneArea, "Mago", .53f, .15f, .43f, .08f, () => ConfirmHero(CombatantId.Mage));
+            view.Button(view.SceneArea, "Ver atributos", .04f, .035f, .43f, .08f, () => Attributes(content.warrior), style: StoryButtonStyle.Secondary);
+            view.Button(view.SceneArea, "Ver atributos", .53f, .035f, .43f, .08f, () => Attributes(content.mage), style: StoryButtonStyle.Secondary);
             view.Text("Seu caminho", "A classe permanece com você durante toda a jornada.");
-            view.Choice("Voltar", Home);
+            view.Choice("Voltar", Home, style: StoryButtonStyle.Secondary);
         }
 
         private void Attributes(CombatantDefinition hero)
         {
             resizeScreen = () => Attributes(hero);
             view.Draw(null, hero.DisplayName, "Características iniciais");
-            view.Actor(hero.Id == CombatantId.Warrior ? content.warriorPoses[0] : content.magePoses[0], .5f, .22f, .56f);
+            view.Actor(hero.Id == CombatantId.Warrior ? content.warriorPoses[0] : content.magePoses[0], .5f, .17f, .50f);
             var stats = hero.BaseStats;
             view.Text("Atributos", $"HP {stats.MaximumHealth} · ATQ {stats.Attack} · DEF {stats.Defense}\n" +
                 (hero.Id == CombatantId.Warrior ? "Resistente. Atacar e Defender; Pergaminho com HP ≤ 30%." : "Magia ignora defesa. Uma reversão por encontro; Chifre intercepta golpe letal."));
-            view.Choice("Selecionar", () => ConfirmHero(hero.Id), 0, 2); view.Choice("Voltar", Selection, 1, 2);
+            view.Choice("Selecionar", () => ConfirmHero(hero.Id), 0, 2); view.Choice("Voltar", Selection, 1, 2, StoryButtonStyle.Secondary);
         }
 
         private void ConfirmHero(CombatantId hero)
         {
             resizeScreen = () => ConfirmHero(hero);
             view.Draw(null, hero == CombatantId.Warrior ? "Guerreiro" : "Mago", "Confirmar protagonista");
-            view.Actor(hero == CombatantId.Warrior ? content.warriorPoses[0] : content.magePoses[0], .5f, .2f, .55f);
+            view.Actor(hero == CombatantId.Warrior ? content.warriorPoses[0] : content.magePoses[0], .5f, .17f, .50f);
             view.Text("Iniciar jornada", "A escolha inicia uma nova partida e substitui o progresso salvo. Confirmar?");
             view.Choice("Confirmar", () => Begin(hero, Environment.TickCount), 0, 2);
-            view.Choice("Voltar", Selection, 1, 2);
+            view.Choice("Voltar", Selection, 1, 2, StoryButtonStyle.Secondary);
         }
 
         public void Begin(CombatantId hero, int seed)
@@ -148,7 +149,7 @@ namespace IronTournament.Bootstrap
                 case StoryPage.Food: Food(); break;
                 case StoryPage.LootLead: Dialogue("loot", content.swamp, "O que ficou", () => Go(StoryPage.Reward), true); break;
                 case StoryPage.Burial:
-                    Draw(content.grave, "Um enterro digno"); view.Actor(HeroPoses[1], .28f, .08f, .24f);
+                    Draw(content.swamp, "Um enterro digno"); view.Actor(HeroPoses[1], .28f, .08f, .24f);
                     view.Text(Hero.DisplayName, "O protagonista se afasta do monte de terra onde enterrou a criança.");
                     view.Choice("Continuar", () => Go(StoryPage.Reward)); break;
                 case StoryPage.Reward: Reward(); break;
@@ -170,9 +171,15 @@ namespace IronTournament.Bootstrap
         }
 
         private string Branch => run.secondCampaign ? "D" : run.Fate == ChildFate.Saved ? "A" : run.Fate == ChildFate.Dying ? "B" : "C";
-        private Sprite BackgroundForEncounter => run.secondCampaign && !run.previousChildSaved ? content.grave : content.swamp;
-        private void Draw(Sprite image, string title) => view.Draw(image, title,
-            notice ?? (run.secondCampaign ? "Segunda campanha" : "Primeira campanha"), Inventory);
+        private Sprite BackgroundForEncounter => content.swamp;
+        private void Draw(Sprite image, string title)
+        {
+            view.Draw(image, title, notice ?? (run.secondCampaign ? "Segunda campanha" : "Primeira campanha"), Inventory);
+            if (image == content.swamp && ((run.secondCampaign && !run.previousChildSaved) ||
+                (run.page == StoryPage.Burial || run.page == StoryPage.Reward) &&
+                (run.Fate == ChildFate.Dying || run.Fate == ChildFate.Dead)))
+                view.Actor(content.grave, .70f, .29f, .13f);
+        }
 
         private void Dialogue(string id, Sprite background, string title, Action done, bool actors = false)
         {
@@ -181,17 +188,21 @@ namespace IronTournament.Bootstrap
             Draw(background, title);
             if (actors) EncounterActors();
             var line = lines[run.dialogue];
+            var speakingActor = !actors ? null : line.speaker == "Protagonista" ? heroImage :
+                line.speaker == "Goblin" ? opponentImage : line.speaker == "Criança" ? childImage : null;
             view.Text(line.speaker == "Protagonista" ? Hero.DisplayName : line.speaker,
-                line.text.Replace("[classe do protagonista]", Hero.DisplayName).Replace("*coff*", "coff"), true);
+                line.text.Replace("[classe do protagonista]", Hero.DisplayName).Replace("*coff*", "coff"), true, speakingActor,
+                line.speaker == "Narrador" && (id == "intro" || id == "chapter"));
             view.Choice("Continuar", () => { if (view.CompleteText()) return; run.dialogue++; Save(); Render(); });
         }
 
         private void EncounterActors()
         {
-            view.Actor(HeroPoses[2], .25f, .13f, run.hero == CombatantId.Warrior ? .36f : .34f);
+            childImage = null;
+            heroImage = view.Actor(HeroPoses[2], .25f, .13f, run.hero == CombatantId.Warrior ? .36f : .34f);
             var before = run.page == StoryPage.Rescue;
-            if (before) view.Actor(content.goblinPoses[1], .57f, .38f, .13f);
-            else view.Actor(content.goblinDead, .51f, .32f, .12f);
+            if (before) opponentImage = view.Actor(content.goblinPoses[1], .57f, .38f, .13f);
+            else opponentImage = view.Actor(content.goblinDead, .51f, .32f, .12f);
             if (run.secondCampaign)
             {
                 if (before) view.Actor(content.goblinDead, .76f, .30f, .10f);
@@ -200,7 +211,7 @@ namespace IronTournament.Bootstrap
             var child = run.Fate == ChildFate.Saved ? (before ? content.child : content.childSaved)
                 : run.Fate == ChildFate.Dying && (before || run.page == StoryPage.AfterBattle && run.dialogue < content.Dialogue("afterB").Length - 1)
                     ? content.childHurt : content.childDead;
-            view.Actor(child, .78f, .35f, run.Fate == ChildFate.Saved ? .21f : .115f);
+            childImage = view.Actor(child, .78f, .35f, run.Fate == ChildFate.Saved ? .21f : .115f);
         }
 
         private void Village()
@@ -212,7 +223,7 @@ namespace IronTournament.Bootstrap
                 var cry = run.ExploredCount == 1 ? "Ahhhhhhhh! Alguém ainda habita aquele local?" : "Outro grito emerge da floresta.";
                 view.Text(run.ExploredCount == 3 ? "Terceiro e último grito" : "Um grito na floresta", cry);
                 view.Choice("Investigar agora", () => { run.BeginRescue(); Save(); Render(); }, 0, 2);
-                view.Choice("Continuar explorando", () => { run.ContinueExploration(); Save(); Render(); }, 1, 2);
+                view.Choice("Continuar explorando", () => { run.ContinueExploration(); Save(); Render(); }, 1, 2, StoryButtonStyle.Secondary);
                 return;
             }
             var points = new[] { new Vector2(.08f,.55f), new Vector2(.36f,.65f), new Vector2(.75f,.49f), new Vector2(.08f,.22f), new Vector2(.68f,.20f) };
@@ -220,15 +231,15 @@ namespace IronTournament.Bootstrap
             {
                 var slot = i; var house = run.houses[i];
                 view.Hotspot("Casa " + (i + 1), points[i].x, points[i].y, () => { run.EnterHouse(slot); Save(); Render(); },
-                    (run.visited & (1 << house)) != 0, run.crystal && !run.equipment && house == (run.hero == CombatantId.Warrior ? 0 : 1));
+                    (run.visited & (1 << house)) != 0, run.crystal && !run.equipment && house == (run.hero == CombatantId.Warrior ? 0 : 1), display: "Entrar");
             }
             view.Text("Explorar", $"Toque em uma entrada para investigar. Casas visitadas: {run.ExploredCount}/5.");
             if (run.ExploredCount > 0 || run.secondCampaign)
             {
                 view.Choice(run.lastCallDeclined ? "Seguir para a floresta" : "Investigar o som", () => { run.BeginRescue(); Save(); Render(); }, 0, 2);
-                view.Choice("Menu", Home, 1, 2);
+                view.Choice("Menu", Home, 1, 2, StoryButtonStyle.Secondary);
             }
-            else view.Choice("Menu", Home);
+            else view.Choice("Menu", Home, style: StoryButtonStyle.Secondary);
         }
 
         private void House()
@@ -236,25 +247,31 @@ namespace IronTournament.Bootstrap
             var id = run.activeHouse;
             Draw(run.room ? content.bedrooms[id-2] : content.houses[id], run.room ? "O quarto" : "Dentro da casa");
             view.Text("Investigar", run.room ? "O silêncio pesa neste cômodo." : id < 2 ? "Há tábuas quebradas no chão. Um sopro de ar escapa pela abertura." : "Investigue os vestígios ou siga até o quarto.");
-            view.Hotspot("Observar", .08f, .77f, () => Message("O que restou", content.Script.houses[id], Render));
+            view.Hotspot("Observar", .04f, .04f, () => Message("O que restou", run.room ? content.Script.bedrooms[id-2] : content.Script.houses[id], Render));
             if (!run.room && id < 2)
-                view.Hotspot("Tábuas", .60f, .18f, InspectEquipment);
+                view.Hotspot("Buraco no chão", .61f, .14f, InspectEquipment);
             if (!run.room && id == 3 && !run.foodCollected)
                 view.Hotspot("Caldeirão", .41f, .38f, () => { run.CollectFood(); Save(); Message("Comida", "Você recolheu uma porção de comida. Talvez alguém precise dela.", Render); });
             if (!run.room && id >= 2)
-                view.Hotspot("Quarto", id == 3 ? .05f : .72f, .59f, () => { run.room = true; Save(); Render(); });
+                view.Hotspot("Quarto", id == 3 ? .05f : .72f, .50f, () => { run.room = true; Save(); Render(); });
             view.Choice(run.room ? "Voltar à sala" : "Voltar à vila", () =>
-            { if (run.room) run.room = false; else run.LeaveHouse(); Save(); Render(); }, 0, 2);
-            view.Choice("Bolsa", () => Message("Bolsa", Inventory, Render), 1, 2);
+            { if (run.room) run.room = false; else run.LeaveHouse(); Save(); Render(); }, 0, 2, StoryButtonStyle.Secondary);
+            view.Choice("Bolsa", () => Message("Bolsa", Inventory, Render), 1, 2, StoryButtonStyle.Inventory);
         }
 
         private void InspectEquipment()
         {
-            if (run.equipment && run.activeHouse == (run.hero == CombatantId.Warrior ? 0 : 1))
-            { Message("Tábuas", "Você já recolheu o equipamento. A carta dizia: A Ordem e a Irmandade cairão. O Rei vive.", Render); return; }
-            if (!run.CollectEquipment())
-            { Message("Esconderijo", run.hero == CombatantId.Warrior ? "Você encontra um manto, mas ele não serve à sua classe." : "Você encontra uma espada, mas ela não serve à sua classe.", Render); return; }
-            Save(); Message("Equipamento encontrado", run.hero == CombatantId.Warrior ? "Você recolheu a Espada do Caos. Por enquanto, ela parece uma espada comum." : "Você recolheu o Manto de Chamas. Seu poder ainda é fraco: 1 de dano após cada ação que consome turno.",
+            var sword = run.activeHouse == 0;
+            var compatible = sword == (run.hero == CombatantId.Warrior);
+            if (compatible && run.equipment)
+            { Message("Buraco no chão", "Você já recolheu o equipamento. A carta dizia: A Ordem e a Irmandade cairão. O Rei vive.", Render); return; }
+            var opening = sword ? "Você encontra uma espada antiga." : "Você encontra um manto antigo.";
+            var result = sword
+                ? (compatible ? "Ela é pesada, mas você consegue a levantar." : "Ela é pesada demais para você levantar.")
+                : (compatible ? "Ele está estranhamente quente, mas você o consegue pegar." : "Ele queima sua mão e você não consegue pegar ele.");
+            if (!compatible) { Message("Buraco no chão", opening + "\n\n" + result, Render); return; }
+            if (!run.CollectEquipment()) return;
+            Save(); Message("Buraco no chão", opening + "\n\n" + result,
                 () => Message("Carta", "A Ordem e a Irmandade cairão.\n…\nO Rei vive.", Render));
         }
 
@@ -265,19 +282,19 @@ namespace IronTournament.Bootstrap
             view.Text("Sua escolha", "Entregar a comida que encontrou à criança?");
             view.Choice("Entregar", () => { run.page = StoryPage.AfterBattle; run.GiveFood(); run.page = StoryPage.Food; Save();
                 Message("Criança", "Obrigado!", () => Go(StoryPage.LootLead)); }, 0, 2);
-            view.Choice("Guardar", () => Go(StoryPage.LootLead), 1, 2);
+            view.Choice("Guardar", () => Go(StoryPage.LootLead), 1, 2, StoryButtonStyle.Secondary);
         }
 
         private void Reward()
         {
-            Draw(run.Fate == ChildFate.Dying || run.Fate == ChildFate.Dead ? content.grave : BackgroundForEncounter, "Escolha um saque");
+            Draw(BackgroundForEncounter, "Escolha um saque");
             if (run.Fate == ChildFate.Saved) EncounterActors();
             var offer = StoryEncounter.Rewards(run, Encounter);
-            view.Text("Leve apenas um", string.Join("\n", offer.Select(item => item.DisplayName + ": " + DescribeItem(item))));
+            view.Text("Leve apenas um", "Escolha um dos itens encontrados.");
             for (var i = 0; i < offer.Count; i++)
             {
                 var item = offer[i];
-                view.Choice(item.DisplayName, () =>
+                view.RewardChoice(item.DisplayName, DescribeItem(item), () =>
                 {
                     var rewarded = battle?.State.Hero ?? StoryEncounter.RestoreVictoryHero(run, ContentMapper.BuildCombatant(Hero));
                     StoryEncounter.ChooseReward(run, Encounter, item.Id);
@@ -297,7 +314,7 @@ namespace IronTournament.Bootstrap
                 case ItemId.HealingPotion: return "recupera 40 HP";
                 case ItemId.LifeElixir: return "recupera todo o HP";
                 case ItemId.HopeScroll: return "cura 50% do HP máximo com HP ≤ 30%";
-                case ItemId.BrotherhoodHorn: return "intercepta o próximo golpe letal após ser armado";
+                case ItemId.BrotherhoodHorn: return "Ao ser armado, protege de um golpe letal.";
                 default: return string.Join(", ", item.Modifiers.Select(x => (x.Kind == ItemModifierKind.Attack ? "ATQ" : x.Kind == ItemModifierKind.Defense ? "DEF" : "HP máximo") + " +" + x.Amount));
             }
         }
@@ -305,13 +322,21 @@ namespace IronTournament.Bootstrap
         private void Message(string title, string text, Action done, int offset = 0)
         {
             resizeScreen = () => Message(title, text, done, offset);
-            var length = Mathf.Min(150, text.Length - offset);
-            if (length < text.Length - offset)
-            { var space = text.LastIndexOf(' ', offset + length - 1, length); if (space > offset) length = space - offset; }
-            var end = offset + length;
+            var paragraphEnd = text.IndexOf("\n\n", offset, StringComparison.Ordinal);
+            var end = paragraphEnd >= 0 ? paragraphEnd : text.Length;
+            if (end - offset > 150)
+            {
+                end = offset + 150;
+                var space = text.LastIndexOf(' ', end - 1, end - offset);
+                if (space > offset) end = space;
+            }
+            var next = end;
+            while (next < text.Length && char.IsWhiteSpace(text[next])) next++;
             Draw(run.page == StoryPage.House ? (run.room ? content.bedrooms[run.activeHouse-2] : content.houses[run.activeHouse]) : BackgroundForEncounter, title);
-            view.Text(title, text.Substring(offset, length).Trim(), true);
-            view.Choice("Continuar", () => { if (view.CompleteText()) return; if (end >= text.Length) done(); else Message(title, text, done, end); });
+            var actor = (Image)null;
+            if (title == "Criança" && run.page == StoryPage.Food) { EncounterActors(); actor = childImage; }
+            view.Text(title, text.Substring(offset, end - offset).Trim(), true, actor);
+            view.Choice("Continuar", () => { if (view.CompleteText()) return; if (next >= text.Length) done(); else Message(title, text, done, next); });
         }
 
         private void StartBattle()
@@ -328,8 +353,8 @@ namespace IronTournament.Bootstrap
             var goblinHeight = .38f * (.8f / 1.8f) * (4f / 5.5f);
             opponentImage = view.Actor(content.goblinPoses[2], .69f, .43f, goblinHeight);
             var state = battle.State;
-            view.Annotation($"{Hero.DisplayName}  {state.Hero.CurrentHealth}/{state.Hero.Stats.MaximumHealth} HP", .035f, .03f);
-            view.Annotation($"Goblin  {state.Opponent.CurrentHealth}/{state.Opponent.Stats.MaximumHealth} HP", .50f, .66f);
+            heroHealth = view.Health(heroImage, Hero.DisplayName, state.Hero.CurrentHealth, state.Hero.Stats.MaximumHealth);
+            opponentHealth = view.Health(opponentImage, "Goblin", state.Opponent.CurrentHealth, state.Opponent.Stats.MaximumHealth);
             view.Text("Sua vez · rodada " + state.Round, $"{(run.hero == CombatantId.Mage ? "Reversões: " + state.RevertCharges + ". " : "")}" +
                 (run.equipment ? run.hero == CombatantId.Mage ? "Manto: 1 de dano por ação." : "Espada: 7% de crítico." : "Escolha sua ação."));
             var abilities = Hero.Abilities;
@@ -354,14 +379,27 @@ namespace IronTournament.Bootstrap
             {
                 if (change is DamageDealtEvent damage)
                 {
+                    view.PlaySound("Hit");
                     var image = damage.Target == run.hero ? heroImage : opponentImage;
+                    if (damage.Target == run.hero) view.SetHealth(heroHealth, damage.RemainingHealth, battle.State.Hero.Stats.MaximumHealth);
+                    else view.SetHealth(opponentHealth, damage.RemainingHealth, battle.State.Opponent.Stats.MaximumHealth);
                     image.color = new Color(1, .35f, .3f);
                     view.Annotation((damage.IsCritical ? "Crítico! " : "") + "−" + damage.Amount, damage.Target == run.hero ? .12f : .58f, damage.Target == run.hero ? .35f : .56f);
                     yield return new WaitForSecondsRealtime(.22f);
                     image.color = Color.white;
                 }
+                else if (change is HealthRestoredEvent healed)
+                {
+                    view.PlaySound("Heal");
+                    if (healed.Target == run.hero) view.SetHealth(heroHealth, healed.CurrentHealth, battle.State.Hero.Stats.MaximumHealth);
+                    else view.SetHealth(opponentHealth, healed.CurrentHealth, battle.State.Opponent.Stats.MaximumHealth);
+                }
                 else if (change is AbilityUsedEvent used)
                 {
+                    if (used.Ability == AbilityId.BasicAttack)
+                        view.PlaySound(used.Actor == run.hero && run.hero == CombatantId.Mage ? "Magic" : "Slash");
+                    else if (used.Ability == AbilityId.Guard) view.PlaySound("Block");
+                    else if (used.Ability == AbilityId.RevertTurn || used.Ability == AbilityId.RevertBattle) view.PlaySound("Magic");
                     var image = used.Actor == run.hero ? heroImage : opponentImage;
                     var origin = image.rectTransform.anchoredPosition;
                     image.rectTransform.anchoredPosition += new Vector2(used.Actor == run.hero ? 10 : -10, 4);
@@ -371,11 +409,11 @@ namespace IronTournament.Bootstrap
             }
             busy = false;
             if (battle.State.Phase == BattlePhase.Victory)
-            { run.victoryHealth = battle.State.Hero.CurrentHealth; Go(StoryPage.AfterBattle); }
+            { view.PlaySound("Defeat"); run.victoryHealth = battle.State.Hero.CurrentHealth; Go(StoryPage.AfterBattle); }
             else if (battle.State.Phase == BattlePhase.Defeat)
             {
                 Draw(content.swamp, "Derrota"); view.Text("Tentar novamente", "O estado anterior à batalha foi preservado. Você não precisa repetir a exploração.");
-                view.Choice("Repetir batalha", StartBattle, 0, 2); view.Choice("Menu", Home, 1, 2);
+                view.Choice("Repetir batalha", StartBattle, 0, 2); view.Choice("Menu", Home, 1, 2, StoryButtonStyle.Secondary);
             }
             else BattleScreen();
         }

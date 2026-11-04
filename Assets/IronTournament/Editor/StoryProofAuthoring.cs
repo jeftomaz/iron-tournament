@@ -31,11 +31,12 @@ namespace IronTournament.Editor
             content.warrior = Load<CombatantDefinition>("Assets/IronTournament/Content/Warrior.asset");
             content.mage = Load<CombatantDefinition>("Assets/IronTournament/Content/Mage.asset");
             content.goblin = Load<EncounterDefinition>("Assets/IronTournament/Content/GoblinEncounter.asset");
+            content.opening = Import("opening_screen", false, "Assets/IronTournament/Art/Backgrounds_new/");
             content.village = Background("village_close");
             content.distantVillage = Background("village_distant_view");
             content.forestPath = Background("forest_floaded_path");
             content.swamp = Background("forest_clearing");
-            content.grave = Background("forest_child_grave");
+            content.grave = Character("forest_child_grave");
             var rooms = new[] { "house_caos_sword", "house_flame_cloak", "house_bloodstein_living_room", "house_cauldron_living_room", "house_blood_circle_living_room" };
             content.houses = Array.ConvertAll(rooms, Background);
             content.bedrooms = Array.ConvertAll(new[] { "house_bloodstein_bedroom", "house_cauldron_bedroom", "house_blood_circle_bedroom" }, Background);
@@ -88,9 +89,9 @@ namespace IronTournament.Editor
         }
         private static Sprite Background(string name) => Import(name, false);
         private static Sprite Character(string name) => Import(name, true);
-        private static Sprite Import(string name, bool trim)
+        private static Sprite Import(string name, bool trim, string folder = Art)
         {
-            var path = Art + name + ".png";
+            var path = folder + name + ".png";
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             if (importer == null) throw new InvalidOperationException("Missing art: " + path);
             importer.textureType = TextureImporterType.Sprite;

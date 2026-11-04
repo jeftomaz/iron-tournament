@@ -15,11 +15,12 @@ MonoBehaviour:
   warrior: {fileID: 11400000, guid: 40fb7609cb7ad2c4dbdae9600d57cd38, type: 2}
   mage: {fileID: 11400000, guid: e03c31352c486f847971c5de955a2526, type: 2}
   goblin: {fileID: 11400000, guid: 28232861edc63264498b08c49345f2bb, type: 2}
+  opening: {fileID: 21300000, guid: c3247e45c424f49b4bef94801352a660, type: 3}
   village: {fileID: 21300000, guid: aae214967a3ba4e37aa0c4b41339a3f9, type: 3}
   distantVillage: {fileID: 21300000, guid: 81dcc3cd7a4f3440a8a0468640e38799, type: 3}
   forestPath: {fileID: 21300000, guid: 756a70aa5ad7d4ce7b67da2821f92e95, type: 3}
   swamp: {fileID: 21300000, guid: 690b5354b7fff4a9caee0f3c283e913d, type: 3}
-  grave: {fileID: 21300000, guid: a74b26278d189468aa7dfbd07211c93c, type: 3}
+  grave: {fileID: 21300000, guid: 9ae7e8904856340ada4ab01717da504b, type: 2}
   houses:
   - {fileID: 21300000, guid: 20f9fedde7b674cc7ba056a4441e8bb8, type: 3}
   - {fileID: 21300000, guid: 30bcf5b70fd454b61920cfbb12e54878, type: 3}
