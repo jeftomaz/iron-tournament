@@ -1,0 +1,84 @@
+GIMP Palette
+Name: Iron Tournament — Dark Fantasy
+Columns: 5
+# Cores de referencia; ver ART_STYLE_GUIDE.md
+  8   8  12	Preto e sombras T1
+ 20  19  27	Preto e sombras T2
+ 36  33  43	Preto e sombras T3
+ 55  49  60	Preto e sombras T4
+ 81  72  82	Preto e sombras T5
+ 29  32  43	Aço frio T1
+ 48  52  64	Aço frio T2
+ 80  85  94	Aço frio T3
+119 125 132	Aço frio T4
+175 181 183	Aço frio T5
+ 50  52  60	Prata e aço claro T1
+ 87  93 102	Prata e aço claro T2
+133 139 145	Prata e aço claro T3
+187 192 194	Prata e aço claro T4
+225 228 223	Prata e aço claro T5
+ 64  54  58	Ossos e marfim T1
+112  98  93	Ossos e marfim T2
+163 147 126	Ossos e marfim T3
+212 197 167	Ossos e marfim T4
+243 233 200	Ossos e marfim T5
+ 61  41  43	Pele humana T1
+112  68  59	Pele humana T2
+165 116  90	Pele humana T3
+211 155 118	Pele humana T4
+240 196 154	Pele humana T5
+ 41  29  33	Couro e madeira T1
+ 72  48  44	Couro e madeira T2
+116  80  61	Couro e madeira T3
+161 111  76	Couro e madeira T4
+199 149 103	Couro e madeira T5
+ 36  35  41	Terra e pedra T1
+ 61  56  56	Terra e pedra T2
+ 98  90  83	Terra e pedra T3
+140 129 113	Terra e pedra T4
+182 169 149	Terra e pedra T5
+ 32  39  30	Verde musgo T1
+ 60  73  44	Verde musgo T2
+101 111  61	Verde musgo T3
+146 157  94	Verde musgo T4
+189 193 138	Verde musgo T5
+ 20  34  33	Verde florestal T1
+ 36  60  51	Verde florestal T2
+ 59  91  72	Verde florestal T3
+ 98 132 106	Verde florestal T4
+148 171 134	Verde florestal T5
+ 40  21  30	Vermelho sombrio T1
+ 85  36  42	Vermelho sombrio T2
+138  52  53	Vermelho sombrio T3
+190  77  70	Vermelho sombrio T4
+231 125  96	Vermelho sombrio T5
+ 68  32  32	Fogo e brasas T1
+134  53  31	Fogo e brasas T2
+217  77  28	Fogo e brasas T3
+246 138  43	Fogo e brasas T4
+255 209 122	Fogo e brasas T5
+ 57  44  37	Ouro envelhecido T1
+109  82  47	Ouro envelhecido T2
+162 123  64	Ouro envelhecido T3
+211 173  96	Ouro envelhecido T4
+243 219 152	Ouro envelhecido T5
+ 33  24  46	Roxo arcano T1
+ 64  45  80	Roxo arcano T2
+107  76 121	Roxo arcano T3
+160 120 171	Roxo arcano T4
+210 176 223	Roxo arcano T5
+ 20  38  48	Azul espectral T1
+ 38  70  85	Azul espectral T2
+ 57 115 134	Azul espectral T3
+100 165 175	Azul espectral T4
+178 222 224	Azul espectral T5
+ 18  31  37	Água e umidade T1
+ 36  53  58	Água e umidade T2
+ 57  86  91	Água e umidade T3
+ 90 125 128	Água e umidade T4
+145 173 169	Água e umidade T5
+ 26  29  45	Céu e névoa T1
+ 48  55  75	Céu e névoa T2
+ 83  93 112	Céu e névoa T3
+129 140 157	Céu e névoa T4
+184 187 192	Céu e névoa T5

@@ -58,7 +58,7 @@ namespace IronTournament.Core
         {
             var isPiercing = Roll(random, PiercingChancePercent);
             var damage = isPiercing ? attacker.Stats.Attack : Mitigate(attacker.Stats.Attack, target);
-            var isCritical = Roll(random, CriticalChancePercent);
+            var isCritical = Roll(random, attacker.CriticalChancePercent);
             var total = isCritical ? Math.Min(int.MaxValue, (long)damage * CriticalMultiplier) : damage;
             return new AttackOutcome((int)total, isCritical, isPiercing);
         }
