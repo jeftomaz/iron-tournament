@@ -21,6 +21,7 @@ namespace IronTournament.Presentation
             public Sprite northEast;
             public Sprite west;
             public Sprite southWest;
+            public CombatantAnimationProfile animation;
             public Sprite background;
             public string caption;
         }
@@ -67,7 +68,7 @@ namespace IronTournament.Presentation
             ValidateVisual(visual, id);
             selectedPlayer = id;
             SelectedPlayer = visual.definition;
-            player.sprite = visual.east;
+            CombatantAnimator(CombatantSide.Player).ShowStatic(visual.east);
             heroName.supportRichText = false;
             heroName.text = visual.definition.DisplayName;
             RequestLayout();
@@ -103,7 +104,7 @@ namespace IronTournament.Presentation
             outcome = BattlePhase.None;
             ApplyEncounterSelection(id, true);
             var playerVisual = FindVisual(SelectedPlayer.Id);
-            player.sprite = playerVisual.northEast;
+            CombatantAnimator(CombatantSide.Player).Configure(playerVisual.animation, playerVisual.northEast);
             startButton.gameObject.SetActive(false);
             hud.Clear();
             battleStatus.gameObject.SetActive(true);
@@ -133,7 +134,10 @@ namespace IronTournament.Presentation
                 throw new ArgumentException("A valid encounter matching the opponent is required.", nameof(id));
             selectedOpponent = id;
             SelectedEncounter = visual.encounter;
-            opponent.sprite = combatPose ? visual.southWest : visual.west;
+            var sprite = combatPose ? visual.southWest : visual.west;
+            var animator = CombatantAnimator(CombatantSide.Enemy);
+            if (combatPose) animator.Configure(visual.animation, sprite);
+            else animator.ShowStatic(sprite);
             background.sprite = visual.background;
             opponentName.supportRichText = encounter.supportRichText = false;
             opponentName.text = visual.definition.DisplayName;
@@ -174,6 +178,8 @@ namespace IronTournament.Presentation
 
         public void ResetCombatantFeedback()
         {
+            CombatantAnimator(CombatantSide.Player).Cancel();
+            CombatantAnimator(CombatantSide.Enemy).Cancel();
             var defeatedTint = new Color(.45f, .45f, .45f, .65f);
             if (player != null) SetCombatantFeedback(CombatantSide.Player, Vector2.zero,
                 outcome == BattlePhase.Defeat ? defeatedTint : Color.white);
@@ -206,8 +212,8 @@ namespace IronTournament.Presentation
             var opponentVisual = FindVisual(SelectedEncounter.Opponent.Id);
             if (playerVisual.northEast == null || opponentVisual.southWest == null) return;
             combatPresentationStarted = true;
-            player.sprite = playerVisual.northEast;
-            opponent.sprite = opponentVisual.southWest;
+            CombatantAnimator(CombatantSide.Player).Configure(playerVisual.animation, playerVisual.northEast);
+            CombatantAnimator(CombatantSide.Enemy).Configure(opponentVisual.animation, opponentVisual.southWest);
             startButton.gameObject.SetActive(false);
             hud.Clear();
             battleStatus.gameObject.SetActive(true);
@@ -333,6 +339,16 @@ namespace IronTournament.Presentation
             if (visual.northEast == null) throw new ArgumentException("North-east sprite is required.", nameof(id));
             if (visual.west == null) throw new ArgumentException("West sprite is required.", nameof(id));
             if (visual.southWest == null) throw new ArgumentException("South-west sprite is required.", nameof(id));
+            if (visual.animation != null)
+            {
+                try { visual.animation.Validate(); }
+                catch (InvalidOperationException exception)
+                {
+                    throw new ArgumentException("The animation profile is invalid.", nameof(id), exception);
+                }
+                if (visual.animation.Combatant != id)
+                    throw new ArgumentException("The animation profile must match its combatant.", nameof(id));
+            }
             if (visual.background == null) throw new ArgumentException("Background sprite is required.", nameof(id));
             if (string.IsNullOrWhiteSpace(visual.caption) || visual.caption.Length > 80)
                 throw new ArgumentException("A valid combatant caption is required.", nameof(id));
@@ -348,6 +364,14 @@ namespace IronTournament.Presentation
                 case CombatantSide.Enemy: return opponent;
                 default: throw new ArgumentOutOfRangeException(nameof(side));
             }
+        }
+
+        private BattleCombatantAnimator CombatantAnimator(CombatantSide side)
+        {
+            var animator = CombatantImage(side).GetComponent<BattleCombatantAnimator>();
+            if (animator == null)
+                throw new InvalidOperationException("Every battle combatant requires an animation player.");
+            return animator;
         }
 
         private static bool IsFinite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);

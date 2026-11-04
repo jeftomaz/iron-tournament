@@ -60,6 +60,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Cada inimigo tem atributos-base canônicos; ao criar o encontro, HP, ATK e DEF efetivos variam independentemente em ±15% e permanecem fixos até seu encerramento.
 - Variação de dano, crítico, penetração e drops também permanecem probabilísticos.
 - Regras de combate independentes da interface e das animações.
+- Animações usam sequências de sprites configuradas por estado semântico na `Presentation`; estados ausentes mantêm o sprite estático ou o idle disponível, sem alterar o `Core`.
 - Configurações em `ScriptableObject`; estado da partida em objetos de runtime.
 - O núcleo deve ser testável sem carregar cenas.
 - O protótipo Java é referência de design, não fonte de verdade para comportamentos defeituosos.
