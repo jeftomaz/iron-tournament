@@ -67,6 +67,8 @@ Ela roda testes EditMode, testes PlayMode e uma build WebGL descartável. A lice
 - `Assets/IronTournament/Runtime/Content`: definições de conteúdo e mapeamento para o núcleo.
 - `Assets/IronTournament/Runtime/Presentation`: interface, HUD e eventos visuais.
 - `Assets/IronTournament/Runtime/Bootstrap`: ligação entre cenas e campanha.
+- `Assets/IronTournament/Art`: personagens e cenários com nomes e hierarquia canônicos.
+- `ArtSource`: sprites gerados e prévias aguardando normalização; não é importado pelo Unity.
 - `Assets/Scenes/MainMenu.unity`: entrada da demonstração.
 - `Assets/Scenes/Battle.unity`: batalha e progressão da campanha.
 
@@ -75,3 +77,13 @@ Os documentos `PROJECT.md`, `ROADMAP.md`, `DATA_MODEL.md` e `UI_CONTRACTS.md` re
 ## Limites do protótipo
 
 Esta entrega não inclui salvamento persistente, seleção de classe pela interface, modo inimigo, áudio ou publicação web. O foco é demonstrar o fluxo completo de combate e campanha.
+
+## Prova narrativa da vila
+
+Abra `Assets/Scenes/StoryProof.unity` e inicie Play Mode, ou use **Iron Tournament > Play story proof**. A prova é a primeira cena do build; as cenas clássicas continuam disponíveis.
+
+Escolha Guerreiro ou Mago; Ver atributos permite consultar a classe antes de confirmar. Explore as casas e os quartos. Cada casa nova investigada dispara uma oportunidade de resgate até o terceiro grito; revisitas não contam. Investigue o som para encontrar o Goblin. A resposta ao chamado determina o destino da criança.
+
+O checkpoint é automático; Continuar retoma a jornada. Se sair durante combate, a retomada repete o encontro desde o início, com a mesma seed. Nova jornada pede confirmação antes de substituir o progresso. O trecho termina após o diálogo e o saque do Goblin, sem avançar para o Esqueleto nem desbloquear a segunda campanha.
+
+O save WebGL fica no navegador usado. Apagar os dados do site ou mudar de origem pode remover/trocar o progresso disponível.

@@ -45,6 +45,11 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 - `done` `JT` Refinar o menu demonstrável e apresentar, sem sobreposição, os efeitos dos dois itens oferecidos após cada vitória.
 - `todo` `JP` Refinar a escala relativa dos personagens após a limpeza das branches: aplicar proporção-base por personagem e redução por perspectiva do inimigo, sem deformar sprites.
-- `todo` `JP` Completar arte, animações, áudio e testes PlayMode; anexar evidência visual mobile/desktop aos PRs.
+- `doing` `JP` Completar arte, animações, áudio e testes PlayMode; anexar evidência visual mobile/desktop aos PRs.
 - `done` `JL` Executar testes de regressão e ajustar balanceamento apenas por valores canônicos aprovados.
 - `todo` `JT` Publicar e validar o build Web nos navegadores-alvo, revisar segurança, desempenho, CI e integração final.
+
+## Prova narrativa — vila e Goblin
+
+- `done` `JT` Entregar prova isolada em StoryProof com seleção, cenários quadrados, exploração/itens, três desfechos, combate existente, saque e checkpoint; testes e build WebGL aprovados, revisão funcional no navegador.
+- `todo` `JP` Refinar identidade visual de abertura, menus, diálogos, indicadores e efeitos da prova a partir de direção de arte aprovada.

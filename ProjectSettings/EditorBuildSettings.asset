@@ -6,10 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StoryProof.unity
+    guid: d119c917f3f89434aabfc3e7facfceef
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 7ebd514b3d7a4ec5a88db7730d8d75f0
   - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: a4b1e34142845c54599af8fcd41fd4bc
   m_configObjects: {}
-  m_UseUCBPForAssetBundles: 0

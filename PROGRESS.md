@@ -1,5 +1,11 @@
 # Progresso
 
+## 2026-11-02 — Prova narrativa
+
+- Implementada a prova da vila e do Goblin em `StoryProof`, com exploração, combate, saque e checkpoint; revisão estética pendente.
+- Incluídos cenários e personagens recebidos, guia visual, paleta e fontes; a Saltblack fornecida é demonstração para uso pessoal e requer licença para uso comercial.
+- Normalizados caminhos dos assets visuais preservando os GUIDs; recortes da criança e do Goblin morto atualizados a partir das imagens atuais.
+
 ## 2026-11-02 — Fundação de animação
 
 - Preparada a reprodução de sprites por estado semântico no prefab de combate, com fallback estático e cobertura PlayMode; os perfis visuais específicos permanecem pendentes.

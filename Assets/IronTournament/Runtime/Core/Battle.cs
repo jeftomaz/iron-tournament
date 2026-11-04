@@ -237,7 +237,7 @@ namespace IronTournament.Core
         {
             if (State.Hero.HasFlameCloak && !State.Opponent.IsDefeated)
             {
-                Damage(State.Hero, State.Opponent, DamageKind.Burn, ItemRules.FlameCloakBurn, false, false, events);
+                Damage(State.Hero, State.Opponent, DamageKind.Burn, State.Hero.FlameCloakDamage, false, false, events);
             }
         }
 

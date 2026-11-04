@@ -20,8 +20,11 @@
 
 ## Regras vinculantes
 
-- Entrada do build: `Assets/Scenes/MainMenu.unity`, com os tópicos consultáveis `Regras`, `Objetivo` e `Desafios`, cabeçalho e texto informativo, e o botão `Iniciar campanha`; o tópico ativo só altera esse briefing e a cor do rótulo. A escala deve preservar todos os controles em telas largas; ele carrega `Battle` sem carregar estado de jogo.
-- Cena-base de combate: `Assets/Scenes/Battle.unity`; `BattleView` alterna composição por orientação e recorta o cenário mantendo sua proporção.
+- Direção aprovada em 2026-11-01 para as novas telas: gerar cenários quadrados (`1:1`) uma única vez para desktop e mobile. Manter a imagem inteira, sem esticar nem recortar para preencher a tela; os pontos clicáveis acompanham suas coordenadas na imagem.
+- Desktop: cenário quadrado com menus e demais conteúdos nas áreas laterais disponíveis. Mobile em retrato: mesmo cenário quadrado, com menus e demais conteúdos acima e/ou abaixo. A interface ocupa o espaço excedente sem encobrir pontos de interação; o layout quadrado ainda precisa ser implementado nas telas existentes.
+
+- Entrada da demonstração clássica: `Assets/Scenes/MainMenu.unity`, com os tópicos consultáveis `Regras`, `Objetivo` e `Desafios`, cabeçalho e texto informativo, e o botão `Iniciar campanha`; o tópico ativo só altera esse briefing e a cor do rótulo. A escala deve preservar todos os controles em telas largas; ele carrega `Battle` sem carregar estado de jogo.
+- Cena-base de combate: `Assets/Scenes/Battle.unity`; o layout legado de `BattleView` alterna composição por orientação e recorta o cenário mantendo sua proporção. Sua substituição deve seguir a direção de cenários quadrados acima.
 - `BattleView` mantém um registro visual por combatente configurado: definição de conteúdo, encontro quando for adversário, quatro sprites (`east`, `north-east`, `west`, `south-west`), cenário e legenda. `SelectPlayer` e `SelectEncounter` selecionam os dois participantes antes do combate, expõem `SelectedPlayer` e `SelectedEncounter` ao bootstrap e rejeitam referências inválidas ou mudanças durante combate. Guerreiro/Goblin permanecem o padrão.
 - A cena `Battle` é a entrada habilitada no build desta vertical; a inicialização do combate continua sendo fornecida pelo bootstrap.
 - Introdução: controlado `east` e adversário `west`, frente a frente, com o cenário do adversário. Ao clicar em `Iniciar combate`, usar controlado `north-east` em primeiro plano e adversário `south-west` acima e à direita; ocultar o botão. A transição é a mesma para Guerreiro, Mago e modo inimigo.
@@ -60,3 +63,14 @@
 - Abrir a raiz do repositório no Unity Hub com a versão definida em `PROJECT.md`, carregar a cena alterada e iniciar Play Mode.
 - Acompanhar o resultado na Game View; Scene e Inspector mostram hierarquia e estado de runtime.
 - Em tarefas de UI, o agente abre o projeto e inicia Play Mode quando tiver acesso ao Unity Editor; caso contrário, informa o procedimento ao desenvolvedor.
+
+## Prova narrativa — StoryProof
+
+- Cores de referência e direção visual: `ART_STYLE_GUIDE.md`; paleta editável em `ArtSource/Palettes/IronTournament.gpl`. As famílias orientam a arte sem limitar rigidamente os pixels.
+- Usar Deutsch Gothic no nome do jogo, Saltblack Combat em títulos e textos curtos e Pix32 em diálogos, explicações e inventário; caracteres ausentes recorrem à Inter incluída no projeto para preservar acentos no navegador.
+- `StoryView` mantém o cenário em um quadrado com ajuste por aspecto, integralmente visível; atores e pontos clicáveis são filhos desse quadrado. Desktop tem painéis laterais; retrato tem informação e ações abaixo do cenário.
+- Casas visitadas usam marca de revisita; não alteram a contagem ao reabrir. Gritos bloqueiam a abertura de casas até escolher investigar ou continuar; a última recusa fixa o desfecho de morte anterior ao combate.
+- Texto digitado: um toque completa a fala; o próximo avança. Descrições longas de ambientes e cartas são paginadas.
+- Botões de combate ficam bloqueados durante apresentação dos eventos. `StoryProofController` envia `Submit` ao mesmo núcleo da demonstração clássica; não reimplementa regras.
+- Escala inicial: Guerreiro 1,80 m, Mago 1,70 m, Goblin 0,80 m; redução virtual do adversário por profundidade `4/5,5`. Esses parâmetros de câmera são uma calibração de prova, não distância canônica aprovada.
+- Não mostrar valores iniciais antes de escolher Ver atributos. Confirmar troca de protagonista antes de substituir o checkpoint. Não criar histórico de campanha completa ao terminar o trecho.

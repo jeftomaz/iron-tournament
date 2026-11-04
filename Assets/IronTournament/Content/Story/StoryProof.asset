@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b483f8437904792bcb2e24c18f01f2, type: 3}
+  m_Name: StoryProof
+  m_EditorClassIdentifier: IronTournament.Content::IronTournament.Content.StoryContent
+  warrior: {fileID: 11400000, guid: 40fb7609cb7ad2c4dbdae9600d57cd38, type: 2}
+  mage: {fileID: 11400000, guid: e03c31352c486f847971c5de955a2526, type: 2}
+  goblin: {fileID: 11400000, guid: 28232861edc63264498b08c49345f2bb, type: 2}
+  village: {fileID: 21300000, guid: aae214967a3ba4e37aa0c4b41339a3f9, type: 3}
+  distantVillage: {fileID: 21300000, guid: 81dcc3cd7a4f3440a8a0468640e38799, type: 3}
+  forestPath: {fileID: 21300000, guid: 756a70aa5ad7d4ce7b67da2821f92e95, type: 3}
+  swamp: {fileID: 21300000, guid: 690b5354b7fff4a9caee0f3c283e913d, type: 3}
+  grave: {fileID: 21300000, guid: a74b26278d189468aa7dfbd07211c93c, type: 3}
+  houses:
+  - {fileID: 21300000, guid: 20f9fedde7b674cc7ba056a4441e8bb8, type: 3}
+  - {fileID: 21300000, guid: 30bcf5b70fd454b61920cfbb12e54878, type: 3}
+  - {fileID: 21300000, guid: c423c3a52d1ac4ba28256bfdfc2b80a1, type: 3}
+  - {fileID: 21300000, guid: a73c16be2961f4d1197984f9dd329c48, type: 3}
+  - {fileID: 21300000, guid: e73c5ce8d69344c52bf0ca8f5be6da2f, type: 3}
+  bedrooms:
+  - {fileID: 21300000, guid: 37565cb6c5988490385e828d4e28290f, type: 3}
+  - {fileID: 21300000, guid: 76f5fb3f2a140425da54c537704028c2, type: 3}
+  - {fileID: 21300000, guid: fe202106db26c4741a4e1ab62cfb4d9e, type: 3}
+  child: {fileID: 21300000, guid: 77c8ea3c0c8344a67b3760d94f10d1bd, type: 2}
+  childSaved: {fileID: 21300000, guid: 96a64c2c781f346beaea536264524b5c, type: 2}
+  childHurt: {fileID: 21300000, guid: 4c40dd6984852451583bdbf94adce84e, type: 2}
+  childDead: {fileID: 21300000, guid: b4c8e594da8f84ef8868e4682f5faac9, type: 2}
+  goblinDead: {fileID: 21300000, guid: a16c905ca3b394306b3efedd551fc929, type: 2}
+  warriorPoses:
+  - {fileID: -8959435104959665722, guid: 4628b5bd9ccb0444288b761b74a9164d, type: 3}
+  - {fileID: 4814271557941635497, guid: a684e47025ef24adeb73faea4b0afaa5, type: 3}
+  - {fileID: -2097619832946416524, guid: 8fcbcc5df380446e0ba94f23700cd268, type: 3}
+  - {fileID: -206670225839568205, guid: 6851f219a6a3842e68a9a3e45bd376a7, type: 3}
+  magePoses:
+  - {fileID: -8959435104959665722, guid: d717f3e74e1be49d3b8a7b0b433b19fa, type: 3}
+  - {fileID: 4814271557941635497, guid: 9c2c339d8ecbd4c7ba8a754bdbed7802, type: 3}
+  - {fileID: -2097619832946416524, guid: a06314d801cfc46629bad31a9b362051, type: 3}
+  - {fileID: -206670225839568205, guid: 3ff96150c8d5744f9b773fcfc59a5e2d, type: 3}
+  goblinPoses:
+  - {fileID: -2097619832946416524, guid: 7f6b905d77144400fbf99cce2b2ade4d, type: 3}
+  - {fileID: 3373983171478037719, guid: 251435a68642e474ab790b7da30d8861, type: 3}
+  - {fileID: -1505471383403432660, guid: ff9644591f7e34814b73fecbac2d4311, type: 3}
+  script: {fileID: 4900000, guid: c1fe8c4c0456e446c8d6c253171406ac, type: 3}

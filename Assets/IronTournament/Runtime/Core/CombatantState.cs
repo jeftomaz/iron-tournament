@@ -53,6 +53,21 @@ namespace IronTournament.Core
 
         public bool HasFlameCloak { get; private set; }
 
+        public int FlameCloakDamage { get; private set; } = 5;
+        public int CriticalChancePercent { get; private set; } = 7;
+
+        internal void EquipStoryEquipment(int encounterIndex)
+        {
+            if (encounterIndex < 0) throw new ArgumentOutOfRangeException(nameof(encounterIndex));
+            if (Id == CombatantId.Mage)
+            {
+                HasFlameCloak = true;
+                FlameCloakDamage = encounterIndex == 0 ? 1 : encounterIndex == 1 ? 3 : 5;
+            }
+            else if (Id == CombatantId.Warrior)
+                CriticalChancePercent = encounterIndex == 0 ? 7 : encounterIndex == 1 ? 10 : 14;
+        }
+
         public bool IsDefeated => CurrentHealth == 0;
 
         public bool HasAbility(AbilityId ability)
@@ -194,6 +209,8 @@ namespace IronTournament.Core
             GuardianHorns = source.GuardianHorns;
             IsGuardianArmed = source.IsGuardianArmed;
             HasFlameCloak = source.HasFlameCloak;
+            FlameCloakDamage = source.FlameCloakDamage;
+            CriticalChancePercent = source.CriticalChancePercent;
         }
 
         private static int Bounded(long value, int minimum)

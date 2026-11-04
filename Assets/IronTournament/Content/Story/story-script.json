@@ -1,0 +1,358 @@
+{
+  "dialogues": [
+    {
+      "id": "intro",
+      "lines": [
+        {
+          "speaker": "Narrador",
+          "text": "Um chamado ecoou pelas terras, clamando por ajuda."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "A profecia, há muito esquecida, havia despertado."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "Agora, as trevas avançam, assolando o mundo em que um dia fizeram parte."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "Será você o campeão capaz de dar fim à tormenta?"
+        }
+      ]
+    },
+    {
+      "id": "chapter",
+      "lines": [
+        {
+          "speaker": "Narrador",
+          "text": "Foram longos dias de jornada…"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "Finalmente a localização fornecida foi encontrada."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "Uma vila em ruínas jaz sob a sombra da montanha."
+        }
+      ]
+    },
+    {
+      "id": "rescueA",
+      "lines": [
+        {
+          "speaker": "Narrador",
+          "text": "ao avançar para floresta, o jogador se depara com um pântano, ouvindo gritos vindos de entre as árvores."
+        },
+        {
+          "speaker": "Criança",
+          "text": "Socorro!"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Afaste-se, criatura nojenta!"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o goblin então se vira, encarando o protagonista."
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Arghh!"
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Estou bem para minha idade…"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o protagonista entra em posição de batalha."
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Vou cuidar de você primeiro, então"
+        }
+      ]
+    },
+    {
+      "id": "afterA",
+      "lines": [
+        {
+          "speaker": "Protagonista",
+          "text": "Você está bem?"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Agora, sim"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Eles… eles destruíram tudo…"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Quem?"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Aquelas criaturas"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Elas invadiram a vila, destruíram as casas, mataram todos que estavam no caminho"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Eu me escondi na floresta, mas estava procurando comida…"
+        }
+      ]
+    },
+    {
+      "id": "loot",
+      "lines": [
+        {
+          "speaker": "Criança",
+          "text": "Veja, caíram alguns itens quando o goblin morreu. Ele deve ter roubado da vila"
+        }
+      ]
+    },
+    {
+      "id": "farewell",
+      "lines": [
+        {
+          "speaker": "Protagonista",
+          "text": "De onde eles vieram?"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Eu não tenho certeza, estava escuro. Acho que alguns vieram de cima, do topo da montanha, onde tem o castelo"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Entendo"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Ah, antes de ir…"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Leve isso com você"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "O que é isso?"
+        },
+        {
+          "speaker": "Criança",
+          "text": "É um cristal especial, para ajudar a fazer a coisa certa, meu pai dizia"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Ele disse que é melhor você levar"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Obrigado"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Vá para a vila mais próxima, o caminho até lá está seguro"
+        }
+      ]
+    },
+    {
+      "id": "rescueB",
+      "lines": [
+        {
+          "speaker": "Narrador",
+          "text": "ao avançar para floresta, o jogador se depara com um pântano, ouvindo grunhidos vindos de entre as árvores."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "a criança tosse sangue, com diversos cortes no corpo."
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Afaste-se, criatura nojenta!"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o goblin então se vira, encarando o protagonista."
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Arghh!"
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Estou bem para minha idade…"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o protagonista entra em posição de batalha."
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Vou ter que cuidar de você antes de terminar com esse filhote"
+        }
+      ]
+    },
+    {
+      "id": "afterB",
+      "lines": [
+        {
+          "speaker": "Protagonista",
+          "text": "Você está bem?"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "a criança tosse, engasgada com sangue."
+        },
+        {
+          "speaker": "Criança",
+          "text": "Eles… destruíram tudo…"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Quem?"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Eles… *coff*…"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Muito fortes…"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Você tem ferimentos graves"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Precisa…"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o protagonista é interrompido pela criança."
+        },
+        {
+          "speaker": "Criança",
+          "text": "Do castelo…"
+        },
+        {
+          "speaker": "Criança",
+          "text": "Eles… *coff*…"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "a criança tosse uma última vez antes de fechar os olhos."
+        }
+      ]
+    },
+    {
+      "id": "rescueC",
+      "lines": [
+        {
+          "speaker": "Narrador",
+          "text": "ao avançar para floresta, o jogador se depara com um pântano, ouvindo grunhidos vindos de entre as árvores."
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Afaste-se, criatura nojenta!"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o goblin então se vira, encarando o protagonista."
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Arghh!"
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Estou bem para minha idade…"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o protagonista entra em posição de batalha."
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Agora que já terminei com esse filhote, posso cuidar de você também, [classe do protagonista]"
+        }
+      ]
+    },
+    {
+      "id": "afterC",
+      "lines": [
+        {
+          "speaker": "Narrador",
+          "text": "o protagonista se aproxima do corpo sem vida da criança."
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Eu falhei, me desculpe"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Te darei um enterro digno"
+        }
+      ]
+    },
+    {
+      "id": "rescueD",
+      "lines": [
+        {
+          "speaker": "Voz",
+          "text": "Malditos! Vão morrer, sim…"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o protagonista se aproxima e vê um goblin."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o goblin então se vira, encarando o protagonista."
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Você!"
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Vocês vão pagar por isso!"
+        },
+        {
+          "speaker": "Protagonista",
+          "text": "Teve o final que merecia"
+        },
+        {
+          "speaker": "Goblin",
+          "text": "Vou cuidar de você. Sim, o Rei vai me recompensar…"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o goblin entra em posição de batalha."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "o protagonista entra em posição de batalha."
+        }
+      ]
+    },
+    {
+      "id": "afterD",
+      "lines": []
+    }
+  ],
+  "houses": [
+    "ambiente único, interior parcialmente destruído, paredes com buracos etc. Há uma mesa partida ao meio e restos de madeira no centro, além de móveis ao redor também quebrados. Há rastros de sangue pelo chão e paredes. É possível que o jogador encontre um dos itens especiais dos protagonistas escondido em um pedaço do chão composto por tábuas quebradas onde sai um pequeno sobro de ar (nessa casa, a espada do caos);",
+    "ambiente único, interior parcialmente destruído. Há uma mesa de jantar partida ao meio com restos de comida e cadeiras caídas, uma cama de casal em um dos cantos e uma mesa de preparo de alimentos em outro, além de uma lareira ainda em brasa. O ambiente está levemente iluminado por pequenas chamas que estão queimando os móveis, prestes a se apagarem. É possível que o jogador encontre um dos itens especiais dos protagonistas escondido em um pedaço do chão composto por tábuas quebradas onde sai um pequeno sobro de ar (nessa casa, o manto de chamas);",
+    "ambiente separado. Há um ambiente central, totalmente destruído, com uma mesa de jantar parcialmente quebrada com uma cadeira próxima. Ao redor, há restos de outros móveis quebrados. Há um rastro de sangue levando até o quarto (lado direito). Dentro, há uma cama de casal; sobre ela, há um corpo ensanguentado enquanto no canto do quarto há outro, preso na parede por uma espada.",
+    "ambiente separado, interior totalmente destruído, sangue espalhado pelo chão e paredes. No centro, um caldeirão caído. Dele é possível ver o que seria uma sopa com alguns legumes. Nesse momento, o jogador poderá recolher um pouco da comida. No canto de trás, é possível ver um corpo deitado, ensanguentado, ainda segurando uma faca. No lado esquerdo, há um quarto. Nele, é possível ver uma cama com uma lança cravada sobre ela. É possível ver também uma mão saindo de baixo da cama, sem movimento, com sangue ao redor (alguém estava escondido embaixo do cama e foi morto pela lança, mas não é visível);",
+    "ambiente separado, interior totalmente destruído. No centro, há uma pilha com quatro corpos dentro de um círculo de sangue com moscas voando sobre eles. Há sangue pelo chão, indicando por onde os corpos foram arrastados. Os móveis quebrados foram jogados em um canto (esquerdo). No fundo, há um quarto separado. Em um canto do quarto há uma cama suja de sangue enquanto no fundo há um corpo cravado por várias lanças, ainda segurando uma espada curta."
+  ]
+}

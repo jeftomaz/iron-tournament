@@ -104,3 +104,12 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 - A progressão da campanha não usa sorteio para escolher ou ordenar inimigos.
 - O `Core` define quais habilidades gastam turno: todas, exceto `RevertTurn` e `RevertBattle`; o `consumesTurn` dos assets deve coincidir com essa regra.
 - `CampaignConfiguration` e o `ContentValidator` exigem exatamente os sete encontros na ordem canônica; campanhas truncadas, estendidas ou reordenadas são rejeitadas.
+
+## Checkpoint da prova narrativa (versão 1)
+
+- `StoryRun`: versão, seed, protagonista, página/índice do diálogo, permutação das cinco casas, máscara de casas visitadas, casa/quarto aberto, grito pendente, recusa final, comida/coleta/entrega, equipamento, Cristal, recompensa e atributos após saque.
+- `StoryEncounter`: inimigo e oferta reproduzíveis pela seed, equipamentos da vila exclusivos por classe, Manto com 1 de dano no Goblin, Espada com 7% de crítico; saques excluem Manto, agora encontrado na vila. A campanha clássica conserva seu pool e Manto de 5 de dano.
+- `CombatantState` inclui dano do Manto e chance de crítico, copiados nas reversões; sem equipamento narrativo mantém os valores antigos.
+- `StoryContent` referencia arte e `story-script.json`, cópia de produção do roteiro do Obsidian. Os PNGs originais permanecem intactos; sprites derivados usam limites do alpha.
+- `StorySaveStore`: duas entradas PlayerPrefs alternadas com revisão e SHA-256 do JSON; seleciona a revisão válida mais recente e ignora versão, enums, máscaras, permutação ou combinações inválidas. Checksum detecta corrupção, não impede adulteração pelo próprio jogador.
+- Marcadores de segunda campanha e origem são validados no modelo. Ainda não há gravação de conclusão da campanha completa nessa prova; não confundir Finished do trecho com Completed de CampaignRun.

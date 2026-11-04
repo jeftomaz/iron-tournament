@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Iron Tournament · A Vila</title>
+<style>
+html,body{margin:0;width:100%;height:100%;background:#11171b;color:#e9dec5;font:16px system-ui;overflow:hidden}
+#game{display:block;width:100%;height:100%;outline:none;touch-action:none}
+#loading{position:fixed;inset:0;display:grid;place-content:center;text-align:center;gap:16px;background:#11171b}
+progress{width:min(300px,80vw);accent-color:#c8a362}button{padding:12px;background:#354139;color:#e9dec5;border:1px solid #c8a362;cursor:pointer}
+</style>
+</head>
+<body>
+<canvas id="game" tabindex="0" aria-label="Iron Tournament, jogo de exploração e combate"></canvas>
+<div id="loading"><strong>IRON TOURNAMENT</strong><span id="status">Preparando a jornada…</span><progress id="progress" max="1" value="0"></progress></div>
+<script src="Build/{{{ LOADER_FILENAME }}}"></script>
+<script>
+const canvas=document.getElementById('game');
+const loading=document.getElementById('loading');
+const config={dataUrl:'Build/{{{ DATA_FILENAME }}}',frameworkUrl:'Build/{{{ FRAMEWORK_FILENAME }}}',codeUrl:'Build/{{{ CODE_FILENAME }}}',streamingAssetsUrl:'StreamingAssets',companyName:'Iron Tournament',productName:'Iron Tournament',productVersion:'{{{ PRODUCT_VERSION }}}'};
+createUnityInstance(canvas,config,p=>document.getElementById('progress').value=p).then(()=>{loading.remove();canvas.focus()}).catch(()=>{document.getElementById('status').textContent='Não foi possível carregar o jogo. Recarregue a página para tentar novamente.';document.getElementById('progress').remove();const b=document.createElement('button');b.textContent='Tentar novamente';b.onclick=()=>location.reload();loading.appendChild(b)});
+</script>
+</body>
+</html>

@@ -2,13 +2,13 @@
 
 ## Objetivo
 
-RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-bit. A primeira etapa não inclui exploração.
+RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-bit. A prova narrativa inclui exploração point-and-click da vila até o encerramento do encontro com o Goblin.
 
 ## Referência
 
 - `../ironturn-exemplo/`: especificação funcional externa em Java; opcional para consulta e não versionada neste repositório. Suas regras serão revisadas, não portadas literalmente.
-- `Assets/`: sprites direcionais estáticos para personagens e conteúdo do Unity.
-- `Assets/Backgrounds/`: cenários estáticos de batalha e o respectivo `metadata.json`.
+- `Assets/IronTournament/Art/Characters/`: sprites por personagem, separados entre poses estáticas e futuras animações.
+- `Assets/IronTournament/Art/Backgrounds/`: cenários estáticos de batalha e `generation-metadata.json`.
 
 ## Stack
 
@@ -24,7 +24,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 - Foco inicial: navegador mobile em `9:16`, com área de referência `360 × 640`.
 - Desktop: navegador em `16:9`, com área de referência `1280 × 720`.
-- Cada orientação terá composição própria; a interface não deve apenas esticar a outra.
+- Os cenários gerados usam formato quadrado (`1:1`), com uma única imagem compartilhada entre desktop e mobile. A distribuição de cenário e interface segue `UI_CONTRACTS.md`.
 - A primeira publicação Web é cliente estático: multiplayer, autenticação e backend não fazem parte deste escopo.
 
 ## Estrutura inicial
@@ -32,6 +32,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - `Core`: regras e estado de runtime sem referência ao Unity.
 - `Content`: definições em `ScriptableObject` e referências de assets.
 - `Presentation`: cenas, interface e reprodução de eventos.
+- `ArtSource`: arquivos gerados e prévias ainda não normalizados para importação pelo Unity.
 - `Tests/EditMode`: testes do núcleo sem carregar cenas.
 - `Tests/PlayMode`: testes da apresentação carregando o menu e a cena de batalha.
 
@@ -49,7 +50,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Dependências seguem `Content -> Core` e `Presentation -> Content/Core`; referências circulares não são aceitas.
 - A fronteira pública é `ação -> Core -> estado/eventos`: adaptadores convertem conteúdo na inicialização e a interface apenas apresenta a resposta.
 - O bootstrap fornece cada batalha via `IBattle` ao apresentador da cena; `Presentation` não instancia o núcleo com atributos, campanha ou fonte aleatória próprios. Detalhes da ligação em `UI_CONTRACTS.md`.
-- `MainMenu` é a entrada do build e carrega `Battle`; a cena de batalha concentra as variantes visuais dos encontros, enquanto definições e regras permanecem em `Content/Core`.
+- `StoryProof` é a entrada do build da prova; `MainMenu` e `Battle` preservam a demonstração clássica. Na demonstração clássica, `MainMenu` carrega `Battle`; a cena de batalha concentra as variantes visuais dos encontros, enquanto definições e regras permanecem em `Content/Core`.
 - Estado restaurável e fonte aleatória são isolados para que a reversão não retroceda a sequência aleatória.
 - Decisões que mudem assemblies, contratos públicos ou esse fluxo exigem PR isolado antes das implementações dependentes.
 
@@ -87,10 +88,11 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 ## Restrições
 
-- Não implementar exploração no escopo inicial.
+- Limitar a prova narrativa à vila e ao Goblin; não iniciar o capítulo do Esqueleto nem registrar esse trecho como campanha completa.
+- Na ausência de arte própria, usar placeholder identificado com o objeto que ocupará o lugar.
 - Não instalar dependências sem aprovação.
 - Não colocar regras de combate em componentes de UI ou animação.
-- Até a tarefa dedicada após a limpeza das branches, não ajustar tamanho, proporção ou perspectiva visual dos personagens. A tarefa futura definirá, de uma vez, a escala-base de cada personagem e a redução por profundidade do inimigo.
+- Na prova narrativa, aplicar alturas físicas aprovadas e perspectiva virtual sem deformar sprites; ajustes de enquadramento ainda dependem de revisão visual.
 
 ## Colaboração
 
@@ -126,3 +128,12 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - A cache não inclui arquivos de credencial, artefatos ou secrets: apenas o diretório transitório `Library` do Unity.
 - Código vindo de fork só entra após revisão e validação completa numa branch interna confiável.
 - Antes do merge, revisar o diff e a saída da CI para detectar chaves, tokens ou dados pessoais.
+
+## Prova narrativa da vila
+
+- Cena: `Assets/Scenes/StoryProof.unity`; executar por `Iron Tournament > Play story proof`.
+- Fluxo: seleção com consulta de atributos, introdução, vila distante, cinco casas embaralhadas com quartos, três oportunidades de resgate, Goblin, diálogo, comida opcional, um saque entre dois e Cristal apenas no resgate bem-sucedido.
+- `StoryRun` valida exploração, inventário e checkpoints no `Core`; `StoryEncounter` reaproveita `Battle` e `DropTable`. A apresentação envia escolhas e reproduz eventos, sem calcular dano.
+- `StorySaveStore` mantém um checkpoint local com dois slots alternados e checksum; carregar durante combate reinicia o encontro com a mesma configuração, não o turno intermediário. No navegador, o progresso pertence à origem e ao perfil usados, sem sincronização entre dispositivos.
+- Encerrar a prova não conclui a campanha de sete encontros. A variante narrativa da segunda campanha está descrita em conteúdo/modelo, mas sua seleção automática depende da futura integração com o histórico da campanha completa.
+- Arte recebida é referenciada sem sobrescrever PNGs. Sprites recortados por alpha ficam em assets derivados; poses mantêm proporção. Itens usam nomes/descrições na interface enquanto sua arte específica não estiver integrada.
