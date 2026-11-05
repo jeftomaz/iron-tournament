@@ -244,8 +244,8 @@ namespace IronTournament.Presentation
             var button = Button(scene, marks + (display ?? caption), x, y, width, display == null ? .07f : .06f, action, Gold,
                 visited ? StoryButtonStyle.Secondary : StoryButtonStyle.Primary);
             button.name = caption;
-            if (reward) Label(button.transform, "+", .03f, .65f, .17f, .32f, 15, new Color32(131,208,244,255));
-            if (danger) Label(button.transform, "!", .80f, .65f, .17f, .32f, 15, new Color32(244,148,124,255));
+            if (reward || danger)
+                button.image.color = danger ? new Color32(155, 55, 48, 255) : new Color32(50, 110, 155, 255);
         }
 
         public Button RewardChoice(string caption, string description, Action action, int index, int count)

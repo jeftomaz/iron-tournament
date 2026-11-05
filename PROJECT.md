@@ -133,7 +133,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 - Cena: `Assets/Scenes/StoryProof.unity`; executar por `Iron Tournament > Play story proof`.
 - Fluxo: seleção com consulta de atributos, introdução, vila distante, cinco casas embaralhadas com quartos, três oportunidades de resgate, Goblin, diálogo, comida opcional, um saque entre dois e Cristal apenas no resgate bem-sucedido.
-- Continuação: floresta fria, seis túmulos, Esqueleto, carta, saque, visão do castelo e retorno opcional aos túmulos restantes.
+- Continuação: floresta fria, seis túmulos, Esqueleto, carta, saque, visão do castelo e retorno opcional aos túmulos restantes. Com Cristal, o Esqueleto ocupa sozinho o túmulo vazio; sem Cristal, surge entre a 3ª e a 6ª abertura inédita, substituindo o conteúdo desse túmulo.
 - `StoryRun` valida exploração, inventário e checkpoints no `Core`; `StoryEncounter` reaproveita `Battle` e `DropTable`. A apresentação envia escolhas e reproduz eventos, sem calcular dano.
 - `StorySaveStore` mantém um checkpoint local com dois slots alternados e checksum; carregar durante combate reinicia o encontro com a mesma configuração, não o turno intermediário. No navegador, o progresso pertence à origem e ao perfil usados, sem sincronização entre dispositivos.
 - Encerrar a prova não conclui a campanha de sete encontros. A variante narrativa da segunda campanha está descrita em conteúdo/modelo, mas sua seleção automática depende da futura integração com o histórico da campanha completa.

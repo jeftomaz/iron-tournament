@@ -8,7 +8,7 @@ namespace IronTournament.Core
         ColdForest, Graveyard, Grave, SkeletonEmergence, SkeletonBattle, SkeletonLetter, SkeletonReward,
         Castle, SkeletonFinished }
     public enum ChildFate { Saved, Dying, Dead, Absent }
-    public enum GraveContent { LucyLetter, SamuelLetter, Rosary, Doll, Cat, Empty }
+    public enum GraveContent { LucyLetter, SamuelLetter, Rosary, Doll, Cat, Empty, Skeleton }
 
     [Serializable]
     public sealed class StoryRun
@@ -40,6 +40,7 @@ namespace IronTournament.Core
         public int gravesVisited;
         public int activeGrave = -1;
         public int skeletonTrigger;
+        public int skeletonGraveNumber;
         public bool skeletonAppeared;
         public bool skeletonDefeated;
         public int skeletonHealth;
@@ -81,6 +82,29 @@ namespace IronTournament.Core
             var index = 0;
             for (var i = 0; i < graves.Length; i++) if (graves[i] < 0) graves[i] = remaining[index++];
             skeletonTrigger = random.Next(3, 7);
+            if (crystal) skeletonGraveNumber = Array.IndexOf(graves, (int)GraveContent.Empty) + 1;
+        }
+
+        public void MigrateLegacyGrave()
+        {
+            if (graves == null || graves.Length == 0 || skeletonGraveNumber != 0) return;
+            if (skeletonAppeared)
+            {
+                if (!skeletonDefeated || page == StoryPage.SkeletonLetter || page == StoryPage.SkeletonReward || page == StoryPage.Castle)
+                { skeletonGraveNumber = activeGrave + 1; graves[activeGrave] = (int)GraveContent.Skeleton; }
+                return;
+            }
+            if (!crystal) return;
+            var empty = Array.IndexOf(graves, (int)GraveContent.Empty);
+            if (empty < 0) throw new ArgumentException("No grave available for the skeleton.");
+            skeletonGraveNumber = empty + 1;
+        }
+
+        public bool TriggersSkeleton(int slot)
+        {
+            if (slot < 0 || slot >= 6 || skeletonAppeared) return false;
+            if (crystal && skeletonGraveNumber != 0) return slot + 1 == skeletonGraveNumber;
+            return (gravesVisited & (1 << slot)) == 0 && GravesExplored + 1 == skeletonTrigger;
         }
 
         public void EnterGrave(int slot)
@@ -88,8 +112,11 @@ namespace IronTournament.Core
             if (page != StoryPage.Graveyard || graves == null || slot < 0 || slot >= graves.Length)
                 throw new InvalidOperationException("Invalid grave entry.");
             activeGrave = slot;
-            if (!skeletonAppeared && (gravesVisited & (1 << slot)) == 0 && GravesExplored + 1 == skeletonTrigger)
-            { skeletonAppeared = true; page = StoryPage.SkeletonEmergence; return; }
+            if (TriggersSkeleton(slot))
+            {
+                skeletonAppeared = true; skeletonGraveNumber = slot + 1;
+                graves[slot] = (int)GraveContent.Skeleton; page = StoryPage.SkeletonEmergence; return;
+            }
             gravesVisited |= 1 << slot;
             page = StoryPage.Grave;
         }
@@ -166,7 +193,7 @@ namespace IronTournament.Core
                 visited < 0 || visited > 31 || activeHouse < -1 || activeHouse > 4 || dialogue < 0 || dialogue > 80 ||
                 completionOrigin < 0 || victoryHealth < 0 || victoryHealth > 9999 ||
                 rewardAttack < 0 || rewardAttack > 9999 || rewardDefense < 0 || rewardDefense > 9999 || !Enum.IsDefined(typeof(ItemId), reward) ||
-                gravesVisited < 0 || gravesVisited > 63 || activeGrave < -1 || activeGrave > 5 || skeletonHealth < 0 || skeletonHealth > 9999 ||
+                gravesVisited < 0 || gravesVisited > 63 || activeGrave < -1 || activeGrave > 5 || skeletonGraveNumber < 0 || skeletonGraveNumber > 6 || skeletonHealth < 0 || skeletonHealth > 9999 ||
                 skeletonScrolls < 0 || skeletonScrolls > 2 || skeletonHorns < 0 || skeletonHorns > 2 || !Enum.IsDefined(typeof(ItemId), skeletonReward) ||
                 skeletonAttack < 0 || skeletonAttack > 9999 || skeletonDefense < 0 || skeletonDefense > 9999)
                 throw new ArgumentException("Invalid story checkpoint.");
@@ -180,24 +207,31 @@ namespace IronTournament.Core
                 for (var i = 0; i < 6; i++)
                 {
                     var value = graves[i];
-                    if (value < 0 || value > 5 || (mask & (1 << value)) != 0) throw new ArgumentException("Invalid grave layout.");
+                    var maximum = skeletonAppeared && skeletonGraveNumber != 0 ? (int)GraveContent.Skeleton : (int)GraveContent.Empty;
+                    if (value < 0 || value > maximum || (mask & (1 << value)) != 0) throw new ArgumentException("Invalid grave layout.");
                     mask |= 1 << value;
                     if (value == 0) lucy = i; else if (value == 1) samuel = i;
                 }
-                if (!(Math.Abs(lucy - samuel) == 3 || (lucy / 3 == samuel / 3 && Math.Abs(lucy - samuel) == 1)))
+                if (lucy >= 0 && samuel >= 0 && !(Math.Abs(lucy - samuel) == 3 || (lucy / 3 == samuel / 3 && Math.Abs(lucy - samuel) == 1)))
                     throw new ArgumentException("Letters must be adjacent.");
+                if ((lucy < 0 || samuel < 0) && (!skeletonAppeared || skeletonGraveNumber == 0))
+                    throw new ArgumentException("Missing grave letter.");
+                if (skeletonGraveNumber != 0 && graves[skeletonGraveNumber - 1] !=
+                    (int)(skeletonAppeared ? GraveContent.Skeleton : GraveContent.Empty))
+                    throw new ArgumentException("Invalid skeleton grave.");
             }
             if ((page == StoryPage.House && activeHouse < 0) ||
                 (room && (page != StoryPage.House || activeHouse < 2)) ||
                 (food && (!foodCollected || foodGiven)) || (foodGiven && (!foodCollected || Fate != ChildFate.Saved)) ||
                 (lastCallDeclined && ExploredCount < 3) || (crystal && (secondCampaign || Fate != ChildFate.Saved)) ||
                 (pendingCry && (page != StoryPage.Village || secondCampaign || ExploredCount < 1 || ExploredCount > 3)) ||
-                (!hasGraves && (gravesVisited != 0 || skeletonTrigger != 0 || skeletonAppeared || skeletonDefeated)) ||
+                (!hasGraves && (gravesVisited != 0 || skeletonTrigger != 0 || skeletonGraveNumber != 0 || skeletonAppeared || skeletonDefeated)) ||
+                (skeletonGraveNumber != 0 && !crystal && !skeletonAppeared) ||
                 ((int)page >= (int)StoryPage.Graveyard && !hasGraves) ||
                 ((int)page >= (int)StoryPage.ColdForest && (reward == ItemId.None || victoryHealth <= 0 || rewardAttack <= 0)) ||
                 (page == StoryPage.Grave && (!hasGraves || activeGrave < 0 || (gravesVisited & (1 << activeGrave)) == 0)) ||
-                (skeletonAppeared && (activeGrave < 0 || GravesExplored < skeletonTrigger - 1)) ||
-                (hasGraves && !skeletonAppeared && GravesExplored >= skeletonTrigger) ||
+                (skeletonAppeared && (activeGrave < 0 || (!crystal && GravesExplored < skeletonTrigger - 1))) ||
+                (hasGraves && !skeletonAppeared && skeletonGraveNumber == 0 && GravesExplored >= skeletonTrigger) ||
                 ((page == StoryPage.SkeletonEmergence || page == StoryPage.SkeletonBattle) && (!skeletonAppeared || skeletonDefeated)) ||
                 ((page == StoryPage.SkeletonLetter || page == StoryPage.SkeletonReward || page == StoryPage.Castle || page == StoryPage.SkeletonFinished) && !skeletonDefeated) ||
                 (skeletonDefeated && (!skeletonAppeared || skeletonHealth <= 0)) ||

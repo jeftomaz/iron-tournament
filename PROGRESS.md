@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-11-05 — Cristal no cemitério
+
+- Cristal colore cartas e o túmulo exclusivo do Esqueleto; sem ele, o encontro substitui o conteúdo entre a 3ª e a 6ª abertura. Migração e testes EditMode 112/112 e PlayMode 44/44 aprovados.
+
 ## 2026-11-05 — Interface redistribuível
 
 - Interface com UI Pack CC0 da Kenney e botões menores aprovados; EditMode 110/110, PlayMode 41/41 e build WebGL passaram.

@@ -108,8 +108,8 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 ## Checkpoint da prova narrativa (versão 1)
 
 - `StoryRun`: versão, seed, protagonista, página/índice do diálogo, permutação das cinco casas, máscara de casas visitadas, casa/quarto aberto, grito pendente, recusa final, comida/coleta/entrega, equipamento, Cristal, recompensa e atributos após saque.
-- O mesmo checkpoint mantém distribuição de seis túmulos, máscara de visitas, limite de aparição entre a terceira e a sexta abertura, resultado do Esqueleto, recursos e saque; saves anteriores sem esses campos continuam válidos.
-- As cartas de Lucy e Samuel ocupam túmulos adjacentes; seed, encontro e oferta permanecem estáveis ao carregar ou repetir.
+- O checkpoint mantém os seis túmulos, máscara de visitas, limite de aparição, número do túmulo fixo quando há Cristal, resultado do Esqueleto, recursos e saque. Saves anteriores com Cristal reservam o túmulo vazio ao carregar, mesmo se já examinado; após o encontro, preservam o estado já alcançado.
+- As cartas de Lucy e Samuel começam em túmulos adjacentes; sem Cristal, o Esqueleto substitui integralmente o conteúdo do túmulo em que surge, inclusive carta ou objeto. Seed, encontro e oferta permanecem estáveis ao carregar ou repetir.
 - `StoryEncounter`: inimigo e oferta reproduzíveis pela seed, equipamentos da vila exclusivos por classe, Manto com 1 de dano no Goblin, Espada com 7% de crítico; saques excluem Manto, agora encontrado na vila. A campanha clássica conserva seu pool e Manto de 5 de dano.
 - No Esqueleto, o herói mantém HP, recompensa e recursos do Goblin; o Manto causa 3 de dano e a Espada oferece 10% de crítico.
 - `CombatantState` inclui dano do Manto e chance de crítico, copiados nas reversões; sem equipamento narrativo mantém os valores antigos.
