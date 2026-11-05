@@ -205,13 +205,13 @@ namespace IronTournament.Presentation
                 var rows = Mathf.CeilToInt(count / (float)columns);
                 var width = 1f / columns;
                 var rowHeight = 1f / rows;
-                var buttonHeight = Mathf.Min(.42f, rowHeight - .08f);
+                var buttonHeight = Mathf.Min(.38f, rowHeight - .08f);
                 var bottom = rows == 1 ? (1 - buttonHeight) / 2 : 1 - index / columns * rowHeight - buttonHeight - .04f;
-                return Button(actions, caption, index % columns * width + .02f, bottom,
-                    width - .04f, buttonHeight, action, style: style);
+                return Button(actions, caption, index % columns * width + .04f, bottom,
+                    width - .08f, buttonHeight, action, style: style);
             }
-            var desktopRowHeight = Mathf.Min(.20f, .94f / count);
-            return Button(actions, caption, .02f, 1 - (index + 1) * desktopRowHeight + .02f, .96f, desktopRowHeight - .04f, action, style: style);
+            var desktopRowHeight = Mathf.Min(.18f, .94f / count);
+            return Button(actions, caption, .06f, 1 - (index + 1) * desktopRowHeight + .02f, .88f, desktopRowHeight - .04f, action, style: style);
         }
 
         public Button Button(Transform parent, string caption, float x, float y, float w, float h, Action action, Color? accent = null, StoryButtonStyle style = StoryButtonStyle.Primary)
@@ -240,8 +240,8 @@ namespace IronTournament.Presentation
         public void Hotspot(string caption, float x, float y, Action action, bool visited = false, bool reward = false, bool danger = false, string display = null)
         {
             var marks = visited ? "✓ " : "";
-            var width = caption == "Buraco no chão" ? .33f : display == null ? .23f : .17f;
-            var button = Button(scene, marks + (display ?? caption), x, y, width, display == null ? .10f : .09f, action, Gold,
+            var width = caption == "Buraco no chão" ? .24f : display == null ? .16f : .11f;
+            var button = Button(scene, marks + (display ?? caption), x, y, width, display == null ? .07f : .06f, action, Gold,
                 visited ? StoryButtonStyle.Secondary : StoryButtonStyle.Primary);
             button.name = caption;
             if (reward) Label(button.transform, "+", .03f, .65f, .17f, .32f, 15, new Color32(131,208,244,255));

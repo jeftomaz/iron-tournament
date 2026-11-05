@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-11-05 — Interface redistribuível
+
+- Interface com UI Pack CC0 da Kenney e botões menores aprovados; EditMode 110/110, PlayMode 41/41 e build WebGL passaram.
+
 ## 2026-11-04 — Recuperação da prévia visual
 
 - Recuperadas da cópia de demonstração a abertura, os balões, os menus, as barras de HP, os sons e as descrições da vila.
