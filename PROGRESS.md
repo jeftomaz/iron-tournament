@@ -4,6 +4,10 @@
 
 - Recuperadas da cópia de demonstração a abertura, os balões, os menus, as barras de HP, os sons e as descrições da vila.
 - Interface restrita substituída por sprites CC0 da Kenney, com molduras aprovadas pelo usuário; EditMode 105/105, PlayMode 40/40 e build WebGL aprovados. Esqueleto preservado separadamente.
+## 2026-11-04 — Encontro com o Esqueleto
+
+- Implementada a continuação com seis túmulos, cartas, aparição entre a terceira e a sexta abertura, combate, saque e retorno aos túmulos; arte ausente indicada por placeholders.
+- Checkpoint preserva distribuição, progresso e recursos; EditMode 110/110, PlayMode 41/41 e build WebGL aprovados; prévia aprovada pelo usuário.
 
 ## 2026-11-02 — Prova narrativa
 

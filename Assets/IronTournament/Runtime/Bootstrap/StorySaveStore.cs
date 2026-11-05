@@ -10,7 +10,9 @@ namespace IronTournament.Bootstrap
     {
         [Serializable] private sealed class Envelope { public int revision; public string payload; public string checksum; }
         private readonly string prefix;
-        public StorySaveStore(string prefix = "iron.story.proof.v1") { this.prefix = prefix; }
+        private readonly Func<StoryRun, bool> validateContent;
+        public StorySaveStore(string prefix = "iron.story.proof.v1", Func<StoryRun, bool> validateContent = null)
+        { this.prefix = prefix; this.validateContent = validateContent; }
         public string LastError { get; private set; }
 
         public bool TryLoad(out StoryRun run)
@@ -28,6 +30,7 @@ namespace IronTournament.Bootstrap
             try
             {
                 run.Validate();
+                if (validateContent != null && !validateContent(run)) throw new ArgumentException("Invalid story content.");
                 var a = Read(".a"); var b = Read(".b");
                 var next = Math.Max(a?.revision ?? 0, b?.revision ?? 0) + 1;
                 var payload = JsonUtility.ToJson(run);
@@ -52,7 +55,9 @@ namespace IronTournament.Bootstrap
                     envelope.checksum != Hash(envelope.payload)) throw new ArgumentException();
                 var run = JsonUtility.FromJson<StoryRun>(envelope.payload);
                 if (run == null) throw new ArgumentException();
-                run.Validate(); return envelope;
+                run.Validate();
+                if (validateContent != null && !validateContent(run)) throw new ArgumentException();
+                return envelope;
             }
             catch (Exception) { LastError = "Um salvamento inválido foi ignorado."; return null; }
         }

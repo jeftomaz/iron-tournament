@@ -108,8 +108,11 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 ## Checkpoint da prova narrativa (versão 1)
 
 - `StoryRun`: versão, seed, protagonista, página/índice do diálogo, permutação das cinco casas, máscara de casas visitadas, casa/quarto aberto, grito pendente, recusa final, comida/coleta/entrega, equipamento, Cristal, recompensa e atributos após saque.
+- O mesmo checkpoint mantém distribuição de seis túmulos, máscara de visitas, limite de aparição entre a terceira e a sexta abertura, resultado do Esqueleto, recursos e saque; saves anteriores sem esses campos continuam válidos.
+- As cartas de Lucy e Samuel ocupam túmulos adjacentes; seed, encontro e oferta permanecem estáveis ao carregar ou repetir.
 - `StoryEncounter`: inimigo e oferta reproduzíveis pela seed, equipamentos da vila exclusivos por classe, Manto com 1 de dano no Goblin, Espada com 7% de crítico; saques excluem Manto, agora encontrado na vila. A campanha clássica conserva seu pool e Manto de 5 de dano.
+- No Esqueleto, o herói mantém HP, recompensa e recursos do Goblin; o Manto causa 3 de dano e a Espada oferece 10% de crítico.
 - `CombatantState` inclui dano do Manto e chance de crítico, copiados nas reversões; sem equipamento narrativo mantém os valores antigos.
 - `StoryContent` referencia arte de abertura e `story-script.json`, com textos distintos para casas e quartos. Os PNGs originais permanecem intactos; sprites derivados usam limites do alpha.
-- `StorySaveStore`: duas entradas PlayerPrefs alternadas com revisão e SHA-256 do JSON; seleciona a revisão válida mais recente e ignora versão, enums, máscaras, permutação ou combinações inválidas. Checksum detecta corrupção, não impede adulteração pelo próprio jogador.
+- `StorySaveStore`: duas entradas PlayerPrefs alternadas com revisão e SHA-256 do JSON; seleciona a revisão válida mais recente e ignora versão, enums, máscaras, permutação, saques fora da oferta ou combinações inválidas. Checksum detecta corrupção, não impede adulteração pelo próprio jogador.
 - Marcadores de segunda campanha e origem são validados no modelo. Ainda não há gravação de conclusão da campanha completa nessa prova; não confundir Finished do trecho com Completed de CampaignRun.

@@ -53,3 +53,4 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 - `done` `JT` Entregar prova isolada em StoryProof com seleção, cenários quadrados, exploração/itens, três desfechos, combate existente, saque e checkpoint; testes e build WebGL aprovados, revisão funcional no navegador.
 - `done` `JP` Recuperar a prévia aprovada de abertura, menus, diálogos, indicadores e efeitos, substituindo a interface restrita por assets redistribuíveis.
+- `done` `JT` Continuar a prova até o encerramento do encontro com o Esqueleto, com túmulos, combate, carta, saque e checkpoint.

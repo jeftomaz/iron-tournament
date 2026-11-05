@@ -16,6 +16,7 @@ MonoBehaviour:
   mage: {fileID: 11400000, guid: e03c31352c486f847971c5de955a2526, type: 2}
   goblin: {fileID: 11400000, guid: 28232861edc63264498b08c49345f2bb, type: 2}
   opening: {fileID: 21300000, guid: c3247e45c424f49b4bef94801352a660, type: 3}
+  skeleton: {fileID: 11400000, guid: d383b3511eba2e54dad8388618ace77d, type: 2}
   village: {fileID: 21300000, guid: aae214967a3ba4e37aa0c4b41339a3f9, type: 3}
   distantVillage: {fileID: 21300000, guid: 81dcc3cd7a4f3440a8a0468640e38799, type: 3}
   forestPath: {fileID: 21300000, guid: 756a70aa5ad7d4ce7b67da2821f92e95, type: 3}
@@ -36,6 +37,8 @@ MonoBehaviour:
   childHurt: {fileID: 21300000, guid: 4c40dd6984852451583bdbf94adce84e, type: 2}
   childDead: {fileID: 21300000, guid: b4c8e594da8f84ef8868e4682f5faac9, type: 2}
   goblinDead: {fileID: 21300000, guid: a16c905ca3b394306b3efedd551fc929, type: 2}
+  skeletonGraveyard: {fileID: 21300000, guid: c51fd995e378a56468c91bd20dc19f16, type: 3}
+  skeletonDead: {fileID: 21300000, guid: a8bedcae3af874b90bc35124d6f94126, type: 2}
   warriorPoses:
   - {fileID: -8959435104959665722, guid: 4628b5bd9ccb0444288b761b74a9164d, type: 3}
   - {fileID: 4814271557941635497, guid: a684e47025ef24adeb73faea4b0afaa5, type: 3}
@@ -50,4 +53,5 @@ MonoBehaviour:
   - {fileID: -2097619832946416524, guid: 7f6b905d77144400fbf99cce2b2ade4d, type: 3}
   - {fileID: 3373983171478037719, guid: 251435a68642e474ab790b7da30d8861, type: 3}
   - {fileID: -1505471383403432660, guid: ff9644591f7e34814b73fecbac2d4311, type: 3}
+  skeletonPose: {fileID: -1505471383403432660, guid: dfe61948768534555a5284b291f0a3b2, type: 3}
   script: {fileID: 4900000, guid: c1fe8c4c0456e446c8d6c253171406ac, type: 3}

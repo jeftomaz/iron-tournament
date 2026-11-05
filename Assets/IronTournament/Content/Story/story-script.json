@@ -346,6 +346,23 @@
     {
       "id": "afterD",
       "lines": []
+    },
+    {
+      "id": "skeletonIntro",
+      "lines": [
+        {
+          "speaker": "Narrador",
+          "text": "[classe do protagonista] vaga pela floresta."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "O ar fica cada vez mais denso e frio."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "Distante, sons de algo seco e quebradiço ecoam."
+        }
+      ]
     }
   ],
   "houses": [
@@ -359,5 +376,14 @@
     "Sobre a cama, repousa um corpo. Outro está preso à parede por uma espada.\n\nO quarto guarda os vestígios de uma luta violenta.",
     "Uma lança atravessa a cama. Debaixo dela, uma mão imóvel se estende entre manchas de sangue.\n\nAlguém tentou se esconder aqui.",
     "A cama está manchada de sangue. Ao fundo, um corpo ainda segura uma espada curta, atravessado por lanças.\n\nA resistência terminou aqui."
-  ]
+  ],
+  "graves": [
+    "Querida Lucy,\n\nNossos corações estão despedaçados.\nAndamos para longe em busca de mantimentos, mas não imaginávamos que esse inverno seria tão longo e tortuoso.\nNão deveríamos ter deixado você e seus irmãos tanto tempo sozinhos.\nQuando chegamos, tentamos acordar vocês, mas somente Charles abriu os olhos.\nSamuel estará ao seu lado para sempre agora.\nSei que você não poderá ler essa carta, mas gostaríamos que soubesse que te amamos e sempre a levaremos conosco em nossa memória.\nPor favor, volte para nós.\n\nAdam.",
+    "Quero Samuel,\n\nQuando chegamos, tentamos acordar você seus irmãos, mas já era tarde.\nCharles conseguiu acordar, mas você e Lucy continuaram de olhos fechados.\nNão sei o que podemos dizer, mas sentimos muito.\nPrecisávamos encontrar comida e mantimentos, mas fomos longe demais e nos perdemos.\nVocê sempre cuidou bem de seus irmãos e sabemos que fez tudo o que pode.\nQueríamos apenas que voltassem para nós.\n\nJoana.",
+    "Um rosário e algumas flores repousam junto aos restos mortais.",
+    "Uma boneca de pano repousa junto aos restos mortais.",
+    "Os restos mortais de um gato repousam junto aos restos mortais humanos.",
+    "Aqui há apenas restos mortais."
+  ],
+  "skeletonLetter": "Capitão,\n\nEnquanto eu guardava os arredores do castelo, ouvi alguns barulhos.\nNo início, achei que apenas se tratavam de animais vagando pelos interiores, porém comecei a ouvir sons de metal, correntes até o ranger de armaduras.\nComecei a procurar de onde vinham, mas sem sucesso. O local parecia morto e vivo ao mesmo tempo.\nNão demorou para que o anoitecer chegasse. A lua brilhava alto no céu.\nDepois de me distanciar, fiz uma fogueira para passar a noite, mas não pude descansar.\nLobos corriam pela região e uivavam, fazendo com que meus ossos tremessem.\nDe repente, vi uma sombra se aproximar rapidamente e destruir minha barraca. Saquei minha espada, mas fui derrubado. A fogueira se apagou.\nCorri montanha a baixo, na direção de onde eu sabia que havia uma vila, mas me perdi pela floresta.\nEu sentia a sombra me observando e seguindo, porém não conseguia a ver.\nEstou escondido enquanto escrevo essa carta.\nAinda que eu não sobreviva, deixo meu aviso: fujam. Essa região maldita abriga coisas terríveis e tenho certeza que dentro daquele castelo há algo ainda pior. O mau que está ao nosso redor lá habita.\n\nDavid."
 }

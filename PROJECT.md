@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-bit. A prova narrativa inclui exploração point-and-click da vila até o encerramento do encontro com o Goblin.
+RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-bit. A prova narrativa inclui exploração point-and-click da vila até o encerramento do encontro com o Esqueleto.
 
 ## Referência
 
@@ -88,7 +88,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 ## Restrições
 
-- Limitar a prova narrativa à vila e ao Goblin; não iniciar o capítulo do Esqueleto nem registrar esse trecho como campanha completa.
+- Limitar a prova narrativa ao encerramento do encontro com o Esqueleto; não registrar esse trecho como campanha completa.
 - Na ausência de arte própria, usar placeholder identificado com o objeto que ocupará o lugar.
 - Não instalar dependências sem aprovação.
 - Não colocar regras de combate em componentes de UI ou animação.
@@ -129,10 +129,11 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Código vindo de fork só entra após revisão e validação completa numa branch interna confiável.
 - Antes do merge, revisar o diff e a saída da CI para detectar chaves, tokens ou dados pessoais.
 
-## Prova narrativa da vila
+## Prova narrativa
 
 - Cena: `Assets/Scenes/StoryProof.unity`; executar por `Iron Tournament > Play story proof`.
 - Fluxo: seleção com consulta de atributos, introdução, vila distante, cinco casas embaralhadas com quartos, três oportunidades de resgate, Goblin, diálogo, comida opcional, um saque entre dois e Cristal apenas no resgate bem-sucedido.
+- Continuação: floresta fria, seis túmulos, Esqueleto, carta, saque, visão do castelo e retorno opcional aos túmulos restantes.
 - `StoryRun` valida exploração, inventário e checkpoints no `Core`; `StoryEncounter` reaproveita `Battle` e `DropTable`. A apresentação envia escolhas e reproduz eventos, sem calcular dano.
 - `StorySaveStore` mantém um checkpoint local com dois slots alternados e checksum; carregar durante combate reinicia o encontro com a mesma configuração, não o turno intermediário. No navegador, o progresso pertence à origem e ao perfil usados, sem sincronização entre dispositivos.
 - Encerrar a prova não conclui a campanha de sete encontros. A variante narrativa da segunda campanha está descrita em conteúdo/modelo, mas sua seleção automática depende da futura integração com o histórico da campanha completa.
