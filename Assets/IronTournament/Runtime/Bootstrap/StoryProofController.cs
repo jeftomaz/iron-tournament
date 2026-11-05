@@ -29,11 +29,13 @@ namespace IronTournament.Bootstrap
         private CombatantDefinition Hero => run.hero == CombatantId.Warrior ? content.warrior : content.mage;
         private Sprite[] HeroPoses => run.hero == CombatantId.Warrior ? content.warriorPoses : content.magePoses;
         private EncounterConfiguration Encounter => ContentMapper.BuildEncounter(content.goblin);
+        private EncounterConfiguration SkeletonEncounter => ContentMapper.BuildEncounter(content.skeleton);
         private string Inventory => run == null ? "" : "PROTAGONISTA\n" + Hero.DisplayName + "\n\nBOLSA\n" +
-            (run.equipment ? (run.hero == CombatantId.Mage ? "Manto de Chamas · 1 dano\n" : "Espada do Caos · 7% crítico\n") : "") +
+            (run.equipment ? (run.hero == CombatantId.Mage ? "Manto de Chamas · 1 dano no Goblin, 3 no Esqueleto\n" : "Espada do Caos · 7% crítico no Goblin, 10% no Esqueleto\n") : "") +
             (run.food ? "Porção de comida\n" : "") + (run.crystal ? "Cristal do Destino\n" : "") +
-                (run.reward != ItemId.None ? "Saque: " + StoryEncounter.Rewards(run, Encounter).First(x => x.Id == run.reward).DisplayName +
-                $"\nHP: {run.victoryHealth} · ATQ: {run.rewardAttack} · DEF: {run.rewardDefense}" : "");
+            (run.reward != ItemId.None ? "Saque do Goblin: " + StoryEncounter.Rewards(run, Encounter).First(x => x.Id == run.reward).DisplayName + "\n" : "") +
+            (run.skeletonReward != ItemId.None ? "Saque do Esqueleto: " + StoryEncounter.SkeletonRewards(run, SkeletonEncounter).First(x => x.Id == run.skeletonReward).DisplayName + "\n" : "") +
+            (run.reward != ItemId.None ? $"HP: {(run.skeletonDefeated ? run.skeletonHealth : run.victoryHealth)} · ATQ: {(run.skeletonReward != ItemId.None ? run.skeletonAttack : run.rewardAttack)} · DEF: {(run.skeletonReward != ItemId.None ? run.skeletonDefense : run.rewardDefense)}" : "");
 
         private void Start()
         {
@@ -45,7 +47,7 @@ namespace IronTournament.Bootstrap
             camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = Color.black;
             camera.orthographic = true;
-            saves = new StorySaveStore(SavePrefix);
+            saves = new StorySaveStore(SavePrefix, ValidSave);
             var canvas = new GameObject("StoryProofCanvas", typeof(RectTransform));
             canvas.transform.SetParent(transform, false);
             view = canvas.AddComponent<StoryView>(); view.Initialize(); view.Resized += Resize;
@@ -53,6 +55,17 @@ namespace IronTournament.Bootstrap
         }
 
         private void Resize() { if (!busy) (resizeScreen ?? Render)(); }
+        private bool ValidSave(StoryRun saved)
+        {
+            if (saved.reward != ItemId.None && !StoryEncounter.Rewards(saved, Encounter).Any(x => x.Id == saved.reward)) return false;
+            if (saved.skeletonReward != ItemId.None && !StoryEncounter.SkeletonRewards(saved, SkeletonEncounter).Any(x => x.Id == saved.skeletonReward)) return false;
+            if (saved.skeletonAppeared && saved.skeletonReward == ItemId.None)
+            {
+                var hero = saved.hero == CombatantId.Warrior ? content.warrior : content.mage;
+                StoryEncounter.RestoreSkeletonHero(saved, ContentMapper.BuildCombatant(hero), Encounter, saved.skeletonDefeated);
+            }
+            return true;
+        }
         private void OnDestroy() { if (view != null) view.Resized -= Resize; }
         private void Save() { if (!saves.Save(run)) notice = saves.LastError; }
         private void Go(StoryPage page) { run.page = page; run.dialogue = 0; Save(); Render(); }
@@ -65,7 +78,7 @@ namespace IronTournament.Bootstrap
             view.Text("A jornada", "Escolha seu protagonista e descubra o que restou da vila.");
             if (saves.TryLoad(out var saved))
             {
-                view.Choice("Continuar", () => { run = saved; atHome = false; if (run.page == StoryPage.Battle) StartBattle(); else Render(); }, 0, 2);
+                view.Choice("Continuar", () => { run = saved; atHome = false; if (run.page == StoryPage.Battle) StartBattle(); else if (run.page == StoryPage.SkeletonBattle) StartSkeletonBattle(); else Render(); }, 0, 2);
                 view.Choice("Nova jornada", ConfirmNew, 1, 2);
             }
             else view.Choice("Escolher protagonista", Selection);
@@ -164,7 +177,31 @@ namespace IronTournament.Bootstrap
                     view.Choice("Continuar", () => Go(StoryPage.Finished)); break;
                 case StoryPage.Finished:
                     Draw(content.forestPath, "Fim do primeiro encontro");
-                    view.Text("Trecho concluído", "Sua jornada foi salva. O próximo encontro ainda não faz parte desta prova.");
+                    view.Text("A jornada continua", "O protagonista segue pela floresta.");
+                    view.Choice("Continuar", () => Go(StoryPage.ColdForest), 0, 3);
+                    view.Choice("Ver inventário", () => Message("Bolsa", Inventory, Render), 1, 3);
+                    view.Choice("Menu", Home, 2, 3); break;
+                case StoryPage.ColdForest:
+                    Dialogue("skeletonIntro", content.forestPath, "A floresta fria", () => { run.PrepareGraveyard(); Go(StoryPage.Graveyard); }); break;
+                case StoryPage.Graveyard: Graveyard(); break;
+                case StoryPage.Grave: Grave(); break;
+                case StoryPage.SkeletonEmergence:
+                    Draw(content.skeletonGraveyard, "Algo se move sob a terra");
+                    view.Annotation("Placeholder: mão esquelética emergindo", .04f, .60f);
+                    view.Text("Entre os túmulos", "Uma mão esquelética rompe a terra. Um esqueleto sai do túmulo.");
+                    view.Choice("Enfrentar", StartSkeletonBattle); break;
+                case StoryPage.SkeletonBattle: if (battle == null) StartSkeletonBattle(); else BattleScreen(); break;
+                case StoryPage.SkeletonLetter:
+                    Message("Carta encontrada", content.Script.skeletonLetter, () => Go(StoryPage.SkeletonReward)); break;
+                case StoryPage.SkeletonReward: SkeletonReward(); break;
+                case StoryPage.Castle:
+                    Draw(content.skeletonGraveyard, "Além das árvores"); view.Actor(HeroPoses[1], .25f, .08f, .24f);
+                    view.Annotation("Placeholder: montanha e castelo distante", .10f, .70f);
+                    view.Text("O castelo", "Além do topo das árvores, uma montanha e um castelo muito distante surgem no horizonte.");
+                    view.Choice("Voltar aos túmulos", () => { run.castleSeen = true; Go(StoryPage.Graveyard); }); break;
+                case StoryPage.SkeletonFinished:
+                    Draw(content.skeletonGraveyard, "Fim do segundo encontro");
+                    view.Text("Trecho concluído", "Sua jornada foi salva.");
                     view.Choice("Ver inventário", () => Message("Bolsa", Inventory, Render), 0, 2);
                     view.Choice("Menu", Home, 1, 2); break;
             }
@@ -172,6 +209,8 @@ namespace IronTournament.Bootstrap
 
         private string Branch => run.secondCampaign ? "D" : run.Fate == ChildFate.Saved ? "A" : run.Fate == ChildFate.Dying ? "B" : "C";
         private Sprite BackgroundForEncounter => content.swamp;
+        private Sprite BackgroundForMessage => run.page == StoryPage.House ? (run.room ? content.bedrooms[run.activeHouse-2] : content.houses[run.activeHouse])
+            : (int)run.page >= (int)StoryPage.Graveyard ? content.skeletonGraveyard : BackgroundForEncounter;
         private void Draw(Sprite image, string title)
         {
             view.Draw(image, title, notice ?? (run.secondCampaign ? "Segunda campanha" : "Primeira campanha"), Inventory);
@@ -187,6 +226,7 @@ namespace IronTournament.Bootstrap
             if (run.dialogue >= lines.Length) { done(); return; }
             Draw(background, title);
             if (actors) EncounterActors();
+            if (id == "skeletonIntro") view.Annotation("Placeholder: floresta fria", .04f, .74f);
             var line = lines[run.dialogue];
             var speakingActor = !actors ? null : line.speaker == "Protagonista" ? heroImage :
                 line.speaker == "Goblin" ? opponentImage : line.speaker == "Criança" ? childImage : null;
@@ -240,6 +280,58 @@ namespace IronTournament.Bootstrap
                 view.Choice("Menu", Home, 1, 2, StoryButtonStyle.Secondary);
             }
             else view.Choice("Menu", Home, style: StoryButtonStyle.Secondary);
+        }
+
+        private void Graveyard()
+        {
+            Draw(content.skeletonGraveyard, "A clareira dos túmulos");
+            var points = new[] { new Vector2(.04f,.62f), new Vector2(.38f,.62f), new Vector2(.72f,.62f),
+                new Vector2(.04f,.36f), new Vector2(.38f,.36f), new Vector2(.72f,.36f) };
+            for (var i = 0; i < points.Length; i++)
+            {
+                var slot = i; var visited = (run.gravesVisited & (1 << slot)) != 0;
+                var danger = run.crystal && !visited && !run.skeletonAppeared && run.GravesExplored + 1 == run.skeletonTrigger;
+                view.Hotspot("Túmulo " + (slot + 1), points[i].x, points[i].y,
+                    () => { run.EnterGrave(slot); Save(); Render(); }, visited, danger: danger);
+            }
+            view.Text("Investigar", $"Toque nos túmulos para examiná-los. Investigados: {run.GravesExplored}/6.");
+            if (run.castleSeen)
+            { view.Choice("Seguir viagem", () => Go(StoryPage.SkeletonFinished), 0, 2); view.Choice("Menu", Home, 1, 2); }
+            else view.Choice("Menu", Home);
+        }
+
+        private void Grave()
+        {
+            var grave = (GraveContent)run.graves[run.activeGrave];
+            var labels = new[] { "carta de Lucy", "carta de Samuel", "rosário e flores", "boneca de pano", "restos de um gato", "restos mortais" };
+            Draw(content.skeletonGraveyard, "Dentro do túmulo");
+            view.Annotation("Placeholder: " + labels[(int)grave], .05f, .68f);
+            var letter = grave == GraveContent.LucyLetter || grave == GraveContent.SamuelLetter;
+            view.Text("Investigar", letter ? "Há uma carta junto aos restos mortais." : content.Script.graves[(int)grave]);
+            if (letter)
+            {
+                view.Choice("Ler carta", () => Message("Carta", content.Script.graves[(int)grave], Render), 0, 2);
+                view.Choice("Voltar aos túmulos", () => Go(StoryPage.Graveyard), 1, 2);
+            }
+            else view.Choice("Voltar aos túmulos", () => Go(StoryPage.Graveyard));
+        }
+
+        private void SkeletonReward()
+        {
+            Draw(content.skeletonGraveyard, "Escolha um saque");
+            view.Actor(content.skeletonDead, .65f, .25f, .19f);
+            var offer = StoryEncounter.SkeletonRewards(run, SkeletonEncounter);
+            view.Text("Leve apenas um", "Escolha um dos itens encontrados.");
+            for (var i = 0; i < offer.Count; i++)
+            {
+                var item = offer[i];
+                view.RewardChoice(item.DisplayName, DescribeItem(item), () =>
+                {
+                    var hero = battle != null && battle.State.Opponent.Id == CombatantId.Skeleton && battle.State.Phase == BattlePhase.Victory
+                        ? battle.State.Hero : StoryEncounter.RestoreSkeletonHero(run, ContentMapper.BuildCombatant(Hero), Encounter, true);
+                    StoryEncounter.ChooseSkeletonReward(run, SkeletonEncounter, item.Id, hero); Save(); Render();
+                }, i, offer.Count);
+            }
         }
 
         private void House()
@@ -332,7 +424,9 @@ namespace IronTournament.Bootstrap
             }
             var next = end;
             while (next < text.Length && char.IsWhiteSpace(text[next])) next++;
-            Draw(run.page == StoryPage.House ? (run.room ? content.bedrooms[run.activeHouse-2] : content.houses[run.activeHouse]) : BackgroundForEncounter, title);
+            Draw(BackgroundForMessage, title);
+            if (run.page == StoryPage.SkeletonLetter)
+            { view.Actor(content.skeletonDead, .65f, .25f, .19f); view.Annotation("Placeholder: carta do esqueleto", .05f, .68f); }
             var actor = (Image)null;
             if (title == "Criança" && run.page == StoryPage.Food) { EncounterActors(); actor = childImage; }
             view.Text(title, text.Substring(offset, end - offset).Trim(), true, actor);
@@ -345,18 +439,25 @@ namespace IronTournament.Bootstrap
             run.page = StoryPage.Battle; run.dialogue = 0; Save(); BattleScreen();
         }
 
+        private void StartSkeletonBattle()
+        {
+            battle = StoryEncounter.CreateSkeleton(run, ContentMapper.BuildCombatant(Hero), Encounter, SkeletonEncounter);
+            run.page = StoryPage.SkeletonBattle; run.dialogue = 0; Save(); BattleScreen();
+        }
+
         private void BattleScreen()
         {
-            Draw(BackgroundForEncounter, "Encontro I · Goblin");
+            var skeleton = run.page == StoryPage.SkeletonBattle;
+            Draw(skeleton ? content.skeletonGraveyard : BackgroundForEncounter, skeleton ? "Encontro II · Esqueleto" : "Encontro I · Goblin");
             heroImage = view.Actor(HeroPoses[3], .28f, .13f, run.hero == CombatantId.Warrior ? .38f : .359f);
             // Apparent enemy height = physical height ratio × camera-depth ratio (4m / 5.5m).
-            var goblinHeight = .38f * (.8f / 1.8f) * (4f / 5.5f);
-            opponentImage = view.Actor(content.goblinPoses[2], .69f, .43f, goblinHeight);
+            var enemyHeight = .38f * ((skeleton ? 1.5f : .8f) / 1.8f) * (4f / 5.5f);
+            opponentImage = view.Actor(skeleton ? content.skeletonPose : content.goblinPoses[2], .69f, .43f, enemyHeight);
             var state = battle.State;
             heroHealth = view.Health(heroImage, Hero.DisplayName, state.Hero.CurrentHealth, state.Hero.Stats.MaximumHealth);
-            opponentHealth = view.Health(opponentImage, "Goblin", state.Opponent.CurrentHealth, state.Opponent.Stats.MaximumHealth);
+            opponentHealth = view.Health(opponentImage, skeleton ? "Esqueleto" : "Goblin", state.Opponent.CurrentHealth, state.Opponent.Stats.MaximumHealth);
             view.Text("Sua vez · rodada " + state.Round, $"{(run.hero == CombatantId.Mage ? "Reversões: " + state.RevertCharges + ". " : "")}" +
-                (run.equipment ? run.hero == CombatantId.Mage ? "Manto: 1 de dano por ação." : "Espada: 7% de crítico." : "Escolha sua ação."));
+                (run.equipment ? run.hero == CombatantId.Mage ? $"Manto: {(skeleton ? 3 : 1)} de dano por ação." : $"Espada: {(skeleton ? 10 : 7)}% de crítico." : "Escolha sua ação."));
             var abilities = Hero.Abilities;
             var visible = abilities.Where(x => battle.AvailableActions.Contains(x.Id)).ToArray();
             for (var i = 0; i < visible.Length; i++)
@@ -365,7 +466,7 @@ namespace IronTournament.Bootstrap
 
         public void SubmitBattle(AbilityId action)
         {
-            if (busy || battle == null || run.page != StoryPage.Battle) return;
+            if (busy || battle == null || (run.page != StoryPage.Battle && run.page != StoryPage.SkeletonBattle)) return;
             var result = battle.Submit(action);
             if (!result.IsAccepted) return;
             StartCoroutine(Playback(result));
@@ -408,12 +509,22 @@ namespace IronTournament.Bootstrap
                 }
             }
             busy = false;
+            var skeleton = run.page == StoryPage.SkeletonBattle;
             if (battle.State.Phase == BattlePhase.Victory)
-            { view.PlaySound("Defeat"); run.victoryHealth = battle.State.Hero.CurrentHealth; Go(StoryPage.AfterBattle); }
+            {
+                view.PlaySound("Defeat");
+                if (skeleton)
+                {
+                    var hero = battle.State.Hero; run.skeletonDefeated = true; run.skeletonHealth = hero.CurrentHealth;
+                    run.skeletonScrolls = hero.HopeScrolls; run.skeletonHorns = hero.GuardianHorns;
+                    run.skeletonGuardianArmed = hero.IsGuardianArmed; Go(StoryPage.SkeletonLetter);
+                }
+                else { run.victoryHealth = battle.State.Hero.CurrentHealth; Go(StoryPage.AfterBattle); }
+            }
             else if (battle.State.Phase == BattlePhase.Defeat)
             {
-                Draw(content.swamp, "Derrota"); view.Text("Tentar novamente", "O estado anterior à batalha foi preservado. Você não precisa repetir a exploração.");
-                view.Choice("Repetir batalha", StartBattle, 0, 2); view.Choice("Menu", Home, 1, 2, StoryButtonStyle.Secondary);
+                Draw(skeleton ? content.skeletonGraveyard : content.swamp, "Derrota"); view.Text("Tentar novamente", "O estado anterior à batalha foi preservado. Você não precisa repetir a exploração.");
+                view.Choice("Repetir batalha", skeleton ? (Action)StartSkeletonBattle : StartBattle, 0, 2); view.Choice("Menu", Home, 1, 2, StoryButtonStyle.Secondary);
             }
             else BattleScreen();
         }

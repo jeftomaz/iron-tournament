@@ -32,6 +32,7 @@ namespace IronTournament.Editor
             content.mage = Load<CombatantDefinition>("Assets/IronTournament/Content/Mage.asset");
             content.goblin = Load<EncounterDefinition>("Assets/IronTournament/Content/GoblinEncounter.asset");
             content.opening = Import("opening_screen", false, "Assets/IronTournament/Art/Backgrounds_new/");
+            content.skeleton = Load<EncounterDefinition>("Assets/IronTournament/Content/SkeletonEncounter.asset");
             content.village = Background("village_close");
             content.distantVillage = Background("village_distant_view");
             content.forestPath = Background("forest_floaded_path");
@@ -45,6 +46,9 @@ namespace IronTournament.Editor
             content.childHurt = Character("child_hurt");
             content.childDead = Character("child_dead");
             content.goblinDead = Character("goblin_dead");
+            content.skeletonDead = Character("skeleton_dead");
+            content.skeletonGraveyard = Load<Sprite>("Assets/IronTournament/Art/Backgrounds/skeleton-graveyard.png");
+            content.skeletonPose = Existing("Skeleton", "south-west");
             content.warriorPoses = Poses("Warrior"); content.magePoses = Poses("Mage");
             content.goblinPoses = new[] { Existing("Goblin", "east"), Existing("Goblin", "west"), Existing("Goblin", "south-west") };
             content.script = Load<TextAsset>(Data + "story-script.json");

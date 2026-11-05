@@ -70,6 +70,8 @@
 - Usar Deutsch Gothic no nome do jogo, Saltblack Combat em títulos e textos curtos e Pix32 em diálogos, explicações e inventário; caracteres ausentes recorrem à Inter incluída no projeto para preservar acentos no navegador.
 - `StoryView` mantém o cenário em um quadrado com ajuste por aspecto, integralmente visível; atores e pontos clicáveis são filhos desse quadrado. Desktop tem painéis laterais; retrato tem informação e ações abaixo do cenário.
 - Casas visitadas usam marca de revisita; não alteram a contagem ao reabrir. Gritos bloqueiam a abertura de casas até escolher investigar ou continuar; a última recusa fixa o desfecho de morte anterior ao combate.
+- Os seis túmulos são pontos clicáveis na clareira; um símbolo de perigo do Cristal sinaliza a abertura que provoca o encontro. Após o combate e a visão do castelo, os túmulos restantes continuam acessíveis.
+- Objetos e cenas sem arte específica usam placeholder identificado; o Esqueleto vivo e morto e o cenário de cemitério reutilizam os assets existentes.
 - Texto digitado: um toque completa a fala; o próximo avança. Descrições longas de ambientes e cartas são paginadas.
 - A abertura e a narração do capítulo usam fundo preto e texto centralizado; falas de personagens usam balões próximos aos atores. Menus distinguem ações principais, secundárias e inventário.
 - Os indicadores próximos aos combatentes exibem valores e barras de HP; ofertas de saque mostram uma descrição curta de cada item.

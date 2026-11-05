@@ -47,5 +47,68 @@ namespace IronTournament.Core
             if (run.equipment) state.EquipStoryEquipment(0);
             return state;
         }
+
+        public static IBattle CreateSkeleton(StoryRun run, CombatantConfiguration hero,
+            EncounterConfiguration goblin, EncounterConfiguration skeleton)
+        {
+            run.Validate();
+            if (hero.Id != run.hero || goblin.Opponent.Id != CombatantId.Goblin ||
+                skeleton.Opponent.Id != CombatantId.Skeleton || !run.skeletonAppeared || run.skeletonDefeated)
+                throw new ArgumentException("Story encounter mismatch.");
+            var player = RestoreSkeletonHero(run, hero, goblin, false);
+            var random = new SeededRandomSource(run.seed ^ 0x1f6d932b);
+            var opponent = EncounterSetup.CreateOpponent(skeleton.Opponent, skeleton.EnemyStatVariancePercent, false, random);
+            return new Battle(new BattleState(player, opponent), random);
+        }
+
+        public static CombatantState RestoreSkeletonHero(StoryRun run, CombatantConfiguration hero,
+            EncounterConfiguration goblin, bool afterBattle)
+        {
+            run.Validate();
+            if (hero == null || hero.Id != run.hero || goblin == null || goblin.Opponent.Id != CombatantId.Goblin ||
+                !run.skeletonAppeared || (afterBattle != run.skeletonDefeated))
+                throw new ArgumentException("Invalid skeleton checkpoint.");
+            var state = new CombatantState(hero, hero.BaseStats);
+            ApplyReward(run, goblin, state);
+            if (run.equipment) state.EquipStoryEquipment(1);
+            if (state.Stats.Attack != run.rewardAttack || state.Stats.Defense != run.rewardDefense)
+                throw new ArgumentException("Invalid reward checkpoint.");
+            var health = afterBattle ? run.skeletonHealth : run.victoryHealth;
+            if (health <= 0 || health > state.Stats.MaximumHealth) throw new ArgumentException("Invalid checkpoint health.");
+            state.TakeDamage(state.CurrentHealth - health);
+            if (afterBattle)
+            {
+                if (run.skeletonScrolls > state.HopeScrolls || run.skeletonHorns > state.GuardianHorns ||
+                    (run.skeletonGuardianArmed && state.GuardianHorns == 0))
+                    throw new ArgumentException("Invalid item checkpoint.");
+                if (state.HopeScrolls > run.skeletonScrolls) state.ConsumeHopeScroll();
+                if (state.GuardianHorns > run.skeletonHorns)
+                { state.ArmGuardian(); if (!run.skeletonGuardianArmed) state.DisarmGuardian(); }
+            }
+            return state;
+        }
+
+        public static IReadOnlyList<ItemConfiguration> SkeletonRewards(StoryRun run, EncounterConfiguration encounter)
+        {
+            if (encounter.Opponent.Id != CombatantId.Skeleton) throw new ArgumentException("Invalid encounter.");
+            var pool = ItemRules.Eligible(encounter.DropPool, run.hero);
+            pool.RemoveAll(item => item.Id == ItemId.FlameCloak);
+            return DropTable.Roll(pool, 2, new SeededRandomSource(run.seed ^ 0x55b47119));
+        }
+
+        public static void ChooseSkeletonReward(StoryRun run, EncounterConfiguration encounter, ItemId id, CombatantState hero)
+        {
+            if (run.page != StoryPage.SkeletonReward || !run.skeletonDefeated || run.skeletonReward != ItemId.None || hero.Id != run.hero)
+                throw new InvalidOperationException("Reward unavailable.");
+            foreach (var item in SkeletonRewards(run, encounter))
+                if (item.Id == id)
+                {
+                    ItemRules.Apply(item, hero); run.skeletonReward = id; run.skeletonHealth = hero.CurrentHealth;
+                    run.skeletonScrolls = hero.HopeScrolls; run.skeletonHorns = hero.GuardianHorns;
+                    run.skeletonGuardianArmed = hero.IsGuardianArmed; run.skeletonAttack = hero.Stats.Attack;
+                    run.skeletonDefense = hero.Stats.Defense; run.page = StoryPage.Castle; return;
+                }
+            throw new ArgumentException("Reward is not in the offer.");
+        }
     }
 }

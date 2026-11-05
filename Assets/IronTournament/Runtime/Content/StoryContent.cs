@@ -8,7 +8,7 @@ namespace IronTournament.Content
     [Serializable]
     public sealed class StoryDialogue { public string id; public StoryLine[] lines; }
     [Serializable]
-    public sealed class StoryScript { public StoryDialogue[] dialogues; public string[] houses; public string[] bedrooms; }
+    public sealed class StoryScript { public StoryDialogue[] dialogues; public string[] houses; public string[] bedrooms; public string[] graves; public string skeletonLetter; }
 
     [CreateAssetMenu(menuName = "Iron Tournament/Story proof")]
     public sealed class StoryContent : ScriptableObject
@@ -17,6 +17,7 @@ namespace IronTournament.Content
         public CombatantDefinition mage;
         public EncounterDefinition goblin;
         public Sprite opening;
+        public EncounterDefinition skeleton;
         public Sprite village;
         public Sprite distantVillage;
         public Sprite forestPath;
@@ -29,9 +30,12 @@ namespace IronTournament.Content
         public Sprite childHurt;
         public Sprite childDead;
         public Sprite goblinDead;
+        public Sprite skeletonGraveyard;
+        public Sprite skeletonDead;
         public Sprite[] warriorPoses;
         public Sprite[] magePoses;
         public Sprite[] goblinPoses;
+        public Sprite skeletonPose;
         public TextAsset script;
         private StoryScript parsed;
         public StoryScript Script => parsed ??= JsonUtility.FromJson<StoryScript>(script.text);

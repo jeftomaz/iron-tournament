@@ -101,6 +101,94 @@ namespace IronTournament.Core.Tests
         {
             var run=New(); run.houses[0]=run.houses[1]; Assert.Throws<ArgumentException>(()=>run.Validate());
             run=New(); run.visited=1024; Assert.Throws<ArgumentException>(()=>run.Validate());
+            run=New(); run.page=StoryPage.House; run.activeHouse=0; run.room=true;
+            Assert.Throws<ArgumentException>(()=>run.Validate());
+        }
+
+        [Test]
+        public void GraveLayoutAndSurpriseAreStableAndLettersStayAdjacent()
+        {
+            var triggers = new System.Collections.Generic.HashSet<int>();
+            for (var seed = 0; seed < 150; seed++)
+            {
+                var run = StoryRun.Create(CombatantId.Warrior, seed); run.page = StoryPage.ColdForest; run.PrepareGraveyard();
+                run.reward = ItemId.HealingPotion; run.victoryHealth = 70; run.rewardAttack = 30; run.rewardDefense = 23;
+                var copy = StoryRun.Create(CombatantId.Mage, seed); copy.page = StoryPage.ColdForest; copy.PrepareGraveyard();
+                Assert.That(run.graves, Is.EqualTo(copy.graves)); Assert.That(run.skeletonTrigger, Is.EqualTo(copy.skeletonTrigger));
+                Assert.That(run.graves.OrderBy(x => x), Is.EqualTo(new[] { 0, 1, 2, 3, 4, 5 }));
+                var lucy = Array.IndexOf(run.graves, 0); var samuel = Array.IndexOf(run.graves, 1);
+                Assert.That(Math.Abs(lucy - samuel) == 3 || (lucy / 3 == samuel / 3 && Math.Abs(lucy - samuel) == 1), Is.True);
+                triggers.Add(run.skeletonTrigger); run.page = StoryPage.Graveyard;
+                for (var slot = 0; slot < 6 && !run.skeletonAppeared; slot++)
+                {
+                    run.EnterGrave(slot);
+                    if (!run.skeletonAppeared) run.page = StoryPage.Graveyard;
+                }
+                Assert.That(run.GravesExplored, Is.EqualTo(run.skeletonTrigger - 1));
+                Assert.That(run.page, Is.EqualTo(StoryPage.SkeletonEmergence)); run.Validate();
+                var interrupted = run.activeGrave; run.skeletonDefeated = true; run.skeletonHealth = 40; run.page = StoryPage.Graveyard;
+                run.EnterGrave(interrupted); Assert.That(run.page, Is.EqualTo(StoryPage.Grave));
+                Assert.That(run.GravesExplored, Is.EqualTo(run.skeletonTrigger)); run.Validate();
+            }
+            Assert.That(triggers.OrderBy(x => x), Is.EqualTo(new[] { 3, 4, 5, 6 }));
+        }
+
+        [TestCase(CombatantId.Warrior)]
+        [TestCase(CombatantId.Mage)]
+        public void SkeletonRetryPreservesGoblinRewardHealthAndEquipment(CombatantId id)
+        {
+            var hero = id == CombatantId.Warrior ? TestContent.Warrior() : TestContent.Mage();
+            var pool = new[] { TestContent.Item(ItemId.AttackGem, 3, new ItemModifier(ItemModifierKind.Attack, 10)), TestContent.Item(ItemId.HealingPotion, 3) };
+            var goblin = new EncounterConfiguration(TestContent.Goblin(), 15, pool);
+            var skeleton = new EncounterConfiguration(TestContent.Enemy(CombatantId.Skeleton, 62, 20, 5), 15, pool);
+            var run = StoryRun.Create(id, 417); run.page = StoryPage.ColdForest; run.PrepareGraveyard();
+            run.page = StoryPage.SkeletonEmergence; run.skeletonAppeared = true; run.equipment = true;
+            run.gravesVisited = (1 << (run.skeletonTrigger - 1)) - 1; run.activeGrave = run.skeletonTrigger - 1;
+            run.reward = ItemId.AttackGem; run.victoryHealth = 70; run.rewardAttack = 40; run.rewardDefense = hero.BaseStats.Defense;
+            var first = StoryEncounter.CreateSkeleton(run, hero, goblin, skeleton);
+            var retry = StoryEncounter.CreateSkeleton(run, hero, goblin, skeleton);
+            Assert.That(first.State.Hero.CurrentHealth, Is.EqualTo(70)); Assert.That(first.State.Hero.Stats.Attack, Is.EqualTo(40));
+            Assert.That(retry.State.Opponent.Stats.MaximumHealth, Is.EqualTo(first.State.Opponent.Stats.MaximumHealth));
+            if (id == CombatantId.Mage) Assert.That(first.State.Hero.FlameCloakDamage, Is.EqualTo(3));
+            else Assert.That(first.State.Hero.CriticalChancePercent, Is.EqualTo(10));
+            run.skeletonDefeated = true; run.skeletonHealth = 40; run.page = StoryPage.SkeletonReward;
+            var restored = StoryEncounter.RestoreSkeletonHero(run, hero, goblin, true);
+            Assert.That(restored.CurrentHealth, Is.EqualTo(40));
+            var offer = StoryEncounter.SkeletonRewards(run, skeleton);
+            Assert.That(offer.Select(x => x.Id).Distinct().Count(), Is.EqualTo(2));
+            StoryEncounter.ChooseSkeletonReward(run, skeleton, offer[0].Id, restored);
+            Assert.That(run.page, Is.EqualTo(StoryPage.Castle));
+            Assert.Throws<InvalidOperationException>(() => StoryEncounter.ChooseSkeletonReward(run, skeleton, offer[1].Id, restored));
+        }
+
+        [Test]
+        public void SkeletonCheckpointRestoresAnArmedGuardian()
+        {
+            var hero = TestContent.Mage();
+            var pool = new[] { TestContent.Item(ItemId.BrotherhoodHorn, 2), TestContent.Item(ItemId.HealingPotion, 3) };
+            var goblin = new EncounterConfiguration(TestContent.Goblin(), 15, pool);
+            var run = StoryRun.Create(CombatantId.Mage, 11); run.page = StoryPage.ColdForest; run.PrepareGraveyard();
+            run.skeletonAppeared = run.skeletonDefeated = true; run.skeletonHealth = 45; run.skeletonGuardianArmed = true;
+            run.gravesVisited = (1 << (run.skeletonTrigger - 1)) - 1; run.activeGrave = run.skeletonTrigger - 1;
+            run.reward = ItemId.BrotherhoodHorn; run.rewardAttack = 30; run.rewardDefense = 5; run.victoryHealth = 70;
+            run.page = StoryPage.SkeletonReward;
+            var restored = StoryEncounter.RestoreSkeletonHero(run, hero, goblin, true);
+            Assert.That(restored.IsGuardianArmed, Is.True); Assert.That(restored.GuardianHorns, Is.Zero);
+            Assert.That(restored.CurrentHealth, Is.EqualTo(45));
+        }
+
+        [Test]
+        public void SkeletonDoesNotReapplyHealingToTheSavedHealth()
+        {
+            var hero = TestContent.Warrior();
+            var pool = new[] { TestContent.Item(ItemId.HealingPotion, 3), TestContent.Item(ItemId.AttackGem, 3) };
+            var goblin = new EncounterConfiguration(TestContent.Goblin(), 15, pool);
+            var skeleton = new EncounterConfiguration(TestContent.Enemy(CombatantId.Skeleton, 62, 20, 5), 15, pool);
+            var run = StoryRun.Create(CombatantId.Warrior, 19); run.page = StoryPage.ColdForest; run.PrepareGraveyard();
+            run.reward = ItemId.HealingPotion; run.rewardAttack = 30; run.rewardDefense = 23; run.victoryHealth = 70;
+            run.gravesVisited = (1 << (run.skeletonTrigger - 1)) - 1; run.activeGrave = run.skeletonTrigger - 1;
+            run.skeletonAppeared = true; run.page = StoryPage.SkeletonEmergence;
+            Assert.That(StoryEncounter.CreateSkeleton(run, hero, goblin, skeleton).State.Hero.CurrentHealth, Is.EqualTo(70));
         }
     }
 }

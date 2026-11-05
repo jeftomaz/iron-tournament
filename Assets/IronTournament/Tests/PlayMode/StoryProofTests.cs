@@ -188,6 +188,32 @@ namespace IronTournament.Presentation.Tests
                 Assert.That(run.crystal,Is.True); Assert.That(run.reward,Is.Not.EqualTo(ItemId.None));
                 var store=new StorySaveStore(Prefix); Assert.That(store.TryLoad(out var restored),Is.True);
                 Assert.That(restored.page,Is.EqualTo(StoryPage.Finished)); Assert.That(restored.foodGiven,Is.True);
+                Click("Continuar"); yield return AdvanceTo(StoryPage.Graveyard);
+                while (!run.skeletonAppeared)
+                {
+                    var slot = Enumerable.Range(0, 6).First(i => (run.gravesVisited & (1 << i)) == 0);
+                    Click("Túmulo " + (slot + 1));
+                    if (run.page == StoryPage.Grave) Click("Voltar aos túmulos");
+                    yield return null;
+                }
+                Assert.That(run.GravesExplored, Is.GreaterThanOrEqualTo(2));
+                Assert.That(store.TryLoad(out restored), Is.True); Assert.That(restored.graves, Is.EqualTo(run.graves));
+                Click("Enfrentar"); Assert.That(controller.ActiveBattle.State.Opponent.Id, Is.EqualTo(CombatantId.Skeleton));
+                Assert.That(controller.ActiveBattle.State.Hero.CurrentHealth, Is.EqualTo(run.victoryHealth));
+                for (var turn = 0; turn < 12 && run.page == StoryPage.SkeletonBattle; turn++)
+                { controller.SubmitBattle(AbilityId.BasicAttack); yield return new WaitForSecondsRealtime(1.8f); }
+                Assert.That(run.page, Is.EqualTo(StoryPage.SkeletonLetter));
+                yield return AdvanceTo(StoryPage.SkeletonReward);
+                view.GetComponentsInChildren<Button>()[0].onClick.Invoke();
+                Assert.That(run.page, Is.EqualTo(StoryPage.Castle)); Click("Voltar aos túmulos");
+                for (var slot = 0; slot < 6; slot++)
+                {
+                    if ((run.gravesVisited & (1 << slot)) != 0) continue;
+                    Click("Túmulo " + (slot + 1)); Assert.That(run.page, Is.EqualTo(StoryPage.Grave));
+                    Click("Voltar aos túmulos");
+                }
+                Assert.That(run.GravesExplored, Is.EqualTo(6)); Click("Seguir viagem");
+                Assert.That(store.TryLoad(out restored), Is.True); Assert.That(restored.page, Is.EqualTo(StoryPage.SkeletonFinished));
             }
         }
 
@@ -265,6 +291,17 @@ namespace IronTournament.Presentation.Tests
             Assert.That(store.Save(run),Is.True); run.page=StoryPage.Village; Assert.That(store.Save(run),Is.True);
             PlayerPrefs.SetString(prefix+".b","corrupted");
             Assert.That(store.TryLoad(out var restored),Is.True); Assert.That(restored.page,Is.EqualTo(StoryPage.Intro));
+            PlayerPrefs.DeleteKey(prefix+".a"); PlayerPrefs.DeleteKey(prefix+".b");
+        }
+        [Test]
+        public void CheckpointJournalRejectsContentThatDoesNotMatchItsOffer()
+        {
+            var prefix=Prefix+".content";
+            PlayerPrefs.DeleteKey(prefix+".a"); PlayerPrefs.DeleteKey(prefix+".b");
+            var checkedStore=new StorySaveStore(prefix, candidate => candidate.reward == ItemId.None);
+            var run=StoryRun.Create(CombatantId.Warrior,8); Assert.That(checkedStore.Save(run),Is.True);
+            run.reward=ItemId.AttackGem; Assert.That(new StorySaveStore(prefix).Save(run),Is.True);
+            Assert.That(checkedStore.TryLoad(out var restored),Is.True); Assert.That(restored.reward,Is.EqualTo(ItemId.None));
             PlayerPrefs.DeleteKey(prefix+".a"); PlayerPrefs.DeleteKey(prefix+".b");
         }
         [TearDown] public void Cleanup() { PlayerPrefs.DeleteKey(Prefix+".a"); PlayerPrefs.DeleteKey(Prefix+".b"); }
