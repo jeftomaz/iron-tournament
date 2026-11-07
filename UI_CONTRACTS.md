@@ -66,6 +66,7 @@
 
 ## Prova narrativa — StoryProof
 
+- A abertura mostra “Até que o último caia” sem identificação de capítulo no menu inicial.
 - Cores de referência e direção visual: `ART_STYLE_GUIDE.md`; paleta editável em `ArtSource/Palettes/IronTournament.gpl`. As famílias orientam a arte sem limitar rigidamente os pixels.
 - Usar Deutsch Gothic no nome do jogo, Saltblack Combat em títulos e textos curtos e Pix32 em diálogos, explicações e inventário; caracteres ausentes recorrem à Inter incluída no projeto para preservar acentos no navegador.
 - `StoryView` mantém o cenário em um quadrado com ajuste por aspecto, integralmente visível; atores e pontos clicáveis são filhos desse quadrado. Desktop tem painéis laterais; retrato tem informação e ações abaixo do cenário.

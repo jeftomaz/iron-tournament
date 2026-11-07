@@ -115,6 +115,12 @@ namespace IronTournament.Presentation.Tests
         public IEnumerator OpeningNarrationIsCenteredOnBlack()
         {
             yield return Load();
+            var openingText = view.GetComponentsInChildren<Text>().Select(x => x.text).ToArray();
+            Assert.That(openingText, Does.Contain("Até que o último caia"));
+            Assert.That(openingText, Does.Not.Contain("CAPÍTULO I\nA VILA"));
+            Assert.That(openingText, Does.Not.Contain("Uma jornada. Duas classes. Suas escolhas."));
+            Assert.That(openingText, Does.Not.Contain("A JORNADA"));
+            Assert.That(openingText, Does.Not.Contain("Escolha seu protagonista e descubra o que restou da vila."));
             Assert.That(view.SceneArea.GetComponent<Image>().sprite.name, Is.EqualTo("opening_screen"));
             Assert.That(view.GetComponent<AudioSource>(), Is.Not.Null);
             Assert.That(UnityEngine.Object.FindAnyObjectByType<AudioListener>(), Is.Not.Null);

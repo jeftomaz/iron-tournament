@@ -73,9 +73,8 @@ namespace IronTournament.Bootstrap
         {
             atHome = true;
             resizeScreen = Home;
-            view.Draw(content.opening, "Um chamado nas trevas", "Uma jornada. Duas classes. Suas escolhas.");
+            view.Draw(content.opening, "Até que o último caia", "", showChapter: false);
             view.SceneTitle("IRON\nTOURNAMENT", .48f);
-            view.Text("A jornada", "Escolha seu protagonista e descubra o que restou da vila.");
             if (saves.TryLoad(out var saved))
             {
                 view.Choice("Continuar", () => { run = saved; atHome = false; if (run.page == StoryPage.Battle) StartBattle(); else if (run.page == StoryPage.SkeletonBattle) StartSkeletonBattle(); else Render(); }, 0, 2);

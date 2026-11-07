@@ -78,7 +78,7 @@ namespace IronTournament.Presentation
             size = current; SetScale(); Resized?.Invoke();
         }
 
-        public void Draw(Sprite background, string title, string subtitle, string inventory = "", bool forest = false)
+        public void Draw(Sprite background, string title, string subtitle, string inventory = "", bool forest = false, bool showChapter = true)
         {
             CompleteText();
             if (surface != null) { surface.gameObject.SetActive(false); Destroy(surface.gameObject); }
@@ -102,7 +102,7 @@ namespace IronTournament.Presentation
                 information = Rect("Information", surface, .755f, .03f, .23f, .82f);
                 var journal = Rect("Journal", surface, .02f, .03f, .225f, .82f);
                 Panel(journal, 0, 0, 1, 1, new Color32(25, 34, 35, 255));
-                Label(journal, forest ? "CAPÍTULO I\nA FLORESTA" : "CAPÍTULO I\nA VILA", .08f, .80f, .84f, .14f, 24, Gold);
+                if (showChapter) Label(journal, forest ? "CAPÍTULO I\nA FLORESTA" : "CAPÍTULO I\nA VILA", .08f, .80f, .84f, .14f, 24, Gold);
                 Label(journal, subtitle, .08f, .61f, .84f, .17f, 17, Paper, subtitleFont);
                 Label(journal, inventory, .08f, .14f, .84f, .42f, 17, Paper, bodyFont);
             }

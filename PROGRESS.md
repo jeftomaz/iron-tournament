@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-11-07 — Menu narrativo
+
+- Atualizados os textos da abertura e removida a identificação de capítulo do menu inicial.
+
 ## 2026-11-07 — Planejamento
 
 - Registradas no `ROADMAP.md` melhorias futuras não prioritárias da prova narrativa.
