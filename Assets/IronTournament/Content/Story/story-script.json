@@ -352,7 +352,11 @@
       "lines": [
         {
           "speaker": "Narrador",
-          "text": "[classe do protagonista] vaga pela floresta."
+          "text": "A floresta parece se fechar e forçar qualquer um que andava nela a se perder."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "A névoa espessa cobria o chão gélido."
         },
         {
           "speaker": "Narrador",
@@ -360,7 +364,7 @@
         },
         {
           "speaker": "Narrador",
-          "text": "Distante, sons de algo seco e quebradiço ecoam."
+          "text": "Ao fim, uma clareira iluminada pelos frios raios de sol."
         }
       ]
     }

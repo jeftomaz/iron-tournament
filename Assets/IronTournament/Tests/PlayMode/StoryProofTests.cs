@@ -95,11 +95,29 @@ namespace IronTournament.Presentation.Tests
         }
 
         [UnityTest]
+        public IEnumerator LayoutOrientationFollowsTheGameCanvas()
+        {
+            yield return Load();
+            var rect = view.GetComponent<RectTransform>();
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 360);
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 640);
+            Assert.That(view.Portrait, Is.True);
+            view.Draw(null, "Teste", "");
+            Assert.That(view.GetComponentsInChildren<RectTransform>().Any(x => x.name == "Journal"), Is.False);
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 1280);
+            rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 720);
+            Assert.That(view.Portrait, Is.False);
+            view.Draw(null, "Teste", "");
+            Assert.That(view.GetComponentsInChildren<RectTransform>().Any(x => x.name == "Journal"), Is.True);
+        }
+
+        [UnityTest]
         public IEnumerator OpeningNarrationIsCenteredOnBlack()
         {
             yield return Load();
             Assert.That(view.SceneArea.GetComponent<Image>().sprite.name, Is.EqualTo("opening_screen"));
             Assert.That(view.GetComponent<AudioSource>(), Is.Not.Null);
+            Assert.That(UnityEngine.Object.FindAnyObjectByType<AudioListener>(), Is.Not.Null);
             var button = view.GetComponentsInChildren<Button>().Single(x => x.name == "Escolher protagonista");
             Assert.That(button.image.sprite.texture, Is.EqualTo(Resources.Load<Texture2D>("StoryUi/Button")));
             foreach (var sound in new[] { "Confirm", "Slash", "Magic", "Hit", "Block", "Defeat", "Heal" })
@@ -127,6 +145,12 @@ namespace IronTournament.Presentation.Tests
                 Is.Not.EqualTo(choices.Single(x => x.name == "Voltar à vila").image.color));
             Click("Voltar à vila"); Click("Investigar agora"); yield return AdvanceTo(StoryPage.Rescue);
             Assert.That(view.SceneArea.Find("Narration"), Is.Not.Null);
+            Assert.That(view.SceneArea.GetComponent<Image>().sprite.name, Is.EqualTo("swamp_clearing"));
+            var actors = view.SceneArea.GetComponentsInChildren<Image>().Where(x => x.name == "Actor").ToArray();
+            var goblin = (RectTransform)actors[1].transform;
+            var child = (RectTransform)actors[2].transform;
+            var goblinBody = (goblin.anchorMax.y - goblin.anchorMin.y) * 30f / actors[1].sprite.rect.height;
+            Assert.That((child.anchorMax.y - child.anchorMin.y) / goblinBody, Is.EqualTo(1f).Within(.001f));
             Click("Continuar"); yield return null;
             var childBubble = (RectTransform)view.SceneArea.Find("Dialogue");
             Assert.That(childBubble, Is.Not.Null);
@@ -226,15 +250,25 @@ namespace IronTournament.Presentation.Tests
                 Assert.That(run.crystal,Is.True); Assert.That(run.reward,Is.Not.EqualTo(ItemId.None));
                 var store=new StorySaveStore(Prefix); Assert.That(store.TryLoad(out var restored),Is.True);
                 Assert.That(restored.page,Is.EqualTo(StoryPage.Finished)); Assert.That(restored.foodGiven,Is.True);
-                Click("Continuar"); yield return AdvanceTo(StoryPage.Graveyard);
+                Click("Continuar");
+                Assert.That(view.SceneArea.GetComponent<Image>().sprite.name, Is.EqualTo("forest_cold_closed"));
+                for (var i = 0; i < 3; i++) { Click("Continuar"); yield return null; }
+                Assert.That(view.SceneArea.GetComponent<Image>().sprite.name, Is.EqualTo("forest_cold_clearing_distant"));
+                yield return AdvanceTo(StoryPage.Graveyard);
+                Assert.That(view.SceneArea.GetComponent<Image>().sprite.name, Is.EqualTo("forest_cold_clearing_graveyard"));
                 while (!run.skeletonAppeared)
                 {
                     var slot = Enumerable.Range(0, 6).First(i => (run.gravesVisited & (1 << i)) == 0);
                     Click("Túmulo " + (slot + 1));
-                    if (run.page == StoryPage.Grave) Click("Voltar aos túmulos");
+                    if (run.page == StoryPage.Grave)
+                    {
+                        Assert.That(view.SceneArea.GetComponent<Image>().sprite.name, Is.EqualTo("coffin_opened_straight_view"));
+                        Click("Voltar aos túmulos");
+                    }
                     yield return null;
                 }
                 Assert.That(run.activeGrave + 1, Is.EqualTo(run.skeletonGraveNumber));
+                Assert.That(view.SceneArea.GetComponent<Image>().sprite.name, Is.EqualTo("forest_cold_skeleton_hand"));
                 Assert.That(store.TryLoad(out restored), Is.True); Assert.That(restored.graves, Is.EqualTo(run.graves));
                 Click("Enfrentar"); Assert.That(controller.ActiveBattle.State.Opponent.Id, Is.EqualTo(CombatantId.Skeleton));
                 Assert.That(controller.ActiveBattle.State.Hero.CurrentHealth, Is.EqualTo(run.victoryHealth));
@@ -290,7 +324,7 @@ namespace IronTournament.Presentation.Tests
                 for(var turn=0;turn<10 && controller.Run.page==StoryPage.Battle;turn++)
                 { controller.SubmitBattle(AbilityId.BasicAttack); yield return new WaitForSecondsRealtime(1.8f); }
                 yield return AdvanceTo(StoryPage.Burial);
-                Assert.That(view.SceneArea.GetComponent<Image>().sprite.name, Is.EqualTo("forest_clearing"));
+                Assert.That(view.SceneArea.GetComponent<Image>().sprite.name, Is.EqualTo("swamp_clearing"));
                 var grave = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/IronTournament/Content/Story/forest_child_grave-trimmed.asset");
                 Assert.That(view.SceneArea.GetComponentsInChildren<Image>().Any(i => i.sprite == grave), Is.True);
                 Click("Continuar");

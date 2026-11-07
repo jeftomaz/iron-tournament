@@ -57,3 +57,4 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 - `done` `JP` Aproximar molduras e botões da prévia original com pacote redistribuível; validar visualmente.
 - `done` `JT` Destacar cartas e perigo do Esqueleto com o Cristal do Destino no cemitério.
+- `doing` `JP` Conciliar as artes locais da vila e floresta com o fluxo de túmulos e pós-vitória integrado.

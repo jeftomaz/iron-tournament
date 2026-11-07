@@ -28,7 +28,8 @@ namespace IronTournament.Presentation
         private Vector2 size;
         public event Action Resized;
         public bool IsTyping => typing != null;
-        public bool Portrait => Screen.height > Screen.width;
+        private Vector2 ViewSize => canvas != null ? ((RectTransform)canvas.transform).rect.size : Vector2.zero;
+        public bool Portrait => ViewSize.y > ViewSize.x;
         public RectTransform SceneArea => scene;
 
         public void Initialize()
@@ -56,7 +57,7 @@ namespace IronTournament.Presentation
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             gameObject.AddComponent<GraphicRaycaster>();
-            size = new Vector2(Screen.width, Screen.height);
+            size = ViewSize;
             SetScale();
         }
 
@@ -72,12 +73,12 @@ namespace IronTournament.Presentation
         private void SetScale() => scaler.referenceResolution = Portrait ? new Vector2(360, 640) : new Vector2(1280, 720);
         private void LateUpdate()
         {
-            var current = new Vector2(Screen.width, Screen.height);
-            if (current == size || scaler == null) return;
+            var current = ViewSize;
+            if (current == size || current.x <= 0 || current.y <= 0 || scaler == null) return;
             size = current; SetScale(); Resized?.Invoke();
         }
 
-        public void Draw(Sprite background, string title, string subtitle, string inventory = "")
+        public void Draw(Sprite background, string title, string subtitle, string inventory = "", bool forest = false)
         {
             CompleteText();
             if (surface != null) { surface.gameObject.SetActive(false); Destroy(surface.gameObject); }
@@ -101,7 +102,7 @@ namespace IronTournament.Presentation
                 information = Rect("Information", surface, .755f, .03f, .23f, .82f);
                 var journal = Rect("Journal", surface, .02f, .03f, .225f, .82f);
                 Panel(journal, 0, 0, 1, 1, new Color32(25, 34, 35, 255));
-                Label(journal, "CAPÍTULO I\nA VILA", .08f, .80f, .84f, .14f, 24, Gold);
+                Label(journal, forest ? "CAPÍTULO I\nA FLORESTA" : "CAPÍTULO I\nA VILA", .08f, .80f, .84f, .14f, 24, Gold);
                 Label(journal, subtitle, .08f, .61f, .84f, .17f, 17, Paper, subtitleFont);
                 Label(journal, inventory, .08f, .14f, .84f, .42f, 17, Paper, bodyFont);
             }
