@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-11-07 — Planejamento
+
+- Registradas no `ROADMAP.md` melhorias futuras não prioritárias da prova narrativa.
+
 ## 2026-11-07 — Artes da prova narrativa
 
 - Integradas as artes locais da floresta, dos túmulos e do Goblin ao fluxo do PR #47; restauradas proporções aparentes e áudio, e corrigida a orientação em telas estreitas. Visual aprovado; substituído “Bolsa” por “Inventário”.
