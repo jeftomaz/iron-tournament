@@ -2,7 +2,7 @@
 
 ## 2026-11-05 — Cristal no cemitério
 
-- Cristal colore cartas e o túmulo exclusivo do Esqueleto; sem ele, o encontro substitui o conteúdo entre a 3ª e a 6ª abertura. Migração e testes EditMode 112/112 e PlayMode 44/44 aprovados.
+- Cristal colore cartas e o túmulo exclusivo do Esqueleto; sem ele, o encontro substitui o conteúdo entre a 4ª e a 6ª abertura. EditMode 112/112, PlayMode 44/44 e build WebGL aprovados.
 
 ## 2026-11-05 — Interface redistribuível
 

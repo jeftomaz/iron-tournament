@@ -81,7 +81,7 @@ namespace IronTournament.Core
             { var j = random.Next(0, i + 1); var value = remaining[i]; remaining[i] = remaining[j]; remaining[j] = value; }
             var index = 0;
             for (var i = 0; i < graves.Length; i++) if (graves[i] < 0) graves[i] = remaining[index++];
-            skeletonTrigger = random.Next(3, 7);
+            skeletonTrigger = random.Next(4, 7);
             if (crystal) skeletonGraveNumber = Array.IndexOf(graves, (int)GraveContent.Empty) + 1;
         }
 

@@ -130,7 +130,7 @@ namespace IronTournament.Core.Tests
                 run.EnterGrave(interrupted); Assert.That(run.page, Is.EqualTo(StoryPage.Grave));
                 Assert.That(run.GravesExplored, Is.EqualTo(run.skeletonTrigger)); run.Validate();
             }
-            Assert.That(triggers.OrderBy(x => x), Is.EqualTo(new[] { 3, 4, 5, 6 }));
+            Assert.That(triggers.OrderBy(x => x), Is.EqualTo(new[] { 4, 5, 6 }));
         }
 
         [Test]
@@ -171,11 +171,11 @@ namespace IronTournament.Core.Tests
         public void WithoutCrystalTheSkeletonReplacesOnlyTheTriggeredGraveContent()
         {
             var run = StoryRun.Create(CombatantId.Warrior, 45);
-            run.page = StoryPage.ColdForest; run.PrepareGraveyard(); run.skeletonTrigger = 3;
+            run.page = StoryPage.ColdForest; run.PrepareGraveyard(); run.skeletonTrigger = 4;
             run.reward = ItemId.HealingPotion; run.victoryHealth = 70; run.rewardAttack = 30;
             var original = (int[])run.graves.Clone();
             var letter = Array.IndexOf(run.graves, (int)GraveContent.LucyLetter);
-            var first = Enumerable.Range(0, 6).Where(i => i != letter).Take(2).ToArray();
+            var first = Enumerable.Range(0, 6).Where(i => i != letter).Take(3).ToArray();
             run.page = StoryPage.Graveyard;
             foreach (var slot in first) { run.EnterGrave(slot); run.page = StoryPage.Graveyard; }
             run.EnterGrave(letter);
