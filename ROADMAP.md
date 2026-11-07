@@ -58,3 +58,16 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 - `done` `JP` Aproximar molduras e botões da prévia original com pacote redistribuível; validar visualmente.
 - `done` `JT` Destacar cartas e perigo do Esqueleto com o Cristal do Destino no cemitério.
 - `done` `JP` Conciliar as artes locais da vila e floresta com o fluxo de túmulos e pós-vitória integrado.
+
+## Melhorias futuras — não prioritárias
+
+- `todo` `JP` Menu principal: trocar “Um chamado nas trevas” por “Até que o último caia” e remover “Capítulo 1: A Vila”, “Uma jornada. Duas classes. Suas escolhas.”, “A Jornada” e “Escolha seu protagonista e descubra o que restou da vila”.
+- `todo` `JP` Informações do Guerreiro: apresentar “HP 120; ATQ 30; DEF 23; Um combatente experiênte, calejado pelos longos anos de batalhas. Resistente, porém suceptível à defesas fortes.” no lugar das informações atuais.
+- `todo` `JP` Informações do Mago: substituir as informações atuais por “Jovem e pronto para testar seus conhecimentos arcanos. Poderoso, porém vulnerável.”
+- `todo` `JP` Abertura da campanha: remover “Primeira campanha” e títulos duplicados no topo; incluir a arte especial em `Assets/IronTournament/Art/Backgrounds_new/` na exibição do título (arquivo a identificar); após o título, exibir a informação do capítulo em tela cheia com fundo preto, em todos os capítulos.
+- `todo` `JP` Na vila, apresentar apenas “Ahhhhhh” em balão vindo da floresta; o restante é fala do personagem. Consultar o Obsidian antes da implementação.
+- `todo` `JP` Ajustar o tamanho dos protagonistas na imagem da vila distante.
+- `todo` `JP` Pesquisar assets de partículas compatíveis com distribuição Web para vento na imagem do protagonista diante da vila distante.
+- `todo` `JP` Adicionar botão “Inventário” junto ao botão “Menu” para consultar os itens carregados; revisar o Obsidian antes da implementação.
+- `todo` `JP` Atualizar assets, especialmente criança e Goblin, para os novos modelos em `Assets/IronTournament/Art/Characters/`.
+- `todo` `JP` Arredondar os balões de diálogo, se possível, ou procurar outro conjunto de assets.
