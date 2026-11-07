@@ -18,6 +18,7 @@ namespace IronTournament.Presentation.Tests
 {
     public sealed class StoryProofTests
     {
+        [Serializable] private sealed class SavedEnvelope { public int revision; public string payload; public string checksum; }
         private const string Prefix="iron.story.tests";
         private StoryProofController controller;
         private StoryView view;
@@ -54,6 +55,43 @@ namespace IronTournament.Presentation.Tests
                 next.onClick.Invoke(); yield return null;
             }
             Assert.That(controller.Run.page,Is.EqualTo(page));
+        }
+
+        [UnityTest]
+        public IEnumerator CrystalRevealsLettersAndTheFixedDangerousGrave()
+        {
+            yield return Load();
+            controller.Begin(CombatantId.Warrior, 12);
+            var run = controller.Run; run.page = StoryPage.ColdForest; run.PrepareGraveyard();
+            run.page = StoryPage.Graveyard; run.skeletonTrigger = 3;
+            var ordinary = Enumerable.Range(0, 6).Where(i => run.graves[i] >= (int)GraveContent.Rosary && run.graves[i] != (int)GraveContent.Empty).Take(2).ToArray();
+            run.gravesVisited = (1 << ordinary[0]) | (1 << ordinary[1]);
+            controller.Render();
+            var neutral = Enumerable.Range(0, 6).Select(i =>
+                view.GetComponentsInChildren<Button>().Single(x => x.name == "Túmulo " + (i + 1)).image.color).ToArray();
+            run.crystal = true;
+            run.skeletonGraveNumber = Array.FindIndex(run.graves, x => x == (int)GraveContent.Empty) + 1;
+            controller.Render();
+            for (var i = 0; i < 6; i++)
+            {
+                var button = view.GetComponentsInChildren<Button>().Single(x => x.name == "Túmulo " + (i + 1));
+                var visited = (run.gravesVisited & (1 << i)) != 0;
+                var letter = run.graves[i] == (int)GraveContent.LucyLetter || run.graves[i] == (int)GraveContent.SamuelLetter;
+                var danger = !visited && i + 1 == run.skeletonGraveNumber;
+                Assert.That(button.GetComponentsInChildren<Text>().Length, Is.EqualTo(1));
+                if (danger) Assert.That(button.image.color.r, Is.GreaterThan(button.image.color.b));
+                else if (!visited && letter) Assert.That(button.image.color.b, Is.GreaterThan(button.image.color.r));
+                else Assert.That(button.image.color, Is.EqualTo(neutral[i]));
+            }
+            run.skeletonAppeared = true; run.activeGrave = run.skeletonGraveNumber - 1; controller.Render();
+            var dangerButton = view.GetComponentsInChildren<Button>().Single(x => x.name == "Túmulo " + run.skeletonGraveNumber);
+            Assert.That(dangerButton.image.color, Is.EqualTo(neutral[run.skeletonGraveNumber - 1]));
+            var letterSlot = Array.FindIndex(run.graves, x => x == (int)GraveContent.LucyLetter);
+            var letterButton = view.GetComponentsInChildren<Button>().Single(x => x.name == "Túmulo " + (letterSlot + 1));
+            Assert.That(letterButton.image.color.b, Is.GreaterThan(letterButton.image.color.r));
+            run.gravesVisited |= 1 << letterSlot; controller.Render();
+            letterButton = view.GetComponentsInChildren<Button>().Single(x => x.name == "Túmulo " + (letterSlot + 1));
+            Assert.That(letterButton.image.color, Is.EqualTo(neutral[ordinary[0]]));
         }
 
         [UnityTest]
@@ -196,7 +234,7 @@ namespace IronTournament.Presentation.Tests
                     if (run.page == StoryPage.Grave) Click("Voltar aos túmulos");
                     yield return null;
                 }
-                Assert.That(run.GravesExplored, Is.GreaterThanOrEqualTo(2));
+                Assert.That(run.activeGrave + 1, Is.EqualTo(run.skeletonGraveNumber));
                 Assert.That(store.TryLoad(out restored), Is.True); Assert.That(restored.graves, Is.EqualTo(run.graves));
                 Click("Enfrentar"); Assert.That(controller.ActiveBattle.State.Opponent.Id, Is.EqualTo(CombatantId.Skeleton));
                 Assert.That(controller.ActiveBattle.State.Hero.CurrentHealth, Is.EqualTo(run.victoryHealth));
@@ -293,6 +331,47 @@ namespace IronTournament.Presentation.Tests
             Assert.That(store.TryLoad(out var restored),Is.True); Assert.That(restored.page,Is.EqualTo(StoryPage.Intro));
             PlayerPrefs.DeleteKey(prefix+".a"); PlayerPrefs.DeleteKey(prefix+".b");
         }
+        [TestCase(false)]
+        [TestCase(true)]
+        public void LegacyCrystalCheckpointGainsAStableGrave(bool appeared)
+        {
+            var prefix = Prefix + ".legacy";
+            PlayerPrefs.DeleteKey(prefix + ".a"); PlayerPrefs.DeleteKey(prefix + ".b");
+            var run = StoryRun.Create(CombatantId.Warrior, 27);
+            run.page = StoryPage.ColdForest; run.PrepareGraveyard();
+            run.visited = 1; run.crystal = true; run.reward = ItemId.HealingPotion;
+            run.victoryHealth = 70; run.rewardAttack = 30; run.rewardDefense = 23;
+            if (appeared)
+            {
+                run.gravesVisited = (1 << (run.skeletonTrigger - 1)) - 1;
+                run.activeGrave = run.skeletonTrigger - 1; run.skeletonAppeared = true; run.page = StoryPage.SkeletonEmergence;
+            }
+            else { run.gravesVisited = 1 << Array.IndexOf(run.graves, (int)GraveContent.Empty); run.page = StoryPage.Graveyard; }
+            run.Validate();
+            var payload = JsonUtility.ToJson(run).Replace(",\"skeletonGraveNumber\":0", "");
+            Assert.That(payload, Does.Not.Contain("skeletonGraveNumber"));
+            string checksum;
+            using (var sha = System.Security.Cryptography.SHA256.Create())
+                checksum = Convert.ToBase64String(sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(payload)));
+            PlayerPrefs.SetString(prefix + ".a", JsonUtility.ToJson(new SavedEnvelope { revision = 1, payload = payload, checksum = checksum }));
+            var store = new StorySaveStore(prefix);
+            Assert.That(store.TryLoad(out var restored), Is.True);
+            if (appeared)
+            {
+                Assert.That(restored.skeletonGraveNumber, Is.EqualTo(run.activeGrave + 1));
+                Assert.That(restored.graves[run.activeGrave], Is.EqualTo((int)GraveContent.Skeleton));
+            }
+            else
+            {
+                Assert.That(restored.skeletonGraveNumber, Is.EqualTo(Array.IndexOf(run.graves, (int)GraveContent.Empty) + 1));
+                Assert.That(restored.TriggersSkeleton(restored.skeletonGraveNumber - 1), Is.True);
+            }
+            var grave = restored.skeletonGraveNumber;
+            Assert.That(store.Save(restored), Is.True); Assert.That(store.TryLoad(out restored), Is.True);
+            Assert.That(restored.skeletonGraveNumber, Is.EqualTo(grave));
+            PlayerPrefs.DeleteKey(prefix + ".a"); PlayerPrefs.DeleteKey(prefix + ".b");
+        }
+
         [Test]
         public void CheckpointJournalRejectsContentThatDoesNotMatchItsOffer()
         {

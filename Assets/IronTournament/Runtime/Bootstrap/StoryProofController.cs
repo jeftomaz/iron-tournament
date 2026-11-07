@@ -290,9 +290,11 @@ namespace IronTournament.Bootstrap
             for (var i = 0; i < points.Length; i++)
             {
                 var slot = i; var visited = (run.gravesVisited & (1 << slot)) != 0;
-                var danger = run.crystal && !visited && !run.skeletonAppeared && run.GravesExplored + 1 == run.skeletonTrigger;
+                var grave = (GraveContent)run.graves[i];
+                var reward = run.crystal && !visited && (grave == GraveContent.LucyLetter || grave == GraveContent.SamuelLetter);
+                var danger = run.crystal && run.TriggersSkeleton(slot);
                 view.Hotspot("Túmulo " + (slot + 1), points[i].x, points[i].y,
-                    () => { run.EnterGrave(slot); Save(); Render(); }, visited, danger: danger);
+                    () => { run.EnterGrave(slot); Save(); Render(); }, visited, reward: reward, danger: danger);
             }
             view.Text("Investigar", $"Toque nos túmulos para examiná-los. Investigados: {run.GravesExplored}/6.");
             if (run.castleSeen)
@@ -303,6 +305,13 @@ namespace IronTournament.Bootstrap
         private void Grave()
         {
             var grave = (GraveContent)run.graves[run.activeGrave];
+            if (grave == GraveContent.Skeleton)
+            {
+                Draw(content.skeletonGraveyard, "Dentro do túmulo");
+                view.Actor(content.skeletonDead, .65f, .25f, .19f);
+                view.Text("Investigar", "Restam apenas os ossos do Esqueleto.");
+                view.Choice("Voltar aos túmulos", () => Go(StoryPage.Graveyard)); return;
+            }
             var labels = new[] { "carta de Lucy", "carta de Samuel", "rosário e flores", "boneca de pano", "restos de um gato", "restos mortais" };
             Draw(content.skeletonGraveyard, "Dentro do túmulo");
             view.Annotation("Placeholder: " + labels[(int)grave], .05f, .68f);

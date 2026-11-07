@@ -130,7 +130,62 @@ namespace IronTournament.Core.Tests
                 run.EnterGrave(interrupted); Assert.That(run.page, Is.EqualTo(StoryPage.Grave));
                 Assert.That(run.GravesExplored, Is.EqualTo(run.skeletonTrigger)); run.Validate();
             }
-            Assert.That(triggers.OrderBy(x => x), Is.EqualTo(new[] { 3, 4, 5, 6 }));
+            Assert.That(triggers.OrderBy(x => x), Is.EqualTo(new[] { 4, 5, 6 }));
+        }
+
+        [Test]
+        public void CrystalFixesOneGraveFromTheBeginningRegardlessOfOpeningOrder()
+        {
+            var positions = new System.Collections.Generic.HashSet<int>();
+            for (var seed = 0; seed < 150; seed++)
+            {
+                var first = StoryRun.Create(CombatantId.Warrior, seed); first.crystal = true;
+                first.page = StoryPage.ColdForest; first.PrepareGraveyard();
+                first.reward = ItemId.HealingPotion; first.victoryHealth = 70; first.rewardAttack = 30;
+                var last = StoryRun.Create(CombatantId.Warrior, seed); last.crystal = true;
+                last.page = StoryPage.ColdForest; last.PrepareGraveyard();
+                last.reward = ItemId.HealingPotion; last.victoryHealth = 70; last.rewardAttack = 30;
+                Assert.That(first.skeletonGraveNumber, Is.InRange(1, 6));
+                Assert.That(last.skeletonGraveNumber, Is.EqualTo(first.skeletonGraveNumber));
+                Assert.That(first.graves[first.skeletonGraveNumber - 1], Is.EqualTo((int)GraveContent.Empty));
+                positions.Add(first.skeletonGraveNumber);
+                var target = first.skeletonGraveNumber - 1; first.page = StoryPage.Graveyard;
+                first.EnterGrave(target); Assert.That(first.skeletonAppeared, Is.True);
+                Assert.That(first.GravesExplored, Is.Zero); first.Validate();
+                last.page = StoryPage.Graveyard;
+                for (var slot = 0; slot < 6; slot++)
+                {
+                    if (slot == target) continue;
+                    Assert.That(last.TriggersSkeleton(slot), Is.False);
+                    last.EnterGrave(slot); Assert.That(last.skeletonAppeared, Is.False);
+                    last.page = StoryPage.Graveyard; last.Validate();
+                }
+                Assert.That(last.TriggersSkeleton(target), Is.True);
+                last.EnterGrave(target); Assert.That(last.skeletonAppeared, Is.True);
+                Assert.That(last.GravesExplored, Is.EqualTo(5)); last.Validate();
+            }
+            Assert.That(positions.OrderBy(x => x), Is.EqualTo(new[] { 1, 2, 3, 4, 5, 6 }));
+        }
+
+        [Test]
+        public void WithoutCrystalTheSkeletonReplacesOnlyTheTriggeredGraveContent()
+        {
+            var run = StoryRun.Create(CombatantId.Warrior, 45);
+            run.page = StoryPage.ColdForest; run.PrepareGraveyard(); run.skeletonTrigger = 4;
+            run.reward = ItemId.HealingPotion; run.victoryHealth = 70; run.rewardAttack = 30;
+            var original = (int[])run.graves.Clone();
+            var letter = Array.IndexOf(run.graves, (int)GraveContent.LucyLetter);
+            var first = Enumerable.Range(0, 6).Where(i => i != letter).Take(3).ToArray();
+            run.page = StoryPage.Graveyard;
+            foreach (var slot in first) { run.EnterGrave(slot); run.page = StoryPage.Graveyard; }
+            run.EnterGrave(letter);
+            Assert.That(run.skeletonAppeared, Is.True);
+            Assert.That(run.skeletonGraveNumber, Is.EqualTo(letter + 1));
+            Assert.That(run.graves[letter], Is.EqualTo((int)GraveContent.Skeleton));
+            for (var i = 0; i < 6; i++) if (i != letter) Assert.That(run.graves[i], Is.EqualTo(original[i]));
+            run.Validate();
+            run.skeletonDefeated = true; run.skeletonHealth = 40; run.page = StoryPage.Graveyard;
+            run.EnterGrave(letter); Assert.That(run.graves[letter], Is.EqualTo((int)GraveContent.Skeleton)); run.Validate();
         }
 
         [TestCase(CombatantId.Warrior)]

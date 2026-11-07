@@ -56,3 +56,4 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 - `done` `JT` Continuar a prova até o encerramento do encontro com o Esqueleto, com túmulos, combate, carta, saque e checkpoint.
 
 - `done` `JP` Aproximar molduras e botões da prévia original com pacote redistribuível; validar visualmente.
+- `done` `JT` Destacar cartas e perigo do Esqueleto com o Cristal do Destino no cemitério.

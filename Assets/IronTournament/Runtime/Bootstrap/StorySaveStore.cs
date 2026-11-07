@@ -22,6 +22,7 @@ namespace IronTournament.Bootstrap
             var best = a == null ? b : b == null || a.revision >= b.revision ? a : b;
             if (best == null) return false;
             run = JsonUtility.FromJson<StoryRun>(best.payload);
+            run.MigrateLegacyGrave();
             return true;
         }
 
