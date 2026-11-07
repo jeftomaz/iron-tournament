@@ -30,7 +30,7 @@ namespace IronTournament.Bootstrap
         private Sprite[] HeroPoses => run.hero == CombatantId.Warrior ? content.warriorPoses : content.magePoses;
         private EncounterConfiguration Encounter => ContentMapper.BuildEncounter(content.goblin);
         private EncounterConfiguration SkeletonEncounter => ContentMapper.BuildEncounter(content.skeleton);
-        private string Inventory => run == null ? "" : "PROTAGONISTA\n" + Hero.DisplayName + "\n\nBOLSA\n" +
+        private string Inventory => run == null ? "" : "PROTAGONISTA\n" + Hero.DisplayName + "\n\nINVENTÁRIO\n" +
             (run.equipment ? (run.hero == CombatantId.Mage ? "Manto de Chamas · 1 dano no Goblin, 3 no Esqueleto\n" : "Espada do Caos · 7% crítico no Goblin, 10% no Esqueleto\n") : "") +
             (run.food ? "Porção de comida\n" : "") + (run.crystal ? "Cristal do Destino\n" : "") +
             (run.reward != ItemId.None ? "Saque do Goblin: " + StoryEncounter.Rewards(run, Encounter).First(x => x.Id == run.reward).DisplayName + "\n" : "") +
@@ -179,7 +179,7 @@ namespace IronTournament.Bootstrap
                     Draw(content.forestPath, "Fim do primeiro encontro");
                     view.Text("A jornada continua", "O protagonista segue pela floresta.");
                     view.Choice("Continuar", () => Go(StoryPage.ColdForest), 0, 3);
-                    view.Choice("Ver inventário", () => Message("Bolsa", Inventory, Render), 1, 3);
+                    view.Choice("Ver inventário", () => Message("Inventário", Inventory, Render), 1, 3);
                     view.Choice("Menu", Home, 2, 3); break;
                 case StoryPage.ColdForest:
                     Dialogue("skeletonIntro", run.dialogue >= 3 ? content.coldClearing : content.coldForest, "A floresta fria", () => { run.PrepareGraveyard(); Go(StoryPage.Graveyard); }); break;
@@ -200,7 +200,7 @@ namespace IronTournament.Bootstrap
                 case StoryPage.SkeletonFinished:
                     Draw(content.skeletonGraveyard, "Fim do segundo encontro");
                     view.Text("Trecho concluído", "Sua jornada foi salva.");
-                    view.Choice("Ver inventário", () => Message("Bolsa", Inventory, Render), 0, 2);
+                    view.Choice("Ver inventário", () => Message("Inventário", Inventory, Render), 0, 2);
                     view.Choice("Menu", Home, 1, 2); break;
             }
         }
@@ -354,7 +354,7 @@ namespace IronTournament.Bootstrap
                 view.Hotspot("Quarto", id == 3 ? .05f : .72f, .50f, () => { run.room = true; Save(); Render(); });
             view.Choice(run.room ? "Voltar à sala" : "Voltar à vila", () =>
             { if (run.room) run.room = false; else run.LeaveHouse(); Save(); Render(); }, 0, 2, StoryButtonStyle.Secondary);
-            view.Choice("Bolsa", () => Message("Bolsa", Inventory, Render), 1, 2, StoryButtonStyle.Inventory);
+            view.Choice("Inventário", () => Message("Inventário", Inventory, Render), 1, 2, StoryButtonStyle.Inventory);
         }
 
         private void InspectEquipment()

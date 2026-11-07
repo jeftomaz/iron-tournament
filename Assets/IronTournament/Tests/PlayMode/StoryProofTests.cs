@@ -141,7 +141,7 @@ namespace IronTournament.Presentation.Tests
             Click("Casa 1");
             Assert.That(view.SceneArea.Find("Narration"), Is.Not.Null);
             var choices = view.GetComponentsInChildren<Button>();
-            Assert.That(choices.Single(x => x.name == "Bolsa").image.color,
+            Assert.That(choices.Single(x => x.name == "Inventário").image.color,
                 Is.Not.EqualTo(choices.Single(x => x.name == "Voltar à vila").image.color));
             Click("Voltar à vila"); Click("Investigar agora"); yield return AdvanceTo(StoryPage.Rescue);
             Assert.That(view.SceneArea.Find("Narration"), Is.Not.Null);

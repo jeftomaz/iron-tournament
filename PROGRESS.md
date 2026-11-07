@@ -2,7 +2,7 @@
 
 ## 2026-11-07 — Artes da prova narrativa
 
-- Integradas as artes locais da floresta, dos túmulos e do Goblin ao fluxo do PR #47; restauradas proporções aparentes e áudio, e corrigida a orientação em telas estreitas. EditMode 112/112, PlayMode 45/45 e build WebGL aprovados; revisão visual humana pendente.
+- Integradas as artes locais da floresta, dos túmulos e do Goblin ao fluxo do PR #47; restauradas proporções aparentes e áudio, e corrigida a orientação em telas estreitas. Visual aprovado; substituído “Bolsa” por “Inventário”.
 
 ## 2026-11-05 — Cristal no cemitério
 
