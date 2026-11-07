@@ -69,14 +69,15 @@
 - Cores de referência e direção visual: `ART_STYLE_GUIDE.md`; paleta editável em `ArtSource/Palettes/IronTournament.gpl`. As famílias orientam a arte sem limitar rigidamente os pixels.
 - Usar Deutsch Gothic no nome do jogo, Saltblack Combat em títulos e textos curtos e Pix32 em diálogos, explicações e inventário; caracteres ausentes recorrem à Inter incluída no projeto para preservar acentos no navegador.
 - `StoryView` mantém o cenário em um quadrado com ajuste por aspecto, integralmente visível; atores e pontos clicáveis são filhos desse quadrado. Desktop tem painéis laterais; retrato tem informação e ações abaixo do cenário.
+- A orientação acompanha as dimensões da área de jogo; mudanças de tamanho redesenham a composição.
 - Botões de ação e investigação usam dimensões reduzidas, respeitando a distribuição responsiva.
 - Casas visitadas usam marca de revisita; não alteram a contagem ao reabrir. Gritos bloqueiam a abertura de casas até escolher investigar ou continuar; a última recusa fixa o desfecho de morte anterior ao combate.
 - Os seis túmulos são pontos clicáveis: com o Cristal, cartas não examinadas recebem azul; o único túmulo com o Esqueleto recebe vermelho. O túmulo do Esqueleto não contém outros objetos; após o combate, os túmulos restantes continuam acessíveis.
-- Objetos e cenas sem arte específica usam placeholder identificado; o Esqueleto vivo e morto e o cenário de cemitério reutilizam os assets existentes.
+- A floresta alagada, floresta fria, clareira, túmulos, mão do Esqueleto e montanha usam as artes locais; pontos clicáveis acompanham os túmulos da imagem.
 - Texto digitado: um toque completa a fala; o próximo avança. Descrições longas de ambientes e cartas são paginadas.
 - A abertura e a narração do capítulo usam fundo preto e texto centralizado; falas de personagens usam balões próximos aos atores. Menus distinguem ações principais, secundárias e inventário.
 - Os indicadores próximos aos combatentes exibem valores e barras de HP; ofertas de saque mostram uma descrição curta de cada item.
 - A interface usa sprites CC0 do UI Pack da Kenney; sons da prova usam os efeitos selecionados do RPG Essentials.
 - Botões de combate ficam bloqueados durante apresentação dos eventos. `StoryProofController` envia `Submit` ao mesmo núcleo da demonstração clássica; não reimplementa regras.
-- Escala inicial: Guerreiro 1,80 m, Mago 1,70 m, Goblin 0,80 m; redução virtual do adversário por profundidade `4/5,5`. Esses parâmetros de câmera são uma calibração de prova, não distância canônica aprovada.
+- Escala da prova: Guerreiro 1,80 m, Mago 1,70 m, Goblin e criança 0,80 m e Esqueleto 1,50 m. A altura aparente usa o corpo entre cabeça e pés, sem margens nem armas, e profundidades virtuais 4 m/5,5 m; a câmera permanece uma calibração provisória.
 - Não mostrar valores iniciais antes de escolher Ver atributos. Confirmar troca de protagonista antes de substituir o checkpoint. Não criar histórico de campanha completa ao terminar o trecho.

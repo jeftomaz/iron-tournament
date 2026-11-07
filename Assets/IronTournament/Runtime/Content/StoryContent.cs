@@ -22,6 +22,11 @@ namespace IronTournament.Content
         public Sprite distantVillage;
         public Sprite forestPath;
         public Sprite swamp;
+        public Sprite coldForest;
+        public Sprite coldClearing;
+        public Sprite skeletonHand;
+        public Sprite coffin;
+        public Sprite mountain;
         public Sprite grave;
         public Sprite[] houses;
         public Sprite[] bedrooms;
@@ -37,7 +42,7 @@ namespace IronTournament.Content
         public Sprite[] goblinPoses;
         public Sprite skeletonPose;
         public TextAsset script;
-        private StoryScript parsed;
+        [NonSerialized] private StoryScript parsed;
         public StoryScript Script => parsed ??= JsonUtility.FromJson<StoryScript>(script.text);
         public StoryLine[] Dialogue(string id)
         {

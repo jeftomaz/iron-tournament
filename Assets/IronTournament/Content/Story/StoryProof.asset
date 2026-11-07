@@ -19,8 +19,13 @@ MonoBehaviour:
   skeleton: {fileID: 11400000, guid: d383b3511eba2e54dad8388618ace77d, type: 2}
   village: {fileID: 21300000, guid: aae214967a3ba4e37aa0c4b41339a3f9, type: 3}
   distantVillage: {fileID: 21300000, guid: 81dcc3cd7a4f3440a8a0468640e38799, type: 3}
-  forestPath: {fileID: 21300000, guid: 756a70aa5ad7d4ce7b67da2821f92e95, type: 3}
-  swamp: {fileID: 21300000, guid: 690b5354b7fff4a9caee0f3c283e913d, type: 3}
+  forestPath: {fileID: 21300000, guid: 564361f5fcf504deeaedbb1e80a5ecb7, type: 3}
+  swamp: {fileID: 21300000, guid: 219c9b54183534c99856705b94ba8a0e, type: 3}
+  coldForest: {fileID: 21300000, guid: 9c7989061926d453d823359e9ad8310a, type: 3}
+  coldClearing: {fileID: 21300000, guid: 87f020b08c7214a509f297e7b16d2984, type: 3}
+  skeletonHand: {fileID: 21300000, guid: a400f12cb8f7a46e190412ee6eb5afe9, type: 3}
+  coffin: {fileID: 21300000, guid: 953af4e10958e4d538afd536826bd8ef, type: 3}
+  mountain: {fileID: 21300000, guid: 4565a2a0771c5469487da5a49bbd2d6c, type: 3}
   grave: {fileID: 21300000, guid: 9ae7e8904856340ada4ab01717da504b, type: 2}
   houses:
   - {fileID: 21300000, guid: 20f9fedde7b674cc7ba056a4441e8bb8, type: 3}
@@ -37,7 +42,7 @@ MonoBehaviour:
   childHurt: {fileID: 21300000, guid: 4c40dd6984852451583bdbf94adce84e, type: 2}
   childDead: {fileID: 21300000, guid: b4c8e594da8f84ef8868e4682f5faac9, type: 2}
   goblinDead: {fileID: 21300000, guid: a16c905ca3b394306b3efedd551fc929, type: 2}
-  skeletonGraveyard: {fileID: 21300000, guid: c51fd995e378a56468c91bd20dc19f16, type: 3}
+  skeletonGraveyard: {fileID: 21300000, guid: 71aab14cfe0b04071868c2ca8da92a9d, type: 3}
   skeletonDead: {fileID: 21300000, guid: a8bedcae3af874b90bc35124d6f94126, type: 2}
   warriorPoses:
   - {fileID: -8959435104959665722, guid: 4628b5bd9ccb0444288b761b74a9164d, type: 3}
@@ -50,8 +55,8 @@ MonoBehaviour:
   - {fileID: -2097619832946416524, guid: a06314d801cfc46629bad31a9b362051, type: 3}
   - {fileID: -206670225839568205, guid: 3ff96150c8d5744f9b773fcfc59a5e2d, type: 3}
   goblinPoses:
-  - {fileID: -2097619832946416524, guid: 7f6b905d77144400fbf99cce2b2ade4d, type: 3}
-  - {fileID: 3373983171478037719, guid: 251435a68642e474ab790b7da30d8861, type: 3}
-  - {fileID: -1505471383403432660, guid: ff9644591f7e34814b73fecbac2d4311, type: 3}
+  - {fileID: -2097619832946416524, guid: feaef6eba01b74dfb884c7e151ca828d, type: 3}
+  - {fileID: 3373983171478037719, guid: 21825a00ce6594963870a072ad33fdca, type: 3}
+  - {fileID: -1505471383403432660, guid: 0a3259e4dfc9b4056afecc06b0142fee, type: 3}
   skeletonPose: {fileID: -1505471383403432660, guid: dfe61948768534555a5284b291f0a3b2, type: 3}
   script: {fileID: 4900000, guid: c1fe8c4c0456e446c8d6c253171406ac, type: 3}

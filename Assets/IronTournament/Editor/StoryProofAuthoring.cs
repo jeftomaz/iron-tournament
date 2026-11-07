@@ -14,6 +14,7 @@ namespace IronTournament.Editor
     public static class StoryProofAuthoring
     {
         private const string Art = "Assets/IronTournament/Art/Backgrounds_new/Village/";
+        private const string Forest = "Assets/IronTournament/Art/Backgrounds_new/Forest/";
         private const string Data = "Assets/IronTournament/Content/Story/";
         public const string ScenePath = "Assets/Scenes/StoryProof.unity";
 
@@ -35,8 +36,13 @@ namespace IronTournament.Editor
             content.skeleton = Load<EncounterDefinition>("Assets/IronTournament/Content/SkeletonEncounter.asset");
             content.village = Background("village_close");
             content.distantVillage = Background("village_distant_view");
-            content.forestPath = Background("forest_floaded_path");
-            content.swamp = Background("forest_clearing");
+            content.forestPath = Import("swamp_floaded_path", false, Forest);
+            content.swamp = Import("swamp_clearing", false, Forest);
+            content.coldForest = Import("forest_cold_closed", false, Forest);
+            content.coldClearing = Import("forest_cold_clearing_distant", false, Forest);
+            content.skeletonHand = Import("forest_cold_skeleton_hand", false, Forest);
+            content.coffin = Import("coffin_opened_straight_view", false, Forest);
+            content.mountain = Import("forest_cold_mountain_view", false, Forest);
             content.grave = Character("forest_child_grave");
             var rooms = new[] { "house_caos_sword", "house_flame_cloak", "house_bloodstein_living_room", "house_cauldron_living_room", "house_blood_circle_living_room" };
             content.houses = Array.ConvertAll(rooms, Background);
@@ -47,7 +53,7 @@ namespace IronTournament.Editor
             content.childDead = Character("child_dead");
             content.goblinDead = Character("goblin_dead");
             content.skeletonDead = Character("skeleton_dead");
-            content.skeletonGraveyard = Load<Sprite>("Assets/IronTournament/Art/Backgrounds/skeleton-graveyard.png");
+            content.skeletonGraveyard = Import("forest_cold_clearing_graveyard", false, Forest);
             content.skeletonPose = Existing("Skeleton", "south-west");
             content.warriorPoses = Poses("Warrior"); content.magePoses = Poses("Mage");
             content.goblinPoses = new[] { Existing("Goblin", "east"), Existing("Goblin", "west"), Existing("Goblin", "south-west") };
@@ -82,7 +88,7 @@ namespace IronTournament.Editor
         }
 
         private static Sprite[] Poses(string character) => new[] { Existing(character,"south-east"), Existing(character,"north"), Existing(character,"east"), Existing(character,"north-east") };
-        private static Sprite Existing(string character, string direction) => Load<Sprite>($"Assets/IronTournament/Art/Characters/{character}/Static/Idle/{direction}.png");
+        private static Sprite Existing(string character, string direction) => Load<Sprite>($"Assets/IronTournament/Art/Characters/{character}/Static/Idle/{(character == "Goblin" ? "rotations/" : "")}{direction}.png");
         private static T Load<T>(string path) where T : UnityEngine.Object => AssetDatabase.LoadAssetAtPath<T>(path) ?? throw new InvalidOperationException("Missing asset: " + path);
 
         [MenuItem("Iron Tournament/Play story proof")]

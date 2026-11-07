@@ -30,7 +30,7 @@ namespace IronTournament.Bootstrap
         private Sprite[] HeroPoses => run.hero == CombatantId.Warrior ? content.warriorPoses : content.magePoses;
         private EncounterConfiguration Encounter => ContentMapper.BuildEncounter(content.goblin);
         private EncounterConfiguration SkeletonEncounter => ContentMapper.BuildEncounter(content.skeleton);
-        private string Inventory => run == null ? "" : "PROTAGONISTA\n" + Hero.DisplayName + "\n\nBOLSA\n" +
+        private string Inventory => run == null ? "" : "PROTAGONISTA\n" + Hero.DisplayName + "\n\nINVENTÁRIO\n" +
             (run.equipment ? (run.hero == CombatantId.Mage ? "Manto de Chamas · 1 dano no Goblin, 3 no Esqueleto\n" : "Espada do Caos · 7% crítico no Goblin, 10% no Esqueleto\n") : "") +
             (run.food ? "Porção de comida\n" : "") + (run.crystal ? "Cristal do Destino\n" : "") +
             (run.reward != ItemId.None ? "Saque do Goblin: " + StoryEncounter.Rewards(run, Encounter).First(x => x.Id == run.reward).DisplayName + "\n" : "") +
@@ -39,7 +39,7 @@ namespace IronTournament.Bootstrap
 
         private void Start()
         {
-            var cameraObject = new GameObject("StoryCamera", typeof(Camera));
+            var cameraObject = new GameObject("StoryCamera", typeof(Camera), typeof(AudioListener));
             cameraObject.transform.SetParent(transform, false);
             cameraObject.tag = "MainCamera";
             cameraObject.transform.localPosition = new Vector3(0, 0, -10);
@@ -179,15 +179,14 @@ namespace IronTournament.Bootstrap
                     Draw(content.forestPath, "Fim do primeiro encontro");
                     view.Text("A jornada continua", "O protagonista segue pela floresta.");
                     view.Choice("Continuar", () => Go(StoryPage.ColdForest), 0, 3);
-                    view.Choice("Ver inventário", () => Message("Bolsa", Inventory, Render), 1, 3);
+                    view.Choice("Ver inventário", () => Message("Inventário", Inventory, Render), 1, 3);
                     view.Choice("Menu", Home, 2, 3); break;
                 case StoryPage.ColdForest:
-                    Dialogue("skeletonIntro", content.forestPath, "A floresta fria", () => { run.PrepareGraveyard(); Go(StoryPage.Graveyard); }); break;
+                    Dialogue("skeletonIntro", run.dialogue >= 3 ? content.coldClearing : content.coldForest, "A floresta fria", () => { run.PrepareGraveyard(); Go(StoryPage.Graveyard); }); break;
                 case StoryPage.Graveyard: Graveyard(); break;
                 case StoryPage.Grave: Grave(); break;
                 case StoryPage.SkeletonEmergence:
-                    Draw(content.skeletonGraveyard, "Algo se move sob a terra");
-                    view.Annotation("Placeholder: mão esquelética emergindo", .04f, .60f);
+                    Draw(content.skeletonHand, "Algo se move sob a terra");
                     view.Text("Entre os túmulos", "Uma mão esquelética rompe a terra. Um esqueleto sai do túmulo.");
                     view.Choice("Enfrentar", StartSkeletonBattle); break;
                 case StoryPage.SkeletonBattle: if (battle == null) StartSkeletonBattle(); else BattleScreen(); break;
@@ -195,14 +194,13 @@ namespace IronTournament.Bootstrap
                     Message("Carta encontrada", content.Script.skeletonLetter, () => Go(StoryPage.SkeletonReward)); break;
                 case StoryPage.SkeletonReward: SkeletonReward(); break;
                 case StoryPage.Castle:
-                    Draw(content.skeletonGraveyard, "Além das árvores"); view.Actor(HeroPoses[1], .25f, .08f, .24f);
-                    view.Annotation("Placeholder: montanha e castelo distante", .10f, .70f);
+                    Draw(content.mountain, "Além das árvores"); view.Actor(HeroPoses[1], .25f, .08f, .24f);
                     view.Text("O castelo", "Além do topo das árvores, uma montanha e um castelo muito distante surgem no horizonte.");
                     view.Choice("Voltar aos túmulos", () => { run.castleSeen = true; Go(StoryPage.Graveyard); }); break;
                 case StoryPage.SkeletonFinished:
                     Draw(content.skeletonGraveyard, "Fim do segundo encontro");
                     view.Text("Trecho concluído", "Sua jornada foi salva.");
-                    view.Choice("Ver inventário", () => Message("Bolsa", Inventory, Render), 0, 2);
+                    view.Choice("Ver inventário", () => Message("Inventário", Inventory, Render), 0, 2);
                     view.Choice("Menu", Home, 1, 2); break;
             }
         }
@@ -213,7 +211,8 @@ namespace IronTournament.Bootstrap
             : (int)run.page >= (int)StoryPage.Graveyard ? content.skeletonGraveyard : BackgroundForEncounter;
         private void Draw(Sprite image, string title)
         {
-            view.Draw(image, title, notice ?? (run.secondCampaign ? "Segunda campanha" : "Primeira campanha"), Inventory);
+            view.Draw(image, title, notice ?? (run.secondCampaign ? "Segunda campanha" : "Primeira campanha"), Inventory,
+                (int)run.page >= (int)StoryPage.ColdForest);
             if (image == content.swamp && ((run.secondCampaign && !run.previousChildSaved) ||
                 (run.page == StoryPage.Burial || run.page == StoryPage.Reward) &&
                 (run.Fate == ChildFate.Dying || run.Fate == ChildFate.Dead)))
@@ -226,7 +225,6 @@ namespace IronTournament.Bootstrap
             if (run.dialogue >= lines.Length) { done(); return; }
             Draw(background, title);
             if (actors) EncounterActors();
-            if (id == "skeletonIntro") view.Annotation("Placeholder: floresta fria", .04f, .74f);
             var line = lines[run.dialogue];
             var speakingActor = !actors ? null : line.speaker == "Protagonista" ? heroImage :
                 line.speaker == "Goblin" ? opponentImage : line.speaker == "Criança" ? childImage : null;
@@ -239,9 +237,9 @@ namespace IronTournament.Bootstrap
         private void EncounterActors()
         {
             childImage = null;
-            heroImage = view.Actor(HeroPoses[2], .25f, .13f, run.hero == CombatantId.Warrior ? .36f : .34f);
+            heroImage = view.Actor(HeroPoses[2], .25f, .13f, ApparentHeight(.36f, HeroPoses[2], run.hero, 4f));
             var before = run.page == StoryPage.Rescue;
-            if (before) opponentImage = view.Actor(content.goblinPoses[1], .57f, .38f, .13f);
+            if (before) opponentImage = view.Actor(content.goblinPoses[1], .57f, .38f, ApparentHeight(.36f, content.goblinPoses[1], CombatantId.Goblin, 5.5f));
             else opponentImage = view.Actor(content.goblinDead, .51f, .32f, .12f);
             if (run.secondCampaign)
             {
@@ -251,7 +249,8 @@ namespace IronTournament.Bootstrap
             var child = run.Fate == ChildFate.Saved ? (before ? content.child : content.childSaved)
                 : run.Fate == ChildFate.Dying && (before || run.page == StoryPage.AfterBattle && run.dialogue < content.Dialogue("afterB").Length - 1)
                     ? content.childHurt : content.childDead;
-            childImage = view.Actor(child, .78f, .35f, run.Fate == ChildFate.Saved ? .21f : .115f);
+            childImage = view.Actor(child, .78f, .35f, run.Fate == ChildFate.Saved
+                ? ApparentHeight(.36f, child, .8f, child.rect.height, 5.5f) : .115f);
         }
 
         private void Village()
@@ -285,8 +284,8 @@ namespace IronTournament.Bootstrap
         private void Graveyard()
         {
             Draw(content.skeletonGraveyard, "A clareira dos túmulos");
-            var points = new[] { new Vector2(.04f,.62f), new Vector2(.38f,.62f), new Vector2(.72f,.62f),
-                new Vector2(.04f,.36f), new Vector2(.38f,.36f), new Vector2(.72f,.36f) };
+            var points = new[] { new Vector2(.23f,.63f), new Vector2(.68f,.55f), new Vector2(.08f,.40f),
+                new Vector2(.50f,.37f), new Vector2(.10f,.18f), new Vector2(.74f,.23f) };
             for (var i = 0; i < points.Length; i++)
             {
                 var slot = i; var visited = (run.gravesVisited & (1 << slot)) != 0;
@@ -307,14 +306,12 @@ namespace IronTournament.Bootstrap
             var grave = (GraveContent)run.graves[run.activeGrave];
             if (grave == GraveContent.Skeleton)
             {
-                Draw(content.skeletonGraveyard, "Dentro do túmulo");
+                Draw(content.coffin, "Dentro do túmulo");
                 view.Actor(content.skeletonDead, .65f, .25f, .19f);
                 view.Text("Investigar", "Restam apenas os ossos do Esqueleto.");
                 view.Choice("Voltar aos túmulos", () => Go(StoryPage.Graveyard)); return;
             }
-            var labels = new[] { "carta de Lucy", "carta de Samuel", "rosário e flores", "boneca de pano", "restos de um gato", "restos mortais" };
-            Draw(content.skeletonGraveyard, "Dentro do túmulo");
-            view.Annotation("Placeholder: " + labels[(int)grave], .05f, .68f);
+            Draw(content.coffin, "Dentro do túmulo");
             var letter = grave == GraveContent.LucyLetter || grave == GraveContent.SamuelLetter;
             view.Text("Investigar", letter ? "Há uma carta junto aos restos mortais." : content.Script.graves[(int)grave]);
             if (letter)
@@ -357,7 +354,7 @@ namespace IronTournament.Bootstrap
                 view.Hotspot("Quarto", id == 3 ? .05f : .72f, .50f, () => { run.room = true; Save(); Render(); });
             view.Choice(run.room ? "Voltar à sala" : "Voltar à vila", () =>
             { if (run.room) run.room = false; else run.LeaveHouse(); Save(); Render(); }, 0, 2, StoryButtonStyle.Secondary);
-            view.Choice("Bolsa", () => Message("Bolsa", Inventory, Render), 1, 2, StoryButtonStyle.Inventory);
+            view.Choice("Inventário", () => Message("Inventário", Inventory, Render), 1, 2, StoryButtonStyle.Inventory);
         }
 
         private void InspectEquipment()
@@ -458,10 +455,11 @@ namespace IronTournament.Bootstrap
         {
             var skeleton = run.page == StoryPage.SkeletonBattle;
             Draw(skeleton ? content.skeletonGraveyard : BackgroundForEncounter, skeleton ? "Encontro II · Esqueleto" : "Encontro I · Goblin");
-            heroImage = view.Actor(HeroPoses[3], .28f, .13f, run.hero == CombatantId.Warrior ? .38f : .359f);
-            // Apparent enemy height = physical height ratio × camera-depth ratio (4m / 5.5m).
-            var enemyHeight = .38f * ((skeleton ? 1.5f : .8f) / 1.8f) * (4f / 5.5f);
-            opponentImage = view.Actor(skeleton ? content.skeletonPose : content.goblinPoses[2], .69f, .43f, enemyHeight);
+            heroImage = view.Actor(HeroPoses[3], .28f, .13f, ApparentHeight(.38f, HeroPoses[3], run.hero, 4f));
+            var opponentId = skeleton ? CombatantId.Skeleton : CombatantId.Goblin;
+            var opponentSprite = skeleton ? content.skeletonPose : content.goblinPoses[2];
+            opponentImage = view.Actor(opponentSprite, .69f, skeleton ? .32f : .43f,
+                ApparentHeight(.38f, opponentSprite, opponentId, 5.5f));
             var state = battle.State;
             heroHealth = view.Health(heroImage, Hero.DisplayName, state.Hero.CurrentHealth, state.Hero.Stats.MaximumHealth);
             opponentHealth = view.Health(opponentImage, skeleton ? "Esqueleto" : "Goblin", state.Opponent.CurrentHealth, state.Opponent.Stats.MaximumHealth);
@@ -472,6 +470,19 @@ namespace IronTournament.Bootstrap
             for (var i = 0; i < visible.Length; i++)
             { var ability = visible[i]; view.Choice(ability.DisplayName, () => SubmitBattle(ability.Id), i, visible.Length); }
         }
+
+        private static float ApparentHeight(float warriorHeight, Sprite sprite, CombatantId id, float distance)
+        {
+            // Body pixels exclude transparent margins and weapons; depths are provisional camera calibration.
+            var meters = id == CombatantId.Warrior ? 1.8f : id == CombatantId.Mage ? 1.7f :
+                id == CombatantId.Goblin ? .8f : 1.5f;
+            var bodyPixels = id == CombatantId.Warrior || id == CombatantId.Skeleton ? 46f :
+                id == CombatantId.Mage ? 42f : 30f;
+            return ApparentHeight(warriorHeight, sprite, meters, bodyPixels, distance);
+        }
+
+        private static float ApparentHeight(float warriorHeight, Sprite sprite, float meters, float bodyPixels, float distance) =>
+            warriorHeight * (46f / 48f) * (meters / 1.8f) * (4f / distance) * sprite.rect.height / bodyPixels;
 
         public void SubmitBattle(AbilityId action)
         {

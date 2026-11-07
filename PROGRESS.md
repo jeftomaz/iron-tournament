@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-11-07 — Artes da prova narrativa
+
+- Integradas as artes locais da floresta, dos túmulos e do Goblin ao fluxo do PR #47; restauradas proporções aparentes e áudio, e corrigida a orientação em telas estreitas. Visual aprovado; substituído “Bolsa” por “Inventário”.
+
 ## 2026-11-05 — Cristal no cemitério
 
 - Cristal colore cartas e o túmulo exclusivo do Esqueleto; sem ele, o encontro substitui o conteúdo entre a 4ª e a 6ª abertura. EditMode 112/112, PlayMode 44/44 e build WebGL aprovados.
