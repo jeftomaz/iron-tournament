@@ -109,10 +109,10 @@ namespace IronTournament.Bootstrap
         {
             resizeScreen = () => Attributes(hero);
             view.Draw(null, hero.DisplayName, "Características iniciais");
-            view.Actor(hero.Id == CombatantId.Warrior ? content.warriorPoses[0] : content.magePoses[0], .5f, .17f, .50f);
+            view.Actor(hero.Id == CombatantId.Warrior ? content.warriorPoses[0] : content.magePoses[0], .5f, hero.Id == CombatantId.Warrior ? .11f : .17f, .50f);
             var stats = hero.BaseStats;
             view.Text("Atributos", $"HP {stats.MaximumHealth} · ATQ {stats.Attack} · DEF {stats.Defense}\n" +
-                (hero.Id == CombatantId.Warrior ? "Resistente. Atacar e Defender; Pergaminho com HP ≤ 30%." : "Magia ignora defesa. Uma reversão por encontro; Chifre intercepta golpe letal."));
+                (hero.Id == CombatantId.Warrior ? "Um combatente experiênte, calejado pelos longos anos de batalhas. Resistente, porém suceptível à defesas fortes." : "Magia ignora defesa. Uma reversão por encontro; Chifre intercepta golpe letal."), heightOverride: hero.Id == CombatantId.Warrior ? .40f : (float?)null);
             view.Choice("Selecionar", () => ConfirmHero(hero.Id), 0, 2); view.Choice("Voltar", Selection, 1, 2, StoryButtonStyle.Secondary);
         }
 
