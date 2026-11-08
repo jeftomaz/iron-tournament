@@ -122,6 +122,16 @@ namespace IronTournament.Presentation.Tests
         }
 
         [UnityTest]
+        public IEnumerator MageAttributesShowTheRequestedDescription()
+        {
+            yield return Load();
+            Click("Escolher protagonista");
+            view.GetComponentsInChildren<Button>().Last(x => x.name == "Ver atributos").onClick.Invoke();
+            var text = view.GetComponentsInChildren<Text>().Select(x => x.text).ToArray();
+            Assert.That(text, Does.Contain("HP 110 · ATQ 30 · DEF 5\nJovem e pronto para testar seus conhecimentos arcanos. Poderoso, porém vulnerável."));
+        }
+
+        [UnityTest]
         public IEnumerator OpeningNarrationIsCenteredOnBlack()
         {
             yield return Load();
