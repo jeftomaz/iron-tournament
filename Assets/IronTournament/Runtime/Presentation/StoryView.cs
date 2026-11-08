@@ -120,11 +120,11 @@ namespace IronTournament.Presentation
             actions = Rect("Actions", information, .08f, .12f, .84f, Portrait ? .70f : .72f);
         }
 
-        public void Text(string speaker, string message, bool animate = false, Image speakingActor = null, bool cinematic = false)
+        public void Text(string speaker, string message, bool animate = false, Image speakingActor = null, bool cinematic = false, float? heightOverride = null)
         {
             if (string.IsNullOrEmpty(message)) return;
             var narration = speaker == "Narrador";
-            var height = message.Length > 110 ? .34f : message.Length > 65 ? .28f : .23f;
+            var height = heightOverride ?? (message.Length > 110 ? .34f : message.Length > 65 ? .28f : .23f);
             var width = speakingActor == null ? .92f : .72f;
             if (speakingActor != null)
             {

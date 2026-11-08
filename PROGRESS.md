@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-11-07 — Atributos do Guerreiro
+
+- Atualizada a descrição apresentada na escolha do Guerreiro, mantendo os atributos do conteúdo.
+
 ## 2026-11-07 — Menu narrativo
 
 - Atualizados os textos da abertura e removida a identificação de capítulo do menu inicial.

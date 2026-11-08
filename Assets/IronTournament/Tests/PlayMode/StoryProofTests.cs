@@ -112,6 +112,16 @@ namespace IronTournament.Presentation.Tests
         }
 
         [UnityTest]
+        public IEnumerator WarriorAttributesShowTheRequestedDescription()
+        {
+            yield return Load();
+            Click("Escolher protagonista");
+            view.GetComponentsInChildren<Button>().First(x => x.name == "Ver atributos").onClick.Invoke();
+            var text = view.GetComponentsInChildren<Text>().Select(x => x.text).ToArray();
+            Assert.That(text, Does.Contain("HP 120 · ATQ 30 · DEF 23\nUm combatente experiênte, calejado pelos longos anos de batalhas. Resistente, porém suceptível à defesas fortes."));
+        }
+
+        [UnityTest]
         public IEnumerator OpeningNarrationIsCenteredOnBlack()
         {
             yield return Load();

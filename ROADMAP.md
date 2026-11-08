@@ -62,7 +62,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 ## Melhorias futuras — não prioritárias
 
 - `done` `JP` Menu principal: trocar “Um chamado nas trevas” por “Até que o último caia” e remover “Capítulo 1: A Vila”, “Uma jornada. Duas classes. Suas escolhas.”, “A Jornada” e “Escolha seu protagonista e descubra o que restou da vila”.
-- `todo` `JP` Informações do Guerreiro: apresentar “HP 120; ATQ 30; DEF 23; Um combatente experiênte, calejado pelos longos anos de batalhas. Resistente, porém suceptível à defesas fortes.” no lugar das informações atuais.
+- `done` `JP` Informações do Guerreiro: apresentar “HP 120; ATQ 30; DEF 23; Um combatente experiênte, calejado pelos longos anos de batalhas. Resistente, porém suceptível à defesas fortes.” no lugar das informações atuais.
 - `todo` `JP` Informações do Mago: substituir as informações atuais por “Jovem e pronto para testar seus conhecimentos arcanos. Poderoso, porém vulnerável.”
 - `todo` `JP` Abertura da campanha: remover “Primeira campanha” e títulos duplicados no topo; incluir a arte especial em `Assets/IronTournament/Art/Backgrounds_new/` na exibição do título (arquivo a identificar); após o título, exibir a informação do capítulo em tela cheia com fundo preto, em todos os capítulos.
 - `todo` `JP` Na vila, apresentar apenas “Ahhhhhh” em balão vindo da floresta; o restante é fala do personagem. Consultar o Obsidian antes da implementação.
