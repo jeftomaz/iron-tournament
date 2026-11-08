@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-11-07 — Atributos do Mago
+
+- Atualizada a descrição do Mago, mantendo HP, ATQ e DEF; apresentação aprovada visualmente.
+
 ## 2026-11-07 — Atributos do Guerreiro
 
 - Atualizada a descrição apresentada na escolha do Guerreiro, mantendo os atributos do conteúdo.
