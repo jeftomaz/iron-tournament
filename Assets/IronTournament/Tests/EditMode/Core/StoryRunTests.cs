@@ -216,6 +216,37 @@ namespace IronTournament.Core.Tests
             Assert.Throws<InvalidOperationException>(() => StoryEncounter.ChooseSkeletonReward(run, skeleton, offer[1].Id, restored));
         }
 
+        [TestCase(CombatantId.Warrior, false, false)]
+        [TestCase(CombatantId.Warrior, false, true)]
+        [TestCase(CombatantId.Warrior, true, false)]
+        [TestCase(CombatantId.Warrior, true, true)]
+        [TestCase(CombatantId.Mage, false, false)]
+        [TestCase(CombatantId.Mage, false, true)]
+        [TestCase(CombatantId.Mage, true, false)]
+        [TestCase(CombatantId.Mage, true, true)]
+        public void SkeletonLoadsKnownAttributeVersionsAndRejectsAlteredRewards(CombatantId id, bool legacy, bool experience)
+        {
+            var current = id == CombatantId.Warrior ? new CombatantStats(150, 25, 20) : new CombatantStats(120, 30, 5);
+            var previous = id == CombatantId.Warrior ? TestContent.Warrior().BaseStats : TestContent.Mage().BaseStats;
+            var saved = legacy ? previous : current;
+            var hero = TestContent.Hero(id, current, AbilityId.BasicAttack);
+            var pool = new[] { TestContent.Item(ItemId.AttackGem, 3, new ItemModifier(ItemModifierKind.Attack, 10)), TestContent.Item(ItemId.HealingPotion, 3) };
+            var goblin = new EncounterConfiguration(TestContent.Goblin(), 15, pool);
+            var run = StoryRun.Create(id, 417); run.page = StoryPage.ColdForest; run.PrepareGraveyard();
+            run.skeletonAppeared = true; run.page = StoryPage.SkeletonEmergence;
+            run.gravesVisited = (1 << (run.skeletonTrigger - 1)) - 1; run.activeGrave = run.skeletonTrigger - 1;
+            run.reward = ItemId.AttackGem; run.goblinExperience = experience; run.victoryHealth = 70;
+            run.rewardAttack = saved.Attack + 10 + (experience ? 2 : 0);
+            run.rewardDefense = saved.Defense + (experience ? 1 : 0);
+
+            var restored = StoryEncounter.RestoreSkeletonHero(run, hero, goblin, false);
+            Assert.That(restored.CurrentHealth, Is.EqualTo(70));
+            Assert.That(restored.Stats.Attack, Is.EqualTo(run.rewardAttack));
+            Assert.That(restored.Stats.Defense, Is.EqualTo(run.rewardDefense));
+            run.rewardAttack++;
+            Assert.Throws<ArgumentException>(() => StoryEncounter.RestoreSkeletonHero(run, hero, goblin, false));
+        }
+
         [Test]
         public void SkeletonCheckpointRestoresAnArmedGuardian()
         {

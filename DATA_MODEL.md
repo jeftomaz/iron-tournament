@@ -20,15 +20,15 @@ O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration
 
 | Combatente | HP | ATK | DEF | Habilidades / regra |
 |---|---:|---:|---:|---|
-| Guerreiro (equipado) | 120 | 30 | 23 | `BasicAttack`, `Guard`, `UseHopeScroll` |
-| Mago (equipado) | 110 | 30 | 5 | `BasicAttack`, `RevertTurn`, `RevertBattle`, `ArmGuardian` |
-| Goblin | 45 | 15 | 3 | `BasicAttack` |
-| Esqueleto | 62 | 20 | 5 | `BasicAttack` |
-| Cavaleiro | 80 | 26 | 8 | `BasicAttack` |
-| Lobisomem | 95 | 30 | 10 | `BasicAttack` |
-| Vampiro | 110 | 34 | 12 | `BasicAttack`; fúria |
-| Necromante | 125 | 38 | 14 | `BasicAttack`; fúria |
-| Rei Demônio | 145 | 44 | 16 | `BasicAttack`; fúria |
+| Guerreiro (equipado) | 150 | 25 | 20 | `BasicAttack`, `Guard`, `UseHopeScroll` |
+| Mago (equipado) | 120 | 30 | 5 | `BasicAttack`, `RevertTurn`, `RevertBattle`, `ArmGuardian` |
+| Goblin | 40 | 15 | 15 | `BasicAttack` |
+| Esqueleto | 50 | 20 | 20 | `BasicAttack` |
+| Cavaleiro | 100 | 35 | 35 | `BasicAttack` |
+| Lobisomem | 120 | 45 | 18 | `BasicAttack` |
+| Vampiro | 130 | 55 | 20 | `BasicAttack`; fúria |
+| Necromante | 160 | 65 | 22 | `BasicAttack`; fúria |
+| Rei Demônio | 200 | 75 | 25 | `BasicAttack`; fúria |
 
 | Item | Peso | Efeito | Exclusivo |
 |---|---:|---|---|
@@ -50,15 +50,15 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 
 | Asset | HP | ATK | DEF | Habilidades |
 |---|---:|---:|---:|---|
-| `Warrior.asset` | 120 | 30 | 23 | `BasicAttack.asset`, `Guard.asset`, `UseHopeScroll.asset` |
-| `Mage.asset` | 110 | 30 | 5 | `MagicAttack.asset`, `RevertTurn.asset`, `RevertBattle.asset`, `ArmGuardian.asset` |
-| `Goblin.asset` | 45 | 15 | 3 | `BasicAttack.asset` |
-| `Skeleton.asset` | 62 | 20 | 5 | `BasicAttack.asset` |
-| `Knight.asset` | 80 | 26 | 8 | `BasicAttack.asset` |
-| `Werewolf.asset` | 95 | 30 | 10 | `BasicAttack.asset` |
-| `Vampire.asset` | 110 | 34 | 12 | `BasicAttack.asset` |
-| `Necromancer.asset` | 125 | 38 | 14 | `BasicAttack.asset` |
-| `DemonKing.asset` | 145 | 44 | 16 | `BasicAttack.asset` |
+| `Warrior.asset` | 150 | 25 | 20 | `BasicAttack.asset`, `Guard.asset`, `UseHopeScroll.asset` |
+| `Mage.asset` | 120 | 30 | 5 | `MagicAttack.asset`, `RevertTurn.asset`, `RevertBattle.asset`, `ArmGuardian.asset` |
+| `Goblin.asset` | 40 | 15 | 15 | `BasicAttack.asset` |
+| `Skeleton.asset` | 50 | 20 | 20 | `BasicAttack.asset` |
+| `Knight.asset` | 100 | 35 | 35 | `BasicAttack.asset` |
+| `Werewolf.asset` | 120 | 45 | 18 | `BasicAttack.asset` |
+| `Vampire.asset` | 130 | 55 | 20 | `BasicAttack.asset` |
+| `Necromancer.asset` | 160 | 65 | 22 | `BasicAttack.asset` |
+| `DemonKing.asset` | 200 | 75 | 25 | `BasicAttack.asset` |
 
 - `MagicAttack.asset` mantém o ID `BasicAttack`, mira o oponente e consome turno; o nome de exibição é `Ataque mágico`.
 - `RevertTurn.asset` e `RevertBattle.asset` miram o próprio Mago e não consomem turno. Recursos de itens do Mago seguem a etapa de campanha.
@@ -112,6 +112,7 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 - As cartas de Lucy e Samuel começam em túmulos adjacentes; sem Cristal, o Esqueleto substitui integralmente o conteúdo do túmulo em que surge, inclusive carta ou objeto. Seed, encontro e oferta permanecem estáveis ao carregar ou repetir.
 - `StoryEncounter`: inimigo e oferta reproduzíveis pela seed, equipamentos da vila exclusivos por classe, Manto com 1 de dano no Goblin, Espada com 7% de crítico; saques excluem Manto, agora encontrado na vila. A campanha clássica conserva seu pool e Manto de 5 de dano.
 - No Esqueleto, o herói mantém HP, recompensa e recursos do Goblin; o Manto causa 3 de dano e a Espada oferece 10% de crítico.
+- Checkpoints preservam flags de experiência e aceitam atributos atuais ou legados somente quando reproduzem o saque salvo; valores adulterados continuam rejeitados. Em versões indistinguíveis, usar o HP máximo atual sem curar o HP salvo.
 - `CombatantState` inclui dano do Manto e chance de crítico, copiados nas reversões; sem equipamento narrativo mantém os valores antigos.
 - `StoryContent` referencia arte de abertura e `story-script.json`, com textos distintos para casas e quartos. Os PNGs originais permanecem intactos; sprites derivados usam limites do alpha.
 - `StorySaveStore`: duas entradas PlayerPrefs alternadas com revisão e SHA-256 do JSON; seleciona a revisão válida mais recente e ignora versão, enums, máscaras, permutação, saques fora da oferta ou combinações inválidas. Checksum detecta corrupção, não impede adulteração pelo próprio jogador.

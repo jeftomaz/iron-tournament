@@ -1,8 +1,13 @@
 # Progresso
 
+## 2026-11-13 — Publicação por tarefas
+
+- Atributos separados em `feat/atributos-canonicos`; compatibilidade autorizada para checkpoints antigos/novos com ou sem experiência, mantendo validação do saque e HP salvo. EditMode 121/121, PlayMode 47/47 e WebGL aprovados.
+- Experiência e capturas preservadas no stash `experiencia separada aguardando atributos 2026-11-13` (pai `4f33feb`); snapshot original preservado no stash `snapshot antes da publicacao por tarefas 2026-11-12`.
+
 ## 2026-11-12 — Acervo de arte
 
-- Preparados novos cenários, personagens, poses e equipamentos para compartilhamento; assets legados preservados até a migração das referências em PRs próprias.
+- Integrados novos cenários, personagens, poses e equipamentos pela PR #53; assets legados preservados até a migração das referências em PRs próprias.
 - Validação da branch de arte: EditMode 112/112, PlayMode 47/47 e build WebGL aprovados por `scripts/verify.sh`.
 - As demais alterações locais estão preservadas no stash `snapshot antes da publicacao por tarefas 2026-11-12`; publicação segue por tarefas, com integração sequencial.
 

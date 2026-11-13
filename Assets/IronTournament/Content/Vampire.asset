@@ -16,9 +16,9 @@ MonoBehaviour:
   side: 2
   displayName: Vampiro
   baseStats:
-    maximumHealth: 110
-    attack: 34
-    defense: 12
+    maximumHealth: 130
+    attack: 55
+    defense: 20
   abilities:
   - {fileID: 11400000, guid: d9800e89631625a448a01de68c5f263b, type: 2}
   portrait: {fileID: 3373983171478037719, guid: 8651af2548ddd4bdcb5418d4b386ab2d, type: 3}

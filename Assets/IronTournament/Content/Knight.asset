@@ -16,9 +16,9 @@ MonoBehaviour:
   side: 2
   displayName: Cavaleiro
   baseStats:
-    maximumHealth: 80
-    attack: 26
-    defense: 8
+    maximumHealth: 100
+    attack: 35
+    defense: 35
   abilities:
   - {fileID: 11400000, guid: d9800e89631625a448a01de68c5f263b, type: 2}
   portrait: {fileID: 3373983171478037719, guid: a1c6b27c1debe413683e2fd361d424a2, type: 3}

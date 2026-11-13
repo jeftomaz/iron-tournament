@@ -118,7 +118,7 @@ namespace IronTournament.Presentation.Tests
             Click("Escolher protagonista");
             view.GetComponentsInChildren<Button>().First(x => x.name == "Ver atributos").onClick.Invoke();
             var text = view.GetComponentsInChildren<Text>().Select(x => x.text).ToArray();
-            Assert.That(text, Does.Contain("HP 120 · ATQ 30 · DEF 23\nUm combatente experiênte, calejado pelos longos anos de batalhas. Resistente, porém suceptível à defesas fortes."));
+            Assert.That(text, Does.Contain("HP 150 · ATQ 25 · DEF 20\nUm combatente experiênte, calejado pelos longos anos de batalhas. Resistente, porém suceptível à defesas fortes."));
         }
 
         [UnityTest]
@@ -128,7 +128,7 @@ namespace IronTournament.Presentation.Tests
             Click("Escolher protagonista");
             view.GetComponentsInChildren<Button>().Last(x => x.name == "Ver atributos").onClick.Invoke();
             var text = view.GetComponentsInChildren<Text>().Select(x => x.text).ToArray();
-            Assert.That(text, Does.Contain("HP 110 · ATQ 30 · DEF 5\nJovem e pronto para testar seus conhecimentos arcanos. Poderoso, porém vulnerável."));
+            Assert.That(text, Does.Contain("HP 120 · ATQ 30 · DEF 5\nJovem e pronto para testar seus conhecimentos arcanos. Poderoso, porém vulnerável."));
         }
 
         [UnityTest]
