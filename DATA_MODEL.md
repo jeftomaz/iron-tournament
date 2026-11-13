@@ -12,7 +12,7 @@ Definições são `ScriptableObject` em `Content`; o núcleo recebe valores de r
 | `AbilityDefinition` | Identidade estável, nome de exibição, alvo e consumo de turno; a regra do efeito fica no `Core` |
 | `ItemDefinition` | Peso de drop e modificadores aplicados |
 | `EncounterDefinition` | Oponente, pool de drops e variação fixa de `±15%` dos atributos inimigos |
-| `CampaignDefinition` | Ordem fixa dos encontros e condição de conclusão |
+| `CampaignDefinition` | Ordem fixa dos encontros, configuração opcional da fase final e condição de conclusão |
 
 O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration`, `ItemConfiguration`, `EncounterConfiguration` e `CampaignConfiguration` imutáveis no `Core`. `Content` referencia `Core`; o sentido inverso é proibido.
 
@@ -29,6 +29,7 @@ O adaptador `ContentMapper` cria `CombatantConfiguration`, `AbilityConfiguration
 | Vampiro | 130 | 55 | 20 | `BasicAttack`; fúria |
 | Necromante | 160 | 65 | 22 | `BasicAttack`; fúria |
 | Rei Demônio | 200 | 75 | 25 | `BasicAttack`; fúria |
+| Rei Demônio — fase 2 | 250 | 90 | 30 | `BasicAttack`; configuração opcional |
 
 | Item | Peso | Efeito | Exclusivo |
 |---|---:|---|---|
@@ -59,10 +60,12 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 | `Vampire.asset` | 130 | 55 | 20 | `BasicAttack.asset` |
 | `Necromancer.asset` | 160 | 65 | 22 | `BasicAttack.asset` |
 | `DemonKing.asset` | 200 | 75 | 25 | `BasicAttack.asset` |
+| `DemonKingPhase2.asset` | 250 | 90 | 30 | `BasicAttack.asset` |
 
 - `MagicAttack.asset` mantém o ID `BasicAttack`, mira o oponente e consome turno; o nome de exibição é `Ataque mágico`.
 - `RevertTurn.asset` e `RevertBattle.asset` miram o próprio Mago e não consomem turno. Recursos de itens do Mago seguem a etapa de campanha.
 - `Campaign.asset` ordena `GoblinEncounter`, `SkeletonEncounter`, `KnightEncounter`, `WerewolfEncounter`, `VampireEncounter`, `NecromancerEncounter` e `DemonKingEncounter`.
+- `CampaignDefinition.FinalPhase` e `CampaignConfiguration.FinalPhase` aceitam somente Rei Demônio inimigo ou `null`; `Campaign.asset` referencia `DemonKingPhase2`. A execução dessa fase depende da integração no `CampaignRun`.
 - Cada encontro declara variação de ±15% e o pool completo de nove itens. O núcleo filtra exclusivos pela classe e não oferece saque após o Rei Demônio; fúria continua sendo regra do núcleo.
 - Ambas as ações consomem turno; Atacar mira o oponente e Defender mira o próprio combatente.
 - Experiência por vitória: Goblin +2/+1, Esqueleto +3/+1, Cavaleiro +3/+2, Lobisomem +4/+2, Vampiro +4/+3 e Necromante +5/+3 (ATQ/DEF). Rei Demônio e modo inimigo não concedem esses ganhos.

@@ -48,7 +48,7 @@ namespace IronTournament.Content
                 encounters.Add(MapEncounter(encounter));
             }
 
-            return new CampaignConfiguration(encounters);
+            return new CampaignConfiguration(encounters, definition.FinalPhase == null ? null : MapCombatant(definition.FinalPhase));
         }
 
         private static EncounterConfiguration MapEncounter(EncounterDefinition definition)

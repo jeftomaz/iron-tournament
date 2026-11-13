@@ -1,5 +1,10 @@
 # Progresso
 
+## 2026-11-13 — Contrato da fase final
+
+- Recuperados configuração opcional, validação, mapeamento e asset da segunda fase do Rei; o construtor antigo segue válido com `null`. A transição de combate permanece para PR dependente.
+- Mapeamento do asset canônico coberto pelo teste existente; EditMode 124/124, PlayMode 47/47 e WebGL aprovados.
+
 ## 2026-11-13 — Configuração Unity/WebGL
 
 - Recuperados o perfil Web de desenvolvimento, as configurações URP e as preferências de templates de cena do snapshot; sem campos sensíveis preenchidos no perfil.

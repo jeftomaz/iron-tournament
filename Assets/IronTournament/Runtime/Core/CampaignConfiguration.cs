@@ -19,7 +19,7 @@ namespace IronTournament.Core
 
         private readonly ReadOnlyCollection<EncounterConfiguration> encounters;
 
-        public CampaignConfiguration(IList<EncounterConfiguration> encounters)
+        public CampaignConfiguration(IList<EncounterConfiguration> encounters, CombatantConfiguration finalPhase = null)
         {
             if (encounters == null)
             {
@@ -45,10 +45,14 @@ namespace IronTournament.Core
                 }
             }
 
+            if (finalPhase != null && (finalPhase.Id != CombatantId.DemonKing || finalPhase.Side != CombatantSide.Enemy))
+                throw new ArgumentException("The final phase must be the Demon King.", nameof(finalPhase));
+            FinalPhase = finalPhase;
             this.encounters = new ReadOnlyCollection<EncounterConfiguration>(
                 new List<EncounterConfiguration>(encounters));
         }
 
         public IReadOnlyList<EncounterConfiguration> Encounters => encounters;
+        public CombatantConfiguration FinalPhase { get; }
     }
 }

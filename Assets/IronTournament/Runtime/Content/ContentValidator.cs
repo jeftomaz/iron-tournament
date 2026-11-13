@@ -38,6 +38,13 @@ namespace IronTournament.Content
                     $"Campaign must follow the canonical order: {string.Join(", ", CampaignConfiguration.CanonicalOrder)}.");
             }
 
+            if (definition.FinalPhase != null)
+            {
+                ValidateCombatant(definition.FinalPhase, "Final phase", errors);
+                if (definition.FinalPhase.Id != CombatantId.DemonKing || definition.FinalPhase.Side != CombatantSide.Enemy)
+                    errors.Add("Final phase must be the Demon King.");
+            }
+
             return new ContentValidationReport(errors);
         }
 
