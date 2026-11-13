@@ -129,6 +129,7 @@ namespace IronTournament.Content.Tests
             Assert.That(warriorConfiguration.Abilities[2].Id, Is.EqualTo(AbilityId.UseHopeScroll));
             Assert.That(mageConfiguration.Abilities[3].Id, Is.EqualTo(AbilityId.ArmGuardian));
             Assert.That(knightConfiguration.BaseStats, Is.EqualTo(new CombatantStats(100, 35, 35)));
+            Assert.That(configuration.FinalPhase.BaseStats, Is.EqualTo(new CombatantStats(250, 90, 30)));
             Assert.That(knight.Portrait, Is.Not.Null);
         }
 

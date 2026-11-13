@@ -8,7 +8,9 @@ namespace IronTournament.Content
     public sealed class CampaignDefinition : ScriptableObject
     {
         [SerializeField] private EncounterDefinition[] orderedEncounters;
+        [SerializeField] private CombatantDefinition finalPhase;
 
         public IReadOnlyList<EncounterDefinition> OrderedEncounters => orderedEncounters ?? Array.Empty<EncounterDefinition>();
+        public CombatantDefinition FinalPhase => finalPhase;
     }
 }
