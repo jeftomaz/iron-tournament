@@ -4,6 +4,6 @@ set -euo pipefail
 repository_root="$(git rev-parse --show-toplevel)"
 git -C "$repository_root" diff --cached --check
 
-if git -C "$repository_root" diff --cached --name-only --diff-filter=ACDMRTUXB | grep -qvE '\.md$'; then
+if git -C "$repository_root" diff --cached --name-only --diff-filter=ACDMRTUXB | grep -vE '\.md$' >/dev/null; then
   exec "$repository_root/scripts/verify.sh"
 fi
