@@ -17,6 +17,7 @@ namespace IronTournament.Content
         public CombatantDefinition mage;
         public EncounterDefinition goblin;
         public Sprite opening;
+        public Sprite campaignTitle;
         public EncounterDefinition skeleton;
         public Sprite village;
         public Sprite distantVillage;

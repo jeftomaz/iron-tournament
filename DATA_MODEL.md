@@ -119,6 +119,6 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 - No Esqueleto, o herói mantém HP, experiência, recompensa e recursos do Goblin; o Manto causa 3 de dano e a Espada oferece 10% de crítico.
 - Checkpoints preservam flags de experiência e aceitam atributos atuais ou legados somente quando reproduzem o saque salvo; valores adulterados continuam rejeitados. Em versões indistinguíveis, usar o HP máximo atual sem curar o HP salvo.
 - `CombatantState` inclui dano do Manto e chance de crítico, copiados nas reversões; sem equipamento narrativo mantém os valores antigos.
-- `StoryContent` referencia arte de abertura e `story-script.json`, com textos distintos para casas e quartos. Os PNGs originais permanecem intactos; sprites derivados usam limites do alpha.
+- `StoryContent` separa a arte do menu (`opening`) da arte opcional do título (`campaignTitle`) e referencia `story-script.json`, com textos distintos para casas e quartos. Os PNGs originais permanecem intactos; sprites derivados usam limites do alpha.
 - `StorySaveStore`: duas entradas PlayerPrefs alternadas com revisão e SHA-256 do JSON; seleciona a revisão válida mais recente e ignora versão, enums, máscaras, permutação, saques fora da oferta ou combinações inválidas. Checksum detecta corrupção, não impede adulteração pelo próprio jogador.
 - Marcadores de segunda campanha e origem são validados no modelo. Ainda não há gravação de conclusão da campanha completa nessa prova; não confundir Finished do trecho com Completed de CampaignRun.
