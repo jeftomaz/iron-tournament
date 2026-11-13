@@ -1,0 +1,36 @@
+{
+  "group_id": "42d15298-1af3-4b45-9059-047730419dcc",
+  "states": [
+    {
+      "character": {
+        "id": "6a1edb7e-ecef-494e-ba45-da0ff433cd5f",
+        "name": "Wounded pose. The wa",
+        "prompt": "Create a legendary Excelsior Armor skin for the existing warrior. Replace his original armor with magnificent silver-white plate armor, decorated with elegant golden edges and subtle sacred engravings. The chestplate and shoulder guards should appear stronger and more imposing, with a noble, divine appearance. Add a long dark red or deep burgundy cape flowing behind him, enhancing his heroic and sacred presence. Add a faint warm golden radiance around the armor, suggesting celestial protection. Preserve the warrior's face, hair, proportions, sword, shield and original idle pose.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-11T18:31:44.771210+00:00"
+      },
+      "folder": "Wounded_pose._The_wa",
+      "frames": {
+        "rotations": {
+          "south": "Wounded_pose._The_wa/rotations/south.png",
+          "south-east": "Wounded_pose._The_wa/rotations/south-east.png",
+          "east": "Wounded_pose._The_wa/rotations/east.png",
+          "north-east": "Wounded_pose._The_wa/rotations/north-east.png",
+          "north": "Wounded_pose._The_wa/rotations/north.png",
+          "north-west": "Wounded_pose._The_wa/rotations/north-west.png",
+          "west": "Wounded_pose._The_wa/rotations/west.png",
+          "south-west": "Wounded_pose._The_wa/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-11T18:33:35.484134"
+}

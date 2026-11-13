@@ -1,0 +1,36 @@
+{
+  "group_id": "59d7498b-bc6d-4891-9ffa-c33d1524f2ff",
+  "states": [
+    {
+      "character": {
+        "id": "4b4bc76a-5211-4ea3-98f8-3eeb31c3acc6",
+        "name": "Combat stance",
+        "prompt": "Replace only the warrior's original sword with the Chaos Sword, matching exactly the weapon design established in the Chaos Sword warrior variant. Keep the same blade shape, dark aged steel, distinctive crossguard and subtle irregularities. Preserve the mirror shield completely unchanged, including its polished reflective surface, shape, size and metallic rim. Maintain the exact original character, proportions, equipment placement and idle pose. Both special items must remain clearly recognizable. No additional visual effects or changes to the character.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-11T17:49:03.703068+00:00"
+      },
+      "folder": "Combat_stance",
+      "frames": {
+        "rotations": {
+          "south": "Combat_stance/rotations/south.png",
+          "south-east": "Combat_stance/rotations/south-east.png",
+          "east": "Combat_stance/rotations/east.png",
+          "north-east": "Combat_stance/rotations/north-east.png",
+          "north": "Combat_stance/rotations/north.png",
+          "north-west": "Combat_stance/rotations/north-west.png",
+          "west": "Combat_stance/rotations/west.png",
+          "south-west": "Combat_stance/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-11T17:51:21.136722"
+}

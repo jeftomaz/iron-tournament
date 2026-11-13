@@ -1,0 +1,36 @@
+{
+  "group_id": "320a8377-a296-481f-9d0a-6604760017d9",
+  "states": [
+    {
+      "character": {
+        "id": "f63b4fd6-d0f6-42a4-8685-942751558157",
+        "name": "Attacking",
+        "prompt": "Dark fantasy human devourer, a terrifying giant cyclops-like cave monster. Enormous hunched creature with one large central eye, massive shoulders, long muscular arms, short powerful legs and distorted anatomy. Huge jaw with crooked fangs, rough gray skin, scars, coarse hair and oversized clawed hands. In one hand, it carries the limp remains of an adult human victim, partially eaten, with torn clothing, visible wounds and dark red stains, hanging downward to emphasize the monster's immense size and savage appetite. The other hand is free, ready to attack. Primitive animal-hide loincloth, feral posture, intimidating silhouette. Muted gray, brown and dark red palette. Authentic 16-bit SNES Castlevania pixel art, large crisp pixels, limited colors, dark outlines, simple shading. Full-body sprite, transparent background, no scenery.",
+        "size": {
+          "width": 80,
+          "height": 80
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-09T13:38:37.725994+00:00"
+      },
+      "folder": "Attacking",
+      "frames": {
+        "rotations": {
+          "south": "Attacking/rotations/south.png",
+          "south-east": "Attacking/rotations/south-east.png",
+          "east": "Attacking/rotations/east.png",
+          "north-east": "Attacking/rotations/north-east.png",
+          "north": "Attacking/rotations/north.png",
+          "north-west": "Attacking/rotations/north-west.png",
+          "west": "Attacking/rotations/west.png",
+          "south-west": "Attacking/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-09T13:48:17.670779"
+}

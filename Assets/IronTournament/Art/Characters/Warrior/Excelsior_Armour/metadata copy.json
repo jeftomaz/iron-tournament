@@ -1,0 +1,36 @@
+{
+  "group_id": "42d15298-1af3-4b45-9059-047730419dcc",
+  "states": [
+    {
+      "character": {
+        "id": "6180cbde-d302-421d-9a60-54f12fb21f1e",
+        "name": "Combat stance. Legs",
+        "prompt": "Create a legendary Excelsior Armor skin for the existing warrior. Replace his original armor with magnificent silver-white plate armor, decorated with elegant golden edges and subtle sacred engravings. The chestplate and shoulder guards should appear stronger and more imposing, with a noble, divine appearance. Add a long dark red or deep burgundy cape flowing behind him, enhancing his heroic and sacred presence. Add a faint warm golden radiance around the armor, suggesting celestial protection. Preserve the warrior's face, hair, proportions, sword, shield and original idle pose.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-11T18:31:16.041999+00:00"
+      },
+      "folder": "Combat_stance._Legs",
+      "frames": {
+        "rotations": {
+          "south": "Combat_stance._Legs/rotations/south.png",
+          "south-east": "Combat_stance._Legs/rotations/south-east.png",
+          "east": "Combat_stance._Legs/rotations/east.png",
+          "north-east": "Combat_stance._Legs/rotations/north-east.png",
+          "north": "Combat_stance._Legs/rotations/north.png",
+          "north-west": "Combat_stance._Legs/rotations/north-west.png",
+          "west": "Combat_stance._Legs/rotations/west.png",
+          "south-west": "Combat_stance._Legs/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-11T18:33:31.191013"
+}

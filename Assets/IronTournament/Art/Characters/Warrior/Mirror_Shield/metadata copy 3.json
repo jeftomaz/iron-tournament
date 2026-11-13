@@ -1,0 +1,36 @@
+{
+  "group_id": "7c57a7e8-c001-46c4-b25e-a9acd4cad408",
+  "states": [
+    {
+      "character": {
+        "id": "54db59a2-53f3-4afb-a42d-731c4dbfef89",
+        "name": "Defensive pose. The",
+        "prompt": "Use the existing warrior sprite as the exact reference. Create a new skin of the SAME character, keeping the original idle combat-ready pose. Preserve exactly the face, short dark brown hair, light stubble, serious expression, worn light plate armor, leather straps, dark trousers, boots, sword, proportions, colors and perspective. Replace only the original round shield with a mirror shield of the same size and general shape. The new shield must have a polished reflective silver surface, bright highlights, metallic rim and a slightly enchanted look, while still fitting the dark medieval fantasy style. No glow, no magic effects, no fire. Authentic 16-bit SNES pixel art, large crisp pixels, limited palette, transparent background.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-11T17:33:45.935989+00:00"
+      },
+      "folder": "Defensive_pose._The",
+      "frames": {
+        "rotations": {
+          "south": "Defensive_pose._The/rotations/south.png",
+          "south-east": "Defensive_pose._The/rotations/south-east.png",
+          "east": "Defensive_pose._The/rotations/east.png",
+          "north-east": "Defensive_pose._The/rotations/north-east.png",
+          "north": "Defensive_pose._The/rotations/north.png",
+          "north-west": "Defensive_pose._The/rotations/north-west.png",
+          "west": "Defensive_pose._The/rotations/west.png",
+          "south-west": "Defensive_pose._The/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-11T17:47:14.905904"
+}

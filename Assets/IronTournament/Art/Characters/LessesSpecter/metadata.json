@@ -1,0 +1,36 @@
+{
+  "group_id": "c3b658f2-4f15-4209-86ec-8d111bd6ee44",
+  "states": [
+    {
+      "character": {
+        "id": "84fee38c-6a27-4b61-9373-062e188fef0e",
+        "name": "Idle",
+        "prompt": "Dark fantasy lesser specter, the restless spirit of a small being whose final wish remains unfulfilled. Small, fragile, floating apparition with a vague child-sized silhouette, partially formed head, thin spectral arms and an irregular fading lower half. Its shape appears incomplete, dissolving into wisps of cold mist. Hollow sorrowful eyes, unsettling yet melancholic presence. Pale gray, desaturated blue and faint violet colors, subtle ghostly transparency. No legs, weapons, armor or exaggerated magical effects. Authentic 16-bit SNES pixel art inspired by classic Castlevania. Large crisp pixels, dark outlines, limited palette, 2\u20133 shading tones, clear readable silhouette. Full-body idle sprite, three-quarter view, transparent background, no scenery.",
+        "size": {
+          "width": 32,
+          "height": 32
+        },
+        "template_id": "custom",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-08T19:48:45.414572+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-08T19:52:19.142356"
+}

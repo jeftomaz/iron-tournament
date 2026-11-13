@@ -1,0 +1,36 @@
+{
+  "group_id": "d0efa9cc-dc21-4b73-9dd9-3685d5ba57d7",
+  "states": [
+    {
+      "character": {
+        "id": "611ab246-2983-48f4-bc84-0b45b616f347",
+        "name": "Defending",
+        "prompt": "Replace only the warrior's original sword with the Chaos Sword. The new weapon should retain the proportions and practical shape of a medieval longsword, but feature a darker, aged steel blade, a subtly irregular cutting edge and a distinctive ancient crossguard. Its appearance should suggest a mysterious and dangerous weapon without revealing its hidden power. Keep the sword clearly recognizable and visually distinct from an ordinary blade. Preserve the exact original character, shield, equipment, proportions and idle pose. No glowing effects, magical aura or changes to any other element.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-11T17:40:37.625231+00:00"
+      },
+      "folder": "Defending",
+      "frames": {
+        "rotations": {
+          "south": "Defending/rotations/south.png",
+          "south-east": "Defending/rotations/south-east.png",
+          "east": "Defending/rotations/east.png",
+          "north-east": "Defending/rotations/north-east.png",
+          "north": "Defending/rotations/north.png",
+          "north-west": "Defending/rotations/north-west.png",
+          "west": "Defending/rotations/west.png",
+          "south-west": "Defending/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-11T17:44:03.802340"
+}

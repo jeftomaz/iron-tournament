@@ -1,0 +1,36 @@
+{
+  "group_id": "7c57a7e8-c001-46c4-b25e-a9acd4cad408",
+  "states": [
+    {
+      "character": {
+        "id": "f0d2c13e-1b43-40f2-a325-613b9257f6bc",
+        "name": "Combate Stance",
+        "prompt": "Use the existing warrior sprite as the exact reference. Create a new skin of the SAME character, keeping the original idle combat-ready pose. Preserve exactly the face, short dark brown hair, light stubble, serious expression, worn light plate armor, leather straps, dark trousers, boots, sword, proportions, colors and perspective. Replace only the original round shield with a mirror shield of the same size and general shape. The new shield must have a polished reflective silver surface, bright highlights, metallic rim and a slightly enchanted look, while still fitting the dark medieval fantasy style. No glow, no magic effects, no fire. Authentic 16-bit SNES pixel art, large crisp pixels, limited palette, transparent background.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-11T16:01:48.025882+00:00"
+      },
+      "folder": "Combate_Stance",
+      "frames": {
+        "rotations": {
+          "south": "Combate_Stance/rotations/south.png",
+          "south-east": "Combate_Stance/rotations/south-east.png",
+          "east": "Combate_Stance/rotations/east.png",
+          "north-east": "Combate_Stance/rotations/north-east.png",
+          "north": "Combate_Stance/rotations/north.png",
+          "north-west": "Combate_Stance/rotations/north-west.png",
+          "west": "Combate_Stance/rotations/west.png",
+          "south-west": "Combate_Stance/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-11T17:47:11.499800"
+}

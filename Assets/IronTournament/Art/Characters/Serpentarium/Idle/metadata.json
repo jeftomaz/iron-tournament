@@ -1,0 +1,36 @@
+{
+  "group_id": "20e19e6c-367d-4cfe-b249-8d8e8ccb3540",
+  "states": [
+    {
+      "character": {
+        "id": "47c51016-d192-493e-a175-11bb4a85b624",
+        "name": "Attacking",
+        "prompt": "Dark fantasy Serpentarium, a bold and unusual giant mutated underground serpent. Full body, massive coiling snake with a tall raised neck and a striking silhouette. Its head is not a normal snake head: it has a wide split jaw that opens in a disturbing lamprey-like shape, long venomous fangs, a forked tongue and a crown of bony spines or horn-like ridges. Small sunken eyes or nearly blind eyes suggest a cave predator adapted to darkness. Thick scaled body with rough dark olive, brown and gray tones, pale underbelly and subtle toxic green accents near the mouth. Ancient, unnatural and terrifying, like a legendary abyssal predator. No legs, wings or dragon traits. Authentic 16-bit SNES Castlevania pixel art, large crisp pixels, dark outlines, limited palette, readable silhouette, transparent background.",
+        "size": {
+          "width": 96,
+          "height": 96
+        },
+        "template_id": "custom",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-09T13:29:16.931802+00:00"
+      },
+      "folder": "Attacking",
+      "frames": {
+        "rotations": {
+          "south": "Attacking/rotations/south.png",
+          "south-east": "Attacking/rotations/south-east.png",
+          "east": "Attacking/rotations/east.png",
+          "north-east": "Attacking/rotations/north-east.png",
+          "north": "Attacking/rotations/north.png",
+          "north-west": "Attacking/rotations/north-west.png",
+          "west": "Attacking/rotations/west.png",
+          "south-west": "Attacking/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-09T13:35:06.511572"
+}

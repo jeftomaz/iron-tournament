@@ -1,0 +1,36 @@
+{
+  "group_id": "d0efa9cc-dc21-4b73-9dd9-3685d5ba57d7",
+  "states": [
+    {
+      "character": {
+        "id": "f6770450-faf0-4f05-a985-db5041064e75",
+        "name": "Dead",
+        "prompt": "Replace only the warrior's original sword with the Chaos Sword. The new weapon should retain the proportions and practical shape of a medieval longsword, but feature a darker, aged steel blade, a subtly irregular cutting edge and a distinctive ancient crossguard. Its appearance should suggest a mysterious and dangerous weapon without revealing its hidden power. Keep the sword clearly recognizable and visually distinct from an ordinary blade. Preserve the exact original character, shield, equipment, proportions and idle pose. No glowing effects, magical aura or changes to any other element.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-11T17:40:51.085658+00:00"
+      },
+      "folder": "Dead",
+      "frames": {
+        "rotations": {
+          "south": "Dead/rotations/south.png",
+          "south-east": "Dead/rotations/south-east.png",
+          "east": "Dead/rotations/east.png",
+          "north-east": "Dead/rotations/north-east.png",
+          "north": "Dead/rotations/north.png",
+          "north-west": "Dead/rotations/north-west.png",
+          "west": "Dead/rotations/west.png",
+          "south-west": "Dead/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-11T17:44:06.898611"
+}
