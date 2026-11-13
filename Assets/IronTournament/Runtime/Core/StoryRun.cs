@@ -36,6 +36,7 @@ namespace IronTournament.Core
         public int victoryHealth;
         public int rewardAttack;
         public int rewardDefense;
+        public bool goblinExperience;
         public int[] graves;
         public int gravesVisited;
         public int activeGrave = -1;
@@ -50,6 +51,7 @@ namespace IronTournament.Core
         public ItemId skeletonReward;
         public int skeletonAttack;
         public int skeletonDefense;
+        public bool skeletonExperience;
         public bool castleSeen;
 
         public int ExploredCount
@@ -237,6 +239,7 @@ namespace IronTournament.Core
                 (skeletonDefeated && (!skeletonAppeared || skeletonHealth <= 0)) ||
                 (!skeletonDefeated && (skeletonHealth != 0 || skeletonScrolls != 0 || skeletonHorns != 0 || skeletonGuardianArmed)) ||
                 (page == StoryPage.SkeletonReward && skeletonReward != ItemId.None) ||
+                (goblinExperience && reward == ItemId.None) || (skeletonExperience && skeletonReward == ItemId.None) ||
                 (skeletonReward != ItemId.None && !skeletonDefeated) || (castleSeen && skeletonReward == ItemId.None) ||
                 ((page == StoryPage.Castle || page == StoryPage.SkeletonFinished) && skeletonReward == ItemId.None))
                 throw new ArgumentException("Inconsistent story checkpoint.");

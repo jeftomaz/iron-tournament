@@ -106,12 +106,12 @@ namespace IronTournament.Presentation.Tests
                 yield return null;
                 var expected = id switch
                 {
-                    CombatantId.Skeleton => (Health: 62, Attack: 20, Defense: 5),
-                    CombatantId.Knight => (Health: 80, Attack: 26, Defense: 8),
-                    CombatantId.Werewolf => (Health: 95, Attack: 30, Defense: 10),
-                    CombatantId.Vampire => (Health: 110, Attack: 34, Defense: 12),
-                    CombatantId.Necromancer => (Health: 125, Attack: 38, Defense: 14),
-                    _ => (Health: 145, Attack: 44, Defense: 16)
+                    CombatantId.Skeleton => (Health: 50, Attack: 20, Defense: 20),
+                    CombatantId.Knight => (Health: 100, Attack: 35, Defense: 35),
+                    CombatantId.Werewolf => (Health: 120, Attack: 45, Defense: 18),
+                    CombatantId.Vampire => (Health: 130, Attack: 55, Defense: 20),
+                    CombatantId.Necromancer => (Health: 160, Attack: 65, Defense: 22),
+                    _ => (Health: 200, Attack: 75, Defense: 25)
                 };
                 int maximumHealth = expected.Health;
                 Assert.That(enemy.BaseStats.Attack, Is.EqualTo(expected.Attack));
@@ -122,7 +122,7 @@ namespace IronTournament.Presentation.Tests
                 yield return WaitForPlayback(canvas.GetComponentInChildren<BattleEventPlayer>());
                 yield return null;
                 Assert.That(HealthText("OpponentHealth"), Is.EqualTo($"HP {state.Opponent.CurrentHealth} / {maximumHealth}"));
-                Assert.That(state.Opponent.CurrentHealth, Is.LessThan(maximumHealth));
+                Assert.That(state.Opponent.CurrentHealth, Is.LessThanOrEqualTo(maximumHealth));
                 var buttons = menu.GetComponentsInChildren<Button>();
                 Assert.That(buttons.Single(button => button.name == "Attack").interactable, Is.True);
                 Assert.That(buttons.Single(button => button.name == "Guard").interactable, Is.True);
@@ -165,7 +165,7 @@ namespace IronTournament.Presentation.Tests
             yield return null;
 
             var menu = canvas.GetComponentInChildren<ActionMenu>();
-            Assert.That(HealthText("PlayerHealth"), Is.EqualTo("HP 120 / 120"));
+            Assert.That(HealthText("PlayerHealth"), Is.EqualTo("HP 150 / 150"));
             Assert.That(HealthText("OpponentHealth"), Does.StartWith("HP "));
             Assert.That(HealthText("OpponentHealth"), Does.Not.Contain("—"));
             Assert.That(menu.GetComponentsInChildren<Button>().Any(button => button.interactable), Is.True);

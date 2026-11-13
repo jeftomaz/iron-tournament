@@ -16,9 +16,9 @@ MonoBehaviour:
   side: 2
   displayName: Goblin
   baseStats:
-    maximumHealth: 45
+    maximumHealth: 40
     attack: 15
-    defense: 3
+    defense: 15
   abilities:
   - {fileID: 11400000, guid: d9800e89631625a448a01de68c5f263b, type: 2}
   portrait: {fileID: 3373983171478037719, guid: 251435a68642e474ab790b7da30d8861, type: 3}

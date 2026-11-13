@@ -16,9 +16,9 @@ MonoBehaviour:
   side: 2
   displayName: "Rei Dem\xF4nio"
   baseStats:
-    maximumHealth: 145
-    attack: 44
-    defense: 16
+    maximumHealth: 200
+    attack: 75
+    defense: 25
   abilities:
   - {fileID: 11400000, guid: d9800e89631625a448a01de68c5f263b, type: 2}
   portrait: {fileID: 3373983171478037719, guid: c682d59250101e94c8bb004224326eb9, type: 3}

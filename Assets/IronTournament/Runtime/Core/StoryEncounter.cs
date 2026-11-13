@@ -68,12 +68,9 @@ namespace IronTournament.Core
             if (hero == null || hero.Id != run.hero || goblin == null || goblin.Opponent.Id != CombatantId.Goblin ||
                 !run.skeletonAppeared || (afterBattle != run.skeletonDefeated))
                 throw new ArgumentException("Invalid skeleton checkpoint.");
-            var state = new CombatantState(hero, hero.BaseStats);
-            ApplyReward(run, goblin, state);
-            if (run.equipment) state.EquipStoryEquipment(1);
-            if (state.Stats.Attack != run.rewardAttack || state.Stats.Defense != run.rewardDefense)
-                throw new ArgumentException("Invalid reward checkpoint.");
             var health = afterBattle ? run.skeletonHealth : run.victoryHealth;
+            var state = RestoreRewardHero(run, hero, goblin, health);
+            if (run.equipment) state.EquipStoryEquipment(1);
             if (health <= 0 || health > state.Stats.MaximumHealth) throw new ArgumentException("Invalid checkpoint health.");
             state.TakeDamage(state.CurrentHealth - health);
             if (afterBattle)
@@ -86,6 +83,23 @@ namespace IronTournament.Core
                 { state.ArmGuardian(); if (!run.skeletonGuardianArmed) state.DisarmGuardian(); }
             }
             return state;
+        }
+
+        private static CombatantState RestoreRewardHero(StoryRun run, CombatantConfiguration hero,
+            EncounterConfiguration goblin, int health)
+        {
+            var legacy = hero.Id == CombatantId.Warrior
+                ? new CombatantStats(120, 30, 23) : new CombatantStats(110, 30, 5);
+            foreach (var stats in new[] { hero.BaseStats, legacy })
+            {
+                var restored = run.goblinExperience
+                    ? new CombatantStats(stats.MaximumHealth, stats.Attack + 2, stats.Defense + 1) : stats;
+                var state = new CombatantState(hero, restored);
+                ApplyReward(run, goblin, state);
+                if (state.Stats.Attack == run.rewardAttack && state.Stats.Defense == run.rewardDefense &&
+                    health <= state.Stats.MaximumHealth) return state;
+            }
+            throw new ArgumentException("Invalid reward checkpoint.");
         }
 
         public static IReadOnlyList<ItemConfiguration> SkeletonRewards(StoryRun run, EncounterConfiguration encounter)

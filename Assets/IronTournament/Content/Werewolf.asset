@@ -16,9 +16,9 @@ MonoBehaviour:
   side: 2
   displayName: Lobisomem
   baseStats:
-    maximumHealth: 95
-    attack: 30
-    defense: 10
+    maximumHealth: 120
+    attack: 45
+    defense: 18
   abilities:
   - {fileID: 11400000, guid: d9800e89631625a448a01de68c5f263b, type: 2}
   portrait: {fileID: 3373983171478037719, guid: 081f5b3cfa0b64f65995b1a324867266, type: 3}

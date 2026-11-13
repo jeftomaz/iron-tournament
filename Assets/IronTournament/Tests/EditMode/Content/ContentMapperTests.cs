@@ -66,18 +66,18 @@ namespace IronTournament.Content.Tests
             var configuration = ContentMapper.BuildEncounter(encounter);
             Assert.That(hero.Id, Is.EqualTo(CombatantId.Warrior));
             Assert.That(hero.Side, Is.EqualTo(CombatantSide.Player));
-            Assert.That(hero.BaseStats.MaximumHealth, Is.EqualTo(120));
-            Assert.That(hero.BaseStats.Attack, Is.EqualTo(30));
-            Assert.That(hero.BaseStats.Defense, Is.EqualTo(23));
+            Assert.That(hero.BaseStats.MaximumHealth, Is.EqualTo(150));
+            Assert.That(hero.BaseStats.Attack, Is.EqualTo(25));
+            Assert.That(hero.BaseStats.Defense, Is.EqualTo(20));
             Assert.That(hero.Abilities.Count, Is.EqualTo(3));
             Assert.That(hero.Abilities[0].Id, Is.EqualTo(AbilityId.BasicAttack));
             Assert.That(hero.Abilities[1].Id, Is.EqualTo(AbilityId.Guard));
             Assert.That(hero.Abilities[2].Id, Is.EqualTo(AbilityId.UseHopeScroll));
             Assert.That(configuration.Opponent.Id, Is.EqualTo(CombatantId.Goblin));
             Assert.That(configuration.Opponent.Side, Is.EqualTo(CombatantSide.Enemy));
-            Assert.That(configuration.Opponent.BaseStats.MaximumHealth, Is.EqualTo(45));
+            Assert.That(configuration.Opponent.BaseStats.MaximumHealth, Is.EqualTo(40));
             Assert.That(configuration.Opponent.BaseStats.Attack, Is.EqualTo(15));
-            Assert.That(configuration.Opponent.BaseStats.Defense, Is.EqualTo(3));
+            Assert.That(configuration.Opponent.BaseStats.Defense, Is.EqualTo(15));
             Assert.That(configuration.EnemyStatVariancePercent, Is.EqualTo(15));
             Assert.That(warrior.Portrait, Is.Not.Null);
             Assert.That(encounter.Opponent.Portrait, Is.Not.Null);
@@ -85,6 +85,15 @@ namespace IronTournament.Content.Tests
                 new CombatantState(configuration.Opponent, configuration.Opponent.BaseStats)), new SeededRandomSource(17));
             Assert.That(battle.Submit(AbilityId.Guard).IsAccepted, Is.True);
             Assert.That(battle.Submit(AbilityId.BasicAttack).IsAccepted, Is.True);
+        }
+
+        [Test]
+        public void SkeletonUsesBestiaryAttributes()
+        {
+            var skeleton = ContentMapper.BuildEncounter(AssetDatabase.LoadAssetAtPath<EncounterDefinition>("Assets/IronTournament/Content/SkeletonEncounter.asset"));
+            Assert.That(skeleton.Opponent.BaseStats.MaximumHealth, Is.EqualTo(50));
+            Assert.That(skeleton.Opponent.BaseStats.Attack, Is.EqualTo(20));
+            Assert.That(skeleton.Opponent.BaseStats.Defense, Is.EqualTo(20));
         }
 
         [Test]
@@ -119,7 +128,7 @@ namespace IronTournament.Content.Tests
             var knightConfiguration = ContentMapper.BuildCombatant(knight);
             Assert.That(warriorConfiguration.Abilities[2].Id, Is.EqualTo(AbilityId.UseHopeScroll));
             Assert.That(mageConfiguration.Abilities[3].Id, Is.EqualTo(AbilityId.ArmGuardian));
-            Assert.That(knightConfiguration.BaseStats, Is.EqualTo(new CombatantStats(80, 26, 8)));
+            Assert.That(knightConfiguration.BaseStats, Is.EqualTo(new CombatantStats(100, 35, 35)));
             Assert.That(knight.Portrait, Is.Not.Null);
         }
 

@@ -16,9 +16,9 @@ MonoBehaviour:
   side: 2
   displayName: Esqueleto
   baseStats:
-    maximumHealth: 62
+    maximumHealth: 50
     attack: 20
-    defense: 5
+    defense: 20
   abilities:
   - {fileID: 11400000, guid: d9800e89631625a448a01de68c5f263b, type: 2}
   portrait: {fileID: 3373983171478037719, guid: cc63d9831826b438ea4fb0a3d8357007, type: 3}

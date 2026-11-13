@@ -16,7 +16,7 @@ MonoBehaviour:
   side: 1
   displayName: Mago
   baseStats:
-    maximumHealth: 110
+    maximumHealth: 120
     attack: 30
     defense: 5
   abilities:
