@@ -69,7 +69,7 @@ namespace IronTournament.Bootstrap
                         break;
                     case CampaignPhase.DropChoice:
                         if (result != BattlePhase.Victory) throw new InvalidOperationException("Only a victory can offer drops.");
-                        view.ShowDropChoice(campaignRun.DropOffer);
+                        view.ShowDropChoice(campaignRun.DropOffer, campaignRun.LastExperience);
                         menu.ConfigureDrops(campaignRun.DropOffer);
                         break;
                     case CampaignPhase.Completed:

@@ -329,7 +329,8 @@ namespace IronTournament.Bootstrap
             Draw(content.skeletonGraveyard, "Escolha um saque");
             view.Actor(content.skeletonDead, .65f, .25f, .19f);
             var offer = StoryEncounter.SkeletonRewards(run, SkeletonEncounter);
-            view.Text("Leve apenas um", "Escolha um dos itens encontrados.");
+            var experience = BattleExperience.For(CombatantId.Skeleton);
+            view.Text("Experiência de batalha", $"ATQ +{experience.Attack} · DEF +{experience.Defense}\nEscolha um dos itens encontrados.");
             for (var i = 0; i < offer.Count; i++)
             {
                 var item = offer[i];
@@ -390,7 +391,8 @@ namespace IronTournament.Bootstrap
             Draw(BackgroundForEncounter, "Escolha um saque");
             if (run.Fate == ChildFate.Saved) EncounterActors();
             var offer = StoryEncounter.Rewards(run, Encounter);
-            view.Text("Leve apenas um", "Escolha um dos itens encontrados.");
+            var experience = BattleExperience.For(CombatantId.Goblin);
+            view.Text("Experiência de batalha", $"ATQ +{experience.Attack} · DEF +{experience.Defense}\nEscolha um dos itens encontrados.");
             for (var i = 0; i < offer.Count; i++)
             {
                 var item = offer[i];
@@ -398,6 +400,7 @@ namespace IronTournament.Bootstrap
                 {
                     var rewarded = battle?.State.Hero ?? StoryEncounter.RestoreVictoryHero(run, ContentMapper.BuildCombatant(Hero));
                     StoryEncounter.ChooseReward(run, Encounter, item.Id);
+                    StoryEncounter.ApplyGoblinExperience(run, rewarded);
                     StoryEncounter.ApplyReward(run, Encounter, rewarded);
                     run.victoryHealth = rewarded.CurrentHealth;
                     run.rewardAttack = rewarded.Stats.Attack;

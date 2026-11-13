@@ -1,5 +1,10 @@
 # Progresso
 
+## 2026-11-13 — Apresentação da experiência
+
+- Ligados os ganhos do núcleo à oferta de saque clássica e narrativa; apresentação aprovada pelo usuário, com capturas mobile/desktop atualizadas em `docs/evidence/`.
+- Corte preexistente da segunda descrição no desktop clássico registrado como tarefa própria. EditMode 124/124, PlayMode 47/47 e WebGL aprovados na repetição completa com logs preservados.
+
 ## 2026-11-13 — Experiência no núcleo
 
 - Recuperados os ganhos por vitória e os contratos `ExperienceGain`/`LastExperience`, sem alterar a apresentação; a restauração de checkpoints reutiliza a mesma regra de ganho.
