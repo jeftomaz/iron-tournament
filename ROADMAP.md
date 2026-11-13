@@ -28,7 +28,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 ## Fase 3 — Campanha, inimigos e itens
 
 - `done` `JT` Definir contratos e dados opcionais da segunda fase do Rei Demônio.
-- `todo` `JL` Integrar a transição para a segunda fase do Rei, preservando HP e fúria, sem experiência nem saque entre fases.
+- `done` `JL` Integrar a transição para a segunda fase do Rei, preservando HP e fúria, sem experiência nem saque entre fases.
 - `done` `JL` Implementar a sequência fixa dos sete inimigos, variação de ±15% nos atributos por encontro, variação de dano, fúria de Vampiro/Necromante/Rei Demônio e transição entre encontros.
 - `done` `JL` Implementar drops ponderados, escolha entre dois tipos distintos, melhorias permanentes e itens exclusivos: Pergaminho, Manto de Chamas (5 de dano direto após cada turno que consome ação, de qualquer lado) e Chifre da Irmandade.
 - `done` `JP` Configurar assets dos sete inimigos, incluindo o Cavaleiro, e reutilizar a cena compartilhada para transição e escolha de saque.

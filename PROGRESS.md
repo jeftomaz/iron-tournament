@@ -1,5 +1,10 @@
 # Progresso
 
+## 2026-11-13 — Transição da fase final
+
+- Recuperada a transição do `CampaignRun` para a segunda fase do Rei, mantendo HP, atributos e fúria e concluindo a campanha somente depois dela, sem ganho nem saque entre fases.
+- Teste original de transição recuperado; dois casos adicionais verificam a fúria compartilhada por ações reais. EditMode 127/127, PlayMode 47/47 e WebGL aprovados.
+
 ## 2026-11-13 — Contrato da fase final
 
 - Recuperados configuração opcional, validação, mapeamento e asset da segunda fase do Rei; o construtor antigo segue válido com `null`. A transição de combate permanece para PR dependente.

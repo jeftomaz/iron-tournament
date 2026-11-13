@@ -29,11 +29,13 @@ namespace IronTournament.Core
 
         private readonly List<EncounterStage> stages;
         private readonly IRandomSource random;
+        private readonly CombatantConfiguration finalPhase;
+        private bool finalPhaseStarted;
         private readonly List<ItemId> obtainedItems = new List<ItemId>();
         private Battle battle;
 
         public CampaignRun(CombatantConfiguration hero, CampaignConfiguration campaign, IRandomSource random)
-            : this(CampaignMode.Campaign, CampaignHero(hero), CampaignStages(campaign), random)
+            : this(CampaignMode.Campaign, CampaignHero(hero), CampaignStages(campaign), random, campaign.FinalPhase)
         {
         }
 
@@ -41,7 +43,7 @@ namespace IronTournament.Core
             CampaignMode mode,
             CombatantConfiguration hero,
             List<EncounterStage> stages,
-            IRandomSource random)
+            IRandomSource random, CombatantConfiguration finalPhase = null)
         {
             if (random == null)
             {
@@ -49,6 +51,7 @@ namespace IronTournament.Core
             }
 
             Mode = mode;
+            this.finalPhase = finalPhase;
             Hero = new CombatantState(hero, hero.BaseStats);
             this.stages = stages;
             this.random = random;
@@ -85,6 +88,7 @@ namespace IronTournament.Core
 
         public HeroSnapshot FinalSnapshot { get; private set; }
         public ExperienceGain LastExperience { get; private set; }
+        public bool IsFinalPhase => finalPhaseStarted;
 
         public static CampaignRun StartEnemyMode(
             CombatantId character,
@@ -132,6 +136,16 @@ namespace IronTournament.Core
 
             if (EncounterIndex == stages.Count - 1)
             {
+                if (Mode == CampaignMode.Campaign && finalPhase != null && !finalPhaseStarted)
+                {
+                    var raged = battle.State.Opponent.HasRaged;
+                    var opponent = EncounterSetup.CreateOpponent(finalPhase, stages[EncounterIndex].VariancePercent, true, random);
+                    if (raged) opponent.MarkRaged();
+                    finalPhaseStarted = true;
+                    Hero.PrepareForEncounter();
+                    battle = new Battle(new BattleState(Hero, opponent), random);
+                    return true;
+                }
                 Complete();
                 return true;
             }

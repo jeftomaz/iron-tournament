@@ -65,7 +65,7 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 - `MagicAttack.asset` mantém o ID `BasicAttack`, mira o oponente e consome turno; o nome de exibição é `Ataque mágico`.
 - `RevertTurn.asset` e `RevertBattle.asset` miram o próprio Mago e não consomem turno. Recursos de itens do Mago seguem a etapa de campanha.
 - `Campaign.asset` ordena `GoblinEncounter`, `SkeletonEncounter`, `KnightEncounter`, `WerewolfEncounter`, `VampireEncounter`, `NecromancerEncounter` e `DemonKingEncounter`.
-- `CampaignDefinition.FinalPhase` e `CampaignConfiguration.FinalPhase` aceitam somente Rei Demônio inimigo ou `null`; `Campaign.asset` referencia `DemonKingPhase2`. A execução dessa fase depende da integração no `CampaignRun`.
+- `CampaignDefinition.FinalPhase` e `CampaignConfiguration.FinalPhase` aceitam somente Rei Demônio inimigo ou `null`; `Campaign.asset` referencia `DemonKingPhase2`. O `CampaignRun` preserva HP e fúria entre fases, sem experiência nem saque; a campanha termina após a segunda vitória.
 - Cada encontro declara variação de ±15% e o pool completo de nove itens. O núcleo filtra exclusivos pela classe e não oferece saque após o Rei Demônio; fúria continua sendo regra do núcleo.
 - Ambas as ações consomem turno; Atacar mira o oponente e Defender mira o próprio combatente.
 - Experiência por vitória: Goblin +2/+1, Esqueleto +3/+1, Cavaleiro +3/+2, Lobisomem +4/+2, Vampiro +4/+3 e Necromante +5/+3 (ATQ/DEF). Rei Demônio e modo inimigo não concedem esses ganhos.

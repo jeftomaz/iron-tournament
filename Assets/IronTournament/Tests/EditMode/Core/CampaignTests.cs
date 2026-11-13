@@ -185,6 +185,56 @@ namespace IronTournament.Core.Tests
         }
 
         [Test]
+        public void FinalBossChangesPhaseWithoutGrantingExperienceOrLoot()
+        {
+            var secondPhase = TestContent.Enemy(CombatantId.DemonKing, 2, 1, 0);
+            var campaign = new CampaignConfiguration(TestContent.CanonicalEncounters(true), secondPhase);
+            var run = new CampaignRun(TestContent.Mage(), campaign, new NeutralRandomSource());
+            TestContent.WinWithOneHit(run, 6);
+            var attack = run.Hero.Stats.Attack;
+            var defense = run.Hero.Stats.Defense;
+            var health = run.Hero.CurrentHealth;
+            run.CurrentBattle.Submit(AbilityId.BasicAttack);
+
+            Assert.That(run.ConcludeEncounter(), Is.True);
+            Assert.That(run.Phase, Is.EqualTo(CampaignPhase.Battle));
+            Assert.That(run.IsFinalPhase, Is.True);
+            Assert.That(run.CurrentBattle.State.Opponent.Stats.MaximumHealth, Is.EqualTo(2));
+            Assert.That(run.Hero.CurrentHealth, Is.EqualTo(health));
+            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(attack));
+            Assert.That(run.Hero.Stats.Defense, Is.EqualTo(defense));
+            Assert.That(run.DropOffer, Is.Empty);
+            run.CurrentBattle.Submit(AbilityId.BasicAttack);
+            Assert.That(run.ConcludeEncounter(), Is.True);
+            Assert.That(run.Phase, Is.EqualTo(CampaignPhase.Completed));
+            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(attack));
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
+        public void FinalBossSharesRageAcrossPhases(bool usedInFirstPhase)
+        {
+            var first = TestContent.Enemy(CombatantId.DemonKing, usedInFirstPhase ? 40 : 2, 1, 0);
+            var second = TestContent.Enemy(CombatantId.DemonKing, 40, 1, 0);
+            var hero = TestContent.Hero(CombatantId.Mage, new CombatantStats(500, 10, 5), AbilityId.BasicAttack);
+            var campaign = new CampaignConfiguration(TestContent.CanonicalEncounters(true, first), second);
+            var run = new CampaignRun(hero, campaign, new NeutralRandomSource());
+            TestContent.WinWithOneHit(run, 6);
+            run.CurrentBattle.Submit(AbilityId.BasicAttack);
+            Assert.That(run.CurrentBattle.State.Opponent.HasRaged, Is.EqualTo(usedInFirstPhase));
+            while (run.CurrentBattle.State.Phase == BattlePhase.PlayerTurn)
+                run.CurrentBattle.Submit(AbilityId.BasicAttack);
+
+            Assert.That(run.ConcludeEncounter(), Is.True);
+            Assert.That(run.CurrentBattle.State.Opponent.HasRaged, Is.EqualTo(usedInFirstPhase));
+            var result = run.CurrentBattle.Submit(AbilityId.BasicAttack);
+            var raged = false;
+            foreach (var entry in result.Events)
+                if (entry is AbilityUsedEvent ability && ability.Ability == AbilityId.Fury) raged = true;
+            Assert.That(raged, Is.EqualTo(!usedInFirstPhase));
+        }
+
+        [Test]
         public void CampaignFailsWhenTheHeroFalls()
         {
             var mage = TestContent.Hero(CombatantId.Mage, new CombatantStats(10, 30, 5), AbilityId.BasicAttack);
