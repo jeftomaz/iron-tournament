@@ -1,0 +1,910 @@
+fileFormatVersion: 2
+guid: 22c07d7bdf7054a0696cd3346726438d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 754853635400353850
+    second: rosary_flowers_0
+  - first:
+      213: -4206913037110646637
+    second: rosary_flowers_1
+  - first:
+      213: 6899369769523301722
+    second: rosary_flowers_2
+  - first:
+      213: 4652159670912520860
+    second: rosary_flowers_3
+  - first:
+      213: 7182022420647224288
+    second: rosary_flowers_4
+  - first:
+      213: 1475163035278501499
+    second: rosary_flowers_5
+  - first:
+      213: -8257659285975884895
+    second: rosary_flowers_6
+  - first:
+      213: 2138517431801046857
+    second: rosary_flowers_7
+  - first:
+      213: 5745551317394931323
+    second: rosary_flowers_8
+  - first:
+      213: -5190021408957029059
+    second: rosary_flowers_9
+  - first:
+      213: -7122286070259957364
+    second: rosary_flowers_10
+  - first:
+      213: 4858427907340672353
+    second: rosary_flowers_11
+  - first:
+      213: -8485174498650869892
+    second: rosary_flowers_12
+  - first:
+      213: -3578988455738215298
+    second: rosary_flowers_13
+  - first:
+      213: 2966510825877768949
+    second: rosary_flowers_14
+  - first:
+      213: 4989892522800509182
+    second: rosary_flowers_15
+  - first:
+      213: -7424467557961709923
+    second: rosary_flowers_16
+  - first:
+      213: 173891481538175689
+    second: rosary_flowers_17
+  - first:
+      213: 9040703661243889893
+    second: rosary_flowers_18
+  - first:
+      213: 2404315787871703970
+    second: rosary_flowers_19
+  - first:
+      213: -7967052325238389768
+    second: rosary_flowers_20
+  - first:
+      213: -6048805024196211862
+    second: rosary_flowers_21
+  - first:
+      213: -2700680233224317806
+    second: rosary_flowers_22
+  - first:
+      213: -1680334845532684859
+    second: rosary_flowers_23
+  - first:
+      213: 6048995044344595314
+    second: rosary_flowers_24
+  - first:
+      213: 7074839638761432919
+    second: rosary_flowers_25
+  - first:
+      213: -2551384013824017521
+    second: rosary_flowers_26
+  - first:
+      213: -8057777250359041245
+    second: rosary_flowers_27
+  - first:
+      213: -368099287963993208
+    second: rosary_flowers_28
+  - first:
+      213: 2019727956159399753
+    second: rosary_flowers_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rosary_flowers_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 512
+        width: 726
+        height: 842
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a38437bc167c97a00800000000000000
+      internalID: 754853635400353850
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_1
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 763
+        width: 119
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3986f06c1ea0e95c0800000000000000
+      internalID: -4206913037110646637
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_2
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 774
+        width: 396
+        height: 558
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5d418e304c7fbf50800000000000000
+      internalID: 6899369769523301722
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_3
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 761
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c92932f829acf8040800000000000000
+      internalID: 4652159670912520860
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_4
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 767
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e3a19fe65baba360800000000000000
+      internalID: 7182022420647224288
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_5
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 791
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b76ef8ff6f4d87410800000000000000
+      internalID: 1475163035278501499
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_6
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 314
+        width: 417
+        height: 401
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ab933f51a6e66d80800000000000000
+      internalID: -8257659285975884895
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_7
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 631
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9476b7c164a8dad10800000000000000
+      internalID: 2138517431801046857
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_8
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 605
+        width: 207
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7e3a106b7c4cbf40800000000000000
+      internalID: 5745551317394931323
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_9
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 524
+        width: 104
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d35a176c60759f7b0800000000000000
+      internalID: -5190021408957029059
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_10
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 613
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c814179fd8e882d90800000000000000
+      internalID: -7122286070259957364
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_11
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 406
+        width: 229
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16d92efc07a9c6340800000000000000
+      internalID: 4858427907340672353
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_12
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 581
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7f26b6ffba9e3a80800000000000000
+      internalID: -8485174498650869892
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_13
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 564
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e74ff7836f0e45ec0800000000000000
+      internalID: -3578988455738215298
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_14
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 385
+        width: 120
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fa8bcef0e92b2920800000000000000
+      internalID: 2966510825877768949
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_15
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 256
+        width: 121
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef0f6e8dfc8af3540800000000000000
+      internalID: 4989892522800509182
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_16
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 27
+        width: 413
+        height: 537
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d96c741b71ef6f890800000000000000
+      internalID: -7424467557961709923
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_17
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 134
+        width: 349
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c2ac829169c96200800000000000000
+      internalID: 173891481538175689
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_18
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 278
+        width: 67
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e8f3088418077d70800000000000000
+      internalID: 9040703661243889893
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_19
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 314
+        width: 115
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a3d4ff6878dd5120800000000000000
+      internalID: 2404315787871703970
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 272
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f347371f185f6190800000000000000
+      internalID: -7967052325238389768
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 310
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6bcf21e0e35e0ca0800000000000000
+      internalID: -6048805024196211862
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_22
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 104
+        width: 104
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 294debef2a1458ad0800000000000000
+      internalID: -2700680233224317806
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_23
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 104
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cd305c5c504ea8e0800000000000000
+      internalID: -1680334845532684859
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_24
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 102
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2730242a1f852f350800000000000000
+      internalID: 6048995044344595314
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_25
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 96
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7576a37da21ee2260800000000000000
+      internalID: 7074839638761432919
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_26
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 19
+        width: 52
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8bb86ad1c9a79cd0800000000000000
+      internalID: -2551384013824017521
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_27
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 0
+        width: 126
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 323202168460d2090800000000000000
+      internalID: -8057777250359041245
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_28
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 19
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88bf4dad5af34eaf0800000000000000
+      internalID: -368099287963993208
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rosary_flowers_29
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 17
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9478ec900e3870c10800000000000000
+      internalID: 2019727956159399753
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      rosary_flowers_0: 754853635400353850
+      rosary_flowers_1: -4206913037110646637
+      rosary_flowers_10: -7122286070259957364
+      rosary_flowers_11: 4858427907340672353
+      rosary_flowers_12: -8485174498650869892
+      rosary_flowers_13: -3578988455738215298
+      rosary_flowers_14: 2966510825877768949
+      rosary_flowers_15: 4989892522800509182
+      rosary_flowers_16: -7424467557961709923
+      rosary_flowers_17: 173891481538175689
+      rosary_flowers_18: 9040703661243889893
+      rosary_flowers_19: 2404315787871703970
+      rosary_flowers_2: 6899369769523301722
+      rosary_flowers_20: -7967052325238389768
+      rosary_flowers_21: -6048805024196211862
+      rosary_flowers_22: -2700680233224317806
+      rosary_flowers_23: -1680334845532684859
+      rosary_flowers_24: 6048995044344595314
+      rosary_flowers_25: 7074839638761432919
+      rosary_flowers_26: -2551384013824017521
+      rosary_flowers_27: -8057777250359041245
+      rosary_flowers_28: -368099287963993208
+      rosary_flowers_29: 2019727956159399753
+      rosary_flowers_3: 4652159670912520860
+      rosary_flowers_4: 7182022420647224288
+      rosary_flowers_5: 1475163035278501499
+      rosary_flowers_6: -8257659285975884895
+      rosary_flowers_7: 2138517431801046857
+      rosary_flowers_8: 5745551317394931323
+      rosary_flowers_9: -5190021408957029059
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

@@ -1,0 +1,36 @@
+{
+  "group_id": "22660e3c-b376-4658-b21c-edf5ba82bb9d",
+  "states": [
+    {
+      "character": {
+        "id": "026219d6-95d9-4e6c-b954-d7c404398788",
+        "name": "Attacking",
+        "prompt": "Dark fantasy hostile knight, a ruthless human warrior sworn to the Demon King. Full-body medieval fighter with a strong, disciplined build, wearing sinister, battle-worn armor inspired by the Demon King's appearance in the reference images.  His armor is made of dark, almost black steel, with jagged, angular plates, sharp ridges and subtle demonic motifs. The chestplate features an intimidating, vaguely skeletal design, with layered metal resembling ribs. Broad, pointed pauldrons, reinforced gauntlets, armored greaves and dark chainmail create a threatening silhouette without excessive bulk.  A menacing, fully enclosed helmet with a narrow, shadowed visor and short, irregular horn-like metal projections. His face remains concealed in darkness. The helmet should resemble the terrifying visage of a demonic servant, without making him appear like an actual demon.  A torn, dark crimson tabard bearing a simple, faded demonic insignia, suggesting allegiance to the Demon King. Worn black leather straps, scratched steel, rust, dried blood and damaged armor edges reveal years of brutal combat.  Armed with a heavy, dark steel longsword featuring a slightly jagged blade and an intimidating crossguard, alongside a medium-sized angular shield decorated with a sinister demonic emblem.  His appearance should communicate a merciless, fanatically loyal executioner serving an evil supernatural ruler. Authentic 16-bit SNES pixel art, dark medieval fantasy RPG aesthetic. Muted black, charcoal gray, dark steel, desaturated crimson and aged bronze. Limited color palette, crisp uniform pixels, strong dark outlines, simple 2\u20133 tone shading per material, readable silhouette. No magical aura, no glowing eyes, no flames, no wings, no oversized horns, no excessive ornamentation, no modern elements, no gradients, no anti-aliasing.",
+        "size": {
+          "width": 56,
+          "height": 56
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-09T04:19:48.276022+00:00"
+      },
+      "folder": "Attacking",
+      "frames": {
+        "rotations": {
+          "south": "Attacking/rotations/south.png",
+          "south-east": "Attacking/rotations/south-east.png",
+          "east": "Attacking/rotations/east.png",
+          "north-east": "Attacking/rotations/north-east.png",
+          "north": "Attacking/rotations/north.png",
+          "north-west": "Attacking/rotations/north-west.png",
+          "west": "Attacking/rotations/west.png",
+          "south-west": "Attacking/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-09T04:24:42.193381"
+}

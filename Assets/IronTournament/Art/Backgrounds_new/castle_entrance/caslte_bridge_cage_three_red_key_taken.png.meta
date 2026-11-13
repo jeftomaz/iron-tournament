@@ -1,0 +1,1066 @@
+fileFormatVersion: 2
+guid: b378e5e3c980b4cd5806229d37fb1a2b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 573515221443705441
+    second: caslte_bridge_cage_three_red_key_taken_0
+  - first:
+      213: -2037485733334733724
+    second: caslte_bridge_cage_three_red_key_taken_1
+  - first:
+      213: -4188094094930205165
+    second: caslte_bridge_cage_three_red_key_taken_2
+  - first:
+      213: 877263308555446912
+    second: caslte_bridge_cage_three_red_key_taken_3
+  - first:
+      213: 1564603543991456256
+    second: caslte_bridge_cage_three_red_key_taken_4
+  - first:
+      213: 5639422248916847664
+    second: caslte_bridge_cage_three_red_key_taken_5
+  - first:
+      213: -6600517470718981288
+    second: caslte_bridge_cage_three_red_key_taken_6
+  - first:
+      213: 6292498649297352978
+    second: caslte_bridge_cage_three_red_key_taken_7
+  - first:
+      213: -4834244254605122594
+    second: caslte_bridge_cage_three_red_key_taken_8
+  - first:
+      213: 1860740689105979036
+    second: caslte_bridge_cage_three_red_key_taken_9
+  - first:
+      213: -3511569359979138251
+    second: caslte_bridge_cage_three_red_key_taken_10
+  - first:
+      213: -3290943110456359412
+    second: caslte_bridge_cage_three_red_key_taken_11
+  - first:
+      213: -232867051561351209
+    second: caslte_bridge_cage_three_red_key_taken_12
+  - first:
+      213: -8816038788312955210
+    second: caslte_bridge_cage_three_red_key_taken_13
+  - first:
+      213: 7441210681079750290
+    second: caslte_bridge_cage_three_red_key_taken_14
+  - first:
+      213: 7508497611901095751
+    second: caslte_bridge_cage_three_red_key_taken_15
+  - first:
+      213: 2806325003537796943
+    second: caslte_bridge_cage_three_red_key_taken_16
+  - first:
+      213: 2661761383745757281
+    second: caslte_bridge_cage_three_red_key_taken_17
+  - first:
+      213: -665843149973686110
+    second: caslte_bridge_cage_three_red_key_taken_18
+  - first:
+      213: -1923913625735327649
+    second: caslte_bridge_cage_three_red_key_taken_19
+  - first:
+      213: -6368833474461962325
+    second: caslte_bridge_cage_three_red_key_taken_20
+  - first:
+      213: -1672303403786997313
+    second: caslte_bridge_cage_three_red_key_taken_21
+  - first:
+      213: -8504773712393008724
+    second: caslte_bridge_cage_three_red_key_taken_22
+  - first:
+      213: -1552310178934016899
+    second: caslte_bridge_cage_three_red_key_taken_23
+  - first:
+      213: 8909383794723695568
+    second: caslte_bridge_cage_three_red_key_taken_24
+  - first:
+      213: 392897938059855787
+    second: caslte_bridge_cage_three_red_key_taken_25
+  - first:
+      213: 3689626380967795758
+    second: caslte_bridge_cage_three_red_key_taken_26
+  - first:
+      213: -5048518409080932005
+    second: caslte_bridge_cage_three_red_key_taken_27
+  - first:
+      213: 5801309512182364867
+    second: caslte_bridge_cage_three_red_key_taken_28
+  - first:
+      213: 3019607309331268054
+    second: caslte_bridge_cage_three_red_key_taken_29
+  - first:
+      213: 8145827907928777983
+    second: caslte_bridge_cage_three_red_key_taken_30
+  - first:
+      213: -7447940059347131189
+    second: caslte_bridge_cage_three_red_key_taken_31
+  - first:
+      213: 3199516786525050205
+    second: caslte_bridge_cage_three_red_key_taken_32
+  - first:
+      213: 3762303735440032409
+    second: caslte_bridge_cage_three_red_key_taken_33
+  - first:
+      213: -8420211698076149796
+    second: caslte_bridge_cage_three_red_key_taken_34
+  - first:
+      213: -1974421392021859174
+    second: caslte_bridge_cage_three_red_key_taken_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1534
+        height: 990
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16a7e672e0985f700800000000000000
+      internalID: 573515221443705441
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_1
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 975
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46c28a5458569b3e0800000000000000
+      internalID: -2037485733334733724
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_2
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 974
+        width: 79
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31626c13c96e0e5c0800000000000000
+      internalID: -4188094094930205165
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_3
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 959
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08a6ee8c45aac2c00800000000000000
+      internalID: 877263308555446912
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_4
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 873
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0029de532a696b510800000000000000
+      internalID: 1564603543991456256
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_5
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 641
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03c8f1d08a0434e40800000000000000
+      internalID: 5639422248916847664
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_6
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 649
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85b0908d4504664a0800000000000000
+      internalID: -6600517470718981288
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 397
+        width: 56
+        height: 212
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2197ef4be22735750800000000000000
+      internalID: 6292498649297352978
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 551
+        width: 46
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed3e9ce967059ecb0800000000000000
+      internalID: -4834244254605122594
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_9
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 533
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9607415ccda2d910800000000000000
+      internalID: 1860740689105979036
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_10
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 525
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5333c4ea546644fc0800000000000000
+      internalID: -3511569359979138251
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_11
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 521
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c06ca3d5da83452d0800000000000000
+      internalID: -3290943110456359412
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_12
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 497
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d70bcf76a0b4ccf0800000000000000
+      internalID: -232867051561351209
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_13
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 495
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b68a807e6327a580800000000000000
+      internalID: -8816038788312955210
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_14
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 429
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29ed99070bd744760800000000000000
+      internalID: 7441210681079750290
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_15
+      rect:
+        serializedVersion: 2
+        x: 1432
+        y: 433
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74fcb3adbca833860800000000000000
+      internalID: 7508497611901095751
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_16
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 437
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4fca20e8b112f620800000000000000
+      internalID: 2806325003537796943
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_17
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 423
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 160a40b30e970f420800000000000000
+      internalID: 2661761383745757281
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_18
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 401
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a8f0b1de2372c6f0800000000000000
+      internalID: -665843149973686110
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_19
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 367
+        width: 9
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f50138f20c2ec45e0800000000000000
+      internalID: -1923913625735327649
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_20
+      rect:
+        serializedVersion: 2
+        x: 1436
+        y: 375
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bafe311d2bb5d97a0800000000000000
+      internalID: -6368833474461962325
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 293
+        width: 44
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb1799c1ae8cac8e0800000000000000
+      internalID: -1672303403786997313
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_22
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 361
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca90cb96e59f8f980800000000000000
+      internalID: -8504773712393008724
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_23
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 341
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d743a63ed16157ae0800000000000000
+      internalID: -1552310178934016899
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_24
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 270
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dba02c7b5d74ab70800000000000000
+      internalID: 8909383794723695568
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_25
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 239
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba78a0fc79ad37500800000000000000
+      internalID: 392897938059855787
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_26
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 247
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2cde7f15af243330800000000000000
+      internalID: 3689626380967795758
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_27
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 247
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b59f5b0514f00f9b0800000000000000
+      internalID: -5048518409080932005
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_28
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 221
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ca79b1c344628050800000000000000
+      internalID: 5801309512182364867
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_29
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 209
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d10dd969dcc7e920800000000000000
+      internalID: 3019607309331268054
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_30
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 199
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff4ee85e25bcb0170800000000000000
+      internalID: 8145827907928777983
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_31
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 47
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc466361af993a890800000000000000
+      internalID: -7447940059347131189
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_32
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 30
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5599b9c097f66c20800000000000000
+      internalID: 3199516786525050205
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_33
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 31
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99247085053663430800000000000000
+      internalID: 3762303735440032409
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_34
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 17
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd71592a216652b80800000000000000
+      internalID: -8420211698076149796
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: caslte_bridge_cage_three_red_key_taken_35
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 15
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a94da9374327994e0800000000000000
+      internalID: -1974421392021859174
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      caslte_bridge_cage_three_red_key_taken_0: 573515221443705441
+      caslte_bridge_cage_three_red_key_taken_1: -2037485733334733724
+      caslte_bridge_cage_three_red_key_taken_10: -3511569359979138251
+      caslte_bridge_cage_three_red_key_taken_11: -3290943110456359412
+      caslte_bridge_cage_three_red_key_taken_12: -232867051561351209
+      caslte_bridge_cage_three_red_key_taken_13: -8816038788312955210
+      caslte_bridge_cage_three_red_key_taken_14: 7441210681079750290
+      caslte_bridge_cage_three_red_key_taken_15: 7508497611901095751
+      caslte_bridge_cage_three_red_key_taken_16: 2806325003537796943
+      caslte_bridge_cage_three_red_key_taken_17: 2661761383745757281
+      caslte_bridge_cage_three_red_key_taken_18: -665843149973686110
+      caslte_bridge_cage_three_red_key_taken_19: -1923913625735327649
+      caslte_bridge_cage_three_red_key_taken_2: -4188094094930205165
+      caslte_bridge_cage_three_red_key_taken_20: -6368833474461962325
+      caslte_bridge_cage_three_red_key_taken_21: -1672303403786997313
+      caslte_bridge_cage_three_red_key_taken_22: -8504773712393008724
+      caslte_bridge_cage_three_red_key_taken_23: -1552310178934016899
+      caslte_bridge_cage_three_red_key_taken_24: 8909383794723695568
+      caslte_bridge_cage_three_red_key_taken_25: 392897938059855787
+      caslte_bridge_cage_three_red_key_taken_26: 3689626380967795758
+      caslte_bridge_cage_three_red_key_taken_27: -5048518409080932005
+      caslte_bridge_cage_three_red_key_taken_28: 5801309512182364867
+      caslte_bridge_cage_three_red_key_taken_29: 3019607309331268054
+      caslte_bridge_cage_three_red_key_taken_3: 877263308555446912
+      caslte_bridge_cage_three_red_key_taken_30: 8145827907928777983
+      caslte_bridge_cage_three_red_key_taken_31: -7447940059347131189
+      caslte_bridge_cage_three_red_key_taken_32: 3199516786525050205
+      caslte_bridge_cage_three_red_key_taken_33: 3762303735440032409
+      caslte_bridge_cage_three_red_key_taken_34: -8420211698076149796
+      caslte_bridge_cage_three_red_key_taken_35: -1974421392021859174
+      caslte_bridge_cage_three_red_key_taken_4: 1564603543991456256
+      caslte_bridge_cage_three_red_key_taken_5: 5639422248916847664
+      caslte_bridge_cage_three_red_key_taken_6: -6600517470718981288
+      caslte_bridge_cage_three_red_key_taken_7: 6292498649297352978
+      caslte_bridge_cage_three_red_key_taken_8: -4834244254605122594
+      caslte_bridge_cage_three_red_key_taken_9: 1860740689105979036
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

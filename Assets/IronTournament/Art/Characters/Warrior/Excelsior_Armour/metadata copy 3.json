@@ -1,0 +1,36 @@
+{
+  "group_id": "42d15298-1af3-4b45-9059-047730419dcc",
+  "states": [
+    {
+      "character": {
+        "id": "b582e41f-4d7d-444e-81e6-e707b46e261e",
+        "name": "Defensive pose. The",
+        "prompt": "Create a legendary Excelsior Armor skin for the existing warrior. Replace his original armor with magnificent silver-white plate armor, decorated with elegant golden edges and subtle sacred engravings. The chestplate and shoulder guards should appear stronger and more imposing, with a noble, divine appearance. Add a long dark red or deep burgundy cape flowing behind him, enhancing his heroic and sacred presence. Add a faint warm golden radiance around the armor, suggesting celestial protection. Preserve the warrior's face, hair, proportions, sword, shield and original idle pose.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-11T18:31:29.555707+00:00"
+      },
+      "folder": "Defensive_pose._The",
+      "frames": {
+        "rotations": {
+          "south": "Defensive_pose._The/rotations/south.png",
+          "south-east": "Defensive_pose._The/rotations/south-east.png",
+          "east": "Defensive_pose._The/rotations/east.png",
+          "north-east": "Defensive_pose._The/rotations/north-east.png",
+          "north": "Defensive_pose._The/rotations/north.png",
+          "north-west": "Defensive_pose._The/rotations/north-west.png",
+          "west": "Defensive_pose._The/rotations/west.png",
+          "south-west": "Defensive_pose._The/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-11T18:33:34.036166"
+}

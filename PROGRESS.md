@@ -1,5 +1,11 @@
 # Progresso
 
+## 2026-11-12 — Acervo de arte
+
+- Preparados novos cenários, personagens, poses e equipamentos para compartilhamento; assets legados preservados até a migração das referências em PRs próprias.
+- Validação da branch de arte: EditMode 112/112, PlayMode 47/47 e build WebGL aprovados por `scripts/verify.sh`.
+- As demais alterações locais estão preservadas no stash `snapshot antes da publicacao por tarefas 2026-11-12`; publicação segue por tarefas, com integração sequencial.
+
 ## 2026-11-07 — Atributos do Mago
 
 - Atualizada a descrição do Mago, mantendo HP, ATQ e DEF; apresentação aprovada visualmente.

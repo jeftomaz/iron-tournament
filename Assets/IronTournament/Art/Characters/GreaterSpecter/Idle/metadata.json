@@ -1,0 +1,36 @@
+{
+  "group_id": "85431017-5fd7-497d-b854-08ba6da133e4",
+  "states": [
+    {
+      "character": {
+        "id": "7e75075b-5ace-4724-98ff-e9aa73490a0a",
+        "name": "Attacking",
+        "prompt": "Dark fantasy greater specter, the tormented spirit of an adult warrior who died violently and cannot rest. Tall, imposing floating apparition with a broad spectral upper body, elongated claw-like hands and a shredded lower half fading into supernatural mist. A distorted humanoid face with hollow glowing eyes and an expression of eternal anguish. Its silhouette suggests a powerful former human, now twisted by suffering. Torn spectral remnants surround its shoulders and torso. Cold gray, faded blue, pale violet and muted white palette. Menacing, tragic and supernatural, not a conventional zombie. Authentic 16-bit SNES pixel art inspired by Castlevania. Large crisp pixels, dark outlines, limited palette, 2\u20133 shading tones, readable silhouette. Full-body idle sprite, three-quarter view, transparent background, no scenery.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "custom",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-09T13:21:10.481942+00:00"
+      },
+      "folder": "Attacking",
+      "frames": {
+        "rotations": {
+          "south": "Attacking/rotations/south.png",
+          "south-east": "Attacking/rotations/south-east.png",
+          "east": "Attacking/rotations/east.png",
+          "north-east": "Attacking/rotations/north-east.png",
+          "north": "Attacking/rotations/north.png",
+          "north-west": "Attacking/rotations/north-west.png",
+          "west": "Attacking/rotations/west.png",
+          "south-west": "Attacking/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-09T13:27:59.223891"
+}

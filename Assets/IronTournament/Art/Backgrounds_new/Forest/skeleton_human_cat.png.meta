@@ -1,0 +1,936 @@
+fileFormatVersion: 2
+guid: b5870b6854a6445578b274aef7a0928a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 960984388091027316
+    second: skeleton_human_cat_0
+  - first:
+      213: 6178639821126388995
+    second: skeleton_human_cat_1
+  - first:
+      213: 5659998403040672323
+    second: skeleton_human_cat_2
+  - first:
+      213: -1299218063446687336
+    second: skeleton_human_cat_3
+  - first:
+      213: -5732934070521189751
+    second: skeleton_human_cat_4
+  - first:
+      213: -5418578851984564261
+    second: skeleton_human_cat_5
+  - first:
+      213: -4392818510283828291
+    second: skeleton_human_cat_6
+  - first:
+      213: 8970099375590077428
+    second: skeleton_human_cat_7
+  - first:
+      213: 5139139980056612627
+    second: skeleton_human_cat_8
+  - first:
+      213: 8155968712794825432
+    second: skeleton_human_cat_9
+  - first:
+      213: 6749778208340773003
+    second: skeleton_human_cat_10
+  - first:
+      213: 3925199251620740013
+    second: skeleton_human_cat_11
+  - first:
+      213: -2167859692332106240
+    second: skeleton_human_cat_12
+  - first:
+      213: -6989438933542155592
+    second: skeleton_human_cat_13
+  - first:
+      213: -69654040586046597
+    second: skeleton_human_cat_14
+  - first:
+      213: -3581892751032457672
+    second: skeleton_human_cat_15
+  - first:
+      213: -8917589534095419822
+    second: skeleton_human_cat_16
+  - first:
+      213: 6855707094960868784
+    second: skeleton_human_cat_17
+  - first:
+      213: -8910972579187408716
+    second: skeleton_human_cat_18
+  - first:
+      213: 8145391426383044165
+    second: skeleton_human_cat_19
+  - first:
+      213: -6402521608420162966
+    second: skeleton_human_cat_20
+  - first:
+      213: -7834006298139627503
+    second: skeleton_human_cat_21
+  - first:
+      213: 8102977188094117125
+    second: skeleton_human_cat_22
+  - first:
+      213: 1638335197944374226
+    second: skeleton_human_cat_23
+  - first:
+      213: 5367986964745207590
+    second: skeleton_human_cat_24
+  - first:
+      213: 2039357090795855383
+    second: skeleton_human_cat_25
+  - first:
+      213: -1395628450576213453
+    second: skeleton_human_cat_26
+  - first:
+      213: -6126196803792075847
+    second: skeleton_human_cat_27
+  - first:
+      213: -7737689933094240313
+    second: skeleton_human_cat_28
+  - first:
+      213: 4796408823003979382
+    second: skeleton_human_cat_29
+  - first:
+      213: 5204528909392431532
+    second: skeleton_human_cat_30
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: skeleton_human_cat_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 559
+        width: 1024
+        height: 969
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47f9cde953a165d00800000000000000
+      internalID: 960984388091027316
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_1
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1518
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30d42557e20feb550800000000000000
+      internalID: 6178639821126388995
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_2
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1471
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34a74824f8a5c8e40800000000000000
+      internalID: 5659998403040672323
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_3
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 1439
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8914d7a0e0048fde0800000000000000
+      internalID: -1299218063446687336
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_4
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 1447
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98aa9d556d68070b0800000000000000
+      internalID: -5732934070521189751
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_5
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 1403
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdf14043e375dc4b0800000000000000
+      internalID: -5418578851984564261
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_6
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 1292
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db395cbc6d29903c0800000000000000
+      internalID: -4392818510283828291
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_7
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1239
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3fff14bd13c7c70800000000000000
+      internalID: 8970099375590077428
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_8
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 1031
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31f48426594e15740800000000000000
+      internalID: 5139139980056612627
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_9
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 991
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d2e5550552df2170800000000000000
+      internalID: 8155968712794825432
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_10
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 983
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8803d4c4870cad50800000000000000
+      internalID: 6749778208340773003
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 995
+        height: 956
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dabbb793ceb197630800000000000000
+      internalID: 3925199251620740013
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_12
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 778
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00e38ab78173ae1e0800000000000000
+      internalID: -2167859692332106240
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_13
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 754
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ba4fe25256800f90800000000000000
+      internalID: -6989438933542155592
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_14
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 482
+        width: 71
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b73b2b5e40a880ff0800000000000000
+      internalID: -69654040586046597
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_15
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 513
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 836e927458f8a4ec0800000000000000
+      internalID: -3581892751032457672
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_16
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 443
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 256508fe09b5e3480800000000000000
+      internalID: -8917589534095419822
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_17
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 446
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bd844f974d542f50800000000000000
+      internalID: 6855707094960868784
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_18
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 433
+        width: 31
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b0c94ec6add55480800000000000000
+      internalID: -8910972579187408716
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_19
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 207
+        width: 27
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54ed21e985e3a0170800000000000000
+      internalID: 8145391426383044165
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_20
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 226
+        width: 21
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a628a57e48ca527a0800000000000000
+      internalID: -6402521608420162966
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_21
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 199
+        width: 43
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 110f63737c4084390800000000000000
+      internalID: -7834006298139627503
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_22
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 141
+        width: 101
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 505817732de837070800000000000000
+      internalID: 8102977188094117125
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_23
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 219
+        width: 53
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d36e78ae298cb610800000000000000
+      internalID: 1638335197944374226
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_24
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 205
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62fb09024bbee7a40800000000000000
+      internalID: 5367986964745207590
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_25
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 87
+        width: 415
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71e9f0718704d4c10800000000000000
+      internalID: 2039357090795855383
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_26
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 207
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33ad9fc815bb1ace0800000000000000
+      internalID: -1395628450576213453
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_27
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 166
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b307d507706bfaa0800000000000000
+      internalID: -6126196803792075847
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_28
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 95
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cf3dcb70043e9490800000000000000
+      internalID: -7737689933094240313
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_29
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 49
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67e93bc7964409240800000000000000
+      internalID: 4796408823003979382
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skeleton_human_cat_30
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 0
+        width: 107
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca94693e7733a3840800000000000000
+      internalID: 5204528909392431532
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      skeleton_human_cat_0: 960984388091027316
+      skeleton_human_cat_1: 6178639821126388995
+      skeleton_human_cat_10: 6749778208340773003
+      skeleton_human_cat_11: 3925199251620740013
+      skeleton_human_cat_12: -2167859692332106240
+      skeleton_human_cat_13: -6989438933542155592
+      skeleton_human_cat_14: -69654040586046597
+      skeleton_human_cat_15: -3581892751032457672
+      skeleton_human_cat_16: -8917589534095419822
+      skeleton_human_cat_17: 6855707094960868784
+      skeleton_human_cat_18: -8910972579187408716
+      skeleton_human_cat_19: 8145391426383044165
+      skeleton_human_cat_2: 5659998403040672323
+      skeleton_human_cat_20: -6402521608420162966
+      skeleton_human_cat_21: -7834006298139627503
+      skeleton_human_cat_22: 8102977188094117125
+      skeleton_human_cat_23: 1638335197944374226
+      skeleton_human_cat_24: 5367986964745207590
+      skeleton_human_cat_25: 2039357090795855383
+      skeleton_human_cat_26: -1395628450576213453
+      skeleton_human_cat_27: -6126196803792075847
+      skeleton_human_cat_28: -7737689933094240313
+      skeleton_human_cat_29: 4796408823003979382
+      skeleton_human_cat_3: -1299218063446687336
+      skeleton_human_cat_30: 5204528909392431532
+      skeleton_human_cat_4: -5732934070521189751
+      skeleton_human_cat_5: -5418578851984564261
+      skeleton_human_cat_6: -4392818510283828291
+      skeleton_human_cat_7: 8970099375590077428
+      skeleton_human_cat_8: 5139139980056612627
+      skeleton_human_cat_9: 8155968712794825432
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

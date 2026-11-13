@@ -1,0 +1,36 @@
+{
+  "group_id": "7c57a7e8-c001-46c4-b25e-a9acd4cad408",
+  "states": [
+    {
+      "character": {
+        "id": "c7d38d0b-1a18-405c-b7f1-0ee501e4f506",
+        "name": "Wounded pose. The wa",
+        "prompt": "Use the existing warrior sprite as the exact reference. Create a new skin of the SAME character, keeping the original idle combat-ready pose. Preserve exactly the face, short dark brown hair, light stubble, serious expression, worn light plate armor, leather straps, dark trousers, boots, sword, proportions, colors and perspective. Replace only the original round shield with a mirror shield of the same size and general shape. The new shield must have a polished reflective silver surface, bright highlights, metallic rim and a slightly enchanted look, while still fitting the dark medieval fantasy style. No glow, no magic effects, no fire. Authentic 16-bit SNES pixel art, large crisp pixels, limited palette, transparent background.",
+        "size": {
+          "width": 48,
+          "height": 48
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-11-11T17:33:59.049616+00:00"
+      },
+      "folder": "Wounded_pose._The_wa",
+      "frames": {
+        "rotations": {
+          "south": "Wounded_pose._The_wa/rotations/south.png",
+          "south-east": "Wounded_pose._The_wa/rotations/south-east.png",
+          "east": "Wounded_pose._The_wa/rotations/east.png",
+          "north-east": "Wounded_pose._The_wa/rotations/north-east.png",
+          "north": "Wounded_pose._The_wa/rotations/north.png",
+          "north-west": "Wounded_pose._The_wa/rotations/north-west.png",
+          "west": "Wounded_pose._The_wa/rotations/west.png",
+          "south-west": "Wounded_pose._The_wa/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-11T17:47:16.581672"
+}
