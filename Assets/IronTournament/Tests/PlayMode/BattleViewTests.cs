@@ -196,7 +196,7 @@ namespace IronTournament.Presentation.Tests
             }
 
             Assert.That(view.HasOutcome, Is.True);
-            Assert.That(canvas.GetComponentInChildren<BattleHud>().StatusMessage, Is.EqualTo("Escolha um saque"));
+            Assert.That(canvas.GetComponentInChildren<BattleHud>().StatusMessage, Is.EqualTo("Experiência de batalha: ATQ +2 · DEF +1"));
             var drops = menu.GetComponentsInChildren<Button>();
             Assert.That(drops, Has.Length.EqualTo(2));
             Assert.That(drops.All(button => button.name.StartsWith("Drop")), Is.True);
@@ -204,6 +204,7 @@ namespace IronTournament.Presentation.Tests
             var details = canvas.GetComponentsInChildren<Text>(true).Single(text => text.name == "DropDetails");
             Assert.That(details.gameObject.activeInHierarchy, Is.True);
             Assert.That(details.text, Does.Contain("·"));
+            yield return null;
             Assert.That(details.rectTransform.anchoredPosition.y - details.rectTransform.rect.height,
                 Is.GreaterThan(((RectTransform)menu.transform).anchoredPosition.y));
 

@@ -80,7 +80,7 @@ namespace IronTournament.Presentation
             ApplyEncounterSelection(id, false);
         }
 
-        public void ShowDropChoice(IReadOnlyList<ItemConfiguration> offer)
+        public void ShowDropChoice(IReadOnlyList<ItemConfiguration> offer, ExperienceGain experience = default)
         {
             if (!combatPresentationStarted || outcome != BattlePhase.Victory)
                 throw new InvalidOperationException("A victorious encounter is required for a drop choice.");
@@ -92,7 +92,7 @@ namespace IronTournament.Presentation
             dropDetails.supportRichText = false;
             dropDetails.text = DescribeOffer(offer);
             dropDetails.gameObject.SetActive(true);
-            hud.SetStatus("Escolha um saque");
+            hud.SetStatus($"Experiência de batalha: ATQ +{experience.Attack} · DEF +{experience.Defense}");
             RequestLayout();
         }
 
@@ -308,7 +308,7 @@ namespace IronTournament.Presentation
             title.fontSize = portrait ? 26 : 36;
             encounter.fontSize = portrait ? 12 : 14;
             var status = battleStatus.GetComponent<Text>();
-            status.fontSize = HasOutcome ? (portrait ? 30 : 36) : 14;
+            status.fontSize = showingDrops ? (portrait ? 12 : 16) : HasOutcome ? (portrait ? 30 : 36) : 14;
             status.color = outcome == BattlePhase.Victory ? new Color32(245, 198, 82, 255)
                 : outcome == BattlePhase.Defeat ? new Color32(242, 130, 120, 255) : Color.white;
             FitBackground();

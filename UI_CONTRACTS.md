@@ -40,6 +40,7 @@
 - Cancelar também descarta atualizações de HP ainda não apresentadas; o controlador deve redesenhar o estado vigente antes de reabrir as ações.
 - `BattleEventPlayer.End` recebe o `BattleEndedEvent` aprovado do núcleo e encerra a sequência após os efeitos anteriores; reutiliza a mensagem do HUD para vitória/derrota, oculta as ações e escurece o vencido. Não deduz resultado pelo HP, não altera a saúde e rejeita novas sequências após o encerramento. Cancelar antes do evento descarta também o resultado pendente.
 - A UI consome estado somente para exibição.
+- Na recompensa de batalha, apresentar “Experiência de batalha” com ganhos de ATQ e DEF junto à oferta de saque; na prova narrativa, a escolha confirma ambos.
 - Ao receber `BattleView.CombatStarted`, `BattleBootstrap` mapeia o herói selecionado e a configuração `Campaign`, cria o `CampaignRun` e entrega sua batalha ativa ao `BattlePresenter`. Cada vitória é concluída pelo núcleo: o bootstrap mostra a oferta recebida, envia a escolha ao `CampaignRun` e troca a cena para o próximo encontro; derrota e conclusão final permanecem terminais. Escolhas passam por `Submit`, ficam bloqueadas durante os eventos e são reabertas com `AvailableActions`. Ao retomar uma apresentação interrompida, redesenhar o estado vigente do núcleo. Sem inicialização, as ações permanecem desabilitadas.
 - Durante `DropChoice`, `BattleView` apresenta nome e efeito de cada item em `DropDetails`, numa área exclusiva acima das ações; esse texto não decide nem aplica efeitos e é ocultado ao iniciar o próximo encontro ou encerrar a campanha.
 - `BattleBootstrap` usa as seleções validadas de `BattleView` e `ContentMapper`; a variação de atributos, fúria, drops e efeitos dos itens continuam no `Core`.
@@ -54,6 +55,7 @@
 ## Validação visual
 
 - PR de interface inclui captura ou vídeo curto do fluxo alterado.
+- Capturas versionadas ficam em `docs/evidence/` e são vinculadas no PR.
 - Revisão manual usa ambas as resoluções de referência e verifica legibilidade, navegação e estados extremos.
 - Testes PlayMode cobrem transições e interações; a aprovação visual continua humana.
 - Quando disponível, a pipeline publica uma build como artefato do PR para validação da integração.
