@@ -1,5 +1,10 @@
 # Progresso
 
+## 2026-11-13 — Configuração Unity/WebGL
+
+- Recuperados o perfil Web de desenvolvimento, as configurações URP e as preferências de templates de cena do snapshot; sem campos sensíveis preenchidos no perfil.
+- Saídas geradas de Burst em `Data/` preservadas localmente e ignoradas pelo Git. EditMode 124/124, PlayMode 47/47 e WebGL aprovados.
+
 ## 2026-11-13 — Validação de commits grandes
 
 - Corrigida a leitura da lista pelo hook para evitar `SIGPIPE` e omissão de Unity; regressão reproduzida com 10.001 arquivos e dispensa de Markdown preservada. EditMode 124/124, PlayMode 47/47 e WebGL aprovados.

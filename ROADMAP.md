@@ -49,6 +49,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 - `done` `JL` Executar testes de regressão e ajustar balanceamento apenas por valores canônicos aprovados.
 - `todo` `JT` Publicar e validar o build Web nos navegadores-alvo, revisar segurança, desempenho, CI e integração final.
 - `todo` `JT` Após a publicação das alterações acumuladas, medir etapas e cache do build Unity/WebGL para identificar o custo necessário e possíveis falhas de desenvolvimento ou CI.
+- `done` `JT` Versionar o perfil Web de desenvolvimento e as configurações Unity/URP locais para reprodução em outras máquinas.
 
 ## Prova narrativa — vila e Goblin
 

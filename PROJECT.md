@@ -27,6 +27,11 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Os cenários gerados usam formato quadrado (`1:1`), com uma única imagem compartilhada entre desktop e mobile. A distribuição de cenário e interface segue `UI_CONTRACTS.md`.
 - A primeira publicação Web é cliente estático: multiplayer, autenticação e backend não fazem parte deste escopo.
 
+## Configuração local
+
+- Perfil local versionado: `Assets/Settings/Build Profiles/Web - Desktop - Development.asset`; usa a lista global de cenas e habilita Development.
+- `Data/Plugins/lib_burst_generated.*` são saídas geradas pelo Burst e permanecem locais, fora do controle de versão.
+
 ## Estrutura inicial
 
 - `Core`: regras e estado de runtime sem referência ao Unity.

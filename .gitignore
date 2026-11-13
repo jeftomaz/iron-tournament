@@ -19,6 +19,7 @@ out/
 [Uu]ser[Ss]ettings/
 [Bb]uild/
 [Bb]uilds/
+/Data/
 MemoryCaptures/
 Recordings/
 *.csproj
