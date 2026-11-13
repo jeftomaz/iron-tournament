@@ -78,6 +78,7 @@
 - Os seis túmulos são pontos clicáveis: com o Cristal, cartas não examinadas recebem azul; o único túmulo com o Esqueleto recebe vermelho. O túmulo do Esqueleto não contém outros objetos; após o combate, os túmulos restantes continuam acessíveis.
 - A floresta alagada, floresta fria, clareira, túmulos, mão do Esqueleto e montanha usam as artes locais; pontos clicáveis acompanham os túmulos da imagem.
 - Texto digitado: um toque completa a fala; o próximo avança. Descrições longas de ambientes e cartas são paginadas.
+- `StoryView.ChapterCard(title)` oferece tela preta integral, título centralizado e área de ações; sua ligação ao fluxo será publicada na tarefa de abertura. Capturas em `docs/evidence/story-360x640.png` e `story-1280x720.png`.
 - A abertura e a narração do capítulo usam fundo preto e texto centralizado; falas de personagens usam balões próximos aos atores. Menus distinguem ações principais, secundárias e inventário.
 - Os indicadores próximos aos combatentes exibem valores e barras de HP; ofertas de saque mostram uma descrição curta de cada item.
 - A interface usa sprites CC0 do UI Pack da Kenney; sons da prova usam os efeitos selecionados do RPG Essentials.

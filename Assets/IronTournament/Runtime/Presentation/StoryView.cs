@@ -120,6 +120,17 @@ namespace IronTournament.Presentation
             actions = Rect("Actions", information, .08f, .12f, .84f, Portrait ? .70f : .72f);
         }
 
+        public void ChapterCard(string title)
+        {
+            CompleteText();
+            if (surface != null) { surface.gameObject.SetActive(false); Destroy(surface.gameObject); }
+            surface = Rect("StorySurface", transform, 0, 0, 1, 1);
+            Panel(surface, 0, 0, 1, 1, Color.black);
+            var heading = Label(surface, title, .08f, .42f, .84f, .16f, Portrait ? 26 : 44, Paper);
+            heading.alignment = TextAnchor.MiddleCenter;
+            actions = Rect("Actions", surface, Portrait ? .15f : .35f, .06f, Portrait ? .7f : .3f, Portrait ? .13f : .27f);
+        }
+
         public void Text(string speaker, string message, bool animate = false, Image speakingActor = null, bool cinematic = false, float? heightOverride = null)
         {
             if (string.IsNullOrEmpty(message)) return;

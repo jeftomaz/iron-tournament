@@ -1,5 +1,10 @@
 # Progresso
 
+## 2026-11-13 — Contrato da abertura narrativa
+
+- Recuperados o campo opcional `campaignTitle` e a apresentação `ChapterCard` do snapshot aprovado; os consumidores permanecem para a próxima PR.
+- Capturas mobile/desktop conferidas em `docs/evidence/`; EditMode 127/127, PlayMode 47/47 e WebGL aprovados.
+
 ## 2026-11-13 — Transição da fase final
 
 - Recuperada a transição do `CampaignRun` para a segunda fase do Rei, mantendo HP, atributos e fúria e concluindo a campanha somente depois dela, sem ganho nem saque entre fases.
@@ -7,7 +12,7 @@
 
 ## 2026-11-13 — Contrato da fase final
 
-- Recuperados configuração opcional, validação, mapeamento e asset da segunda fase do Rei; o construtor antigo segue válido com `null`. A transição de combate permanece para PR dependente.
+- Recuperados configuração opcional, validação, mapeamento e asset da segunda fase do Rei; o construtor antigo segue válido com `null`.
 - Mapeamento do asset canônico coberto pelo teste existente; EditMode 124/124, PlayMode 47/47 e WebGL aprovados.
 
 ## 2026-11-13 — Configuração Unity/WebGL
@@ -28,18 +33,18 @@
 ## 2026-11-13 — Experiência no núcleo
 
 - Recuperados os ganhos por vitória e os contratos `ExperienceGain`/`LastExperience`, sem alterar a apresentação; a restauração de checkpoints reutiliza a mesma regra de ganho.
-- Testes de progressão, itens e retomada ajustados; EditMode 124/124, PlayMode 47/47 e WebGL aprovados. A apresentação aprovada será integrada em PR própria após este contrato.
+- Testes de progressão, itens e retomada ajustados; EditMode 124/124, PlayMode 47/47 e WebGL aprovados.
 
 ## 2026-11-13 — Publicação por tarefas
 
-- Atributos separados em `feat/atributos-canonicos`; compatibilidade autorizada para checkpoints antigos/novos com ou sem experiência, mantendo validação do saque e HP salvo. EditMode 121/121, PlayMode 47/47 e WebGL aprovados.
-- Experiência e capturas preservadas no stash `experiencia separada aguardando atributos 2026-11-13` (pai `4f33feb`); snapshot original preservado no stash `snapshot antes da publicacao por tarefas 2026-11-12`.
+- Publicação pausada a pedido do usuário após integrar a PR do contrato da abertura. Restam abertura, poses/remoção de arte legada, ajustes de cenas, crítico, inventário e ponte; manter uma tarefa por PR e integração sequencial.
+- Snapshot integral preservado no stash `f654f3598e6dac874dccf75bdc4f7f6741e9bd6c` (`^3` contém os arquivos originalmente novos); backup da separação de experiência em `f6b94d70b0bead4fb4de7472776715fd190675cf`. Não restaurar arquivos inteiros sobre as correções de compatibilidade já integradas.
+- O fluxo do snapshot até o fim da ponte recebeu aprovação visual do usuário em 2026-11-12. Ao publicar, preservar as correções atuais de checkpoint e anexar capturas de cada interface.
 
 ## 2026-11-12 — Acervo de arte
 
 - Integrados novos cenários, personagens, poses e equipamentos pela PR #53; assets legados preservados até a migração das referências em PRs próprias.
 - Validação da branch de arte: EditMode 112/112, PlayMode 47/47 e build WebGL aprovados por `scripts/verify.sh`.
-- As demais alterações locais estão preservadas no stash `snapshot antes da publicacao por tarefas 2026-11-12`; publicação segue por tarefas, com integração sequencial.
 
 ## 2026-11-07 — Atributos do Mago
 
