@@ -93,9 +93,9 @@ namespace IronTournament.Core.Tests
 
             run.ChooseDrop(ItemId.AttackGem);
 
-            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(40));
-            Assert.That(run.Hero.Stats.Defense, Is.EqualTo(5));
-            Assert.That(run.CurrentBattle.State.Hero.Stats.Attack, Is.EqualTo(40));
+            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(42));
+            Assert.That(run.Hero.Stats.Defense, Is.EqualTo(6));
+            Assert.That(run.CurrentBattle.State.Hero.Stats.Attack, Is.EqualTo(42));
         }
 
         [TestCase(ItemId.HealingPotion, 95)]
@@ -136,7 +136,7 @@ namespace IronTournament.Core.Tests
 
             battle.Submit(AbilityId.BasicAttack);
 
-            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(35));
+            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(36));
             Assert.That(
                 battle.AvailableActions,
                 Is.EqualTo(new[] { AbilityId.BasicAttack, AbilityId.Guard, AbilityId.UseHopeScroll }));
@@ -146,8 +146,8 @@ namespace IronTournament.Core.Tests
             WarriorGoblinTests.AssertAbility(result.Events[0], CombatantId.Warrior, AbilityId.UseHopeScroll);
             var healed = (HealthRestoredEvent)result.Events[1];
             Assert.That(healed.Amount, Is.EqualTo(60));
-            Assert.That(healed.CurrentHealth, Is.EqualTo(95));
-            WarriorGoblinTests.AssertDamage(result.Events[3], CombatantId.Warrior, DamageKind.Attack, 80, 15);
+            Assert.That(healed.CurrentHealth, Is.EqualTo(96));
+            WarriorGoblinTests.AssertDamage(result.Events[3], CombatantId.Warrior, DamageKind.Attack, 79, 17);
             Assert.That(battle.State.Hero.HopeScrolls, Is.Zero);
             Assert.That(random.Remaining, Is.Zero);
         }
@@ -166,10 +166,10 @@ namespace IronTournament.Core.Tests
             var result = run.CurrentBattle.Submit(AbilityId.BasicAttack);
 
             Assert.That(result.Events.Count, Is.EqualTo(6));
-            WarriorGoblinTests.AssertDamage(result.Events[1], CombatantId.Skeleton, DamageKind.Attack, 30, 170);
-            WarriorGoblinTests.AssertDamage(result.Events[2], CombatantId.Skeleton, DamageKind.Burn, 5, 165);
-            WarriorGoblinTests.AssertDamage(result.Events[4], CombatantId.Mage, DamageKind.Attack, 15, 95);
-            WarriorGoblinTests.AssertDamage(result.Events[5], CombatantId.Skeleton, DamageKind.Burn, 5, 160);
+            WarriorGoblinTests.AssertDamage(result.Events[1], CombatantId.Skeleton, DamageKind.Attack, 32, 168);
+            WarriorGoblinTests.AssertDamage(result.Events[2], CombatantId.Skeleton, DamageKind.Burn, 5, 163);
+            WarriorGoblinTests.AssertDamage(result.Events[4], CombatantId.Mage, DamageKind.Attack, 14, 96);
+            WarriorGoblinTests.AssertDamage(result.Events[5], CombatantId.Skeleton, DamageKind.Burn, 5, 158);
         }
 
         [Test]
@@ -201,15 +201,15 @@ namespace IronTournament.Core.Tests
 
             Assert.That(battle.State.Hero.IsGuardianArmed, Is.True);
             Assert.That(battle.State.Hero.GuardianHorns, Is.Zero);
-            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(35));
+            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(36));
 
             var result = battle.Submit(AbilityId.BasicAttack);
 
             var intercepted = (GuardianInterceptedEvent)result.Events[3];
             Assert.That(intercepted.ProtectedCombatant, Is.EqualTo(CombatantId.Mage));
-            Assert.That(intercepted.PreventedDamage, Is.EqualTo(75));
-            WarriorGoblinTests.AssertDamage(result.Events[4], CombatantId.Skeleton, DamageKind.GuardianStrike, 60, 410);
-            WarriorGoblinTests.AssertDamage(result.Events[5], CombatantId.Mage, DamageKind.GuardianRecoil, 34, 1);
+            Assert.That(intercepted.PreventedDamage, Is.EqualTo(74));
+            WarriorGoblinTests.AssertDamage(result.Events[4], CombatantId.Skeleton, DamageKind.GuardianStrike, 62, 406);
+            WarriorGoblinTests.AssertDamage(result.Events[5], CombatantId.Mage, DamageKind.GuardianRecoil, 35, 1);
             Assert.That(battle.State.Hero.IsGuardianArmed, Is.False);
             Assert.That(battle.State.Phase, Is.EqualTo(BattlePhase.PlayerTurn));
             Assert.That(random.Remaining, Is.Zero);
@@ -223,9 +223,9 @@ namespace IronTournament.Core.Tests
 
             var result = battle.Submit(AbilityId.BasicAttack);
 
-            WarriorGoblinTests.AssertDamage(result.Events[4], CombatantId.Skeleton, DamageKind.GuardianStrike, 60, 0);
+            WarriorGoblinTests.AssertDamage(result.Events[4], CombatantId.Skeleton, DamageKind.GuardianStrike, 62, 0);
             var healed = (HealthRestoredEvent)result.Events[5];
-            Assert.That(healed.Amount, Is.EqualTo(18));
+            Assert.That(healed.Amount, Is.EqualTo(17));
             Assert.That(healed.CurrentHealth, Is.EqualTo(33));
             Assert.That(((BattleEndedEvent)result.Events[6]).Result, Is.EqualTo(BattlePhase.Victory));
         }
@@ -240,7 +240,7 @@ namespace IronTournament.Core.Tests
             battle.Submit(AbilityId.RevertTurn);
 
             Assert.That(battle.State.Hero.IsGuardianArmed, Is.True);
-            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(35));
+            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(36));
             Assert.That(battle.State.Opponent.CurrentHealth, Is.EqualTo(500));
         }
 

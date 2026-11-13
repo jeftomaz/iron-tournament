@@ -1,5 +1,10 @@
 # Progresso
 
+## 2026-11-13 — Experiência no núcleo
+
+- Recuperados os ganhos por vitória e os contratos `ExperienceGain`/`LastExperience`, sem alterar a apresentação; a restauração de checkpoints reutiliza a mesma regra de ganho.
+- Testes de progressão, itens e retomada ajustados; EditMode 124/124, PlayMode 47/47 e WebGL aprovados. A apresentação aprovada será integrada em PR própria após este contrato.
+
 ## 2026-11-13 — Publicação por tarefas
 
 - Atributos separados em `feat/atributos-canonicos`; compatibilidade autorizada para checkpoints antigos/novos com ou sem experiência, mantendo validação do saque e HP salvo. EditMode 121/121, PlayMode 47/47 e WebGL aprovados.

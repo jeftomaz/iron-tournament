@@ -84,6 +84,7 @@ namespace IronTournament.Core
         public IReadOnlyList<ItemId> ObtainedItems { get; }
 
         public HeroSnapshot FinalSnapshot { get; private set; }
+        public ExperienceGain LastExperience { get; private set; }
 
         public static CampaignRun StartEnemyMode(
             CombatantId character,
@@ -136,6 +137,11 @@ namespace IronTournament.Core
             }
 
             var stage = stages[EncounterIndex];
+            if (Mode == CampaignMode.Campaign)
+            {
+                LastExperience = BattleExperience.For(stage.Opponent.Id);
+                BattleExperience.Apply(Hero, stage.Opponent.Id);
+            }
             var offer = DropTable.Roll(EligibleDrops(stage.DropPool), stage.DropOfferSize, random);
             if (offer.Count == 0)
             {
