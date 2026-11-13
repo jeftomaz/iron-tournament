@@ -14,7 +14,7 @@ namespace IronTournament.Core.Tests
             Assert.That(run.Phase, Is.EqualTo(CampaignPhase.Completed));
             Assert.That(run.FinalSnapshot.HeroClass, Is.EqualTo(CombatantId.Mage));
             Assert.That(run.FinalSnapshot.DisplayName, Is.EqualTo("Mage"));
-            Assert.That(run.FinalSnapshot.Stats, Is.EqualTo(new CombatantStats(110, 90, 5)));
+            Assert.That(run.FinalSnapshot.Stats, Is.EqualTo(new CombatantStats(110, 111, 17)));
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace IronTournament.Core.Tests
         {
             var run = CompleteWithAttackUpgrade(20000);
 
-            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(120030));
+            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(120051));
             Assert.That(run.FinalSnapshot.Stats.Attack, Is.EqualTo(HeroSnapshot.MaximumStatValue));
         }
 
@@ -52,7 +52,7 @@ namespace IronTournament.Core.Tests
             var updated = progress.WithCompletedCampaign(CompletedRun(TestContent.Mage()));
 
             Assert.That(updated.ClearedHeroes.Count, Is.EqualTo(1));
-            Assert.That(updated.FinalSnapshot(CombatantId.Mage).Stats, Is.EqualTo(new CombatantStats(110, 30, 5)));
+            Assert.That(updated.FinalSnapshot(CombatantId.Mage).Stats, Is.EqualTo(new CombatantStats(110, 51, 17)));
         }
 
         [Test]

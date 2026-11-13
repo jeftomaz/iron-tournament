@@ -38,6 +38,14 @@ namespace IronTournament.Core
             throw new ArgumentException("Invalid selected reward.");
         }
 
+        public static void ApplyGoblinExperience(StoryRun run, CombatantState hero)
+        {
+            if (run.reward == ItemId.None || run.goblinExperience || hero.Id != run.hero)
+                throw new InvalidOperationException("Experience unavailable.");
+            BattleExperience.Apply(hero, CombatantId.Goblin);
+            run.goblinExperience = true;
+        }
+
         public static CombatantState RestoreVictoryHero(StoryRun run, CombatantConfiguration hero)
         {
             if (run.victoryHealth <= 0 || run.victoryHealth > hero.BaseStats.MaximumHealth)
@@ -92,9 +100,8 @@ namespace IronTournament.Core
                 ? new CombatantStats(120, 30, 23) : new CombatantStats(110, 30, 5);
             foreach (var stats in new[] { hero.BaseStats, legacy })
             {
-                var restored = run.goblinExperience
-                    ? new CombatantStats(stats.MaximumHealth, stats.Attack + 2, stats.Defense + 1) : stats;
-                var state = new CombatantState(hero, restored);
+                var state = new CombatantState(hero, stats);
+                if (run.goblinExperience) BattleExperience.Apply(state, CombatantId.Goblin);
                 ApplyReward(run, goblin, state);
                 if (state.Stats.Attack == run.rewardAttack && state.Stats.Defense == run.rewardDefense &&
                     health <= state.Stats.MaximumHealth) return state;
@@ -117,7 +124,10 @@ namespace IronTournament.Core
             foreach (var item in SkeletonRewards(run, encounter))
                 if (item.Id == id)
                 {
-                    ItemRules.Apply(item, hero); run.skeletonReward = id; run.skeletonHealth = hero.CurrentHealth;
+                    run.skeletonReward = id;
+                    BattleExperience.Apply(hero, CombatantId.Skeleton);
+                    run.skeletonExperience = true;
+                    ItemRules.Apply(item, hero); run.skeletonHealth = hero.CurrentHealth;
                     run.skeletonScrolls = hero.HopeScrolls; run.skeletonHorns = hero.GuardianHorns;
                     run.skeletonGuardianArmed = hero.IsGuardianArmed; run.skeletonAttack = hero.Stats.Attack;
                     run.skeletonDefense = hero.Stats.Defense; run.page = StoryPage.Castle; return;

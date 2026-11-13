@@ -188,9 +188,11 @@ namespace IronTournament.Core.Tests
             run.EnterGrave(letter); Assert.That(run.graves[letter], Is.EqualTo((int)GraveContent.Skeleton)); run.Validate();
         }
 
-        [TestCase(CombatantId.Warrior)]
-        [TestCase(CombatantId.Mage)]
-        public void SkeletonRetryPreservesGoblinRewardHealthAndEquipment(CombatantId id)
+        [TestCase(CombatantId.Warrior, false)]
+        [TestCase(CombatantId.Mage, false)]
+        [TestCase(CombatantId.Warrior, true)]
+        [TestCase(CombatantId.Mage, true)]
+        public void SkeletonRetryPreservesGoblinRewardHealthAndEquipment(CombatantId id, bool experience)
         {
             var hero = id == CombatantId.Warrior ? TestContent.Warrior() : TestContent.Mage();
             var pool = new[] { TestContent.Item(ItemId.AttackGem, 3, new ItemModifier(ItemModifierKind.Attack, 10)), TestContent.Item(ItemId.HealingPotion, 3) };
@@ -199,10 +201,12 @@ namespace IronTournament.Core.Tests
             var run = StoryRun.Create(id, 417); run.page = StoryPage.ColdForest; run.PrepareGraveyard();
             run.page = StoryPage.SkeletonEmergence; run.skeletonAppeared = true; run.equipment = true;
             run.gravesVisited = (1 << (run.skeletonTrigger - 1)) - 1; run.activeGrave = run.skeletonTrigger - 1;
-            run.reward = ItemId.AttackGem; run.victoryHealth = 70; run.rewardAttack = 40; run.rewardDefense = hero.BaseStats.Defense;
+            run.reward = ItemId.AttackGem; run.goblinExperience = experience; run.victoryHealth = 70;
+            run.rewardAttack = 40 + (experience ? 2 : 0); run.rewardDefense = hero.BaseStats.Defense + (experience ? 1 : 0);
             var first = StoryEncounter.CreateSkeleton(run, hero, goblin, skeleton);
             var retry = StoryEncounter.CreateSkeleton(run, hero, goblin, skeleton);
-            Assert.That(first.State.Hero.CurrentHealth, Is.EqualTo(70)); Assert.That(first.State.Hero.Stats.Attack, Is.EqualTo(40));
+            Assert.That(first.State.Hero.CurrentHealth, Is.EqualTo(70)); Assert.That(first.State.Hero.Stats.Attack, Is.EqualTo(run.rewardAttack));
+            Assert.That(first.State.Hero.Stats.Defense, Is.EqualTo(run.rewardDefense));
             Assert.That(retry.State.Opponent.Stats.MaximumHealth, Is.EqualTo(first.State.Opponent.Stats.MaximumHealth));
             if (id == CombatantId.Mage) Assert.That(first.State.Hero.FlameCloakDamage, Is.EqualTo(3));
             else Assert.That(first.State.Hero.CriticalChancePercent, Is.EqualTo(10));
@@ -213,6 +217,8 @@ namespace IronTournament.Core.Tests
             Assert.That(offer.Select(x => x.Id).Distinct().Count(), Is.EqualTo(2));
             StoryEncounter.ChooseSkeletonReward(run, skeleton, offer[0].Id, restored);
             Assert.That(run.page, Is.EqualTo(StoryPage.Castle));
+            Assert.That(run.skeletonExperience, Is.True);
+            Assert.That(run.skeletonDefense, Is.EqualTo(run.rewardDefense + 1));
             Assert.Throws<InvalidOperationException>(() => StoryEncounter.ChooseSkeletonReward(run, skeleton, offer[1].Id, restored));
         }
 

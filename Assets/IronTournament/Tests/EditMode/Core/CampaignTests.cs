@@ -106,9 +106,9 @@ namespace IronTournament.Core.Tests
             var afterFury = battle.Submit(AbilityId.BasicAttack);
 
             WarriorGoblinTests.AssertAbility(fury.Events[2], CombatantId.Vampire, AbilityId.Fury);
-            WarriorGoblinTests.AssertDamage(fury.Events[3], CombatantId.Mage, DamageKind.Fury, 200, 150);
+            WarriorGoblinTests.AssertDamage(fury.Events[3], CombatantId.Mage, DamageKind.Fury, 236, 150);
             WarriorGoblinTests.AssertAbility(afterFury.Events[2], CombatantId.Vampire, AbilityId.BasicAttack);
-            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(125));
+            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(131));
             Assert.That(battle.State.Opponent.HasRaged, Is.True);
             Assert.That(random.Remaining, Is.Zero);
         }
@@ -126,7 +126,7 @@ namespace IronTournament.Core.Tests
             battle.Submit(AbilityId.RevertTurn);
 
             Assert.That(battle.State.Opponent.HasRaged, Is.False);
-            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(350));
+            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(386));
 
             var furyAgain = battle.Submit(AbilityId.BasicAttack);
 
@@ -171,6 +171,20 @@ namespace IronTournament.Core.Tests
         }
 
         [Test]
+        public void ExperienceIsAppliedOncePerVictoryAndCarriesAcrossEncounters()
+        {
+            var run = new CampaignRun(TestContent.Mage(), TestContent.WeakCampaign(), new NeutralRandomSource());
+            TestContent.WinWithOneHit(run, 6);
+
+            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(51));
+            Assert.That(run.Hero.Stats.Defense, Is.EqualTo(17));
+            Assert.That(run.LastExperience.Attack, Is.EqualTo(5));
+            Assert.That(run.LastExperience.Defense, Is.EqualTo(3));
+            Assert.That(run.ConcludeEncounter(), Is.False);
+            Assert.That(run.Hero.Stats.Attack, Is.EqualTo(51));
+        }
+
+        [Test]
         public void CampaignFailsWhenTheHeroFalls()
         {
             var mage = TestContent.Hero(CombatantId.Mage, new CombatantStats(10, 30, 5), AbilityId.BasicAttack);
@@ -212,7 +226,7 @@ namespace IronTournament.Core.Tests
         private static IBattle StartFuryCampaign(IRandomSource random, params AbilityId[] heroAbilities)
         {
             var hero = TestContent.Hero(CombatantId.Mage, new CombatantStats(500, 10, 5), heroAbilities);
-            var vampire = TestContent.Enemy(CombatantId.Vampire, 100, 34, 12);
+            var vampire = TestContent.Enemy(CombatantId.Vampire, 220, 34, 12);
             var run = new CampaignRun(hero, TestContent.WeakCampaign(vampire), random);
             TestContent.WinWithOneHit(run, CanonicalIndex(CombatantId.Vampire));
             return run.CurrentBattle;

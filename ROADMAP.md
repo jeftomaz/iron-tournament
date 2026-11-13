@@ -63,6 +63,8 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 - `doing` `JL` Validar os atributos atualizados e as defesas propostas para a primeira campanha no caminho principal.
 - `done` `JT` Atualizar os atributos dos assets canônicos e preservar checkpoints narrativos anteriores.
+- `done` `JL` Aplicar ganhos fixos por vitória no núcleo da primeira campanha do caminho principal, adicionais ao saque; o Rei não concede ganho.
+- `todo` `JP` Apresentar a experiência de batalha junto ao saque na demonstração clássica e na prova narrativa.
 
 - `done` `JP` Menu principal: trocar “Um chamado nas trevas” por “Até que o último caia” e remover “Capítulo 1: A Vila”, “Uma jornada. Duas classes. Suas escolhas.”, “A Jornada” e “Escolha seu protagonista e descubra o que restou da vila”.
 - `done` `JP` Informações do Guerreiro: apresentar “HP 120; ATQ 30; DEF 23; Um combatente experiênte, calejado pelos longos anos de batalhas. Resistente, porém suceptível à defesas fortes.” no lugar das informações atuais.

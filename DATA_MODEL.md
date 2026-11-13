@@ -65,6 +65,7 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 - `Campaign.asset` ordena `GoblinEncounter`, `SkeletonEncounter`, `KnightEncounter`, `WerewolfEncounter`, `VampireEncounter`, `NecromancerEncounter` e `DemonKingEncounter`.
 - Cada encontro declara variação de ±15% e o pool completo de nove itens. O núcleo filtra exclusivos pela classe e não oferece saque após o Rei Demônio; fúria continua sendo regra do núcleo.
 - Ambas as ações consomem turno; Atacar mira o oponente e Defender mira o próprio combatente.
+- Experiência por vitória: Goblin +2/+1, Esqueleto +3/+1, Cavaleiro +3/+2, Lobisomem +4/+2, Vampiro +4/+3 e Necromante +5/+3 (ATQ/DEF). Rei Demônio e modo inimigo não concedem esses ganhos.
 - A seleção isolada atual da cena não consome drops; saque e avanço dependem da integração de `CampaignRun`.
 - O registro de sprites direcionais e cenários fica na cena `Battle`, ligado a cada `CombatantDefinition`; não duplica definições de combate nem regras do `Core`.
 
@@ -79,6 +80,7 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 | Snapshot (`BattleState.Clone`, interno ao `Core`) | Cópia íntegra restaurável do estado do encontro, sem o estado do gerador aleatório |
 | `ProgressData` | Imutável: um `HeroSnapshot` por classe concluída; o modo inimigo libera com Guerreiro e Mago concluídos; `WithCompletedCampaign` substitui o snapshot da classe |
 | `HeroSnapshot` | Classe (Guerreiro ou Mago), nome e atributos finais com melhorias; cada atributo limitado a 9999 |
+| `ExperienceGain` | Ganhos imutáveis de ATQ e DEF; `CampaignRun.LastExperience` expõe o último ganho aplicado |
 
 ## Integridade
 
@@ -111,7 +113,7 @@ Local: `Assets/IronTournament/Content/`. `Campaign.asset` é a composição can�
 - O checkpoint mantém os seis túmulos, máscara de visitas, limite de aparição, número do túmulo fixo quando há Cristal, resultado do Esqueleto, recursos e saque. Saves anteriores com Cristal reservam o túmulo vazio ao carregar, mesmo se já examinado; após o encontro, preservam o estado já alcançado.
 - As cartas de Lucy e Samuel começam em túmulos adjacentes; sem Cristal, o Esqueleto substitui integralmente o conteúdo do túmulo em que surge, inclusive carta ou objeto. Seed, encontro e oferta permanecem estáveis ao carregar ou repetir.
 - `StoryEncounter`: inimigo e oferta reproduzíveis pela seed, equipamentos da vila exclusivos por classe, Manto com 1 de dano no Goblin, Espada com 7% de crítico; saques excluem Manto, agora encontrado na vila. A campanha clássica conserva seu pool e Manto de 5 de dano.
-- No Esqueleto, o herói mantém HP, recompensa e recursos do Goblin; o Manto causa 3 de dano e a Espada oferece 10% de crítico.
+- No Esqueleto, o herói mantém HP, experiência, recompensa e recursos do Goblin; o Manto causa 3 de dano e a Espada oferece 10% de crítico.
 - Checkpoints preservam flags de experiência e aceitam atributos atuais ou legados somente quando reproduzem o saque salvo; valores adulterados continuam rejeitados. Em versões indistinguíveis, usar o HP máximo atual sem curar o HP salvo.
 - `CombatantState` inclui dano do Manto e chance de crítico, copiados nas reversões; sem equipamento narrativo mantém os valores antigos.
 - `StoryContent` referencia arte de abertura e `story-script.json`, com textos distintos para casas e quartos. Os PNGs originais permanecem intactos; sprites derivados usam limites do alpha.
