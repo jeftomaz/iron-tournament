@@ -48,6 +48,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 - `doing` `JP` Completar arte, animações, áudio e testes PlayMode; anexar evidência visual mobile/desktop aos PRs.
 - `done` `JL` Executar testes de regressão e ajustar balanceamento apenas por valores canônicos aprovados.
 - `todo` `JT` Publicar e validar o build Web nos navegadores-alvo, revisar segurança, desempenho, CI e integração final.
+- `todo` `JT` Após a publicação das alterações acumuladas, medir etapas e cache do build Unity/WebGL para identificar o custo necessário e possíveis falhas de desenvolvimento ou CI.
 
 ## Prova narrativa — vila e Goblin
 
@@ -65,7 +66,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 - `done` `JT` Atualizar os atributos dos assets canônicos e preservar checkpoints narrativos anteriores.
 - `done` `JL` Aplicar ganhos fixos por vitória no núcleo da primeira campanha do caminho principal, adicionais ao saque; o Rei não concede ganho.
 - `done` `JP` Apresentar a experiência de batalha junto ao saque na demonstração clássica e na prova narrativa.
-- `todo` `JT` Corrigir a condição do pre-commit para validar Unity também em commits com listas grandes de arquivos; autorizado pelo usuário.
+- `done` `JT` Corrigir a condição do pre-commit para validar Unity também em commits com listas grandes de arquivos; autorizado pelo usuário.
 - `todo` `JP` Corrigir o corte da segunda descrição de saque no desktop da demonstração clássica.
 
 - `done` `JP` Menu principal: trocar “Um chamado nas trevas” por “Até que o último caia” e remover “Capítulo 1: A Vila”, “Uma jornada. Duas classes. Suas escolhas.”, “A Jornada” e “Escolha seu protagonista e descubra o que restou da vila”.

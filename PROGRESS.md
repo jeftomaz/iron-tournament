@@ -1,5 +1,10 @@
 # Progresso
 
+## 2026-11-13 — Validação de commits grandes
+
+- Corrigida a leitura da lista pelo hook para evitar `SIGPIPE` e omissão de Unity; regressão reproduzida com 10.001 arquivos e dispensa de Markdown preservada. EditMode 124/124, PlayMode 47/47 e WebGL aprovados.
+- Investigação do tempo de build solicitada para depois da publicação: referência [CI da PR #56](https://github.com/jeftomaz/iron-tournament/actions/runs/43423090093), job de testes 5min52s e job de build 19min30s, incluindo preparação e artefatos.
+
 ## 2026-11-13 — Apresentação da experiência
 
 - Ligados os ganhos do núcleo à oferta de saque clássica e narrativa; apresentação aprovada pelo usuário, com capturas mobile/desktop atualizadas em `docs/evidence/`.
