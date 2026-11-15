@@ -52,6 +52,8 @@ namespace IronTournament.Core
         public bool IsGuardianArmed { get; private set; }
 
         public bool HasFlameCloak { get; private set; }
+        public bool HasMirrorShield { get; private set; }
+        public bool HasAmethystAmulet { get; private set; }
 
         public int FlameCloakDamage { get; private set; } = 5;
         public int CriticalChancePercent { get; private set; } = 7;
@@ -188,6 +190,19 @@ namespace IronTournament.Core
             HasFlameCloak = true;
         }
 
+        internal void EquipMirrorShield()
+        {
+            if (Id != CombatantId.Warrior || HasMirrorShield) throw new InvalidOperationException("Mirror shield unavailable.");
+            ApplyModifier(new ItemModifier(ItemModifierKind.Defense, 10));
+            HasMirrorShield = true;
+        }
+
+        internal void EquipAmethystAmulet()
+        {
+            if (Id != CombatantId.Mage || HasAmethystAmulet) throw new InvalidOperationException("Amethyst amulet unavailable.");
+            HasAmethystAmulet = true;
+        }
+
         internal CombatantState Clone()
         {
             return new CombatantState(this);
@@ -209,6 +224,8 @@ namespace IronTournament.Core
             GuardianHorns = source.GuardianHorns;
             IsGuardianArmed = source.IsGuardianArmed;
             HasFlameCloak = source.HasFlameCloak;
+            HasMirrorShield = source.HasMirrorShield;
+            HasAmethystAmulet = source.HasAmethystAmulet;
             FlameCloakDamage = source.FlameCloakDamage;
             CriticalChancePercent = source.CriticalChancePercent;
         }

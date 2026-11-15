@@ -161,7 +161,8 @@ namespace IronTournament.Core
                     break;
                 case AbilityId.Guard:
                     hero.RaiseGuard(GuardBonus(hero.Stats.Defense));
-                    Damage(hero, State.Opponent, DamageKind.Reflection, GuardDamage, false, false, events);
+                    if (!hero.HasMirrorShield)
+                        Damage(hero, State.Opponent, DamageKind.Reflection, GuardDamage, false, false, events);
                     break;
                 case AbilityId.UseHopeScroll:
                     hero.ConsumeHopeScroll();
@@ -191,7 +192,12 @@ namespace IronTournament.Core
 
             events.Add(new AbilityUsedEvent(opponent.Id, AbilityId.BasicAttack));
             var outcome = AttackRules.Resolve(opponent, hero, true, random);
-            StrikeHero(DamageKind.Attack, outcome.Damage, outcome.IsCritical, outcome.IsPiercing, events);
+            var damage = outcome.Damage;
+            if (hero.HasAmethystAmulet)
+                damage -= (int)((long)damage * random.Next(15, 76) / 100);
+            StrikeHero(DamageKind.Attack, damage, outcome.IsCritical, outcome.IsPiercing, events);
+            if (hero.HasMirrorShield && hero.GuardBonus > 0)
+                Damage(hero, opponent, DamageKind.Reflection, outcome.Attack / 2, false, false, events);
         }
 
         private void StrikeHero(DamageKind kind, int amount, bool isCritical, bool isPiercing, List<BattleEvent> events)

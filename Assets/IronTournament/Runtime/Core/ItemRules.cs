@@ -16,9 +16,11 @@ namespace IronTournament.Core
             switch (item)
             {
                 case ItemId.HopeScroll:
+                case ItemId.MirrorShield:
                     return hero == CombatantId.Warrior;
                 case ItemId.FlameCloak:
                 case ItemId.BrotherhoodHorn:
+                case ItemId.AmethystAmulet:
                     return hero == CombatantId.Mage;
                 default:
                     return true;
@@ -27,7 +29,9 @@ namespace IronTournament.Core
 
         public static bool IsUseful(ItemConfiguration item, CombatantState hero)
         {
-            return item.Id != ItemId.FlameCloak || !hero.HasFlameCloak;
+            return (item.Id != ItemId.FlameCloak || !hero.HasFlameCloak) &&
+                (item.Id != ItemId.MirrorShield || !hero.HasMirrorShield) &&
+                (item.Id != ItemId.AmethystAmulet || !hero.HasAmethystAmulet);
         }
 
         public static List<ItemConfiguration> Eligible(IReadOnlyList<ItemConfiguration> pool, CombatantId hero)
@@ -67,6 +71,12 @@ namespace IronTournament.Core
                     break;
                 case ItemId.BrotherhoodHorn:
                     hero.AddGuardianHorn();
+                    break;
+                case ItemId.MirrorShield:
+                    hero.EquipMirrorShield();
+                    break;
+                case ItemId.AmethystAmulet:
+                    hero.EquipAmethystAmulet();
                     break;
             }
         }

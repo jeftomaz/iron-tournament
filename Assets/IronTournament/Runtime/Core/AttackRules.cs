@@ -4,11 +4,12 @@ namespace IronTournament.Core
 {
     internal readonly struct AttackOutcome
     {
-        public AttackOutcome(int damage, bool isCritical, bool isPiercing)
+        public AttackOutcome(int damage, bool isCritical, bool isPiercing, int attack = 0)
         {
             Damage = damage;
             IsCritical = isCritical;
             IsPiercing = isPiercing;
+            Attack = attack;
         }
 
         public int Damage { get; }
@@ -16,6 +17,7 @@ namespace IronTournament.Core
         public bool IsCritical { get; }
 
         public bool IsPiercing { get; }
+        public int Attack { get; }
     }
 
     internal static class AttackRules
@@ -33,7 +35,8 @@ namespace IronTournament.Core
         {
             if (isOpponent)
             {
-                return new AttackOutcome(Mitigate(RollOpponentAttack(attacker, random), target), false, false);
+                var attack = RollOpponentAttack(attacker, random);
+                return new AttackOutcome(Mitigate(attack, target), false, false, attack);
             }
 
             if (IsArcane(attacker.Id))
