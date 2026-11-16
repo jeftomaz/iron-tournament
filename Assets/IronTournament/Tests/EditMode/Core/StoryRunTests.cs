@@ -11,6 +11,99 @@ namespace IronTournament.Core.Tests
         private static void Visit(StoryRun run, int slot)
         { run.EnterHouse(slot); run.LeaveHouse(); }
 
+        private static StoryRun BridgeReady(CombatantId hero = CombatantId.Warrior, int seed = 417)
+        {
+            var run = StoryRun.Create(hero, seed); run.page = StoryPage.ColdForest; run.PrepareGraveyard();
+            run.reward = ItemId.HealingPotion; run.victoryHealth = 70; run.rewardAttack = 30;
+            run.skeletonTrigger = 4; run.gravesVisited = 7; run.activeGrave = 3;
+            run.skeletonAppeared = run.skeletonDefeated = true; run.skeletonHealth = 40;
+            run.skeletonReward = ItemId.AttackGem; run.page = StoryPage.SkeletonFinished;
+            run.EnterBridge(); return run;
+        }
+
+        [Test]
+        public void BridgeCagesAreAStablePermutation()
+        {
+            for (var seed = 0; seed < 40; seed++)
+            {
+                var a = BridgeReady(CombatantId.Warrior, seed);
+                var b = BridgeReady(CombatantId.Mage, seed);
+                Assert.That(a.cages.OrderBy(x => x), Is.EqualTo(new[] { 0, 1, 2, 3, 4, 5 }));
+                Assert.That(a.cages, Is.EqualTo(b.cages)); a.Validate();
+            }
+        }
+
+        [TestCase(2, 5)]
+        [TestCase(3, 15)]
+        [TestCase(4, 25)]
+        [TestCase(5, 35)]
+        [TestCase(6, 50)]
+        public void BridgeFallUsesTheChanceForEachNewCage(int cageNumber, int chance)
+        {
+            foreach (var fall in new[] { false, true })
+            {
+                var run = BridgeReady();
+                for (var slot = 0; slot < cageNumber - 1; slot++)
+                { run.EnterCage(slot, new ScriptedRandomSource(99)); run.LeaveCage(); }
+                run.EnterCage(cageNumber - 1, new ScriptedRandomSource(fall ? chance - 1 : chance));
+                Assert.That(run.page, Is.EqualTo(fall ? StoryPage.BridgeFall : StoryPage.BridgeCage));
+                Assert.That(run.CagesExplored, Is.EqualTo(fall ? cageNumber - 1 : cageNumber));
+                run.Validate();
+            }
+        }
+
+        [TestCase(CombatantId.Warrior, CageContent.MirrorShield)]
+        [TestCase(CombatantId.Mage, CageContent.LetterAndAmulet)]
+        public void BridgeItemsAreCollectedOnceAndRestrictedByClass(CombatantId hero, CageContent equipment)
+        {
+            var run = BridgeReady(hero);
+            run.EnterCage(Array.IndexOf(run.cages, (int)equipment), new ScriptedRandomSource());
+            Assert.That(run.CollectBridgeItem(), Is.True);
+            Assert.That(run.CollectBridgeItem(), Is.False);
+            run.LeaveCage();
+            var other = hero == CombatantId.Warrior ? CageContent.LetterAndAmulet : CageContent.MirrorShield;
+            run.EnterCage(Array.IndexOf(run.cages, (int)other), new ScriptedRandomSource(99));
+            Assert.That(run.CollectBridgeItem(), Is.False); run.Validate();
+        }
+
+        [Test]
+        public void RevisitingACageDoesNotRollOrCountAgainAndBridgeCanBeSkipped()
+        {
+            var run = BridgeReady();
+            run.EnterCage(0, new ScriptedRandomSource()); run.LeaveCage();
+            run.EnterCage(0, new ScriptedRandomSource());
+            Assert.That(run.CagesExplored, Is.EqualTo(1)); run.LeaveCage(); run.LeaveBridge(); run.Validate();
+            var skipped = BridgeReady(); skipped.LeaveBridge();
+            Assert.That(skipped.page, Is.EqualTo(StoryPage.Courtyard));
+            Assert.That(skipped.CagesExplored, Is.Zero); skipped.Validate();
+        }
+
+        [Test]
+        public void BridgeKeysAndFlintAreCollectedOnce()
+        {
+            var run = BridgeReady();
+            foreach (var item in new[] { CageContent.RedKey, CageContent.Flint, CageContent.BlueKey })
+            {
+                run.EnterCage(Array.IndexOf(run.cages, (int)item), new ScriptedRandomSource(99));
+                Assert.That(run.CollectBridgeItem(), Is.True);
+                Assert.That(run.CollectBridgeItem(), Is.False);
+                run.LeaveCage(); run.Validate();
+            }
+            Assert.That(run.redKey && run.flint && run.blueKey, Is.True);
+        }
+
+        [Test]
+        public void BridgeCheckpointRejectsInvalidLayoutsAndItems()
+        {
+            var run = BridgeReady(); run.cages[0] = run.cages[1];
+            Assert.Throws<ArgumentException>(() => run.Validate());
+            run = BridgeReady(); run.redKey = true;
+            Assert.Throws<ArgumentException>(() => run.Validate());
+            run = BridgeReady(CombatantId.Mage); run.mirrorShield = true;
+            run.cagesVisited = 1 << (int)CageContent.MirrorShield;
+            Assert.Throws<ArgumentException>(() => run.Validate());
+        }
+
         [Test]
         public void HouseContentsAreAPermutationStableForTheSeed()
         {

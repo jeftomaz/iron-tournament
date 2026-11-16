@@ -391,6 +391,26 @@ namespace IronTournament.Presentation.Tests
             Assert.That(store.TryLoad(out var restored),Is.True); Assert.That(restored.page,Is.EqualTo(StoryPage.Intro));
             PlayerPrefs.DeleteKey(prefix+".a"); PlayerPrefs.DeleteKey(prefix+".b");
         }
+        [Test]
+        public void BridgeCheckpointRestoresLayoutAndCollectedItem()
+        {
+            var prefix = Prefix + ".bridge";
+            PlayerPrefs.DeleteKey(prefix + ".a"); PlayerPrefs.DeleteKey(prefix + ".b");
+            var run = StoryRun.Create(CombatantId.Warrior, 19);
+            run.page = StoryPage.ColdForest; run.PrepareGraveyard();
+            run.reward = ItemId.HealingPotion; run.victoryHealth = 70; run.rewardAttack = 30;
+            run.skeletonTrigger = 4; run.gravesVisited = 7; run.activeGrave = 3;
+            run.skeletonAppeared = run.skeletonDefeated = true; run.skeletonHealth = 40;
+            run.skeletonReward = ItemId.AttackGem; run.page = StoryPage.SkeletonFinished;
+            run.EnterBridge(); run.EnterCage(Array.IndexOf(run.cages, (int)CageContent.RedKey), new SeededRandomSource(1));
+            Assert.That(run.CollectBridgeItem(), Is.True);
+            var store = new StorySaveStore(prefix);
+            Assert.That(store.Save(run), Is.True); Assert.That(store.TryLoad(out var restored), Is.True);
+            Assert.That(restored.cages, Is.EqualTo(run.cages));
+            Assert.That(restored.activeCage, Is.EqualTo((int)CageContent.RedKey));
+            Assert.That(restored.redKey, Is.True); restored.Validate();
+            PlayerPrefs.DeleteKey(prefix + ".a"); PlayerPrefs.DeleteKey(prefix + ".b");
+        }
         [TestCase(false)]
         [TestCase(true)]
         public void LegacyCrystalCheckpointGainsAStableGrave(bool appeared)
@@ -408,8 +428,10 @@ namespace IronTournament.Presentation.Tests
             }
             else { run.gravesVisited = 1 << Array.IndexOf(run.graves, (int)GraveContent.Empty); run.page = StoryPage.Graveyard; }
             run.Validate();
-            var payload = JsonUtility.ToJson(run).Replace(",\"skeletonGraveNumber\":0", "");
+            var payload = JsonUtility.ToJson(run).Replace(",\"skeletonGraveNumber\":0", "")
+                .Replace(",\"activeCage\":-1", "");
             Assert.That(payload, Does.Not.Contain("skeletonGraveNumber"));
+            Assert.That(payload, Does.Not.Contain("activeCage"));
             string checksum;
             using (var sha = System.Security.Cryptography.SHA256.Create())
                 checksum = Convert.ToBase64String(sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(payload)));

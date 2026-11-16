@@ -65,8 +65,9 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 ## Prova narrativa — caminho A
 
-- `doing` `JL` Implementar e validar os equipamentos da ponte no núcleo de combate.
-- `todo` `JT` Definir os contratos de estado, encontros e checkpoint para a continuação até o Salão Carnal.
+- `done` `JL` Implementar e validar os equipamentos da ponte no núcleo de combate.
+- `doing` `JL` Implementar e validar o estado da exploração da Ponte das Dores.
+- `todo` `JT` Definir os contratos de encontros e checkpoint para a continuação até o Salão Carnal.
 - `todo` `JL` Implementar as regras de exploração, equipamentos, retorno temporal e encontros, após integração dos contratos.
 - `todo` `JP` Integrar apresentação, artes e fluxo do caminho A, com indicação dos percursos em desenvolvimento.
 - `todo` `JT` Integrar e validar a jornada completa até o encerramento do Salão Carnal.

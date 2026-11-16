@@ -6,9 +6,10 @@ namespace IronTournament.Core
     public enum StoryPage { Intro, Village, House, Rescue, Battle, AfterBattle, Reward, Farewell, Finished,
         Title, Chapter, Arrival, Approach, Food, LootLead, Burial, Exit,
         ColdForest, Graveyard, Grave, SkeletonEmergence, SkeletonBattle, SkeletonLetter, SkeletonReward,
-        Castle, SkeletonFinished }
+        Castle, SkeletonFinished, Bridge, BridgeCage, BridgeFall, Courtyard }
     public enum ChildFate { Saved, Dying, Dead, Absent }
     public enum GraveContent { LucyLetter, SamuelLetter, Rosary, Doll, Cat, Empty, Skeleton }
+    public enum CageContent { Remains, LetterAndAmulet, RedKey, MirrorShield, Flint, BlueKey }
 
     [Serializable]
     public sealed class StoryRun
@@ -53,6 +54,15 @@ namespace IronTournament.Core
         public int skeletonDefense;
         public bool skeletonExperience;
         public bool castleSeen;
+        public int[] cages;
+        public int cagesVisited;
+        public int activeCage = -1;
+        public bool bridgeFell;
+        public bool redKey;
+        public bool blueKey;
+        public bool flint;
+        public bool mirrorShield;
+        public bool amethystAmulet;
 
         public int ExploredCount
         {
@@ -64,6 +74,80 @@ namespace IronTournament.Core
         public int GravesExplored
         {
             get { var n = 0; for (var i = 0; i < 6; i++) if ((gravesVisited & (1 << i)) != 0) n++; return n; }
+        }
+
+        public int CagesExplored
+        {
+            get { var n = 0; for (var i = 0; i < 6; i++) if ((cagesVisited & (1 << i)) != 0) n++; return n; }
+        }
+
+        public void EnterBridge()
+        {
+            if (page != StoryPage.SkeletonFinished || skeletonReward == ItemId.None)
+                throw new InvalidOperationException("The bridge is not available.");
+            Validate();
+            if (cages == null || cages.Length == 0)
+            {
+                cages = new[] { 0, 1, 2, 3, 4, 5 };
+                var random = new SeededRandomSource(seed ^ 0x1a22b76d);
+                for (var i = cages.Length - 1; i > 0; i--)
+                { var j = random.Next(0, i + 1); var value = cages[i]; cages[i] = cages[j]; cages[j] = value; }
+            }
+            activeCage = -1; page = StoryPage.Bridge;
+        }
+
+        public void EnterCage(int slot, IRandomSource random)
+        {
+            if (page != StoryPage.Bridge || cages == null || cages.Length != 6 || slot < 0 || slot >= 6)
+                throw new InvalidOperationException("Invalid cage entry.");
+            if (random == null) throw new ArgumentNullException(nameof(random));
+            Validate();
+            var cage = cages[slot];
+            var fresh = (cagesVisited & (1 << cage)) == 0;
+            var count = CagesExplored;
+            var chances = new[] { 0, 5, 15, 25, 35, 50 };
+            if (fresh && count > 0 && random.Next(0, 100) < chances[count])
+            { bridgeFell = true; activeCage = -1; page = StoryPage.BridgeFall; return; }
+            cagesVisited |= 1 << cage; activeCage = cage; page = StoryPage.BridgeCage;
+        }
+
+        public bool CollectBridgeItem()
+        {
+            if (page != StoryPage.BridgeCage) return false;
+            Validate();
+            switch ((CageContent)activeCage)
+            {
+                case CageContent.LetterAndAmulet:
+                    if (hero != CombatantId.Mage || amethystAmulet) return false;
+                    amethystAmulet = true; return true;
+                case CageContent.RedKey:
+                    if (redKey) return false;
+                    redKey = true; return true;
+                case CageContent.MirrorShield:
+                    if (hero != CombatantId.Warrior || mirrorShield) return false;
+                    mirrorShield = true; return true;
+                case CageContent.Flint:
+                    if (flint) return false;
+                    flint = true; return true;
+                case CageContent.BlueKey:
+                    if (blueKey) return false;
+                    blueKey = true; return true;
+                default: return false;
+            }
+        }
+
+        public void LeaveCage()
+        {
+            if (page != StoryPage.BridgeCage) throw new InvalidOperationException("No cage is open.");
+            Validate();
+            activeCage = -1; page = StoryPage.Bridge;
+        }
+
+        public void LeaveBridge()
+        {
+            if (page != StoryPage.Bridge) throw new InvalidOperationException("The courtyard is not available.");
+            Validate();
+            page = StoryPage.Courtyard;
         }
 
         public void PrepareGraveyard()
@@ -197,11 +281,20 @@ namespace IronTournament.Core
                 rewardAttack < 0 || rewardAttack > 9999 || rewardDefense < 0 || rewardDefense > 9999 || !Enum.IsDefined(typeof(ItemId), reward) ||
                 gravesVisited < 0 || gravesVisited > 63 || activeGrave < -1 || activeGrave > 5 || skeletonGraveNumber < 0 || skeletonGraveNumber > 6 || skeletonHealth < 0 || skeletonHealth > 9999 ||
                 skeletonScrolls < 0 || skeletonScrolls > 2 || skeletonHorns < 0 || skeletonHorns > 2 || !Enum.IsDefined(typeof(ItemId), skeletonReward) ||
-                skeletonAttack < 0 || skeletonAttack > 9999 || skeletonDefense < 0 || skeletonDefense > 9999)
+                skeletonAttack < 0 || skeletonAttack > 9999 || skeletonDefense < 0 || skeletonDefense > 9999 ||
+                cagesVisited < 0 || cagesVisited > 63 || activeCage < -1 || activeCage > 5)
                 throw new ArgumentException("Invalid story checkpoint.");
             var mask = 0;
             foreach (var h in houses) { if (h < 0 || h > 4 || (mask & (1 << h)) != 0) throw new ArgumentException("Invalid house layout."); mask |= 1 << h; }
             var hasGraves = graves != null && graves.Length != 0;
+            var hasCages = cages != null && cages.Length != 0;
+            if (hasCages)
+            {
+                if (cages.Length != 6) throw new ArgumentException("Invalid cage layout.");
+                mask = 0;
+                foreach (var cage in cages)
+                { if (cage < 0 || cage > 5 || (mask & (1 << cage)) != 0) throw new ArgumentException("Invalid cage layout."); mask |= 1 << cage; }
+            }
             if (hasGraves)
             {
                 if (graves.Length != 6 || skeletonTrigger < 3 || skeletonTrigger > 6) throw new ArgumentException("Invalid grave layout.");
@@ -241,7 +334,17 @@ namespace IronTournament.Core
                 (page == StoryPage.SkeletonReward && skeletonReward != ItemId.None) ||
                 (goblinExperience && reward == ItemId.None) || (skeletonExperience && skeletonReward == ItemId.None) ||
                 (skeletonReward != ItemId.None && !skeletonDefeated) || (castleSeen && skeletonReward == ItemId.None) ||
-                ((page == StoryPage.Castle || page == StoryPage.SkeletonFinished) && skeletonReward == ItemId.None))
+                ((page == StoryPage.Castle || page == StoryPage.SkeletonFinished) && skeletonReward == ItemId.None) ||
+                (!hasCages && (cagesVisited != 0 || activeCage != -1 || bridgeFell || redKey || blueKey || flint || mirrorShield || amethystAmulet)) ||
+                ((int)page < (int)StoryPage.Bridge && (cagesVisited != 0 || redKey || blueKey || flint || mirrorShield || amethystAmulet)) ||
+                ((int)page >= (int)StoryPage.Bridge && (!hasCages || skeletonReward == ItemId.None)) ||
+                (page == StoryPage.BridgeCage ? activeCage < 0 || (cagesVisited & (1 << activeCage)) == 0 : activeCage != -1) ||
+                (bridgeFell != (page == StoryPage.BridgeFall)) ||
+                (redKey && (cagesVisited & (1 << (int)CageContent.RedKey)) == 0) ||
+                (blueKey && (cagesVisited & (1 << (int)CageContent.BlueKey)) == 0) ||
+                (flint && (cagesVisited & (1 << (int)CageContent.Flint)) == 0) ||
+                (mirrorShield && (hero != CombatantId.Warrior || (cagesVisited & (1 << (int)CageContent.MirrorShield)) == 0)) ||
+                (amethystAmulet && (hero != CombatantId.Mage || (cagesVisited & (1 << (int)CageContent.LetterAndAmulet)) == 0)))
                 throw new ArgumentException("Inconsistent story checkpoint.");
         }
     }
