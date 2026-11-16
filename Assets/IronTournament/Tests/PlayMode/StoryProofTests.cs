@@ -409,6 +409,12 @@ namespace IronTournament.Presentation.Tests
             Assert.That(restored.cages, Is.EqualTo(run.cages));
             Assert.That(restored.activeCage, Is.EqualTo((int)CageContent.RedKey));
             Assert.That(restored.redKey, Is.True); restored.Validate();
+            restored.LeaveCage(); restored.LeaveBridge(); restored.page = StoryPage.Anteroom; restored.knightDefeated = true;
+            restored.ReturnToColdForest();
+            Assert.That(store.Save(restored), Is.True); Assert.That(store.TryLoad(out var rewound), Is.True);
+            Assert.That(rewound.page, Is.EqualTo(StoryPage.ColdForest));
+            Assert.That(rewound.cages, Is.EqualTo(run.cages)); Assert.That(rewound.redKey, Is.False);
+            Assert.That(rewound.reward, Is.EqualTo(run.reward));
             PlayerPrefs.DeleteKey(prefix + ".a"); PlayerPrefs.DeleteKey(prefix + ".b");
         }
         [TestCase(false)]
