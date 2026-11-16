@@ -52,19 +52,43 @@ jobs:
           retention-days: 7
 
   build:
-    needs: test
     if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verificar necessidade do build WebGL
+        id: changes
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if [[ "$EVENT_NAME" == workflow_dispatch ]]; then
+            required=true
+          elif git diff --quiet --no-renames "$BASE_SHA" "$HEAD_SHA" -- \
+            ProjectSettings/ Packages/ Assets/Settings/ Assets/Scenes/ Assets/Plugins/ Assets/StreamingAssets/ \
+            ':(glob)Assets/**/Editor/**' ':(glob)Assets/**/*.asmdef' ':(glob)Assets/**/*.asmref' \
+            .github/workflows/unity.yml; then
+            required=false
+          else
+            status=$?
+            if [[ "$status" != 1 ]]; then exit "$status"; fi
+            required=true
+          fi
+          echo "required=$required" >> "$GITHUB_OUTPUT"
+          echo "Build WebGL necessário: $required" >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/cache@v4
+        if: steps.changes.outputs.required == 'true'
         with:
           path: Library
           key: Library-WebGL-${{ runner.os }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-WebGL-${{ runner.os }}-
       - uses: game-ci/unity-builder@v4
+        if: steps.changes.outputs.required == 'true'
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -73,6 +97,7 @@ jobs:
           targetPlatform: WebGL
           buildName: IronTournament
       - uses: actions/upload-artifact@v4
+        if: steps.changes.outputs.required == 'true'
         with:
           name: webgl
           path: build/WebGL

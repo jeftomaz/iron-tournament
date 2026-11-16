@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+mode="${1:-all}"
+case "$mode" in
+  all|editmode|playmode|webgl) ;;
+  *) echo "Uso: scripts/verify.sh [all|editmode|playmode|webgl]" >&2; exit 2 ;;
+esac
+if [[ $# -gt 1 ]]; then echo "Informe apenas um modo de validação." >&2; exit 2; fi
+
 repository_root="$(git rev-parse --show-toplevel)"
 verification_root="$(mktemp -d "${TMPDIR:-/tmp}/iron-tournament-verify.XXXXXX")"
 project_root="$verification_root/project"
@@ -37,19 +44,25 @@ rsync -a \
   "$repository_root/" "$project_root/"
 mkdir -p "$results_directory"
 
-"$unity" -batchmode -nographics \
-  -projectPath "$project_root" \
-  -runTests -testPlatform EditMode \
-  -testResults "$results_directory/editmode.xml" \
-  -logFile "$results_directory/editmode.log"
+if [[ "$mode" == all || "$mode" == editmode ]]; then
+  "$unity" -batchmode -nographics \
+    -projectPath "$project_root" \
+    -runTests -testPlatform EditMode \
+    -testResults "$results_directory/editmode.xml" \
+    -logFile "$results_directory/editmode.log"
+fi
 
-"$unity" -batchmode -nographics \
-  -projectPath "$project_root" \
-  -runTests -testPlatform PlayMode \
-  -testResults "$results_directory/playmode.xml" \
-  -logFile "$results_directory/playmode.log"
+if [[ "$mode" == all || "$mode" == playmode ]]; then
+  "$unity" -batchmode -nographics \
+    -projectPath "$project_root" \
+    -runTests -testPlatform PlayMode \
+    -testResults "$results_directory/playmode.xml" \
+    -logFile "$results_directory/playmode.log"
+fi
 
-"$unity" -batchmode -nographics -quit \
-  -projectPath "$project_root" \
-  -executeMethod IronTournament.Editor.WebGlVerificationBuild.Build \
-  -logFile "$results_directory/webgl.log"
+if [[ "$mode" == all || "$mode" == webgl ]]; then
+  "$unity" -batchmode -nographics -quit \
+    -projectPath "$project_root" \
+    -executeMethod IronTournament.Editor.WebGlVerificationBuild.Build \
+    -logFile "$results_directory/webgl.log"
+fi

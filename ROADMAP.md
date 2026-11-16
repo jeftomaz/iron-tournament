@@ -1,6 +1,6 @@
 # Roadmap
 
-Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada item deve ser entregue em PR próprio; itens dependentes começam após o contrato anterior entrar na `main`.
+Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Itens relacionados podem formar uma entrega coesa na mesma PR.
 
 ## Fase 0 — Base do projeto
 
@@ -65,6 +65,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 
 ## Prova narrativa — caminho A
 
+- `done` `JT` Agilizar validação e integração por entregas coesas.
 - `done` `JL` Implementar e validar os equipamentos da ponte no núcleo de combate.
 - `done` `JL` Implementar e validar o estado da exploração da Ponte das Dores.
 - `done` `JT` Implementar o retorno temporal ao estado após o Goblin.

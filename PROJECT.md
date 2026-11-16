@@ -57,7 +57,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - O bootstrap fornece cada batalha via `IBattle` ao apresentador da cena; `Presentation` não instancia o núcleo com atributos, campanha ou fonte aleatória próprios. Detalhes da ligação em `UI_CONTRACTS.md`.
 - `StoryProof` é a entrada do build da prova; `MainMenu` e `Battle` preservam a demonstração clássica. Na demonstração clássica, `MainMenu` carrega `Battle`; a cena de batalha concentra as variantes visuais dos encontros, enquanto definições e regras permanecem em `Content/Core`.
 - Estado restaurável e fonte aleatória são isolados para que a reversão não retroceda a sequência aleatória.
-- Decisões que mudem assemblies, contratos públicos ou esse fluxo exigem PR isolado antes das implementações dependentes.
+- Mudanças de assemblies, contratos públicos e implementações dependentes podem integrar a mesma entrega coesa, com revisão da fronteira.
 
 ## Premissas confirmadas
 
@@ -110,7 +110,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 ### Contrato de integração
 
 - João Lucas expõe estado somente leitura, ações válidas e eventos resultantes; João Pedro envia apenas a escolha do jogador e apresenta a resposta.
-- Jeferson define e revisa as fronteiras públicas entre `Core`, `Content` e `Presentation`; mudanças nessas fronteiras exigem PR isolado antes das implementações dependentes.
+- Jeferson define e revisa as fronteiras públicas entre `Core`, `Content` e `Presentation`; contratos e implementações relacionadas podem compartilhar a PR da entrega.
 - João Pedro instancia os `ScriptableObject`; Jeferson mantém seus tipos e validação; João Lucas define quais valores o núcleo requer.
 - Testes EditMode das regras pertencem a João Lucas; testes PlayMode e evidência visual pertencem a João Pedro; Jeferson mantém a execução de ambos na CI.
 - O fluxo Git, os gates de integração e a validação local seguem `AGENTS.md`; Jeferson integra a `main` somente depois de revisar base, escopo e checks do PR.
@@ -122,7 +122,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Os runners hospedados `ubuntu-latest` executam os contêineres GameCI para testes EditMode e build WebGL.
 - O runner macOS e a sessão do Unity Hub não são dependências da CI; ficam disponíveis apenas para desenvolvimento local.
 - Cada job restaura e salva somente `Library`, com chave separada por alvo, sistema e fontes/configuração do Unity; a primeira execução continua fria.
-- Toda PR interna executa EditMode, PlayMode e build WebGL, inclusive após um rebase excepcional. PRs de forks executam somente `policy`, sem GameCI, cache ou secrets, e precisam ser reproduzidas numa branch interna criada da `main` antes do merge.
+- Toda PR interna executa EditMode e PlayMode. O build WebGL roda em paralelo para mudanças de cenas, configuração, pacotes, plugins, assemblies, ferramentas de editor ou pipeline; também pode ser iniciado manualmente para a entrega final. O check `build` informa quando não houve build. PRs de forks executam somente `policy`, sem GameCI, cache ou secrets, e precisam ser reproduzidas numa branch interna criada da `main` antes do merge.
 - A `main` só recebe código já validado pela PR atualizada; novas pushes na mesma PR cancelam a execução anterior.
 
 ## Segurança do repositório público
