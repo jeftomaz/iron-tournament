@@ -6,7 +6,7 @@ namespace IronTournament.Core
     public enum StoryPage { Intro, Village, House, Rescue, Battle, AfterBattle, Reward, Farewell, Finished,
         Title, Chapter, Arrival, Approach, Food, LootLead, Burial, Exit,
         ColdForest, Graveyard, Grave, SkeletonEmergence, SkeletonBattle, SkeletonLetter, SkeletonReward,
-        Castle, SkeletonFinished, Bridge, BridgeCage, BridgeFall, Courtyard }
+        Castle, SkeletonFinished, Bridge, BridgeCage, BridgeFall, Courtyard, Anteroom }
     public enum ChildFate { Saved, Dying, Dead, Absent }
     public enum GraveContent { LucyLetter, SamuelLetter, Rosary, Doll, Cat, Empty, Skeleton }
     public enum CageContent { Remains, LetterAndAmulet, RedKey, MirrorShield, Flint, BlueKey }
@@ -63,6 +63,7 @@ namespace IronTournament.Core
         public bool flint;
         public bool mirrorShield;
         public bool amethystAmulet;
+        public bool knightDefeated;
 
         public int ExploredCount
         {
@@ -148,6 +149,20 @@ namespace IronTournament.Core
             if (page != StoryPage.Bridge) throw new InvalidOperationException("The courtyard is not available.");
             Validate();
             page = StoryPage.Courtyard;
+        }
+
+        public void ReturnToColdForest()
+        {
+            if (page != StoryPage.Anteroom) throw new InvalidOperationException("The portal is not available.");
+            Validate();
+            graves = null; gravesVisited = 0; activeGrave = -1; skeletonTrigger = 0; skeletonGraveNumber = 0;
+            skeletonAppeared = false; skeletonDefeated = false; skeletonHealth = 0; skeletonScrolls = 0;
+            skeletonHorns = 0; skeletonGuardianArmed = false; skeletonReward = ItemId.None;
+            skeletonAttack = 0; skeletonDefense = 0; skeletonExperience = false; castleSeen = false;
+            cagesVisited = 0; activeCage = -1; bridgeFell = false; redKey = false; blueKey = false;
+            flint = false; mirrorShield = false; amethystAmulet = false; knightDefeated = false;
+            page = StoryPage.ColdForest; dialogue = 0;
+            Validate();
         }
 
         public void PrepareGraveyard()
@@ -335,9 +350,10 @@ namespace IronTournament.Core
                 (goblinExperience && reward == ItemId.None) || (skeletonExperience && skeletonReward == ItemId.None) ||
                 (skeletonReward != ItemId.None && !skeletonDefeated) || (castleSeen && skeletonReward == ItemId.None) ||
                 ((page == StoryPage.Castle || page == StoryPage.SkeletonFinished) && skeletonReward == ItemId.None) ||
-                (!hasCages && (cagesVisited != 0 || activeCage != -1 || bridgeFell || redKey || blueKey || flint || mirrorShield || amethystAmulet)) ||
-                ((int)page < (int)StoryPage.Bridge && (cagesVisited != 0 || redKey || blueKey || flint || mirrorShield || amethystAmulet)) ||
+                (!hasCages && (cagesVisited != 0 || activeCage != -1 || bridgeFell || redKey || blueKey || flint || mirrorShield || amethystAmulet || knightDefeated)) ||
+                ((int)page < (int)StoryPage.Bridge && (cagesVisited != 0 || redKey || blueKey || flint || mirrorShield || amethystAmulet || knightDefeated)) ||
                 ((int)page >= (int)StoryPage.Bridge && (!hasCages || skeletonReward == ItemId.None)) ||
+                (page == StoryPage.Anteroom && !knightDefeated) ||
                 (page == StoryPage.BridgeCage ? activeCage < 0 || (cagesVisited & (1 << activeCage)) == 0 : activeCage != -1) ||
                 (bridgeFell != (page == StoryPage.BridgeFall)) ||
                 (redKey && (cagesVisited & (1 << (int)CageContent.RedKey)) == 0) ||

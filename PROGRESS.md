@@ -7,6 +7,7 @@
 - Detalhados os limites do estado restaurável após o Goblin e a distinção entre investigação, revisita e coleta para gaiolas e caldeirões.
 - Implementadas as regras de combate dos equipamentos da ponte; EditMode 132/132, PlayMode 47/47 e build WebGL aprovados. A integração à exploração permanece pendente.
 - Implementado o estado da Ponte das Dores no núcleo, com gaiolas, quedas e coleta; EditMode 143/143 e PlayMode 48/48 aprovados. A integração à interface permanece pendente.
+- Implementado o retorno temporal ao estado após o Goblin, preservando as posições das gaiolas; EditMode 145/145 e teste de salvamento aprovados. A ligação à antessala permanece pendente.
 
 ## 2026-11-13 — Contrato da abertura narrativa
 

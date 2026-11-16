@@ -104,6 +104,50 @@ namespace IronTournament.Core.Tests
             Assert.Throws<ArgumentException>(() => run.Validate());
         }
 
+        [TestCase(CombatantId.Warrior, CageContent.MirrorShield)]
+        [TestCase(CombatantId.Mage, CageContent.LetterAndAmulet)]
+        public void PortalRestoresGoblinProgressAndKeepsTheCageLayout(CombatantId hero, CageContent equipment)
+        {
+            var run = BridgeReady(hero); var layout = (int[])run.cages.Clone();
+            var defense = hero == CombatantId.Warrior ? 24 : 6;
+            run.equipment = true; run.goblinExperience = true; run.rewardAttack = 32; run.rewardDefense = defense;
+            run.visited = 1; run.crystal = true; run.food = run.foodCollected = true;
+            run.EnterCage(Array.IndexOf(run.cages, (int)equipment), new ScriptedRandomSource());
+            Assert.That(run.CollectBridgeItem(), Is.True); run.LeaveCage();
+            run.EnterCage(Array.IndexOf(run.cages, (int)CageContent.RedKey), new ScriptedRandomSource(99));
+            Assert.That(run.CollectBridgeItem(), Is.True); run.LeaveCage(); run.LeaveBridge();
+            Assert.Throws<InvalidOperationException>(() => run.ReturnToColdForest());
+            run.page = StoryPage.Anteroom;
+            Assert.Throws<ArgumentException>(() => run.ReturnToColdForest());
+            run.knightDefeated = true; run.dialogue = 5; run.castleSeen = true; run.skeletonExperience = true;
+
+            run.ReturnToColdForest();
+
+            Assert.That(run.page, Is.EqualTo(StoryPage.ColdForest)); Assert.That(run.dialogue, Is.Zero);
+            Assert.That(run.reward, Is.EqualTo(ItemId.HealingPotion)); Assert.That(run.goblinExperience, Is.True);
+            Assert.That(run.victoryHealth, Is.EqualTo(70)); Assert.That(run.rewardAttack, Is.EqualTo(32));
+            Assert.That(run.rewardDefense, Is.EqualTo(defense)); Assert.That(run.equipment, Is.True);
+            Assert.That(run.crystal && run.food && run.foodCollected, Is.True);
+            Assert.That(run.graves, Is.Null); Assert.That(run.skeletonAppeared, Is.False);
+            Assert.That(run.skeletonDefeated, Is.False); Assert.That(run.skeletonReward, Is.EqualTo(ItemId.None));
+            Assert.That(run.skeletonExperience, Is.False); Assert.That(run.castleSeen, Is.False);
+            Assert.That(run.knightDefeated, Is.False);
+            Assert.That(run.cages, Is.EqualTo(layout)); Assert.That(run.CagesExplored, Is.Zero);
+            Assert.That(run.redKey || run.blueKey || run.flint || run.mirrorShield || run.amethystAmulet, Is.False);
+            run.Validate();
+
+            run.PrepareGraveyard(); run.page = StoryPage.Graveyard;
+            run.EnterGrave(run.skeletonGraveNumber - 1);
+            var player = hero == CombatantId.Warrior ? TestContent.Warrior() : TestContent.Mage();
+            var pool = new[] { TestContent.Item(ItemId.HealingPotion, 3), TestContent.Item(ItemId.AttackGem, 3) };
+            var goblin = new EncounterConfiguration(TestContent.Goblin(), 15, pool);
+            var skeleton = new EncounterConfiguration(TestContent.Enemy(CombatantId.Skeleton, 62, 20, 5), 15, pool);
+            var battle = StoryEncounter.CreateSkeleton(run, player, goblin, skeleton);
+            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(70));
+            Assert.That(battle.State.Hero.Stats.Attack, Is.EqualTo(32));
+            Assert.That(battle.State.Hero.Stats.Defense, Is.EqualTo(defense));
+        }
+
         [Test]
         public void HouseContentsAreAPermutationStableForTheSeed()
         {
