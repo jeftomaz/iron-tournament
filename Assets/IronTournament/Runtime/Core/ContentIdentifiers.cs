@@ -51,7 +51,9 @@ namespace IronTournament.Core
         DefenseRune,
         PowerCrystal,
         LifeElixir,
-        DivineDefense
+        DivineDefense,
+        MirrorShield,
+        AmethystAmulet
     }
 
     public enum ItemModifierKind

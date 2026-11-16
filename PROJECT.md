@@ -93,7 +93,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 
 ## Restrições
 
-- Limitar a prova narrativa ao encerramento do encontro com o Esqueleto; não registrar esse trecho como campanha completa.
+- Continuar a prova narrativa pelo caminho A até o encerramento do Salão Carnal; não registrar esse trecho como campanha completa.
 - Na ausência de arte própria, usar placeholder identificado com o objeto que ocupará o lugar.
 - Não instalar dependências sem aprovação.
 - Não colocar regras de combate em componentes de UI ou animação.
@@ -144,3 +144,10 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Encerrar a prova não conclui a campanha de sete encontros. A variante narrativa da segunda campanha está descrita em conteúdo/modelo, mas sua seleção automática depende da futura integração com o histórico da campanha completa.
 - Arte recebida é referenciada sem sobrescrever PNGs. Sprites recortados por alpha ficam em assets derivados; poses mantêm proporção. Itens usam nomes/descrições na interface enquanto sua arte específica não estiver integrada.
 - A prova usa `opening_screen`, narração centralizada, balões, barras de HP e sons; a interface usa sprites CC0.
+- Continuação autorizada: Ponte das Dores, Pátio dos Caídos, Antessala Efêmera e Salão Carnal. Caminhos ainda não definidos são bloqueados com aviso de desenvolvimento.
+- A porta sem chave retorna ao início da Floresta dos Ossos, revertendo o progresso posterior ao Goblin e preservando a posição das gaiolas da campanha. A chave rubra abre o salão e permanece até a coleta da púrpura; revisitas preservam o estado do salão.
+- No salão, a aparição do Lobisomem é garantida após a investigação de todos os caldeirões. A chave azul da ponte usa placeholder até sua definição.
+- Contrato da continuação: o `Core` valida escolhas de exploração e mantém distribuição das gaiolas, objetos recolhidos, chaves, visitas, encontros e estado do salão; a `Presentation` apenas envia escolhas e apresenta resultados. Os novos encontros reutilizam o combate e preservam recursos do protagonista.
+- O checkpoint deve validar os novos estados, preservar a configuração de cada encontro e aceitar saves anteriores válidos. O retorno pela porta restaura um estado registrado após o Goblin, sem alterar a distribuição das gaiolas da tentativa; a reversão de combate continua limitada ao encontro e não restaura a sequência aleatória.
+- O estado após o Goblin deve incluir vida, atributos, efeitos, consumíveis e saque, e ser independente dos estados posteriores. O retorno remove progresso e recompensas obtidos na floresta e depois dela; a distribuição das gaiolas fica fora desse estado restaurado.
+- Gaiolas e caldeirões distinguem posição, conteúdo, investigação e coleta; os itens coletados e o desfecho do Lobisomem não são recriados ao revisitar o salão.

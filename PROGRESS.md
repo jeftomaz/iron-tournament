@@ -1,5 +1,12 @@
 # Progresso
 
+## 2026-11-15 — Continuação narrativa
+
+- Iniciada a preparação dos contratos para o caminho A até o Salão Carnal; a implementação dependente aguarda integração dos contratos.
+- Preservadas as alterações locais de arte; regras de retorno, revisita, aparecimento do Lobisomem e equipamentos confirmadas pelo usuário.
+- Detalhados os limites do estado restaurável após o Goblin e a distinção entre investigação, revisita e coleta para gaiolas e caldeirões.
+- Implementadas as regras de combate dos equipamentos da ponte; EditMode 132/132, PlayMode 47/47 e build WebGL aprovados. A integração à exploração permanece pendente.
+
 ## 2026-11-13 — Contrato da abertura narrativa
 
 - Recuperados o campo opcional `campaignTitle` e a apresentação `ChapterCard` do snapshot aprovado; os consumidores permanecem para a próxima PR.

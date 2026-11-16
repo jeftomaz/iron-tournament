@@ -63,6 +63,14 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Cada ite
 - `done` `JT` Destacar cartas e perigo do Esqueleto com o Cristal do Destino no cemitério.
 - `done` `JP` Conciliar as artes locais da vila e floresta com o fluxo de túmulos e pós-vitória integrado.
 
+## Prova narrativa — caminho A
+
+- `doing` `JL` Implementar e validar os equipamentos da ponte no núcleo de combate.
+- `todo` `JT` Definir os contratos de estado, encontros e checkpoint para a continuação até o Salão Carnal.
+- `todo` `JL` Implementar as regras de exploração, equipamentos, retorno temporal e encontros, após integração dos contratos.
+- `todo` `JP` Integrar apresentação, artes e fluxo do caminho A, com indicação dos percursos em desenvolvimento.
+- `todo` `JT` Integrar e validar a jornada completa até o encerramento do Salão Carnal.
+
 ## Melhorias futuras — não prioritárias
 
 - `doing` `JL` Validar os atributos atualizados e as defesas propostas para a primeira campanha no caminho principal.

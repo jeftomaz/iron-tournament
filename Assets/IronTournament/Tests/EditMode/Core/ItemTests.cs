@@ -1,9 +1,68 @@
+using System.Linq;
 using NUnit.Framework;
 
 namespace IronTournament.Core.Tests
 {
     public sealed class ItemTests
     {
+        [Test]
+        public void MirrorShieldRaisesDefenseAndReflectsTheRolledAttack()
+        {
+            var run = ReachDropChoice(TestContent.Warrior(), WeakGoblin(), Skeleton(500, 100),
+                new NeutralRandomSource(), TestContent.Item(ItemId.MirrorShield, 1));
+            Assert.That(run.ChooseDrop(ItemId.MirrorShield), Is.True);
+            Assert.That(run.Hero.HasMirrorShield, Is.True);
+            Assert.That(run.Hero.Stats.Defense, Is.EqualTo(34));
+
+            var result = run.CurrentBattle.Submit(AbilityId.Guard);
+            var reflection = result.Events.OfType<DamageDealtEvent>().Single(e => e.Kind == DamageKind.Reflection);
+            Assert.That(reflection.Amount, Is.EqualTo(40));
+        }
+
+        [Test]
+        public void AmuletAbsorbsAfterDefenseAndSurvivesReversion()
+        {
+            var run = ReachDropChoice(TestContent.Mage(), WeakGoblin(), Skeleton(500, 100),
+                new NeutralRandomSource(), TestContent.Item(ItemId.AmethystAmulet, 1));
+            Assert.That(run.ChooseDrop(ItemId.AmethystAmulet), Is.True);
+            var battle = run.CurrentBattle;
+            var result = battle.Submit(AbilityId.BasicAttack);
+            var attack = result.Events.OfType<DamageDealtEvent>().Single(e => e.Target == CombatantId.Mage);
+            Assert.That(attack.Amount, Is.EqualTo(63));
+            battle.Submit(AbilityId.RevertBattle);
+            Assert.That(battle.State.Hero.HasAmethystAmulet, Is.True);
+        }
+
+        [Test]
+        public void AmuletRollsAgainForEachAttackIncludingBothLimits()
+        {
+            var random = new ScriptedRandomSource(0, 0, 0, 0, 0, 0, 0, 100, 15, 100, 75);
+            var run = ReachDropChoice(TestContent.Mage(), WeakGoblin(), Skeleton(500, 100),
+                random, TestContent.Item(ItemId.AmethystAmulet, 1));
+            run.ChooseDrop(ItemId.AmethystAmulet);
+            var battle = run.CurrentBattle;
+
+            var first = battle.Submit(AbilityId.BasicAttack).Events.OfType<DamageDealtEvent>()
+                .Single(e => e.Target == CombatantId.Mage);
+            var second = battle.Submit(AbilityId.BasicAttack).Events.OfType<DamageDealtEvent>()
+                .Single(e => e.Target == CombatantId.Mage);
+
+            Assert.That(first.Amount, Is.EqualTo(80));
+            Assert.That(second.Amount, Is.EqualTo(24));
+            Assert.That(random.Remaining, Is.Zero);
+        }
+
+        [TestCase(CombatantId.Warrior, ItemId.AmethystAmulet)]
+        [TestCase(CombatantId.Mage, ItemId.MirrorShield)]
+        public void BridgeEquipmentCannotBeOfferedToTheWrongClass(CombatantId id, ItemId item)
+        {
+            var hero = id == CombatantId.Warrior ? TestContent.Warrior() : TestContent.Mage();
+            var run = ReachDropChoice(hero, WeakGoblin(), Skeleton(100, 20),
+                new NeutralRandomSource(), TestContent.Item(item, 1));
+            Assert.That(run.ObtainedItems, Is.Empty);
+            Assert.That(run.ChooseDrop(item), Is.False);
+        }
+
         [Test]
         public void DropOfferIsWeightedDistinctAndFilteredByClass()
         {
