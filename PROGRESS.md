@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-11-16 — Fluxo de desenvolvimento
+
+- Preparados testes locais selecionáveis, PRs por entrega e build WebGL condicionado a alterações de integração e configuração; a validação remota permanece obrigatória.
+
 ## 2026-11-16 — Encontro do Cavaleiro
 
 - Preparada a criação do combate com restauração do saque, recursos e equipamentos da ponte; a progressão após a vitória e a interface ainda dependem de integração.
