@@ -122,7 +122,7 @@ RPG 2D de combate por turnos em Unity, com apresentação inspirada em RPGs 16-b
 - Os runners hospedados `ubuntu-latest` executam os contêineres GameCI para testes EditMode e build WebGL.
 - O runner macOS e a sessão do Unity Hub não são dependências da CI; ficam disponíveis apenas para desenvolvimento local.
 - Cada job restaura e salva somente `Library`, com chave separada por alvo, sistema e fontes/configuração do Unity; a primeira execução continua fria.
-- Toda PR interna executa EditMode e PlayMode. O build WebGL roda para mudanças de cenas, configuração, pacotes, plugins, assemblies, ferramentas de editor ou pipeline; também pode ser iniciado manualmente para a entrega final. O check `build` informa quando não houve build. PRs de forks executam somente `policy`, sem GameCI, cache ou secrets, e precisam ser reproduzidas numa branch interna criada da `main` antes do merge.
+- Toda PR interna executa EditMode e PlayMode. O build WebGL roda em paralelo para mudanças de cenas, configuração, pacotes, plugins, assemblies, ferramentas de editor ou pipeline; também pode ser iniciado manualmente para a entrega final. O check `build` informa quando não houve build. PRs de forks executam somente `policy`, sem GameCI, cache ou secrets, e precisam ser reproduzidas numa branch interna criada da `main` antes do merge.
 - A `main` só recebe código já validado pela PR atualizada; novas pushes na mesma PR cancelam a execução anterior.
 
 ## Segurança do repositório público
