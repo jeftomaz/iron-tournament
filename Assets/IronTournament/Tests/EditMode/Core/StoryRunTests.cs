@@ -419,5 +419,37 @@ namespace IronTournament.Core.Tests
             run.skeletonAppeared = true; run.page = StoryPage.SkeletonEmergence;
             Assert.That(StoryEncounter.CreateSkeleton(run, hero, goblin, skeleton).State.Hero.CurrentHealth, Is.EqualTo(70));
         }
+
+        [TestCase(CombatantId.Warrior, CageContent.MirrorShield)]
+        [TestCase(CombatantId.Mage, CageContent.LetterAndAmulet)]
+        public void KnightRestoresRewardsResourcesAndBridgeEquipment(CombatantId id, CageContent equipment)
+        {
+            var hero = id == CombatantId.Warrior ? TestContent.Warrior() : TestContent.Mage();
+            var consumable = id == CombatantId.Warrior ? ItemId.HopeScroll : ItemId.BrotherhoodHorn;
+            var pool = new[] { TestContent.Item(consumable, 2), TestContent.Item(ItemId.HealingPotion, 3) };
+            var goblin = new EncounterConfiguration(TestContent.Goblin(), 15, pool);
+            var skeleton = new EncounterConfiguration(TestContent.Enemy(CombatantId.Skeleton, 62, 20, 5), 15, pool);
+            var knight = new EncounterConfiguration(TestContent.Enemy(CombatantId.Knight, 100, 25, 10), 15, pool);
+            var run = BridgeReady(id); run.reward = consumable; run.rewardDefense = hero.BaseStats.Defense;
+            run.skeletonReward = consumable; run.skeletonExperience = true; run.skeletonAttack = 33;
+            run.skeletonDefense = hero.BaseStats.Defense + 1; run.skeletonHealth = 40; run.equipment = true;
+            if (id == CombatantId.Warrior) run.skeletonScrolls = 1;
+            else { run.skeletonHorns = 0; run.skeletonGuardianArmed = true; }
+            run.EnterCage(Array.IndexOf(run.cages, (int)equipment), new ScriptedRandomSource());
+            run.CollectBridgeItem(); run.LeaveCage(); run.LeaveBridge();
+
+            var battle = StoryEncounter.CreateKnight(run, hero, goblin, skeleton, knight);
+            var retry = StoryEncounter.CreateKnight(run, hero, goblin, skeleton, knight);
+            Assert.That(battle.State.Hero.CurrentHealth, Is.EqualTo(40));
+            Assert.That(battle.State.Hero.Stats.Attack, Is.EqualTo(33));
+            Assert.That(battle.State.Hero.Stats.Defense, Is.EqualTo(run.skeletonDefense + (id == CombatantId.Warrior ? 10 : 0)));
+            Assert.That(battle.State.Opponent.Stats.MaximumHealth, Is.EqualTo(retry.State.Opponent.Stats.MaximumHealth));
+            if (id == CombatantId.Warrior)
+            { Assert.That(battle.State.Hero.HasMirrorShield, Is.True); Assert.That(battle.State.Hero.HopeScrolls, Is.EqualTo(1)); }
+            else
+            { Assert.That(battle.State.Hero.HasAmethystAmulet, Is.True); Assert.That(battle.State.Hero.IsGuardianArmed, Is.True); }
+            run.skeletonAttack++;
+            Assert.Throws<ArgumentException>(() => StoryEncounter.CreateKnight(run, hero, goblin, skeleton, knight));
+        }
     }
 }
