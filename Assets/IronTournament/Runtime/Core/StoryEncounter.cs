@@ -134,5 +134,38 @@ namespace IronTournament.Core
                 }
             throw new ArgumentException("Reward is not in the offer.");
         }
+
+        public static IBattle CreateKnight(StoryRun run, CombatantConfiguration hero,
+            EncounterConfiguration goblin, EncounterConfiguration skeleton, EncounterConfiguration knight)
+        {
+            run.Validate();
+            if (run.page != StoryPage.Courtyard || run.knightDefeated || hero == null || hero.Id != run.hero ||
+                goblin == null || goblin.Opponent.Id != CombatantId.Goblin ||
+                skeleton == null || skeleton.Opponent.Id != CombatantId.Skeleton ||
+                knight == null || knight.Opponent.Id != CombatantId.Knight || run.skeletonReward == ItemId.None)
+                throw new ArgumentException("Story encounter mismatch.");
+
+            var player = RestoreRewardHero(run, hero, goblin, 0);
+            if (run.equipment) player.EquipStoryEquipment(2);
+            if (run.skeletonExperience) BattleExperience.Apply(player, CombatantId.Skeleton);
+            var found = false;
+            foreach (var item in SkeletonRewards(run, skeleton))
+                if (item.Id == run.skeletonReward) { ItemRules.Apply(item, player); found = true; break; }
+            if (!found || player.Stats.Attack != run.skeletonAttack || player.Stats.Defense != run.skeletonDefense ||
+                run.skeletonHealth <= 0 || run.skeletonHealth > player.Stats.MaximumHealth ||
+                run.skeletonScrolls > player.HopeScrolls ||
+                run.skeletonHorns + (run.skeletonGuardianArmed ? 1 : 0) > player.GuardianHorns)
+                throw new ArgumentException("Invalid skeleton reward checkpoint.");
+            player.TakeDamage(player.CurrentHealth - run.skeletonHealth);
+            while (player.HopeScrolls > run.skeletonScrolls) player.ConsumeHopeScroll();
+            while (player.GuardianHorns > run.skeletonHorns) { player.ArmGuardian(); player.DisarmGuardian(); }
+            if (run.skeletonGuardianArmed) { player.AddGuardianHorn(); player.ArmGuardian(); }
+            if (run.mirrorShield) player.EquipMirrorShield();
+            if (run.amethystAmulet) player.EquipAmethystAmulet();
+            player.PrepareForEncounter();
+            var random = new SeededRandomSource(run.seed ^ 0x39f6214b);
+            var opponent = EncounterSetup.CreateOpponent(knight.Opponent, knight.EnemyStatVariancePercent, false, random);
+            return new Battle(new BattleState(player, opponent), random);
+        }
     }
 }

@@ -1,5 +1,9 @@
 # Progresso
 
+## 2026-11-16 — Encontro do Cavaleiro
+
+- Preparada a criação do combate com restauração do saque, recursos e equipamentos da ponte; a progressão após a vitória e a interface ainda dependem de integração.
+
 ## 2026-11-15 — Continuação narrativa
 
 - Iniciada a preparação dos contratos para o caminho A até o Salão Carnal; a implementação dependente aguarda integração dos contratos.
