@@ -1,5 +1,68 @@
 {
+  "prisonerLetter": "Vejo os cavaleiros, guerreiros caídos, entrando e saindo do castelo.\nEles não ligam mais para mim, sou apenas um moribundo para eles.\nOuço também o bater de asas gigantes pelo céu, além dos uivos vindos da floresta.\nEu diria que são coisas da minha cabeça depois de tanto tempo preso nessa gaiola, mas sei que não é.\nTomaram tudo o que tínhamos, ou quase tudo.\nAinda pude salvar meu amuleto e uma página do grimório, mas mesmo isso não será o suficiente para me salvar.\nTenho certeza que nossas armas estão jogadas em algum canto desse lugar imundo.\nPara mim, esse é o fim. Que alguém mais forte possa pôr fim naquilo que falhamos…",
   "dialogues": [
+    {
+      "id": "hallIntro",
+      "lines": [
+        { "speaker": "Narrador", "text": "Um salão sombrio se abre diante de você. Restos humanos cobrem as mesas e pendem do teto." },
+        { "speaker": "Narrador", "text": "À frente do fogo, sombras grandes e encolhidas parecem se alimentar." },
+        { "speaker": "Protagonista", "text": "Para trás, criaturas da noite." },
+        { "speaker": "Narrador", "text": "As criaturas rosnam e desaparecem na escuridão. Pontos vermelhos surgem no teto, como olhos observando." },
+        { "speaker": "Narrador", "text": "Perto do fogo há cinco caldeirões com líquido avermelhado e pedaços de ossos. A porta se fecha atrás de você." }
+      ]
+    },
+    {
+      "id": "courtyardIntro",
+      "lines": [
+        { "speaker": "Estátua", "text": "Está perdido, forasteiro? Suas vestes me contam que não é daqui." },
+        { "speaker": "Protagonista", "text": "Vim dar um fim a essa escuridão." },
+        { "speaker": "Estátua", "text": "Ha! Conheço seu tipo, [classe do protagonista]. Esse lugar está cheio de heróis como você. Logo chegará sua hora de se juntar a eles." },
+        { "speaker": "Protagonista", "text": "Parece muito certa para uma estátua." },
+        { "speaker": "Estátua", "text": "Algumas coisas são mais do que os olhos podem ver; espero que você seja mais do que apenas mais um [classe do protagonista]." }
+      ]
+    },
+    {
+      "id": "anteroomIntro",
+      "lines": [
+        { "speaker": "Estátua", "text": "Vejo que ainda não morreu, [classe do protagonista]." },
+        { "speaker": "Protagonista", "text": "Não pretendo falhar tão cedo." },
+        { "speaker": "Estátua", "text": "Mas pretende falhar?" },
+        { "speaker": "Protagonista", "text": "Tenho uma missão a cumprir. Até lá, morrer não é uma opção." },
+        { "speaker": "Estátua", "text": "Nesse caso, continue." },
+        { "speaker": "Protagonista", "text": "Para onde essa porta leva?" },
+        { "speaker": "Estátua", "text": "Leva para onde é necessário, caso seja merecedor." },
+        { "speaker": "Protagonista", "text": "Isso não é muito útil." },
+        { "speaker": "Estátua", "text": "Um caminho só é útil se você estiver pronto para chegar ao outro lado." }
+      ]
+    },
+    {
+      "id": "anteroomReturn",
+      "lines": [
+        { "speaker": "Estátua", "text": "Vejo que ainda não morreu, [classe do protagonista]." },
+        { "speaker": "Protagonista", "text": "Você disse isso da última vez, não?" },
+        { "speaker": "Estátua", "text": "Sim, assim como você vive, como da última vez." },
+        { "speaker": "Protagonista", "text": "Espera que eu morra em breve?" },
+        { "speaker": "Estátua", "text": "Talvez. Isso dependerá mais de você do que de mim, por enquanto." },
+        { "speaker": "Protagonista", "text": "O que uma estátua pode fazer para me impedir?" },
+        { "speaker": "Estátua", "text": "Gosto da sua confiança, [classe do protagonista]. Continue." }
+      ]
+    },
+    {
+      "id": "knightIntro",
+      "lines": [
+        { "speaker": "Cavaleiro", "text": "Todos os seres que aqui entram devem servir ao Rei. Você está pronto?" },
+        { "speaker": "Protagonista", "text": "Seu dito Rei traz tudo o que há de ruim para esse mundo. Saia do meu caminho, ou cairá antes mesmo dele." },
+        { "speaker": "Cavaleiro", "text": "[classe do protagonista] imundo! Pagará por suas palavras. Se prefere iniciar seu tempo de servidão pela dor, que assim seja." }
+      ]
+    },
+    {
+      "id": "werewolfIntro",
+      "lines": [
+        { "speaker": "Protagonista", "text": "Saia da minha frente, besta." },
+        { "speaker": "Lobisomem", "text": "Arrgghh… Carne… fresca…" },
+        { "speaker": "Narrador", "text": "O lobisomem uiva. Outros uivos respondem do teto do salão." }
+      ]
+    },
     {
       "id": "intro",
       "lines": [

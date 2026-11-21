@@ -73,7 +73,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Itens re
 - `todo` `JT` Completar os contratos dos encontros até o Salão Carnal.
 - `todo` `JL` Implementar as regras restantes de exploração e encontros, após integração dos contratos.
 - `todo` `JP` Integrar apresentação, artes e fluxo do caminho A, com indicação dos percursos em desenvolvimento.
-- `todo` `JT` Integrar e validar a jornada completa até o encerramento do Salão Carnal.
+- `doing` `JT` Integrar e validar a jornada completa até o encerramento do Salão Carnal.
 
 ## Melhorias futuras — não prioritárias
 
@@ -83,6 +83,7 @@ Responsáveis: `JT` Jeferson Tomaz, `JL` João Lucas, `JP` João Pedro. Itens re
 - `done` `JP` Apresentar a experiência de batalha junto ao saque na demonstração clássica e na prova narrativa.
 - `done` `JT` Corrigir a condição do pre-commit para validar Unity também em commits com listas grandes de arquivos; autorizado pelo usuário.
 - `todo` `JP` Corrigir o corte da segunda descrição de saque no desktop da demonstração clássica.
+- `todo` `JP` Corrigir referências inválidas de seleção e imagem do botão inicial no menu clássico.
 
 - `done` `JP` Menu principal: trocar “Um chamado nas trevas” por “Até que o último caia” e remover “Capítulo 1: A Vila”, “Uma jornada. Duas classes. Suas escolhas.”, “A Jornada” e “Escolha seu protagonista e descubra o que restou da vila”.
 - `done` `JP` Informações do Guerreiro: apresentar “HP 120; ATQ 30; DEF 23; Um combatente experiênte, calejado pelos longos anos de batalhas. Resistente, porém suceptível à defesas fortes.” no lugar das informações atuais.

@@ -23,6 +23,7 @@ namespace IronTournament.Bootstrap
         private Image heroImage, opponentImage, childImage;
         private Text heroHealth, opponentHealth;
         private Action resizeScreen;
+        private readonly IRandomSource explorationRandom = new SeededRandomSource(Environment.TickCount);
         public StoryRun Run => run;
         public IBattle ActiveBattle => battle;
         public string SavePrefix { private get; set; } = "iron.story.proof.v1";
@@ -30,12 +31,22 @@ namespace IronTournament.Bootstrap
         private Sprite[] HeroPoses => run.hero == CombatantId.Warrior ? content.warriorPoses : content.magePoses;
         private EncounterConfiguration Encounter => ContentMapper.BuildEncounter(content.goblin);
         private EncounterConfiguration SkeletonEncounter => ContentMapper.BuildEncounter(content.skeleton);
+        private EncounterConfiguration KnightEncounter => ContentMapper.BuildEncounter(content.knight);
+        private EncounterConfiguration WerewolfEncounter => ContentMapper.BuildEncounter(content.werewolf);
         private string Inventory => run == null ? "" : "PROTAGONISTA\n" + Hero.DisplayName + "\n\nINVENTÁRIO\n" +
             (run.equipment ? (run.hero == CombatantId.Mage ? "Manto de Chamas · 1 dano no Goblin, 3 no Esqueleto\n" : "Espada do Caos · 7% crítico no Goblin, 10% no Esqueleto\n") : "") +
             (run.food ? "Porção de comida\n" : "") + (run.crystal ? "Cristal do Destino\n" : "") +
+            (run.redKey ? "Chave Rubra\n" : "") + (run.blueKey ? "Chave Azul (provisória)\n" : "") +
+            (run.purpleKey ? "Chave Púrpura\n" : "") + (run.flint ? "Pederneira e metal\n" : "") +
+            (run.woodenStake ? "Estaca de madeira\n" : "") + (run.mirrorShield ? "Escudo Espelho\n" : "") +
+            (run.amethystAmulet ? "Amuleto Ametista\n" : "") +
             (run.reward != ItemId.None ? "Saque do Goblin: " + StoryEncounter.Rewards(run, Encounter).First(x => x.Id == run.reward).DisplayName + "\n" : "") +
             (run.skeletonReward != ItemId.None ? "Saque do Esqueleto: " + StoryEncounter.SkeletonRewards(run, SkeletonEncounter).First(x => x.Id == run.skeletonReward).DisplayName + "\n" : "") +
-            (run.reward != ItemId.None ? $"HP: {(run.skeletonDefeated ? run.skeletonHealth : run.victoryHealth)} · ATQ: {(run.skeletonReward != ItemId.None ? run.skeletonAttack : run.rewardAttack)} · DEF: {(run.skeletonReward != ItemId.None ? run.skeletonDefense : run.rewardDefense)}" : "");
+            (run.knightReward != ItemId.None ? "Saque do Cavaleiro: " + StoryEncounter.LaterRewards(run, KnightEncounter).First(x => x.Id == run.knightReward).DisplayName + "\n" : "") +
+            (run.werewolfReward != ItemId.None ? "Saque do Lobisomem: " + StoryEncounter.LaterRewards(run, WerewolfEncounter).First(x => x.Id == run.werewolfReward).DisplayName + "\n" : "") +
+            (run.reward != ItemId.None ? $"HP: {(run.werewolfDefeated ? run.werewolfHealth : run.knightDefeated && run.knightHealth > 0 ? run.knightHealth : run.skeletonDefeated ? run.skeletonHealth : run.victoryHealth)} · " +
+            $"ATQ: {(run.werewolfReward != ItemId.None ? run.werewolfAttack : run.knightReward != ItemId.None ? run.knightAttack : run.skeletonReward != ItemId.None ? run.skeletonAttack : run.rewardAttack)} · " +
+            $"DEF: {(run.werewolfReward != ItemId.None ? run.werewolfDefense : run.knightReward != ItemId.None ? run.knightDefense : run.skeletonReward != ItemId.None ? run.skeletonDefense + (run.mirrorShield ? 10 : 0) : run.rewardDefense)}" : "");
 
         private void Start()
         {
@@ -63,6 +74,13 @@ namespace IronTournament.Bootstrap
             {
                 var hero = saved.hero == CombatantId.Warrior ? content.warrior : content.mage;
                 StoryEncounter.RestoreSkeletonHero(saved, ContentMapper.BuildCombatant(hero), Encounter, saved.skeletonDefeated);
+            }
+            if (saved.knightDefeated && saved.knightHealth > 0)
+            {
+                var hero = ContentMapper.BuildCombatant(saved.hero == CombatantId.Warrior ? content.warrior : content.mage);
+                StoryEncounter.RestoreKnightVictory(saved, hero, Encounter, SkeletonEncounter, KnightEncounter);
+                if (saved.werewolfDefeated)
+                    StoryEncounter.RestoreWerewolfVictory(saved, hero, Encounter, SkeletonEncounter, KnightEncounter, WerewolfEncounter);
             }
             return true;
         }
@@ -200,16 +218,37 @@ namespace IronTournament.Bootstrap
                     view.Text("O castelo", "Além do topo das árvores, uma montanha e um castelo muito distante surgem no horizonte.");
                     view.Choice("Voltar aos túmulos", () => { run.castleSeen = true; Go(StoryPage.Graveyard); }); break;
                 case StoryPage.SkeletonFinished:
-                    Draw(content.skeletonGraveyard, "Fim do segundo encontro");
-                    view.Text("Trecho concluído", "Sua jornada foi salva.");
-                    view.Choice("Ver inventário", () => Message("Inventário", Inventory, Render), 0, 2);
+                    Draw(content.mountain, "O caminho para o castelo");
+                    view.Text("A jornada continua", "A Ponte das Dores leva à entrada do castelo.");
+                    view.Choice("Seguir para a ponte", () => { run.EnterBridge(); Save(); Render(); }, 0, 2);
                     view.Choice("Menu", Home, 1, 2); break;
+                case StoryPage.Bridge: Bridge(); break;
+                case StoryPage.BridgeCage: Cage(); break;
+                case StoryPage.BridgeFall:
+                    Draw(content.bridge, "A queda"); view.Text("Em desenvolvimento", "O caminho após a queda ainda está em desenvolvimento.");
+                    view.Choice("Menu", Home); break;
+                case StoryPage.Courtyard:
+                    if (!run.courtyardTalked) Dialogue("courtyardIntro", content.courtyard, "Pátio dos Caídos", () => { run.courtyardTalked = true; run.dialogue = 0; Save(); Render(); });
+                    else Dialogue("knightIntro", content.courtyard, "Encontro III · Cavaleiro", StartKnightBattle);
+                    break;
+                case StoryPage.KnightBattle: if (battle == null || battle.State.Opponent.Id != CombatantId.Knight) StartKnightBattle(); else BattleScreen(); break;
+                case StoryPage.KnightReward: LaterReward(KnightEncounter); break;
+                case StoryPage.Anteroom: AnteroomScreen(); break;
+                case StoryPage.CarnalHall: CarnalHall(); break;
+                case StoryPage.Cauldron: Cauldron(); break;
+                case StoryPage.WerewolfEmergence: Dialogue("werewolfIntro", content.hall, "A criatura", StartWerewolfBattle); break;
+                case StoryPage.WerewolfBattle: if (battle == null || battle.State.Opponent.Id != CombatantId.Werewolf) StartWerewolfBattle(); else BattleScreen(); break;
+                case StoryPage.WerewolfReward: LaterReward(WerewolfEncounter); break;
             }
         }
 
         private string Branch => run.secondCampaign ? "D" : run.Fate == ChildFate.Saved ? "A" : run.Fate == ChildFate.Dying ? "B" : "C";
         private Sprite BackgroundForEncounter => content.swamp;
         private Sprite BackgroundForMessage => run.page == StoryPage.House ? (run.room ? content.bedrooms[run.activeHouse-2] : content.houses[run.activeHouse])
+            : run.page == StoryPage.BridgeCage ? content.cages[run.activeCage]
+            : run.page == StoryPage.Bridge || run.page == StoryPage.BridgeFall ? content.bridge
+            : run.page == StoryPage.Anteroom ? content.anteroom
+            : run.page == StoryPage.CarnalHall || run.page == StoryPage.Cauldron || run.page == StoryPage.WerewolfReward ? content.cauldrons
             : (int)run.page >= (int)StoryPage.Graveyard ? content.skeletonGraveyard : BackgroundForEncounter;
         private void Draw(Sprite image, string title)
         {
@@ -227,9 +266,17 @@ namespace IronTournament.Bootstrap
             if (run.dialogue >= lines.Length) { done(); return; }
             Draw(background, title);
             if (actors) EncounterActors();
+            var laterEncounter = id == "knightIntro" || id == "werewolfIntro";
+            if (laterEncounter)
+            {
+                heroImage = view.Actor(HeroPoses[2], .27f, .12f, ApparentHeight(.36f, HeroPoses[2], run.hero, 4f));
+                var sprite = id == "knightIntro" ? content.knightPose : content.werewolfPose;
+                opponentImage = view.Actor(sprite, .70f, .30f, ApparentHeight(.36f, sprite,
+                    id == "knightIntro" ? CombatantId.Knight : CombatantId.Werewolf, 5.5f));
+            }
             var line = lines[run.dialogue];
-            var speakingActor = !actors ? null : line.speaker == "Protagonista" ? heroImage :
-                line.speaker == "Goblin" ? opponentImage : line.speaker == "Criança" ? childImage : null;
+            var speakingActor = !actors && !laterEncounter ? null : line.speaker == "Protagonista" ? heroImage :
+                line.speaker == "Goblin" || line.speaker == "Cavaleiro" || line.speaker == "Lobisomem" ? opponentImage : line.speaker == "Criança" ? childImage : null;
             view.Text(line.speaker == "Protagonista" ? Hero.DisplayName : line.speaker,
                 line.text.Replace("[classe do protagonista]", Hero.DisplayName).Replace("*coff*", "coff"), true, speakingActor,
                 line.speaker == "Narrador" && (id == "intro" || id == "chapter"));
@@ -303,6 +350,110 @@ namespace IronTournament.Bootstrap
             else view.Choice("Menu", Home);
         }
 
+        private void Bridge()
+        {
+            Draw(content.bridge, "Ponte das Dores");
+            var points = new[] { new Vector2(.16f,.43f), new Vector2(.32f,.49f), new Vector2(.45f,.52f),
+                new Vector2(.57f,.54f), new Vector2(.79f,.48f), new Vector2(.84f,.39f) };
+            for (var i = 0; i < points.Length; i++)
+            {
+                var slot = i; var visited = (run.cagesVisited & (1 << run.cages[i])) != 0;
+                view.Hotspot("Gaiola " + (i + 1), points[i].x, points[i].y,
+                    () => { run.EnterCage(slot, explorationRandom); Save(); Render(); }, visited, display: "Examinar");
+            }
+            view.Text("Investigar", $"Gaiolas examinadas: {run.CagesExplored}/6. Você pode seguir sem examiná-las.");
+            view.Choice("Entrar no castelo", () => { run.LeaveBridge(); run.dialogue = 0; Save(); Render(); }, 0, 2);
+            view.Choice("Menu", Home, 1, 2, StoryButtonStyle.Secondary);
+        }
+
+        private void Cage()
+        {
+            var cage = (CageContent)run.activeCage;
+            var collected = cage == CageContent.LetterAndAmulet && run.amethystAmulet || cage == CageContent.RedKey && run.redKey ||
+                cage == CageContent.MirrorShield && run.mirrorShield || cage == CageContent.Flint && run.flint || cage == CageContent.BlueKey && run.blueKey;
+            Draw(collected ? content.cagesCollected[run.activeCage] : content.cages[run.activeCage], "Dentro da gaiola");
+            var descriptions = new[] { "Restos de uma pessoa, algemas e trapos repousam no fundo.",
+                "Há ossos, uma carta e um amuleto arroxeado.", "Uma chave avermelhada está entre os ossos.",
+                "Um corvo se alimenta dos restos. Há algo redondo e brilhante sob eles.",
+                "Há pederneiras e um pedaço de metal.", "Uma chave azulada está envolta em tecidos. Arte provisória." };
+            view.Text("Investigar", descriptions[run.activeCage]);
+            if (cage == CageContent.LetterAndAmulet)
+                view.Hotspot("Ler carta", .12f, .25f, () => Message("Carta do Prisioneiro", content.Script.prisonerLetter, Render));
+            if (cage != CageContent.Remains)
+                view.Choice("Recolher objeto", () =>
+                {
+                    var obtained = run.CollectBridgeItem(); Save();
+                    var result = obtained ? "Objeto recolhido." : cage == CageContent.MirrorShield && run.hero == CombatantId.Mage
+                        ? "O escudo é pesado demais para levantar." : cage == CageContent.LetterAndAmulet && run.hero == CombatantId.Warrior
+                        ? "O amuleto se expande em espinhos e fere sua mão antes de cair na gaiola." : "Não há outro objeto para recolher.";
+                    Message("Gaiola", result, Render);
+                }, 0, 2);
+            view.Choice("Voltar à ponte", () => { run.LeaveCage(); Save(); Render(); }, cage == CageContent.Remains ? 0 : 1,
+                cage == CageContent.Remains ? 1 : 2, StoryButtonStyle.Secondary);
+        }
+
+        private void AnteroomScreen()
+        {
+            if (!run.anteroomTalked)
+            {
+                Dialogue(run.werewolfDefeated ? "anteroomReturn" : "anteroomIntro", content.anteroom, "Antessala Efêmera",
+                    () => { run.anteroomTalked = true; run.dialogue = 0; Save(); Render(); }); return;
+            }
+            Draw(content.anteroom, "Antessala Efêmera");
+            view.Text(run.hero == CombatantId.Mage ? "Fenda Espaço-Temporal" : "Portal Misterioso", "Escolha como abrir a porta.");
+            var choices = new List<(string label, Action action)>();
+            choices.Add(("Abrir sem chave", () => { run.ReturnToColdForest(); battle = null; Save(); Render(); }));
+            if (run.redKey) choices.Add(("Usar Chave Rubra", () => { run.EnterCarnalHall(); Save(); Render(); }));
+            if (run.purpleKey) choices.Add(("Usar Chave Púrpura", () => Message("Em desenvolvimento", "O caminho após o Salão Carnal ainda está em desenvolvimento.", Render)));
+            if (run.blueKey) choices.Add(("Usar Chave Azul", () => Message("Em desenvolvimento", "O caminho da chave azul ainda está em desenvolvimento.", Render)));
+            choices.Add(("Menu", Home));
+            for (var i = 0; i < choices.Count; i++)
+            { var choice = choices[i]; view.Choice(choice.label, choice.action, i, choices.Count); }
+        }
+
+        private void CarnalHall()
+        {
+            if (!run.hallIntroSeen)
+            {
+                Dialogue("hallIntro", content.hall, "Salão Carnal", () => { run.hallIntroSeen = true; run.dialogue = 0; Save(); Render(); });
+                return;
+            }
+            Draw(content.cauldrons, "Salão Carnal");
+            if (run.werewolfDefeated && !run.werewolfBurned) view.Actor(content.werewolfDead, .50f, .12f, .18f);
+            var points = new[] { new Vector2(.10f,.48f), new Vector2(.27f,.48f), new Vector2(.43f,.48f),
+                new Vector2(.60f,.48f), new Vector2(.76f,.48f) };
+            for (var i = 0; i < points.Length; i++)
+            {
+                var slot = i; var visited = (run.cauldronsVisited & (1 << i)) != 0;
+                view.Hotspot("Caldeirão " + (i + 1), points[i].x, points[i].y,
+                    () => { run.EnterCauldron(slot, explorationRandom); Save(); Render(); }, visited, display: "Examinar");
+            }
+            view.Text("Investigar", run.werewolfDefeated ? "O lobisomem foi derrotado. A porta está aberta." : "As criaturas fugiram para a escuridão. A porta está fechada.");
+            if (run.werewolfDefeated)
+            {
+                if (run.flint && !run.werewolfBurned)
+                    view.Choice("Queimar o corpo", () => { run.BurnWerewolf(); Save(); Message("Pederneira", "Você ateia fogo ao corpo do lobisomem.", Render); }, 0, 2);
+                view.Choice("Deixar o salão", () => { run.LeaveCarnalHall(); Save(); Render(); }, run.flint && !run.werewolfBurned ? 1 : 0,
+                    run.flint && !run.werewolfBurned ? 2 : 1);
+            }
+            else view.Choice("Menu", Home);
+        }
+
+        private void Cauldron()
+        {
+            var slot = run.activeCauldron;
+            var image = slot == 1 && run.woodenStake ? content.cauldronCollected[0] :
+                slot == 4 && run.purpleKey ? content.cauldronCollected[1] : content.cauldronContents[slot];
+            Draw(image, "Caldeirão " + (slot + 1));
+            var descriptions = new[] { "Restos fétidos flutuam no líquido avermelhado.", "Há uma estaca de madeira na mistura rasa.",
+                "Uma ninhada de ratos dorme no caldeirão.", "O caldeirão está vazio.", "Uma chave púrpura boia na mistura." };
+            view.Text("Investigar", slot == 1 && run.woodenStake ? "A estaca foi recolhida." :
+                slot == 4 && run.purpleKey ? "A chave foi recolhida." : descriptions[slot]);
+            var hasItem = (slot == 1 && !run.woodenStake) || (slot == 4 && !run.purpleKey);
+            if (hasItem) view.Choice("Recolher", () => { run.CollectCauldronItem(); Save(); Render(); }, 0, 2);
+            view.Choice("Voltar ao salão", () => { run.LeaveCauldron(); Save(); Render(); }, hasItem ? 1 : 0, hasItem ? 2 : 1);
+        }
+
         private void Grave()
         {
             var grave = (GraveContent)run.graves[run.activeGrave];
@@ -339,6 +490,28 @@ namespace IronTournament.Bootstrap
                     var hero = battle != null && battle.State.Opponent.Id == CombatantId.Skeleton && battle.State.Phase == BattlePhase.Victory
                         ? battle.State.Hero : StoryEncounter.RestoreSkeletonHero(run, ContentMapper.BuildCombatant(Hero), Encounter, true);
                     StoryEncounter.ChooseSkeletonReward(run, SkeletonEncounter, item.Id, hero); Save(); Render();
+                }, i, offer.Count);
+            }
+        }
+
+        private void LaterReward(EncounterConfiguration encounter)
+        {
+            var knight = encounter.Opponent.Id == CombatantId.Knight;
+            Draw(knight ? content.courtyard : content.hall, "Escolha um saque");
+            var gain = BattleExperience.For(encounter.Opponent.Id);
+            view.Text(knight ? "O Cavaleiro caiu" : "O Lobisomem caiu",
+                knight ? $"Sua marca foi apagada. Descanse em paz.\nATQ +{gain.Attack} · DEF +{gain.Defense}" :
+                $"A criatura caiu.\nATQ +{gain.Attack} · DEF +{gain.Defense}");
+            var offer = StoryEncounter.LaterRewards(run, encounter);
+            for (var i = 0; i < offer.Count; i++)
+            {
+                var item = offer[i];
+                view.RewardChoice(item.DisplayName, DescribeItem(item), () =>
+                {
+                    var hero = ContentMapper.BuildCombatant(Hero);
+                    var player = knight ? StoryEncounter.RestoreKnightVictory(run, hero, Encounter, SkeletonEncounter, KnightEncounter)
+                        : StoryEncounter.RestoreWerewolfVictory(run, hero, Encounter, SkeletonEncounter, KnightEncounter, WerewolfEncounter);
+                    StoryEncounter.ChooseLaterReward(run, encounter, item.Id, player); battle = null; Save(); Render();
                 }, i, offer.Count);
             }
         }
@@ -456,20 +629,36 @@ namespace IronTournament.Bootstrap
             run.page = StoryPage.SkeletonBattle; run.dialogue = 0; Save(); BattleScreen();
         }
 
+        private void StartKnightBattle()
+        {
+            battle = StoryEncounter.CreateKnight(run, ContentMapper.BuildCombatant(Hero), Encounter, SkeletonEncounter, KnightEncounter);
+            run.page = StoryPage.KnightBattle; run.dialogue = 0; Save(); BattleScreen();
+        }
+
+        private void StartWerewolfBattle()
+        {
+            run.page = StoryPage.WerewolfBattle; run.dialogue = 0;
+            battle = StoryEncounter.CreateWerewolf(run, ContentMapper.BuildCombatant(Hero), Encounter, SkeletonEncounter, KnightEncounter, WerewolfEncounter);
+            Save(); BattleScreen();
+        }
+
         private void BattleScreen()
         {
             var skeleton = run.page == StoryPage.SkeletonBattle;
-            Draw(skeleton ? content.skeletonGraveyard : BackgroundForEncounter, skeleton ? "Encontro II · Esqueleto" : "Encontro I · Goblin");
+            var knight = run.page == StoryPage.KnightBattle;
+            var werewolf = run.page == StoryPage.WerewolfBattle;
+            Draw(skeleton ? content.skeletonGraveyard : knight ? content.courtyard : werewolf ? content.hall : BackgroundForEncounter,
+                skeleton ? "Encontro II · Esqueleto" : knight ? "Encontro III · Cavaleiro" : werewolf ? "Encontro IV · Lobisomem" : "Encontro I · Goblin");
             heroImage = view.Actor(HeroPoses[3], .28f, .13f, ApparentHeight(.38f, HeroPoses[3], run.hero, 4f));
-            var opponentId = skeleton ? CombatantId.Skeleton : CombatantId.Goblin;
-            var opponentSprite = skeleton ? content.skeletonPose : content.goblinPoses[2];
+            var opponentId = skeleton ? CombatantId.Skeleton : knight ? CombatantId.Knight : werewolf ? CombatantId.Werewolf : CombatantId.Goblin;
+            var opponentSprite = skeleton ? content.skeletonPose : knight ? content.knightPose : werewolf ? content.werewolfPose : content.goblinPoses[2];
             opponentImage = view.Actor(opponentSprite, .69f, skeleton ? .32f : .43f,
                 ApparentHeight(.38f, opponentSprite, opponentId, 5.5f));
             var state = battle.State;
             heroHealth = view.Health(heroImage, Hero.DisplayName, state.Hero.CurrentHealth, state.Hero.Stats.MaximumHealth);
-            opponentHealth = view.Health(opponentImage, skeleton ? "Esqueleto" : "Goblin", state.Opponent.CurrentHealth, state.Opponent.Stats.MaximumHealth);
+            opponentHealth = view.Health(opponentImage, skeleton ? "Esqueleto" : knight ? "Cavaleiro" : werewolf ? "Lobisomem" : "Goblin", state.Opponent.CurrentHealth, state.Opponent.Stats.MaximumHealth);
             view.Text("Sua vez · rodada " + state.Round, $"{(run.hero == CombatantId.Mage ? "Reversões: " + state.RevertCharges + ". " : "")}" +
-                (run.equipment ? run.hero == CombatantId.Mage ? $"Manto: {(skeleton ? 3 : 1)} de dano por ação." : $"Espada: {(skeleton ? 10 : 7)}% de crítico." : "Escolha sua ação."));
+                (run.equipment ? run.hero == CombatantId.Mage ? $"Manto: {(knight || werewolf ? 5 : skeleton ? 3 : 1)} de dano por ação." : $"Espada: {(knight || werewolf ? 14 : skeleton ? 10 : 7)}% de crítico." : "Escolha sua ação."));
             var abilities = Hero.Abilities;
             var visible = abilities.Where(x => battle.AvailableActions.Contains(x.Id)).ToArray();
             for (var i = 0; i < visible.Length; i++)
@@ -491,7 +680,8 @@ namespace IronTournament.Bootstrap
 
         public void SubmitBattle(AbilityId action)
         {
-            if (busy || battle == null || (run.page != StoryPage.Battle && run.page != StoryPage.SkeletonBattle)) return;
+            if (busy || battle == null || (run.page != StoryPage.Battle && run.page != StoryPage.SkeletonBattle &&
+                run.page != StoryPage.KnightBattle && run.page != StoryPage.WerewolfBattle)) return;
             var result = battle.Submit(action);
             if (!result.IsAccepted) return;
             StartCoroutine(Playback(result));
@@ -535,6 +725,8 @@ namespace IronTournament.Bootstrap
             }
             busy = false;
             var skeleton = run.page == StoryPage.SkeletonBattle;
+            var knight = run.page == StoryPage.KnightBattle;
+            var werewolf = run.page == StoryPage.WerewolfBattle;
             if (battle.State.Phase == BattlePhase.Victory)
             {
                 view.PlaySound("Defeat");
@@ -544,12 +736,13 @@ namespace IronTournament.Bootstrap
                     run.skeletonScrolls = hero.HopeScrolls; run.skeletonHorns = hero.GuardianHorns;
                     run.skeletonGuardianArmed = hero.IsGuardianArmed; Go(StoryPage.SkeletonLetter);
                 }
+                else if (knight || werewolf) { StoryEncounter.RecordLaterVictory(run, battle); Save(); Render(); }
                 else { run.victoryHealth = battle.State.Hero.CurrentHealth; Go(StoryPage.AfterBattle); }
             }
             else if (battle.State.Phase == BattlePhase.Defeat)
             {
-                Draw(skeleton ? content.skeletonGraveyard : content.swamp, "Derrota"); view.Text("Tentar novamente", "O estado anterior à batalha foi preservado. Você não precisa repetir a exploração.");
-                view.Choice("Repetir batalha", skeleton ? (Action)StartSkeletonBattle : StartBattle, 0, 2); view.Choice("Menu", Home, 1, 2, StoryButtonStyle.Secondary);
+                Draw(skeleton ? content.skeletonGraveyard : knight ? content.courtyard : werewolf ? content.hall : content.swamp, "Derrota"); view.Text("Tentar novamente", "O estado anterior à batalha foi preservado. Você não precisa repetir a exploração.");
+                view.Choice("Repetir batalha", skeleton ? (Action)StartSkeletonBattle : knight ? (Action)StartKnightBattle : werewolf ? (Action)StartWerewolfBattle : StartBattle, 0, 2); view.Choice("Menu", Home, 1, 2, StoryButtonStyle.Secondary);
             }
             else BattleScreen();
         }
