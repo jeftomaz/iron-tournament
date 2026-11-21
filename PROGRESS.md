@@ -2,7 +2,7 @@
 
 ## 2026-11-20 — Organização local
 
-- Restauradas as duas imagens da ponte e vinculada a pose do Lobisomem derrotado ao conteúdo narrativo; EditMode no editor: 149/149; PlayMode: 48/48. Revisão visual pendente.
+- Restauradas as duas imagens da ponte e vinculada a pose do Lobisomem derrotado ao conteúdo narrativo; EditMode: 149/149; PlayMode: 48/48. Visual da ponte e do salão aprovado em mobile e desktop.
 - Identificadas duas referências inválidas preexistentes no menu clássico; correção independente da jornada permanece pendente.
 - A falha de licença da execução isolada foi resolvida ao encerrar o processo órfão criado pela tentativa anterior; `scripts/verify.sh editmode` e `playmode` passaram.
 
