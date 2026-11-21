@@ -312,6 +312,38 @@ namespace IronTournament.Presentation.Tests
                 }
                 Assert.That(run.GravesExplored, Is.EqualTo(6)); Click("Seguir viagem");
                 Assert.That(store.TryLoad(out restored), Is.True); Assert.That(restored.page, Is.EqualTo(StoryPage.SkeletonFinished));
+                Click("Seguir para a ponte"); Assert.That(run.page, Is.EqualTo(StoryPage.Bridge));
+                Assert.That(view.GetComponentsInChildren<Button>().Count(x => x.name.StartsWith("Gaiola ")), Is.EqualTo(6));
+                var redSlot = Array.IndexOf(run.cages, (int)CageContent.RedKey);
+                Click("Gaiola " + (redSlot + 1)); Assert.That(run.page, Is.EqualTo(StoryPage.BridgeCage));
+                Click("Recolher objeto"); Click("Continuar"); Assert.That(run.redKey, Is.True);
+                Click("Voltar à ponte"); Click("Entrar no castelo");
+                Assert.That(run.page, Is.EqualTo(StoryPage.Courtyard));
+                run.knightDefeated = true; run.knightHealth = run.skeletonHealth;
+                run.knightScrolls = run.skeletonScrolls; run.knightHorns = run.skeletonHorns;
+                run.knightGuardianArmed = run.skeletonGuardianArmed; run.page = StoryPage.KnightReward;
+                controller.Render(); view.GetComponentsInChildren<Button>()[0].onClick.Invoke();
+                Assert.That(run.page, Is.EqualTo(StoryPage.Anteroom));
+                for (var i = 0; i < 12 && !run.anteroomTalked; i++) { Click("Continuar"); yield return null; }
+                Click("Usar Chave Rubra");
+                for (var i = 0; i < 8 && !run.hallIntroSeen; i++) { Click("Continuar"); yield return null; }
+                Assert.That(view.GetComponentsInChildren<Button>().Count(x => x.name.StartsWith("Caldeirão ")), Is.EqualTo(5));
+                Click("Caldeirão 2"); Click("Recolher"); Click("Voltar ao salão");
+                Assert.That(run.woodenStake, Is.True);
+
+                run.werewolfAppeared = run.werewolfDefeated = true; run.werewolfHealth = run.knightHealth;
+                run.werewolfScrolls = run.knightScrolls; run.werewolfHorns = run.knightHorns;
+                run.werewolfGuardianArmed = run.knightGuardianArmed; run.page = StoryPage.WerewolfReward;
+                controller.Render(); view.GetComponentsInChildren<Button>()[0].onClick.Invoke();
+                Click("Deixar o salão");
+                for (var i = 0; i < 10 && !run.anteroomTalked; i++) { Click("Continuar"); yield return null; }
+                Click("Usar Chave Rubra"); Assert.That(run.woodenStake, Is.True);
+                Click("Caldeirão 5"); Click("Recolher"); Click("Voltar ao salão");
+                Assert.That(run.purpleKey, Is.True); Assert.That(run.redKey, Is.False);
+                Click("Deixar o salão");
+                for (var i = 0; i < 10 && !run.anteroomTalked; i++) { Click("Continuar"); yield return null; }
+                Click("Usar Chave Púrpura"); view.CompleteText();
+                Assert.That(view.GetComponentsInChildren<Text>().Any(x => x.text.Contains("em desenvolvimento")), Is.True);
             }
         }
 

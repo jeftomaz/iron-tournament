@@ -16,7 +16,41 @@ MonoBehaviour:
   mage: {fileID: 11400000, guid: e03c31352c486f847971c5de955a2526, type: 2}
   goblin: {fileID: 11400000, guid: 28232861edc63264498b08c49345f2bb, type: 2}
   opening: {fileID: 21300000, guid: c3247e45c424f49b4bef94801352a660, type: 3}
+  campaignTitle: {fileID: 0}
   skeleton: {fileID: 11400000, guid: d383b3511eba2e54dad8388618ace77d, type: 2}
+  knight: {fileID: 11400000, guid: bd5a2e648aa94f60a683b4cb10737c64, type: 2}
+  werewolf: {fileID: 11400000, guid: 5dc4fac1db5d0e74caaa19a4c1c42c90, type: 2}
+  bridge: {fileID: 21300000, guid: 39da6e1c1b77e49278045e5aebd1b215, type: 3}
+  cages:
+  - {fileID: 21300000, guid: 1c194f35b2bd4eb590190108a37fe0d2, type: 3}
+  - {fileID: 21300000, guid: fbf3c39d966741ccb4a31c180cd69a10, type: 3}
+  - {fileID: 21300000, guid: 32f36934709a46e0bee3a1a2a9dc6042, type: 3}
+  - {fileID: 21300000, guid: 9233d35f595a46ee96cb6e1bf349ef57, type: 3}
+  - {fileID: 21300000, guid: e59ab5916ffd4df6af38fc2d96db6bfd, type: 3}
+  - {fileID: 21300000, guid: 92371475bd3245f592709db5a750d032, type: 3}
+  cagesCollected:
+  - {fileID: 21300000, guid: 1c194f35b2bd4eb590190108a37fe0d2, type: 3}
+  - {fileID: 21300000, guid: 06c099dfb566c49b1aeab4a498c2f0d0, type: 3}
+  - {fileID: 21300000, guid: b378e5e3c980b4cd5806229d37fb1a2b, type: 3}
+  - {fileID: 21300000, guid: b9c923a4b24344b5d8dc64c9d824db0c, type: 3}
+  - {fileID: 21300000, guid: e59ab5916ffd4df6af38fc2d96db6bfd, type: 3}
+  - {fileID: 21300000, guid: 92371475bd3245f592709db5a750d032, type: 3}
+  courtyard: {fileID: 21300000, guid: 8c72e198800644d199787cd008e0b6e9, type: 3}
+  anteroom: {fileID: 21300000, guid: 0464c512cac8747a1b57e1f4b4edbf78, type: 3}
+  hall: {fileID: 21300000, guid: 1586dae9068d34c069f2568d98ea07ae, type: 3}
+  cauldrons: {fileID: 21300000, guid: f5e04087c8bc54df8a18a6ed7e3634ef, type: 3}
+  cauldronContents:
+  - {fileID: 21300000, guid: 047aade95bc9b4e8ca55ede85eeab8b5, type: 3}
+  - {fileID: 21300000, guid: 1e973c61176ce44e287310cbf2a326c1, type: 3}
+  - {fileID: 21300000, guid: cf3ebc5f5161c41fa8cfdb6e50c16ca7, type: 3}
+  - {fileID: 21300000, guid: 6f3ada76c0b95424ab159b2475fc2256, type: 3}
+  - {fileID: 21300000, guid: edde0b40f92354b1ebbed9adbdd2f731, type: 3}
+  cauldronCollected:
+  - {fileID: 21300000, guid: 49bd6f108a62543c5b1b30137b2f6c9e, type: 3}
+  - {fileID: 21300000, guid: 45d3a62523e0749abab7287f1d7a867e, type: 3}
+  knightPose: {fileID: -1505471383403432660, guid: f1c6898686a6e4497aa4fa8aa7f06be5, type: 3}
+  werewolfPose: {fileID: -1505471383403432660, guid: 1a75fdb9539a24da5862c3c5f064766a, type: 3}
+  werewolfDead: {fileID: 2324236343598682440, guid: 54fe612c19dd7464b9ea60eeb97e85b5, type: 3}
   village: {fileID: 21300000, guid: aae214967a3ba4e37aa0c4b41339a3f9, type: 3}
   distantVillage: {fileID: 21300000, guid: 81dcc3cd7a4f3440a8a0468640e38799, type: 3}
   forestPath: {fileID: 21300000, guid: 564361f5fcf504deeaedbb1e80a5ecb7, type: 3}

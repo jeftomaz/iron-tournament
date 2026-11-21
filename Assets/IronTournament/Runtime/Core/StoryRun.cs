@@ -6,7 +6,8 @@ namespace IronTournament.Core
     public enum StoryPage { Intro, Village, House, Rescue, Battle, AfterBattle, Reward, Farewell, Finished,
         Title, Chapter, Arrival, Approach, Food, LootLead, Burial, Exit,
         ColdForest, Graveyard, Grave, SkeletonEmergence, SkeletonBattle, SkeletonLetter, SkeletonReward,
-        Castle, SkeletonFinished, Bridge, BridgeCage, BridgeFall, Courtyard, Anteroom }
+        Castle, SkeletonFinished, Bridge, BridgeCage, BridgeFall, Courtyard, Anteroom,
+        KnightBattle, KnightReward, CarnalHall, Cauldron, WerewolfBattle, WerewolfReward, WerewolfEmergence }
     public enum ChildFate { Saved, Dying, Dead, Absent }
     public enum GraveContent { LucyLetter, SamuelLetter, Rosary, Doll, Cat, Empty, Skeleton }
     public enum CageContent { Remains, LetterAndAmulet, RedKey, MirrorShield, Flint, BlueKey }
@@ -64,6 +65,88 @@ namespace IronTournament.Core
         public bool mirrorShield;
         public bool amethystAmulet;
         public bool knightDefeated;
+        public int knightHealth;
+        public int knightScrolls;
+        public int knightHorns;
+        public bool knightGuardianArmed;
+        public ItemId knightReward;
+        public int knightAttack;
+        public int knightDefense;
+        public int werewolfHealth;
+        public int werewolfScrolls;
+        public int werewolfHorns;
+        public bool werewolfGuardianArmed;
+        public ItemId werewolfReward;
+        public int werewolfAttack;
+        public int werewolfDefense;
+        public int cauldronsVisited;
+        public int activeCauldron = -1;
+        public bool werewolfAppeared;
+        public bool werewolfDefeated;
+        public bool purpleKey;
+        public bool woodenStake;
+        public bool werewolfBurned;
+        public bool anteroomTalked;
+        public bool courtyardTalked;
+        public bool hallIntroSeen;
+
+        public int CauldronsExplored
+        {
+            get { var n = 0; for (var i = 0; i < 5; i++) if ((cauldronsVisited & (1 << i)) != 0) n++; return n; }
+        }
+
+        public void EnterCarnalHall()
+        {
+            if (page != StoryPage.Anteroom || !redKey || purpleKey || knightReward == ItemId.None)
+                throw new InvalidOperationException("The carnal hall is not available.");
+            Validate();
+            page = StoryPage.CarnalHall; dialogue = 0;
+        }
+
+        public void EnterCauldron(int slot, IRandomSource random)
+        {
+            if (page != StoryPage.CarnalHall || slot < 0 || slot >= 5)
+                throw new InvalidOperationException("Invalid cauldron entry.");
+            if (random == null) throw new ArgumentNullException(nameof(random));
+            Validate();
+            var fresh = (cauldronsVisited & (1 << slot)) == 0;
+            var count = CauldronsExplored;
+            var chances = new[] { 0, 10, 20, 30, 60 };
+            if (!werewolfAppeared && fresh && count > 0 && random.Next(0, 100) < chances[count])
+            { werewolfAppeared = true; page = StoryPage.WerewolfEmergence; dialogue = 0; return; }
+            cauldronsVisited |= 1 << slot; activeCauldron = slot; page = StoryPage.Cauldron;
+        }
+
+        public bool CollectCauldronItem()
+        {
+            if (page != StoryPage.Cauldron) return false;
+            Validate();
+            if (activeCauldron == 1 && !woodenStake) { woodenStake = true; return true; }
+            if (activeCauldron == 4 && !purpleKey) { purpleKey = true; redKey = false; return true; }
+            return false;
+        }
+
+        public void LeaveCauldron()
+        {
+            if (page != StoryPage.Cauldron) throw new InvalidOperationException("No cauldron is open.");
+            Validate(); activeCauldron = -1;
+            if (!werewolfAppeared && CauldronsExplored == 5)
+            { werewolfAppeared = true; page = StoryPage.WerewolfEmergence; dialogue = 0; }
+            else page = StoryPage.CarnalHall;
+        }
+
+        public void LeaveCarnalHall()
+        {
+            if (page != StoryPage.CarnalHall || !werewolfDefeated || werewolfReward == ItemId.None)
+                throw new InvalidOperationException("The hall is still locked.");
+            Validate(); page = StoryPage.Anteroom; dialogue = 0; anteroomTalked = false;
+        }
+
+        public bool BurnWerewolf()
+        {
+            if (page != StoryPage.CarnalHall || !werewolfDefeated || werewolfReward == ItemId.None || !flint || werewolfBurned) return false;
+            Validate(); werewolfBurned = true; return true;
+        }
 
         public int ExploredCount
         {
@@ -161,6 +244,15 @@ namespace IronTournament.Core
             skeletonAttack = 0; skeletonDefense = 0; skeletonExperience = false; castleSeen = false;
             cagesVisited = 0; activeCage = -1; bridgeFell = false; redKey = false; blueKey = false;
             flint = false; mirrorShield = false; amethystAmulet = false; knightDefeated = false;
+            knightHealth = 0; knightScrolls = 0; knightHorns = 0; knightGuardianArmed = false;
+            knightReward = ItemId.None; knightAttack = 0; knightDefense = 0;
+            werewolfHealth = 0; werewolfScrolls = 0; werewolfHorns = 0; werewolfGuardianArmed = false;
+            werewolfReward = ItemId.None; werewolfAttack = 0; werewolfDefense = 0;
+            cauldronsVisited = 0; activeCauldron = -1; werewolfAppeared = false; werewolfDefeated = false;
+            purpleKey = false; woodenStake = false; werewolfBurned = false;
+            anteroomTalked = false;
+            courtyardTalked = false;
+            hallIntroSeen = false;
             page = StoryPage.ColdForest; dialogue = 0;
             Validate();
         }
@@ -297,7 +389,12 @@ namespace IronTournament.Core
                 gravesVisited < 0 || gravesVisited > 63 || activeGrave < -1 || activeGrave > 5 || skeletonGraveNumber < 0 || skeletonGraveNumber > 6 || skeletonHealth < 0 || skeletonHealth > 9999 ||
                 skeletonScrolls < 0 || skeletonScrolls > 2 || skeletonHorns < 0 || skeletonHorns > 2 || !Enum.IsDefined(typeof(ItemId), skeletonReward) ||
                 skeletonAttack < 0 || skeletonAttack > 9999 || skeletonDefense < 0 || skeletonDefense > 9999 ||
-                cagesVisited < 0 || cagesVisited > 63 || activeCage < -1 || activeCage > 5)
+                cagesVisited < 0 || cagesVisited > 63 || activeCage < -1 || activeCage > 5 ||
+                cauldronsVisited < 0 || cauldronsVisited > 31 || activeCauldron < -1 || activeCauldron > 4 ||
+                knightHealth < 0 || knightHealth > 9999 || knightScrolls < 0 || knightScrolls > 3 || knightHorns < 0 || knightHorns > 3 ||
+                knightAttack < 0 || knightAttack > 9999 || knightDefense < 0 || knightDefense > 9999 || !Enum.IsDefined(typeof(ItemId), knightReward) ||
+                werewolfHealth < 0 || werewolfHealth > 9999 || werewolfScrolls < 0 || werewolfScrolls > 4 || werewolfHorns < 0 || werewolfHorns > 4 ||
+                werewolfAttack < 0 || werewolfAttack > 9999 || werewolfDefense < 0 || werewolfDefense > 9999 || !Enum.IsDefined(typeof(ItemId), werewolfReward))
                 throw new ArgumentException("Invalid story checkpoint.");
             var mask = 0;
             foreach (var h in houses) { if (h < 0 || h > 4 || (mask & (1 << h)) != 0) throw new ArgumentException("Invalid house layout."); mask |= 1 << h; }
@@ -354,6 +451,25 @@ namespace IronTournament.Core
                 ((int)page < (int)StoryPage.Bridge && (cagesVisited != 0 || redKey || blueKey || flint || mirrorShield || amethystAmulet || knightDefeated)) ||
                 ((int)page >= (int)StoryPage.Bridge && (!hasCages || skeletonReward == ItemId.None)) ||
                 (page == StoryPage.Anteroom && !knightDefeated) ||
+                (anteroomTalked && !knightDefeated) ||
+                (!knightDefeated && (knightHealth != 0 || knightScrolls != 0 || knightHorns != 0 || knightGuardianArmed || knightReward != ItemId.None || knightAttack != 0 || knightDefense != 0)) ||
+                (!werewolfDefeated && (werewolfHealth != 0 || werewolfScrolls != 0 || werewolfHorns != 0 || werewolfGuardianArmed || werewolfReward != ItemId.None || werewolfAttack != 0 || werewolfDefense != 0)) ||
+                (knightReward != ItemId.None && (!knightDefeated || knightHealth <= 0 || knightAttack <= 0)) ||
+                (werewolfReward != ItemId.None && (!werewolfDefeated || werewolfHealth <= 0 || werewolfAttack <= 0)) ||
+                (page == StoryPage.KnightBattle && knightDefeated) || (page == StoryPage.KnightReward && (!knightDefeated || knightHealth <= 0 || knightReward != ItemId.None)) ||
+                (!knightDefeated && (cauldronsVisited != 0 || werewolfAppeared || werewolfDefeated || purpleKey || woodenStake || werewolfBurned || hallIntroSeen)) ||
+                (cauldronsVisited != 0 && !redKey && !purpleKey) ||
+                ((page == StoryPage.CarnalHall || page == StoryPage.Cauldron || page == StoryPage.WerewolfBattle ||
+                    page == StoryPage.WerewolfReward || page == StoryPage.WerewolfEmergence) && (!knightDefeated || knightReward == ItemId.None || (!redKey && !purpleKey))) ||
+                (page == StoryPage.Cauldron ? activeCauldron < 0 || (cauldronsVisited & (1 << activeCauldron)) == 0 : activeCauldron != -1) ||
+                (werewolfDefeated && (!werewolfAppeared || werewolfHealth <= 0 || knightReward == ItemId.None)) || (werewolfBurned && (!werewolfDefeated || !flint)) ||
+                (purpleKey && (redKey || (cauldronsVisited & (1 << 4)) == 0)) ||
+                (woodenStake && (cauldronsVisited & (1 << 1)) == 0) ||
+                ((page == StoryPage.WerewolfBattle || page == StoryPage.WerewolfReward || page == StoryPage.WerewolfEmergence) && !werewolfAppeared) ||
+                (page == StoryPage.WerewolfEmergence && werewolfDefeated) ||
+                (page == StoryPage.WerewolfBattle && werewolfDefeated) || (page == StoryPage.WerewolfReward && !werewolfDefeated) ||
+                (page == StoryPage.WerewolfReward && werewolfReward != ItemId.None) ||
+                (page == StoryPage.CarnalHall && werewolfDefeated && werewolfReward == ItemId.None) ||
                 (page == StoryPage.BridgeCage ? activeCage < 0 || (cagesVisited & (1 << activeCage)) == 0 : activeCage != -1) ||
                 (bridgeFell != (page == StoryPage.BridgeFall)) ||
                 (redKey && (cagesVisited & (1 << (int)CageContent.RedKey)) == 0) ||

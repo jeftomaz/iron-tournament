@@ -15,6 +15,9 @@ namespace IronTournament.Editor
     {
         private const string Art = "Assets/IronTournament/Art/Backgrounds_new/Village/";
         private const string Forest = "Assets/IronTournament/Art/Backgrounds_new/Forest/";
+        private const string Castle = "Assets/IronTournament/Art/Backgrounds_new/castle_entrance/";
+        private const string Anteroom = "Assets/IronTournament/Art/Backgrounds_new/ephemeral_anteroom/";
+        private const string Hall = "Assets/IronTournament/Art/Backgrounds_new/carnal_hall/";
         private const string Data = "Assets/IronTournament/Content/Story/";
         public const string ScenePath = "Assets/Scenes/StoryProof.unity";
 
@@ -85,6 +88,34 @@ namespace IronTournament.Editor
             };
             AssetDatabase.SaveAssets();
             Debug.Log("Story proof prepared: " + ScenePath);
+        }
+
+        public static void PrepareContinuation()
+        {
+            AssetDatabase.Refresh();
+            var content = Load<StoryContent>(Data + "StoryProof.asset");
+            content.knight = Load<EncounterDefinition>("Assets/IronTournament/Content/KnightEncounter.asset");
+            content.werewolf = Load<EncounterDefinition>("Assets/IronTournament/Content/WerewolfEncounter.asset");
+            content.bridge = Import("caslte_bridge_close_view", false, Castle);
+            content.cages = Array.ConvertAll(new[] { "caslte_bridge_cage_one_remains", "caslte_bridge_cage_two_letter_amulet",
+                "caslte_bridge_cage_three_red_key", "caslte_bridge_cage_four_mirror_shield_visible", "caslte_bridge_cage_five_flint",
+                "caslte_bridge_cage_six_yellow_key" }, name => Import(name, false, Castle));
+            content.cagesCollected = Array.ConvertAll(new[] { "caslte_bridge_cage_one_remains", "caslte_bridge_cage_two_letter_amulet_taken",
+                "caslte_bridge_cage_three_red_key_taken", "caslte_bridge_cage_four_mirror_shield_taken", "caslte_bridge_cage_five_flint",
+                "caslte_bridge_cage_six_yellow_key" }, name => Import(name, false, Castle));
+            content.courtyard = Import("castle_countryard_doorway", false, Castle);
+            content.anteroom = Import("ephemeral_anteroom_closed_door", false, Anteroom);
+            content.hall = Import("castle_carnal_hall", false, Hall);
+            content.cauldrons = Import("castle_carnal_hall_cauldrons", false, Hall);
+            content.cauldronContents = Array.ConvertAll(new[] { "castle_carnal_hall_cauldron_mortal_mixture", "castle_carnal_hall_cauldron_wooden_stake",
+                "castle_carnal_hall_cauldron_rats", "castle_carnal_hall_cauldron_empty", "castle_carnal_hall_cauldron_purple_key" },
+                name => Import(name, false, Hall));
+            content.cauldronCollected = Array.ConvertAll(new[] { "castle_carnal_hall_cauldron_wooden_stake_taken",
+                "castle_carnal_hall_cauldron_purple_key_taken" }, name => Import(name, false, Hall));
+            content.knightPose = Existing("Knight", "south-west");
+            content.werewolfPose = Existing("Werewolf", "south-west");
+            content.werewolfDead = Load<Sprite>("Assets/IronTournament/Art/Characters/Werewolf/Static/Dead/rotations/south.png");
+            EditorUtility.SetDirty(content); AssetDatabase.SaveAssets();
         }
 
         private static Sprite[] Poses(string character) => new[] { Existing(character,"south-east"), Existing(character,"north"), Existing(character,"east"), Existing(character,"north-east") };

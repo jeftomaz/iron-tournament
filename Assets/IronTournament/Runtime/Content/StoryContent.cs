@@ -8,7 +8,7 @@ namespace IronTournament.Content
     [Serializable]
     public sealed class StoryDialogue { public string id; public StoryLine[] lines; }
     [Serializable]
-    public sealed class StoryScript { public StoryDialogue[] dialogues; public string[] houses; public string[] bedrooms; public string[] graves; public string skeletonLetter; }
+    public sealed class StoryScript { public StoryDialogue[] dialogues; public string[] houses; public string[] bedrooms; public string[] graves; public string skeletonLetter; public string prisonerLetter; }
 
     [CreateAssetMenu(menuName = "Iron Tournament/Story proof")]
     public sealed class StoryContent : ScriptableObject
@@ -19,6 +19,20 @@ namespace IronTournament.Content
         public Sprite opening;
         public Sprite campaignTitle;
         public EncounterDefinition skeleton;
+        public EncounterDefinition knight;
+        public EncounterDefinition werewolf;
+        public Sprite bridge;
+        public Sprite[] cages;
+        public Sprite[] cagesCollected;
+        public Sprite courtyard;
+        public Sprite anteroom;
+        public Sprite hall;
+        public Sprite cauldrons;
+        public Sprite[] cauldronContents;
+        public Sprite[] cauldronCollected;
+        public Sprite knightPose;
+        public Sprite werewolfPose;
+        public Sprite werewolfDead;
         public Sprite village;
         public Sprite distantVillage;
         public Sprite forestPath;

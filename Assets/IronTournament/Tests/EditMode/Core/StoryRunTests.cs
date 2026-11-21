@@ -21,6 +21,57 @@ namespace IronTournament.Core.Tests
             run.EnterBridge(); return run;
         }
 
+        private static StoryRun HallReady()
+        {
+            var run = BridgeReady();
+            run.EnterCage(Array.IndexOf(run.cages, (int)CageContent.RedKey), new ScriptedRandomSource());
+            run.CollectBridgeItem(); run.LeaveCage(); run.LeaveBridge();
+            run.knightDefeated = true; run.knightHealth = 40; run.knightAttack = 30; run.knightReward = ItemId.AttackGem;
+            run.page = StoryPage.Anteroom; run.EnterCarnalHall();
+            return run;
+        }
+
+        [TestCase(1, 10)]
+        [TestCase(2, 20)]
+        [TestCase(3, 30)]
+        [TestCase(4, 60)]
+        public void WerewolfChanceAppliesWhenOpeningANewCauldron(int previouslyExplored, int chance)
+        {
+            foreach (var appears in new[] { false, true })
+            {
+                var run = HallReady();
+                for (var i = 0; i < previouslyExplored; i++)
+                { run.EnterCauldron(i, new ScriptedRandomSource(99)); run.LeaveCauldron(); }
+                run.EnterCauldron(previouslyExplored, new ScriptedRandomSource(appears ? chance - 1 : chance));
+                Assert.That(run.page, Is.EqualTo(appears ? StoryPage.WerewolfEmergence : StoryPage.Cauldron));
+                run.Validate();
+            }
+        }
+
+        [Test]
+        public void WerewolfAppearsAfterAllCauldronsAndRevisitsKeepHallState()
+        {
+            var run = HallReady();
+            run.EnterCauldron(1, new ScriptedRandomSource());
+            Assert.That(run.CollectCauldronItem(), Is.True); run.LeaveCauldron();
+            run.EnterCauldron(1, new ScriptedRandomSource()); run.LeaveCauldron();
+            Assert.That(run.CauldronsExplored, Is.EqualTo(1));
+            foreach (var slot in new[] { 0, 2, 3, 4 })
+            { run.EnterCauldron(slot, new ScriptedRandomSource(99)); run.LeaveCauldron(); }
+            Assert.That(run.page, Is.EqualTo(StoryPage.WerewolfEmergence));
+            Assert.That(run.werewolfAppeared, Is.True); run.Validate();
+            run.werewolfDefeated = true; run.werewolfHealth = 40; run.werewolfAttack = 30;
+            run.werewolfReward = ItemId.AttackGem; run.page = StoryPage.CarnalHall;
+            run.LeaveCarnalHall(); run.EnterCarnalHall();
+            Assert.That(run.CauldronsExplored, Is.EqualTo(5)); Assert.That(run.woodenStake, Is.True);
+            run.EnterCauldron(4, new ScriptedRandomSource());
+            Assert.That(run.CollectCauldronItem(), Is.True); Assert.That(run.redKey, Is.False);
+            Assert.That(run.purpleKey, Is.True); run.LeaveCauldron(); run.LeaveCarnalHall();
+            Assert.Throws<InvalidOperationException>(() => run.EnterCarnalHall());
+            run.ReturnToColdForest();
+            Assert.That(run.CauldronsExplored, Is.Zero); Assert.That(run.purpleKey || run.woodenStake || run.werewolfAppeared, Is.False);
+        }
+
         [Test]
         public void BridgeCagesAreAStablePermutation()
         {
@@ -450,6 +501,41 @@ namespace IronTournament.Core.Tests
             { Assert.That(battle.State.Hero.HasAmethystAmulet, Is.True); Assert.That(battle.State.Hero.IsGuardianArmed, Is.True); }
             run.skeletonAttack++;
             Assert.Throws<ArgumentException>(() => StoryEncounter.CreateKnight(run, hero, goblin, skeleton, knight));
+        }
+
+        [TestCase(CombatantId.Warrior)]
+        [TestCase(CombatantId.Mage)]
+        public void LaterVictoriesAndRewardsRestoreTheSameHeroAfterReload(CombatantId id)
+        {
+            var hero = id == CombatantId.Warrior ? TestContent.Warrior() : TestContent.Mage();
+            var pool = new[] { TestContent.Item(ItemId.HealingPotion, 3), TestContent.Item(ItemId.AttackGem, 3, new ItemModifier(ItemModifierKind.Attack, 10)) };
+            var goblin = new EncounterConfiguration(TestContent.Goblin(), 15, pool);
+            var skeleton = new EncounterConfiguration(TestContent.Enemy(CombatantId.Skeleton, 62, 20, 5), 15, pool);
+            var knight = new EncounterConfiguration(TestContent.WeakEnemy(CombatantId.Knight), 15, pool);
+            var werewolf = new EncounterConfiguration(TestContent.WeakEnemy(CombatantId.Werewolf), 15, pool);
+            var run = BridgeReady(id); run.rewardDefense = hero.BaseStats.Defense;
+            run.skeletonExperience = true; run.skeletonAttack = 43; run.skeletonDefense = hero.BaseStats.Defense + 1;
+            run.EnterCage(Array.IndexOf(run.cages, (int)CageContent.RedKey), new ScriptedRandomSource());
+            run.CollectBridgeItem(); run.LeaveCage(); run.LeaveBridge();
+
+            var knightBattle = StoryEncounter.CreateKnight(run, hero, goblin, skeleton, knight);
+            run.page = StoryPage.KnightBattle; knightBattle.Submit(AbilityId.BasicAttack);
+            StoryEncounter.RecordLaterVictory(run, knightBattle);
+            var knightHero = StoryEncounter.RestoreKnightVictory(run, hero, goblin, skeleton, knight);
+            StoryEncounter.ChooseLaterReward(run, knight, ItemId.AttackGem, knightHero);
+            var knightSaved = StoryEncounter.RestoreKnightVictory(run, hero, goblin, skeleton, knight);
+            Assert.That(knightSaved.Stats.Attack, Is.EqualTo(56)); Assert.That(knightSaved.CurrentHealth, Is.EqualTo(40));
+
+            run.EnterCarnalHall(); run.EnterCauldron(0, new ScriptedRandomSource()); run.LeaveCauldron();
+            run.EnterCauldron(1, new ScriptedRandomSource(0));
+            run.page = StoryPage.WerewolfBattle;
+            var wolfBattle = StoryEncounter.CreateWerewolf(run, hero, goblin, skeleton, knight, werewolf);
+            wolfBattle.Submit(AbilityId.BasicAttack); StoryEncounter.RecordLaterVictory(run, wolfBattle);
+            var wolfHero = StoryEncounter.RestoreWerewolfVictory(run, hero, goblin, skeleton, knight, werewolf);
+            StoryEncounter.ChooseLaterReward(run, werewolf, ItemId.HealingPotion, wolfHero);
+            var restored = StoryEncounter.RestoreWerewolfVictory(run, hero, goblin, skeleton, knight, werewolf);
+            Assert.That(restored.CurrentHealth, Is.EqualTo(80)); Assert.That(restored.Stats.Attack, Is.EqualTo(60));
+            Assert.That(restored.Stats.Defense, Is.EqualTo(run.werewolfDefense)); run.Validate();
         }
     }
 }
