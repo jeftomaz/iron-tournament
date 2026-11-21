@@ -1,0 +1,1092 @@
+fileFormatVersion: 2
+guid: 49d35744096e546708abbe6bf5d16656
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5139871199396110123
+    second: castle_carnal_hall_curled_creature_0
+  - first:
+      213: -2988807064359300882
+    second: castle_carnal_hall_curled_creature_1
+  - first:
+      213: 9125596313394834546
+    second: castle_carnal_hall_curled_creature_2
+  - first:
+      213: -6961536998942889397
+    second: castle_carnal_hall_curled_creature_3
+  - first:
+      213: -7917989696056736898
+    second: castle_carnal_hall_curled_creature_4
+  - first:
+      213: -6814581424160731753
+    second: castle_carnal_hall_curled_creature_5
+  - first:
+      213: -6222921730893369573
+    second: castle_carnal_hall_curled_creature_6
+  - first:
+      213: -4493468860532639704
+    second: castle_carnal_hall_curled_creature_7
+  - first:
+      213: 4937168854136491754
+    second: castle_carnal_hall_curled_creature_8
+  - first:
+      213: -6288742774303162559
+    second: castle_carnal_hall_curled_creature_9
+  - first:
+      213: -4758138218275509235
+    second: castle_carnal_hall_curled_creature_10
+  - first:
+      213: -613705010992849315
+    second: castle_carnal_hall_curled_creature_11
+  - first:
+      213: -548675932039942524
+    second: castle_carnal_hall_curled_creature_12
+  - first:
+      213: 2931970790169295533
+    second: castle_carnal_hall_curled_creature_13
+  - first:
+      213: -5154621644972029830
+    second: castle_carnal_hall_curled_creature_14
+  - first:
+      213: 4031803605174115264
+    second: castle_carnal_hall_curled_creature_15
+  - first:
+      213: 7783446306285193360
+    second: castle_carnal_hall_curled_creature_16
+  - first:
+      213: -3639050630500616305
+    second: castle_carnal_hall_curled_creature_17
+  - first:
+      213: -505105977368280761
+    second: castle_carnal_hall_curled_creature_18
+  - first:
+      213: 3432977152547862040
+    second: castle_carnal_hall_curled_creature_19
+  - first:
+      213: -8108384350796531077
+    second: castle_carnal_hall_curled_creature_20
+  - first:
+      213: 7419758751225185906
+    second: castle_carnal_hall_curled_creature_21
+  - first:
+      213: 600978806256274138
+    second: castle_carnal_hall_curled_creature_22
+  - first:
+      213: -4274122371859568064
+    second: castle_carnal_hall_curled_creature_23
+  - first:
+      213: -1322135078156297579
+    second: castle_carnal_hall_curled_creature_24
+  - first:
+      213: 478359667019333515
+    second: castle_carnal_hall_curled_creature_25
+  - first:
+      213: -404987823676275835
+    second: castle_carnal_hall_curled_creature_26
+  - first:
+      213: 5023860557325584146
+    second: castle_carnal_hall_curled_creature_27
+  - first:
+      213: -7747404585578407796
+    second: castle_carnal_hall_curled_creature_28
+  - first:
+      213: 7485705394854182463
+    second: castle_carnal_hall_curled_creature_29
+  - first:
+      213: 4451167043830325562
+    second: castle_carnal_hall_curled_creature_30
+  - first:
+      213: 7658615642433658767
+    second: castle_carnal_hall_curled_creature_31
+  - first:
+      213: -6844968442991423384
+    second: castle_carnal_hall_curled_creature_32
+  - first:
+      213: -8370183712025206160
+    second: castle_carnal_hall_curled_creature_33
+  - first:
+      213: 2107263434041350926
+    second: castle_carnal_hall_curled_creature_34
+  - first:
+      213: -5935990974176009628
+    second: castle_carnal_hall_curled_creature_35
+  - first:
+      213: 8357101790786869204
+    second: castle_carnal_hall_curled_creature_36
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_0
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 1010
+        width: 29
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d0ebb850628ba8b0800000000000000
+      internalID: -5139871199396110123
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_1
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 959
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee09fa27fcf9586d0800000000000000
+      internalID: -2988807064359300882
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_2
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 955
+        width: 68
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27c638f5f71a4ae70800000000000000
+      internalID: 9125596313394834546
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_3
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 985
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4a2547bbf6a36f90800000000000000
+      internalID: -6961536998942889397
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_4
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 946
+        width: 71
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e73c55f9256ad1290800000000000000
+      internalID: -7917989696056736898
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_5
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 921
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79d8ce7cc4ebd61a0800000000000000
+      internalID: -6814581424160731753
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_6
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 931
+        width: 29
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1faa0df7adb3a9a0800000000000000
+      internalID: -6222921730893369573
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_7
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 897
+        width: 65
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8283ca6f0edf3a1c0800000000000000
+      internalID: -4493468860532639704
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_8
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 23
+        width: 1373
+        height: 899
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aee8de22ae8548440800000000000000
+      internalID: 4937168854136491754
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_9
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 911
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14ffad514c5e9b8a0800000000000000
+      internalID: -6288742774303162559
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_10
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 382
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0c6a7b0082b7fdb0800000000000000
+      internalID: -4758138218275509235
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_11
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 399
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ed4e64b8eab77f0800000000000000
+      internalID: -613705010992849315
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_12
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 367
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48ee3f59526b268f0800000000000000
+      internalID: -548675932039942524
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_13
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 367
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daabcdf36e370b820800000000000000
+      internalID: 2931970790169295533
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_14
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 295
+        width: 20
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7807eb9cea1778b0800000000000000
+      internalID: -5154621644972029830
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_15
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 251
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cbda8a7408d3f730800000000000000
+      internalID: 4031803605174115264
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_16
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 199
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09884765d2b540c60800000000000000
+      internalID: 7783446306285193360
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_17
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 168
+        width: 33
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8779596bbe7f7dc0800000000000000
+      internalID: -3639050630500616305
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_18
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 145
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 741890d2ac08df8f0800000000000000
+      internalID: -505105977368280761
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_19
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 144
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 816b5a3188264af20800000000000000
+      internalID: 3432977152547862040
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_20
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 66
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7abf6c946b397f80800000000000000
+      internalID: -8108384350796531077
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_21
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 63
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2768fddc54748f660800000000000000
+      internalID: 7419758751225185906
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_22
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 67
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ada81784a0b175800800000000000000
+      internalID: 600978806256274138
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_23
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 73
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04aa2ca19544fa4c0800000000000000
+      internalID: -4274122371859568064
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_24
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 70
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59a1961c625d6ade0800000000000000
+      internalID: -1322135078156297579
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_25
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 65
+        width: 27
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8fbf8b259973a600800000000000000
+      internalID: 478359667019333515
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_26
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 47
+        width: 97
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 583ca6758b1316af0800000000000000
+      internalID: -404987823676275835
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_27
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 41
+        width: 93
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 217cc703f8658b540800000000000000
+      internalID: 5023860557325584146
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_28
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 35
+        width: 55
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c88dd51b390bb7490800000000000000
+      internalID: -7747404585578407796
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_29
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 51
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3e3289456192e760800000000000000
+      internalID: 7485705394854182463
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_30
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 49
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a31ae63d7d8b5cd30800000000000000
+      internalID: 4451167043830325562
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_31
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 53
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8f1286895ed84a60800000000000000
+      internalID: 7658615642433658767
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_32
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 59
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 860dcb0a779c101a0800000000000000
+      internalID: -6844968442991423384
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_33
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 33
+        width: 51
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0722af3d24227db80800000000000000
+      internalID: -8370183712025206160
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_34
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 51
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0b5432bde08e3d10800000000000000
+      internalID: 2107263434041350926
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_35
+      rect:
+        serializedVersion: 2
+        x: 1207
+        y: 47
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4626052c8af1f9da0800000000000000
+      internalID: -5935990974176009628
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_curled_creature_36
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 35
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d7d1a70dc36af370800000000000000
+      internalID: 8357101790786869204
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      castle_carnal_hall_curled_creature_0: -5139871199396110123
+      castle_carnal_hall_curled_creature_1: -2988807064359300882
+      castle_carnal_hall_curled_creature_10: -4758138218275509235
+      castle_carnal_hall_curled_creature_11: -613705010992849315
+      castle_carnal_hall_curled_creature_12: -548675932039942524
+      castle_carnal_hall_curled_creature_13: 2931970790169295533
+      castle_carnal_hall_curled_creature_14: -5154621644972029830
+      castle_carnal_hall_curled_creature_15: 4031803605174115264
+      castle_carnal_hall_curled_creature_16: 7783446306285193360
+      castle_carnal_hall_curled_creature_17: -3639050630500616305
+      castle_carnal_hall_curled_creature_18: -505105977368280761
+      castle_carnal_hall_curled_creature_19: 3432977152547862040
+      castle_carnal_hall_curled_creature_2: 9125596313394834546
+      castle_carnal_hall_curled_creature_20: -8108384350796531077
+      castle_carnal_hall_curled_creature_21: 7419758751225185906
+      castle_carnal_hall_curled_creature_22: 600978806256274138
+      castle_carnal_hall_curled_creature_23: -4274122371859568064
+      castle_carnal_hall_curled_creature_24: -1322135078156297579
+      castle_carnal_hall_curled_creature_25: 478359667019333515
+      castle_carnal_hall_curled_creature_26: -404987823676275835
+      castle_carnal_hall_curled_creature_27: 5023860557325584146
+      castle_carnal_hall_curled_creature_28: -7747404585578407796
+      castle_carnal_hall_curled_creature_29: 7485705394854182463
+      castle_carnal_hall_curled_creature_3: -6961536998942889397
+      castle_carnal_hall_curled_creature_30: 4451167043830325562
+      castle_carnal_hall_curled_creature_31: 7658615642433658767
+      castle_carnal_hall_curled_creature_32: -6844968442991423384
+      castle_carnal_hall_curled_creature_33: -8370183712025206160
+      castle_carnal_hall_curled_creature_34: 2107263434041350926
+      castle_carnal_hall_curled_creature_35: -5935990974176009628
+      castle_carnal_hall_curled_creature_36: 8357101790786869204
+      castle_carnal_hall_curled_creature_4: -7917989696056736898
+      castle_carnal_hall_curled_creature_5: -6814581424160731753
+      castle_carnal_hall_curled_creature_6: -6222921730893369573
+      castle_carnal_hall_curled_creature_7: -4493468860532639704
+      castle_carnal_hall_curled_creature_8: 4937168854136491754
+      castle_carnal_hall_curled_creature_9: -6288742774303162559
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

@@ -1,0 +1,442 @@
+fileFormatVersion: 2
+guid: 302e97e3bc0e1464b864b85a007e084f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8960193466599335031
+    second: live_library_book_stand_0
+  - first:
+      213: 4421148616319043893
+    second: live_library_book_stand_1
+  - first:
+      213: -8694498265412497431
+    second: live_library_book_stand_2
+  - first:
+      213: 876740224796824451
+    second: live_library_book_stand_3
+  - first:
+      213: -597998470978856723
+    second: live_library_book_stand_4
+  - first:
+      213: 3670224454589232504
+    second: live_library_book_stand_5
+  - first:
+      213: -7292899003894737733
+    second: live_library_book_stand_6
+  - first:
+      213: -2292229673377905587
+    second: live_library_book_stand_7
+  - first:
+      213: -6156053839966815687
+    second: live_library_book_stand_8
+  - first:
+      213: 7406885815074502813
+    second: live_library_book_stand_9
+  - first:
+      213: 479656220556716911
+    second: live_library_book_stand_10
+  - first:
+      213: -5770354643031303045
+    second: live_library_book_stand_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: live_library_book_stand_0
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1409
+        width: 147
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 774ed671c70095c70800000000000000
+      internalID: 8960193466599335031
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_1
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 0
+        width: 850
+        height: 1412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53908e60e331b5d30800000000000000
+      internalID: 4421148616319043893
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_2
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1230
+        width: 97
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ef86dd94efe65780800000000000000
+      internalID: -8694498265412497431
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_3
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 930
+        width: 62
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3839f4bd69eca2c00800000000000000
+      internalID: 876740224796824451
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_4
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 697
+        width: 62
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de814191f8b73b7f0800000000000000
+      internalID: -597998470978856723
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_5
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 716
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8753ebd12b14fe230800000000000000
+      internalID: 3670224454589232504
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_6
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 377
+        width: 64
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb4dd02defa6aca90800000000000000
+      internalID: -7292899003894737733
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_7
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 184
+        width: 84
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4443beb14d5030e0800000000000000
+      internalID: -2292229673377905587
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_8
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 330
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a399216ad419aa0800000000000000
+      internalID: -6156053839966815687
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_9
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 296
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d98356bc76b8ac660800000000000000
+      internalID: 7406885815074502813
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_10
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 166
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6be6909ac418a600800000000000000
+      internalID: 479656220556716911
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_book_stand_11
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 47
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7cd71a56059befa0800000000000000
+      internalID: -5770354643031303045
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      live_library_book_stand_0: 8960193466599335031
+      live_library_book_stand_1: 4421148616319043893
+      live_library_book_stand_10: 479656220556716911
+      live_library_book_stand_11: -5770354643031303045
+      live_library_book_stand_2: -8694498265412497431
+      live_library_book_stand_3: 876740224796824451
+      live_library_book_stand_4: -597998470978856723
+      live_library_book_stand_5: 3670224454589232504
+      live_library_book_stand_6: -7292899003894737733
+      live_library_book_stand_7: -2292229673377905587
+      live_library_book_stand_8: -6156053839966815687
+      live_library_book_stand_9: 7406885815074502813
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

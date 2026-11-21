@@ -1,0 +1,520 @@
+fileFormatVersion: 2
+guid: 53a3ce4c95bd44efaacbc85a058fea64
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1143736827799412653
+    second: castle_carnal_hall_mortal_remains_0
+  - first:
+      213: 3912173588451806719
+    second: castle_carnal_hall_mortal_remains_1
+  - first:
+      213: 7100577329093037759
+    second: castle_carnal_hall_mortal_remains_2
+  - first:
+      213: 7040114546565067266
+    second: castle_carnal_hall_mortal_remains_3
+  - first:
+      213: 5266423809325012476
+    second: castle_carnal_hall_mortal_remains_4
+  - first:
+      213: -2197895889504501447
+    second: castle_carnal_hall_mortal_remains_5
+  - first:
+      213: -4760845941968219022
+    second: castle_carnal_hall_mortal_remains_6
+  - first:
+      213: 7431956555259262762
+    second: castle_carnal_hall_mortal_remains_7
+  - first:
+      213: -1400170159432644268
+    second: castle_carnal_hall_mortal_remains_8
+  - first:
+      213: -5765333326279013545
+    second: castle_carnal_hall_mortal_remains_9
+  - first:
+      213: -48699525743215511
+    second: castle_carnal_hall_mortal_remains_10
+  - first:
+      213: 2029308996924357913
+    second: castle_carnal_hall_mortal_remains_11
+  - first:
+      213: -4377516318755570917
+    second: castle_carnal_hall_mortal_remains_12
+  - first:
+      213: 4089593764228005859
+    second: castle_carnal_hall_mortal_remains_13
+  - first:
+      213: 6339412004941312124
+    second: castle_carnal_hall_mortal_remains_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9
+        width: 1231
+        height: 1208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daf1489c59e5fdf00800000000000000
+      internalID: 1143736827799412653
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_1
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 835
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffdc55fa625da4630800000000000000
+      internalID: 3912173588451806719
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_2
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 210
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbe48c8d5715a8260800000000000000
+      internalID: 7100577329093037759
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_3
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 223
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 202321641e283b160800000000000000
+      internalID: 7040114546565067266
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_4
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 208
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf51a774d88161940800000000000000
+      internalID: 5266423809325012476
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_5
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 184
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9310bcc55518f71e0800000000000000
+      internalID: -2197895889504501447
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_6
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 182
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 274df9ef6d31eedb0800000000000000
+      internalID: -4760845941968219022
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_7
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 152
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a273d5e5c1d932760800000000000000
+      internalID: 7431956555259262762
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_8
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 144
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4594aed88a8919ce0800000000000000
+      internalID: -1400170159432644268
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_9
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 145
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75b0b63c2eb6dffa0800000000000000
+      internalID: -5765333326279013545
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_10
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 141
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96c78531a0cf25ff0800000000000000
+      internalID: -48699525743215511
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_11
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 139
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91d3e2de7cd892c10800000000000000
+      internalID: 2029308996924357913
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_12
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 111
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1b3916e910ff33c0800000000000000
+      internalID: -4377516318755570917
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_13
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 97
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ef76786cd721c830800000000000000
+      internalID: 4089593764228005859
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_carnal_hall_mortal_remains_14
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 95
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c70bf5f71ad1af750800000000000000
+      internalID: 6339412004941312124
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      castle_carnal_hall_mortal_remains_0: 1143736827799412653
+      castle_carnal_hall_mortal_remains_1: 3912173588451806719
+      castle_carnal_hall_mortal_remains_10: -48699525743215511
+      castle_carnal_hall_mortal_remains_11: 2029308996924357913
+      castle_carnal_hall_mortal_remains_12: -4377516318755570917
+      castle_carnal_hall_mortal_remains_13: 4089593764228005859
+      castle_carnal_hall_mortal_remains_14: 6339412004941312124
+      castle_carnal_hall_mortal_remains_2: 7100577329093037759
+      castle_carnal_hall_mortal_remains_3: 7040114546565067266
+      castle_carnal_hall_mortal_remains_4: 5266423809325012476
+      castle_carnal_hall_mortal_remains_5: -2197895889504501447
+      castle_carnal_hall_mortal_remains_6: -4760845941968219022
+      castle_carnal_hall_mortal_remains_7: 7431956555259262762
+      castle_carnal_hall_mortal_remains_8: -1400170159432644268
+      castle_carnal_hall_mortal_remains_9: -5765333326279013545
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

@@ -116,10 +116,10 @@ TextureImporter:
       name: west_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 75
-        height: 76
+        x: 2
+        y: 3
+        width: 78
+        height: 71
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
