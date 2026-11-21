@@ -1,0 +1,416 @@
+fileFormatVersion: 2
+guid: 3e990bb5f6f9e4fdb940b83aa89cbd15
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9131738302207304851
+    second: despair_catacombs_empty_flask_0
+  - first:
+      213: 1269020793404717283
+    second: despair_catacombs_empty_flask_1
+  - first:
+      213: 3768065328143929497
+    second: despair_catacombs_empty_flask_2
+  - first:
+      213: -7189868287207618299
+    second: despair_catacombs_empty_flask_3
+  - first:
+      213: 6499939488075920909
+    second: despair_catacombs_empty_flask_4
+  - first:
+      213: -8589415053533476198
+    second: despair_catacombs_empty_flask_5
+  - first:
+      213: -8881345599572078949
+    second: despair_catacombs_empty_flask_6
+  - first:
+      213: 3628852682263140837
+    second: despair_catacombs_empty_flask_7
+  - first:
+      213: -804938103043476244
+    second: despair_catacombs_empty_flask_8
+  - first:
+      213: -7497796212420063930
+    second: despair_catacombs_empty_flask_9
+  - first:
+      213: 8568444793371484163
+    second: despair_catacombs_empty_flask_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_0
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 1154
+        width: 187
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39425e49a937abe70800000000000000
+      internalID: 9131738302207304851
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_1
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 15
+        width: 871
+        height: 1132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e8f87320b77c9110800000000000000
+      internalID: 1269020793404717283
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_2
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 591
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9901c7ea37bda4430800000000000000
+      internalID: 3768065328143929497
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_3
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 161
+        width: 230
+        height: 432
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509c427e2e4783c90800000000000000
+      internalID: -7189868287207618299
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_4
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 515
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d06bc48b68c643a50800000000000000
+      internalID: 6499939488075920909
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_5
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 495
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9a8eb974844cc880800000000000000
+      internalID: -8589415053533476198
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_6
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 481
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9e070a8b3f1fb480800000000000000
+      internalID: -8881345599572078949
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_7
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 415
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e9948cb9464c5230800000000000000
+      internalID: 3628852682263140837
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_8
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 419
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce4baed5f0944d4f0800000000000000
+      internalID: -804938103043476244
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_9
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 418
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64dce60e11a72f790800000000000000
+      internalID: -7497796212420063930
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: despair_catacombs_empty_flask_10
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 71
+        width: 316
+        height: 314
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 300e37a542b39e670800000000000000
+      internalID: 8568444793371484163
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      despair_catacombs_empty_flask_0: 9131738302207304851
+      despair_catacombs_empty_flask_1: 1269020793404717283
+      despair_catacombs_empty_flask_10: 8568444793371484163
+      despair_catacombs_empty_flask_2: 3768065328143929497
+      despair_catacombs_empty_flask_3: -7189868287207618299
+      despair_catacombs_empty_flask_4: 6499939488075920909
+      despair_catacombs_empty_flask_5: -8589415053533476198
+      despair_catacombs_empty_flask_6: -8881345599572078949
+      despair_catacombs_empty_flask_7: 3628852682263140837
+      despair_catacombs_empty_flask_8: -804938103043476244
+      despair_catacombs_empty_flask_9: -7497796212420063930
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

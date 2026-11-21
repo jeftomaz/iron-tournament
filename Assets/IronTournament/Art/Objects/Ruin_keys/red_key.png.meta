@@ -1,0 +1,2314 @@
+fileFormatVersion: 2
+guid: 7acc84aa82a3645a1ad05b8579b8b2eb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6466862764005766312
+    second: red_key_0
+  - first:
+      213: 1629024160295583766
+    second: red_key_1
+  - first:
+      213: 4990066776524501072
+    second: red_key_2
+  - first:
+      213: 6864790123350683847
+    second: red_key_3
+  - first:
+      213: 9185862315570570974
+    second: red_key_4
+  - first:
+      213: 8373487964144919141
+    second: red_key_5
+  - first:
+      213: 243039006819222997
+    second: red_key_6
+  - first:
+      213: 2001872441028325547
+    second: red_key_7
+  - first:
+      213: 7131824195725752882
+    second: red_key_8
+  - first:
+      213: 5158193667525804734
+    second: red_key_9
+  - first:
+      213: 3947612525376232774
+    second: red_key_10
+  - first:
+      213: -12013671498037310
+    second: red_key_11
+  - first:
+      213: -6274256721118670345
+    second: red_key_12
+  - first:
+      213: -5568270483101461199
+    second: red_key_13
+  - first:
+      213: 1707117747994197835
+    second: red_key_14
+  - first:
+      213: -5132032739828448410
+    second: red_key_15
+  - first:
+      213: 1530031803253887047
+    second: red_key_16
+  - first:
+      213: 5277476101227454874
+    second: red_key_17
+  - first:
+      213: 2389646036448416443
+    second: red_key_18
+  - first:
+      213: -4278594894526104886
+    second: red_key_19
+  - first:
+      213: 8131922974332620562
+    second: red_key_20
+  - first:
+      213: 2418778437786114984
+    second: red_key_21
+  - first:
+      213: -5033915500931513370
+    second: red_key_22
+  - first:
+      213: 1846073221820928301
+    second: red_key_23
+  - first:
+      213: 8187693669844839325
+    second: red_key_24
+  - first:
+      213: -8200258262244926251
+    second: red_key_25
+  - first:
+      213: 1805035687048768816
+    second: red_key_26
+  - first:
+      213: 601623712195309755
+    second: red_key_27
+  - first:
+      213: 5870678611561529571
+    second: red_key_28
+  - first:
+      213: 1132161023734330006
+    second: red_key_29
+  - first:
+      213: 4696031679127534326
+    second: red_key_30
+  - first:
+      213: 5633922704102082020
+    second: red_key_31
+  - first:
+      213: -6314040421269249243
+    second: red_key_32
+  - first:
+      213: -2801391688160876763
+    second: red_key_33
+  - first:
+      213: 5134816078723473480
+    second: red_key_34
+  - first:
+      213: -2872671347441651137
+    second: red_key_35
+  - first:
+      213: 1950659487094431973
+    second: red_key_36
+  - first:
+      213: 8332491382926606675
+    second: red_key_37
+  - first:
+      213: 6074535964833346907
+    second: red_key_38
+  - first:
+      213: -826874658774438902
+    second: red_key_39
+  - first:
+      213: 3693717639562969614
+    second: red_key_40
+  - first:
+      213: -451431301160299701
+    second: red_key_41
+  - first:
+      213: -4808420895081962609
+    second: red_key_42
+  - first:
+      213: -382948570333735327
+    second: red_key_43
+  - first:
+      213: 3743620735390511965
+    second: red_key_44
+  - first:
+      213: 8435689071215288902
+    second: red_key_45
+  - first:
+      213: -678893984672652429
+    second: red_key_46
+  - first:
+      213: 6325463812631749316
+    second: red_key_47
+  - first:
+      213: 5609887463178644672
+    second: red_key_48
+  - first:
+      213: 2297792104067148205
+    second: red_key_49
+  - first:
+      213: -3310301308257098074
+    second: red_key_50
+  - first:
+      213: -2369913521877599589
+    second: red_key_51
+  - first:
+      213: -2502839440524056576
+    second: red_key_52
+  - first:
+      213: -7867889187668817525
+    second: red_key_53
+  - first:
+      213: -6592355307655589999
+    second: red_key_54
+  - first:
+      213: -4041545990653200996
+    second: red_key_55
+  - first:
+      213: 7460898358954370957
+    second: red_key_56
+  - first:
+      213: -454860388132812117
+    second: red_key_57
+  - first:
+      213: -1602075131135691121
+    second: red_key_58
+  - first:
+      213: -7502170731247753392
+    second: red_key_59
+  - first:
+      213: -5200128719368991101
+    second: red_key_60
+  - first:
+      213: 5458121297311979946
+    second: red_key_61
+  - first:
+      213: -6082620795534745006
+    second: red_key_62
+  - first:
+      213: -4577191474569175978
+    second: red_key_63
+  - first:
+      213: 5282943548161016665
+    second: red_key_64
+  - first:
+      213: -4902030919014987026
+    second: red_key_65
+  - first:
+      213: -4006773194462243897
+    second: red_key_66
+  - first:
+      213: -2124702743649851336
+    second: red_key_67
+  - first:
+      213: -1570292201342795009
+    second: red_key_68
+  - first:
+      213: -1658789186161056617
+    second: red_key_69
+  - first:
+      213: -7439935354975022288
+    second: red_key_70
+  - first:
+      213: 670327444320615303
+    second: red_key_71
+  - first:
+      213: 4692360413147875308
+    second: red_key_72
+  - first:
+      213: 6653352379294449955
+    second: red_key_73
+  - first:
+      213: 440237941252778619
+    second: red_key_74
+  - first:
+      213: 6811033683589142490
+    second: red_key_75
+  - first:
+      213: 2236145707088890295
+    second: red_key_76
+  - first:
+      213: -1294556269366208894
+    second: red_key_77
+  - first:
+      213: 3914294063237186095
+    second: red_key_78
+  - first:
+      213: 2025165802451905843
+    second: red_key_79
+  - first:
+      213: 6569917623565484355
+    second: red_key_80
+  - first:
+      213: 6945211895426470884
+    second: red_key_81
+  - first:
+      213: -5931248662595886637
+    second: red_key_82
+  - first:
+      213: -2875998493563540269
+    second: red_key_83
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: red_key_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1531
+        height: 1010
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85b4c3c34961146a0800000000000000
+      internalID: -6466862764005766312
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_1
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 979
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61082f4c7d47b9610800000000000000
+      internalID: 1629024160295583766
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_2
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 977
+        width: 105
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 050b8347b47404540800000000000000
+      internalID: 4990066776524501072
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_3
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 963
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c07de7fe32a44f50800000000000000
+      internalID: 6864790123350683847
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_4
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 961
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed62b337b1dba7f70800000000000000
+      internalID: 9185862315570570974
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_5
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 935
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 562edd150fa943470800000000000000
+      internalID: 8373487964144919141
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_6
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 929
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d5060460b27f5300800000000000000
+      internalID: 243039006819222997
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_7
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 902
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba03325f06418cb10800000000000000
+      internalID: 2001872441028325547
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_8
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 899
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23af4cae15459f260800000000000000
+      internalID: 7131824195725752882
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_9
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 909
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb28b83bfc5959740800000000000000
+      internalID: 5158193667525804734
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_10
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 903
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64ddeed2dacb8c630800000000000000
+      internalID: 3947612525376232774
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_11
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 867
+        width: 21
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c749e121a155dff0800000000000000
+      internalID: -12013671498037310
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_12
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 891
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f15d1c21cc5de8a0800000000000000
+      internalID: -6274256721118670345
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_13
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 885
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 135d1716f7789b2b0800000000000000
+      internalID: -5568270483101461199
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_14
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 875
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4f75fe0c86e0b710800000000000000
+      internalID: 1707117747994197835
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_15
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 871
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 663c9dee96b57c8b0800000000000000
+      internalID: -5132032739828448410
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_16
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 881
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7409fff81d3cb3510800000000000000
+      internalID: 1530031803253887047
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 873
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a91a6448d8c5d3940800000000000000
+      internalID: 5277476101227454874
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_18
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 591
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb29d65c86ab92120800000000000000
+      internalID: 2389646036448416443
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_19
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 605
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acab8f5cc906f94c0800000000000000
+      internalID: -4278594894526104886
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_20
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 589
+        width: 31
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21f0fe14cd46ad070800000000000000
+      internalID: 8131922974332620562
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 544
+        width: 6
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ab9d968c2a319120800000000000000
+      internalID: 2418778437786114984
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_22
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 539
+        width: 18
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e305a1d580f32ab0800000000000000
+      internalID: -5033915500931513370
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_23
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 532
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d215ff770d19e9910800000000000000
+      internalID: 1846073221820928301
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_24
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 541
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9be0d0330880a170800000000000000
+      internalID: 8187693669844839325
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dcdd6cae84d23e80800000000000000
+      internalID: -8200258262244926251
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_26
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 501
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03de175d466cc0910800000000000000
+      internalID: 1805035687048768816
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 471
+        width: 5
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb07ad52495695800800000000000000
+      internalID: 601623712195309755
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_28
+      rect:
+        serializedVersion: 2
+        x: 1490
+        y: 359
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e0cb90d717d87150800000000000000
+      internalID: 5870678611561529571
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_29
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 357
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6923a30e37e36bf00800000000000000
+      internalID: 1132161023734330006
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_30
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 339
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fab0687ee7ab2140800000000000000
+      internalID: 4696031679127534326
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 298
+        width: 11
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e5430e79d6bf2e40800000000000000
+      internalID: 5633922704102082020
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 242
+        width: 9
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 523e9c8a0b50068a0800000000000000
+      internalID: -6314040421269249243
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_33
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 271
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 527607e1a157f19d0800000000000000
+      internalID: -2801391688160876763
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_34
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 141
+        width: 150
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 840e647a408824740800000000000000
+      internalID: 5134816078723473480
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_35
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 221
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f323c4b21a83228d0800000000000000
+      internalID: -2872671347441651137
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_36
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 231
+        width: 17
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e0620ee772221b10800000000000000
+      internalID: 1950659487094431973
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_37
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 167
+        width: 47
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 351085de3c4f2a370800000000000000
+      internalID: 8332491382926606675
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_38
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 168
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b55f93796461d4450800000000000000
+      internalID: 6074535964833346907
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_39
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 173
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0c2af9f0e95684f0800000000000000
+      internalID: -826874658774438902
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_40
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 149
+        width: 9
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e02cebe7f98b24330800000000000000
+      internalID: 3693717639562969614
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_41
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 141
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4319d59f913cb9f0800000000000000
+      internalID: -451431301160299701
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_42
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 109
+        width: 9
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f83e21a0cae054db0800000000000000
+      internalID: -4808420895081962609
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_43
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 117
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1669302ed4e7faaf0800000000000000
+      internalID: -382948570333735327
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_44
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 63
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d53fcba693304f330800000000000000
+      internalID: 3743620735390511965
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_45
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 113
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 642ae6d1486911570800000000000000
+      internalID: 8435689071215288902
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_46
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 73
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 373ef6394851496f0800000000000000
+      internalID: -678893984672652429
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_47
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 95
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c2e087e2df88c750800000000000000
+      internalID: 6325463812631749316
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_48
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 93
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cc2ea0ece25add40800000000000000
+      internalID: 5609887463178644672
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_49
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 93
+        width: 25
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da9ae929eb563ef10800000000000000
+      internalID: 2297792104067148205
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_50
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 92
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a623d5bf727f02d0800000000000000
+      internalID: -3310301308257098074
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_51
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 60
+        width: 55
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9a371c45306c1fd0800000000000000
+      internalID: -2369913521877599589
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_52
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 95
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 008e9b91ac0244dd0800000000000000
+      internalID: -2502839440524056576
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_53
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 95
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b890ddc3874afc290800000000000000
+      internalID: -7867889187668817525
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_54
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 103
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19f070686cf3384a0800000000000000
+      internalID: -6592355307655589999
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_55
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 93
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9536b3a55b89e7c0800000000000000
+      internalID: -4041545990653200996
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_56
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 49
+        width: 41
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8725c6278f6a8760800000000000000
+      internalID: 7460898358954370957
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_57
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 80
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baa82fe03e200b9f0800000000000000
+      internalID: -454860388132812117
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_58
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 67
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f867b29082944c9e0800000000000000
+      internalID: -1602075131135691121
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_59
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 83
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05725a7d77fe2e790800000000000000
+      internalID: -7502170731247753392
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_60
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 65
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38e44bf2b7e65d7b0800000000000000
+      internalID: -5200128719368991101
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_61
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 65
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa9564bc6642fbb40800000000000000
+      internalID: 5458121297311979946
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_62
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 75
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2526fb21d90369ba0800000000000000
+      internalID: -6082620795534745006
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_63
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 77
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65c9b59da9c8a70c0800000000000000
+      internalID: -4577191474569175978
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_64
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 81
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9534494ba29c05940800000000000000
+      internalID: 5282943548161016665
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_65
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 77
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea412ae9dc78fbb0800000000000000
+      internalID: -4902030919014987026
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_66
+      rect:
+        serializedVersion: 2
+        x: 876
+        y: 57
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c3558822051568c0800000000000000
+      internalID: -4006773194462243897
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_67
+      rect:
+        serializedVersion: 2
+        x: 1278
+        y: 87
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838e37f9c1a8382e0800000000000000
+      internalID: -2124702743649851336
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_68
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 65
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff285690093353ae0800000000000000
+      internalID: -1570292201342795009
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_69
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 63
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7946c99160ccaf8e0800000000000000
+      internalID: -1658789186161056617
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_70
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 75
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03318de863a00c890800000000000000
+      internalID: -7439935354975022288
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_71
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 65
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78bfce1524b7d4900800000000000000
+      internalID: 670327444320615303
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_72
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 35
+        width: 19
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce7c8cf3fec9e1140800000000000000
+      internalID: 4692360413147875308
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_73
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 63
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 321885decb4755c50800000000000000
+      internalID: 6653352379294449955
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_74
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 43
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7a6509331a0c1600800000000000000
+      internalID: 440237941252778619
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_75
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 31
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad71d8f7c07a58e50800000000000000
+      internalID: 6811033683589142490
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_76
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 49
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b94c094ca2680f10800000000000000
+      internalID: 2236145707088890295
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_77
+      rect:
+        serializedVersion: 2
+        x: 1138
+        y: 51
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2861cae8eefc80ee0800000000000000
+      internalID: -1294556269366208894
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_78
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 29
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f224ca136bd525630800000000000000
+      internalID: 3914294063237186095
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_79
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 13
+        width: 55
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33d2a6a4195da1c10800000000000000
+      internalID: 2025165802451905843
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_80
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 17
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 341033c05490d2b50800000000000000
+      internalID: 6569917623565484355
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_81
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 13
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e356bceb69526060800000000000000
+      internalID: 6945211895426470884
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_82
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 35
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d1267734c8ffada0800000000000000
+      internalID: -5931248662595886637
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red_key_83
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 15
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc26989b966618d0800000000000000
+      internalID: -2875998493563540269
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      red_key_0: -6466862764005766312
+      red_key_1: 1629024160295583766
+      red_key_10: 3947612525376232774
+      red_key_11: -12013671498037310
+      red_key_12: -6274256721118670345
+      red_key_13: -5568270483101461199
+      red_key_14: 1707117747994197835
+      red_key_15: -5132032739828448410
+      red_key_16: 1530031803253887047
+      red_key_17: 5277476101227454874
+      red_key_18: 2389646036448416443
+      red_key_19: -4278594894526104886
+      red_key_2: 4990066776524501072
+      red_key_20: 8131922974332620562
+      red_key_21: 2418778437786114984
+      red_key_22: -5033915500931513370
+      red_key_23: 1846073221820928301
+      red_key_24: 8187693669844839325
+      red_key_25: -8200258262244926251
+      red_key_26: 1805035687048768816
+      red_key_27: 601623712195309755
+      red_key_28: 5870678611561529571
+      red_key_29: 1132161023734330006
+      red_key_3: 6864790123350683847
+      red_key_30: 4696031679127534326
+      red_key_31: 5633922704102082020
+      red_key_32: -6314040421269249243
+      red_key_33: -2801391688160876763
+      red_key_34: 5134816078723473480
+      red_key_35: -2872671347441651137
+      red_key_36: 1950659487094431973
+      red_key_37: 8332491382926606675
+      red_key_38: 6074535964833346907
+      red_key_39: -826874658774438902
+      red_key_4: 9185862315570570974
+      red_key_40: 3693717639562969614
+      red_key_41: -451431301160299701
+      red_key_42: -4808420895081962609
+      red_key_43: -382948570333735327
+      red_key_44: 3743620735390511965
+      red_key_45: 8435689071215288902
+      red_key_46: -678893984672652429
+      red_key_47: 6325463812631749316
+      red_key_48: 5609887463178644672
+      red_key_49: 2297792104067148205
+      red_key_5: 8373487964144919141
+      red_key_50: -3310301308257098074
+      red_key_51: -2369913521877599589
+      red_key_52: -2502839440524056576
+      red_key_53: -7867889187668817525
+      red_key_54: -6592355307655589999
+      red_key_55: -4041545990653200996
+      red_key_56: 7460898358954370957
+      red_key_57: -454860388132812117
+      red_key_58: -1602075131135691121
+      red_key_59: -7502170731247753392
+      red_key_6: 243039006819222997
+      red_key_60: -5200128719368991101
+      red_key_61: 5458121297311979946
+      red_key_62: -6082620795534745006
+      red_key_63: -4577191474569175978
+      red_key_64: 5282943548161016665
+      red_key_65: -4902030919014987026
+      red_key_66: -4006773194462243897
+      red_key_67: -2124702743649851336
+      red_key_68: -1570292201342795009
+      red_key_69: -1658789186161056617
+      red_key_7: 2001872441028325547
+      red_key_70: -7439935354975022288
+      red_key_71: 670327444320615303
+      red_key_72: 4692360413147875308
+      red_key_73: 6653352379294449955
+      red_key_74: 440237941252778619
+      red_key_75: 6811033683589142490
+      red_key_76: 2236145707088890295
+      red_key_77: -1294556269366208894
+      red_key_78: 3914294063237186095
+      red_key_79: 2025165802451905843
+      red_key_8: 7131824195725752882
+      red_key_80: 6569917623565484355
+      red_key_81: 6945211895426470884
+      red_key_82: -5931248662595886637
+      red_key_83: -2875998493563540269
+      red_key_9: 5158193667525804734
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

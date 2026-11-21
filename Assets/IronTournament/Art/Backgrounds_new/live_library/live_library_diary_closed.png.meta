@@ -1,0 +1,468 @@
+fileFormatVersion: 2
+guid: 27f25d404eac44bb3a2b26b53febc6a6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5191237452430730174
+    second: live_library_diary_closed_0
+  - first:
+      213: -8131557240513687217
+    second: live_library_diary_closed_1
+  - first:
+      213: -1154081004290714207
+    second: live_library_diary_closed_2
+  - first:
+      213: -5609095512036353126
+    second: live_library_diary_closed_3
+  - first:
+      213: -4235574680236931593
+    second: live_library_diary_closed_4
+  - first:
+      213: -5002299199619890453
+    second: live_library_diary_closed_5
+  - first:
+      213: -3491863650879065081
+    second: live_library_diary_closed_6
+  - first:
+      213: 7549237144635331204
+    second: live_library_diary_closed_7
+  - first:
+      213: 634351195231932624
+    second: live_library_diary_closed_8
+  - first:
+      213: -8794937248710263456
+    second: live_library_diary_closed_9
+  - first:
+      213: -5197013050716306884
+    second: live_library_diary_closed_10
+  - first:
+      213: 8693258637741638308
+    second: live_library_diary_closed_11
+  - first:
+      213: -2258926853163324414
+    second: live_library_diary_closed_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: live_library_diary_closed_0
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 981
+        width: 64
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24c99279a0505f7b0800000000000000
+      internalID: -5191237452430730174
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_1
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 966
+        width: 83
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f411d68c5c7e62f80800000000000000
+      internalID: -8131557240513687217
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_2
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 991
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a5d931f071ebffe0800000000000000
+      internalID: -1154081004290714207
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 15
+        width: 1302
+        height: 973
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9bd5dd995d7822b0800000000000000
+      internalID: -5609095512036353126
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_4
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 973
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f5c6d4f4473835c0800000000000000
+      internalID: -4235574680236931593
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_5
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 937
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be28f6a9163449ab0800000000000000
+      internalID: -5002299199619890453
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_6
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 421
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 704314d92886a8fc0800000000000000
+      internalID: -3491863650879065081
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_7
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 318
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4825c2b7f2744c860800000000000000
+      internalID: 7549237144635331204
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_8
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 295
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d0d4a61d0badc800800000000000000
+      internalID: 634351195231932624
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_9
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 33
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06df5cc7b2b12f580800000000000000
+      internalID: -8794937248710263456
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_10
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 49
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c324cf25a2080e7b0800000000000000
+      internalID: -5197013050716306884
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_11
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 51
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a2cf231ca8a4a870800000000000000
+      internalID: 8693258637741638308
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_diary_closed_12
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 19
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ceb9fcefda6a0e0800000000000000
+      internalID: -2258926853163324414
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      live_library_diary_closed_0: -5191237452430730174
+      live_library_diary_closed_1: -8131557240513687217
+      live_library_diary_closed_10: -5197013050716306884
+      live_library_diary_closed_11: 8693258637741638308
+      live_library_diary_closed_12: -2258926853163324414
+      live_library_diary_closed_2: -1154081004290714207
+      live_library_diary_closed_3: -5609095512036353126
+      live_library_diary_closed_4: -4235574680236931593
+      live_library_diary_closed_5: -5002299199619890453
+      live_library_diary_closed_6: -3491863650879065081
+      live_library_diary_closed_7: 7549237144635331204
+      live_library_diary_closed_8: 634351195231932624
+      live_library_diary_closed_9: -8794937248710263456
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

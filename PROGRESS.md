@@ -1,5 +1,10 @@
 # Progresso
 
+## 2026-11-20 — Acervo narrativo
+
+- Organizados cenários, personagens e objetos para etapas futuras, preservando os arquivos e metadados locais; seu uso na jornada permanece pendente.
+- Corrigido o recorte de `treasure_room_exit_doorway`; 171 imagens verificadas e PlayMode local aprovado.
+
 ## 2026-11-20 — Organização local
 
 - Restauradas as duas imagens da ponte e vinculada a pose do Lobisomem derrotado ao conteúdo narrativo; EditMode: 149/149; PlayMode: 48/48. Visual da ponte e do salão aprovado em mobile e desktop.

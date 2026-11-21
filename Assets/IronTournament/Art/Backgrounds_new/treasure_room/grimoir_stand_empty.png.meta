@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: fa6b20c8506b1405e93a71761a18eb72
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8536438022926175324
+    second: grimoir_stand_empty_0
+  - first:
+      213: -5885789235579063852
+    second: grimoir_stand_empty_1
+  - first:
+      213: -2905931365880233784
+    second: grimoir_stand_empty_2
+  - first:
+      213: 2108520819628958649
+    second: grimoir_stand_empty_3
+  - first:
+      213: -7427749289521762420
+    second: grimoir_stand_empty_4
+  - first:
+      213: -5942799177063577977
+    second: grimoir_stand_empty_5
+  - first:
+      213: 1936786127449259669
+    second: grimoir_stand_empty_6
+  - first:
+      213: 3055677526981449542
+    second: grimoir_stand_empty_7
+  - first:
+      213: -8821296130701130924
+    second: grimoir_stand_empty_8
+  - first:
+      213: 1829759404560047974
+    second: grimoir_stand_empty_9
+  - first:
+      213: -8360470224742024982
+    second: grimoir_stand_empty_10
+  - first:
+      213: -8584513091372802144
+    second: grimoir_stand_empty_11
+  - first:
+      213: -2328990477421826771
+    second: grimoir_stand_empty_12
+  - first:
+      213: 8308932084895219067
+    second: grimoir_stand_empty_13
+  - first:
+      213: -614030057453921248
+    second: grimoir_stand_empty_14
+  - first:
+      213: -3987739228540280749
+    second: grimoir_stand_empty_15
+  - first:
+      213: 3868415917087644424
+    second: grimoir_stand_empty_16
+  - first:
+      213: 6856220630469989628
+    second: grimoir_stand_empty_17
+  - first:
+      213: -5011751979004880290
+    second: grimoir_stand_empty_18
+  - first:
+      213: -6535815779736962863
+    second: grimoir_stand_empty_19
+  - first:
+      213: 3455394363799001021
+    second: grimoir_stand_empty_20
+  - first:
+      213: -2168313388221787418
+    second: grimoir_stand_empty_21
+  - first:
+      213: -8279312803210306152
+    second: grimoir_stand_empty_22
+  - first:
+      213: -2022084948513187958
+    second: grimoir_stand_empty_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: grimoir_stand_empty_0
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 959
+        width: 37
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5c07a36725877670800000000000000
+      internalID: 8536438022926175324
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_1
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 975
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d1fd7edfd9715ea0800000000000000
+      internalID: -5885789235579063852
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_2
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 975
+        width: 77
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c00b0ba1de0ca7d0800000000000000
+      internalID: -2905931365880233784
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_3
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 975
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b3ef779388f24d10800000000000000
+      internalID: 2108520819628958649
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_4
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 945
+        width: 109
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8f256500655be890800000000000000
+      internalID: -7427749289521762420
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_5
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 31
+        width: 1493
+        height: 912
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78644af72afe68da0800000000000000
+      internalID: -5942799177063577977
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_6
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 929
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59e748ca8b8d0ea10800000000000000
+      internalID: 1936786127449259669
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_7
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 927
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6479fd76582f76a20800000000000000
+      internalID: 3055677526981449542
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_8
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 903
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 453080708e5749580800000000000000
+      internalID: -8821296130701130924
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_9
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 913
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66f5b35eb7c946910800000000000000
+      internalID: 1829759404560047974
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_10
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 911
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae8750350a4a9fb80800000000000000
+      internalID: -8360470224742024982
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_11
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 897
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0af980b73deadd880800000000000000
+      internalID: -8584513091372802144
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_12
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 881
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2d21041083cdafd0800000000000000
+      internalID: -2328990477421826771
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_13
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 875
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7d760765b14f4370800000000000000
+      internalID: 8308932084895219067
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_14
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 871
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02cdb008ae68a77f0800000000000000
+      internalID: -614030057453921248
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_15
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 869
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35067f1bc44b8a8c0800000000000000
+      internalID: -3987739228540280749
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_16
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 865
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80bd975e7cf5fa530800000000000000
+      internalID: 3868415917087644424
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_17
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 593
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf45edc6650362f50800000000000000
+      internalID: 6856220630469989628
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_18
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 605
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5a9d05e02ea27ab0800000000000000
+      internalID: -5011751979004880290
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_19
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 583
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d8b2633d2e1c45a0800000000000000
+      internalID: -6535815779736962863
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_20
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 591
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db7502dcdd604ff20800000000000000
+      internalID: 3455394363799001021
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_21
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 404
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e2115d267a98e1e0800000000000000
+      internalID: -2168313388221787418
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_22
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 105
+        width: 35
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89d5e440fd8f91d80800000000000000
+      internalID: -8279312803210306152
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grimoir_stand_empty_23
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 71
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a87153ae37c10f3e0800000000000000
+      internalID: -2022084948513187958
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      grimoir_stand_empty_0: 8536438022926175324
+      grimoir_stand_empty_1: -5885789235579063852
+      grimoir_stand_empty_10: -8360470224742024982
+      grimoir_stand_empty_11: -8584513091372802144
+      grimoir_stand_empty_12: -2328990477421826771
+      grimoir_stand_empty_13: 8308932084895219067
+      grimoir_stand_empty_14: -614030057453921248
+      grimoir_stand_empty_15: -3987739228540280749
+      grimoir_stand_empty_16: 3868415917087644424
+      grimoir_stand_empty_17: 6856220630469989628
+      grimoir_stand_empty_18: -5011751979004880290
+      grimoir_stand_empty_19: -6535815779736962863
+      grimoir_stand_empty_2: -2905931365880233784
+      grimoir_stand_empty_20: 3455394363799001021
+      grimoir_stand_empty_21: -2168313388221787418
+      grimoir_stand_empty_22: -8279312803210306152
+      grimoir_stand_empty_23: -2022084948513187958
+      grimoir_stand_empty_3: 2108520819628958649
+      grimoir_stand_empty_4: -7427749289521762420
+      grimoir_stand_empty_5: -5942799177063577977
+      grimoir_stand_empty_6: 1936786127449259669
+      grimoir_stand_empty_7: 3055677526981449542
+      grimoir_stand_empty_8: -8821296130701130924
+      grimoir_stand_empty_9: 1829759404560047974
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:

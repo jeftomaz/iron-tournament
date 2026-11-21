@@ -1,0 +1,676 @@
+fileFormatVersion: 2
+guid: 398a7bf9877014934885787046b4b0d6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -219759286294296409
+    second: live_library_clothes_blooded_0
+  - first:
+      213: 6043073165066667771
+    second: live_library_clothes_blooded_1
+  - first:
+      213: 7016887617369067082
+    second: live_library_clothes_blooded_2
+  - first:
+      213: 478202378960903093
+    second: live_library_clothes_blooded_3
+  - first:
+      213: -4279262651020473994
+    second: live_library_clothes_blooded_4
+  - first:
+      213: 1295852015333134582
+    second: live_library_clothes_blooded_5
+  - first:
+      213: -3872438541026640986
+    second: live_library_clothes_blooded_6
+  - first:
+      213: 5554579816375187330
+    second: live_library_clothes_blooded_7
+  - first:
+      213: -28113298519645397
+    second: live_library_clothes_blooded_8
+  - first:
+      213: 5855987877322998512
+    second: live_library_clothes_blooded_9
+  - first:
+      213: -8035869768338514095
+    second: live_library_clothes_blooded_10
+  - first:
+      213: 7421643300478737016
+    second: live_library_clothes_blooded_11
+  - first:
+      213: 8295441274650130722
+    second: live_library_clothes_blooded_12
+  - first:
+      213: 5269335435964527427
+    second: live_library_clothes_blooded_13
+  - first:
+      213: 7293582801198134
+    second: live_library_clothes_blooded_14
+  - first:
+      213: 3641193189306328366
+    second: live_library_clothes_blooded_15
+  - first:
+      213: -4941942246502689212
+    second: live_library_clothes_blooded_16
+  - first:
+      213: -3600062771071007974
+    second: live_library_clothes_blooded_17
+  - first:
+      213: 8418395909717322029
+    second: live_library_clothes_blooded_18
+  - first:
+      213: -8680997924071542560
+    second: live_library_clothes_blooded_19
+  - first:
+      213: 6596524447039761700
+    second: live_library_clothes_blooded_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_0
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 929
+        width: 53
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a8c55ce71243fcf0800000000000000
+      internalID: -219759286294296409
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_1
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 935
+        width: 59
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf68e7ba60f4dd350800000000000000
+      internalID: 6043073165066667771
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_2
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 983
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4ece166c1ef06160800000000000000
+      internalID: 7016887617369067082
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_3
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 959
+        width: 39
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bb16b0b78ae2a600800000000000000
+      internalID: 478202378960903093
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_4
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 933
+        width: 23
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67904599a410d94c0800000000000000
+      internalID: -4279262651020473994
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_5
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 959
+        width: 73
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f0d76fca8acbf110800000000000000
+      internalID: 1295852015333134582
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_6
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 944
+        width: 225
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ab339bf9a5524ac0800000000000000
+      internalID: -3872438541026640986
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 1495
+        height: 916
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 287f89fd9e4d51d40800000000000000
+      internalID: 5554579816375187330
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_8
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 865
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b23a54c9a1f1c9ff0800000000000000
+      internalID: -28113298519645397
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_9
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 895
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f2c4d4b2f5a44150800000000000000
+      internalID: 5855987877322998512
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_10
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 894
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15fd1e4850bda7090800000000000000
+      internalID: -8035869768338514095
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_11
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 895
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87a51be9249fef660800000000000000
+      internalID: 7421643300478737016
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_12
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 47
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22972ae53e35f1370800000000000000
+      internalID: 8295441274650130722
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_13
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 49
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3433b0f29a0702940800000000000000
+      internalID: 5269335435964527427
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_14
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 63
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63c51049979e91000800000000000000
+      internalID: 7293582801198134
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_15
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 31
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e25ec2fe9ed188230800000000000000
+      internalID: 3641193189306328366
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_16
+      rect:
+        serializedVersion: 2
+        x: 1182
+        y: 33
+        width: 33
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44616b8d5b1ba6bb0800000000000000
+      internalID: -4941942246502689212
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_17
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 34
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a134431dbf10a0ec0800000000000000
+      internalID: -3600062771071007974
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_18
+      rect:
+        serializedVersion: 2
+        x: 1232
+        y: 33
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d296d413a7624d470800000000000000
+      internalID: 8418395909717322029
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_19
+      rect:
+        serializedVersion: 2
+        x: 1237
+        y: 35
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e0ffc7c166e68780800000000000000
+      internalID: -8680997924071542560
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: live_library_clothes_blooded_20
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 2
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42d2cf1e8009b8b50800000000000000
+      internalID: 6596524447039761700
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      live_library_clothes_blooded_0: -219759286294296409
+      live_library_clothes_blooded_1: 6043073165066667771
+      live_library_clothes_blooded_10: -8035869768338514095
+      live_library_clothes_blooded_11: 7421643300478737016
+      live_library_clothes_blooded_12: 8295441274650130722
+      live_library_clothes_blooded_13: 5269335435964527427
+      live_library_clothes_blooded_14: 7293582801198134
+      live_library_clothes_blooded_15: 3641193189306328366
+      live_library_clothes_blooded_16: -4941942246502689212
+      live_library_clothes_blooded_17: -3600062771071007974
+      live_library_clothes_blooded_18: 8418395909717322029
+      live_library_clothes_blooded_19: -8680997924071542560
+      live_library_clothes_blooded_2: 7016887617369067082
+      live_library_clothes_blooded_20: 6596524447039761700
+      live_library_clothes_blooded_3: 478202378960903093
+      live_library_clothes_blooded_4: -4279262651020473994
+      live_library_clothes_blooded_5: 1295852015333134582
+      live_library_clothes_blooded_6: -3872438541026640986
+      live_library_clothes_blooded_7: 5554579816375187330
+      live_library_clothes_blooded_8: -28113298519645397
+      live_library_clothes_blooded_9: 5855987877322998512
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData:
+  assetBundleName:
+  assetBundleVariant:
